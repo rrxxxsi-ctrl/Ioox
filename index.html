@@ -11,40 +11,54 @@
     <style>
         :root {
             --gold: #d4af37;
-            --gold-bright: #f1d592;
-            --bg: #050505;
+            --gold-light: #f1d592;
+            --bg: #080808;
             --card-bg: rgba(255, 255, 255, 0.05);
-            --text-main: #ffffff; /* للوضع الليلي */
-            --text-sub: rgba(255, 255, 255, 0.85);
-            --glow: rgba(212, 175, 55, 0.5);
+            --text-main: #ffffff;
+            --text-sub: rgba(255, 255, 255, 0.7);
+            --glow: rgba(212, 175, 55, 0.3);
             --ms-grad: linear-gradient(135deg, #00B2FF, #006AFF, #764BA2);
-            --name-grad: linear-gradient(to bottom, #fff 30%, var(--gold) 100%);
+            --name-grad: linear-gradient(to bottom, #ffffff 20%, var(--gold) 100%);
         }
 
         body.light-mode {
-            --bg: #ffffff;
-            --card-bg: #f9f9f9;
-            --text-main: #1a1a1a; /* لون غامق للوضع النهاري */
-            --text-sub: #444444;
-            --glow: rgba(212, 175, 55, 0.3);
-            /* تغيير تدرج الاسم في الوضع النهاري ليصبح واضحاً */
-            --name-grad: linear-gradient(to bottom, #222 20%, var(--gold) 100%);
+            --bg: #fdfdfd;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #121212;
+            --text-sub: #555555;
+            --glow: rgba(212, 175, 55, 0.15);
+            --name-grad: linear-gradient(to bottom, #222222 20%, var(--gold) 100%);
         }
 
         * { user-select: none !important; -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
-            background: var(--bg); color: var(--text-main); font-family: 'Almarai', sans-serif; 
-            transition: 0.5s ease; min-height: 100vh; display: flex; 
-            flex-direction: column; align-items: center; overflow-x: hidden;
+            background: var(--bg); 
+            color: var(--text-main); 
+            font-family: 'Almarai', sans-serif; 
+            transition: background 0.8s ease; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .container { width: 92%; max-width: 480px; padding: 4vh 0; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+        /* تأثير الخلفية الفاخر */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 90%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
 
-        /* --- تأثيرات الصورة والجماليات المحيطة --- */
-        .profile-area { position: relative; margin-bottom: 50px; }
-        
-        /* الحلقات الدورانية */
+        .container { width: 90%; max-width: 440px; padding: 4vh 0; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+
+        /* منطقة الصورة - ثابتة بدون تغيير بناءً على طلبك */
+        .profile-area { position: relative; margin-bottom: 45px; }
         .orbit {
             position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px;
             border: 2px solid transparent; border-top-color: var(--gold);
@@ -54,7 +68,6 @@
             content: ''; position: absolute; top: 10px; right: 10px; width: 8px; height: 8px;
             background: var(--gold-bright); border-radius: 50%; box-shadow: 0 0 15px var(--gold);
         }
-
         .profile-wrapper {
             position: relative; width: 160px; height: 160px;
             border-radius: 50%; padding: 6px;
@@ -62,53 +75,105 @@
             box-shadow: 0 0 30px var(--glow); z-index: 10;
             animation: pulse-border 2s infinite alternate;
         }
-
         .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg); }
 
-        /* --- الاسم المحسن للوضوح --- */
-        .name-container { text-align: center; margin-bottom: 25px; }
+        /* الاسم الملكي */
+        .name-container { text-align: center; margin-bottom: 25px; animation: fadeInUp 1s ease; }
         .name { 
-            font-family: 'Cairo', sans-serif; font-size: clamp(2.3rem, 10vw, 3rem); font-weight: 900; 
+            font-family: 'Cairo', sans-serif; 
+            font-size: clamp(2.4rem, 10vw, 3.2rem); 
+            font-weight: 900; 
             background: var(--name-grad);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
 
-        /* وصف الموقع */
+        /* صندوق الوصف بجمالية أعلى */
         .intro-box { 
-            background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.2); 
-            border-radius: 25px; padding: 30px 25px; margin-bottom: 30px; width: 100%; 
-            backdrop-filter: blur(15px); text-align: center;
+            background: var(--card-bg); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            border-radius: 35px; 
+            padding: 30px 25px; 
+            margin-bottom: 35px; 
+            width: 100%; 
+            backdrop-filter: blur(25px); 
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            animation: fadeInUp 1.2s ease;
         }
-        .intro-box p { line-height: 1.9; font-size: 1.1rem; color: var(--text-sub); font-weight: 400; }
+        .intro-box p { 
+            line-height: 2.1; 
+            font-size: 1.08rem; 
+            color: var(--text-sub); 
+            font-weight: 400;
+        }
 
-        /* الأزرار */
-        .links-area { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+        /* تحسين الأزرار (تأثير السيولة) */
+        .links-area { width: 100%; display: flex; flex-direction: column; gap: 18px; }
         .btn { 
-            width: 100%; padding: 18px; border-radius: 22px; text-decoration: none; 
-            display: flex; align-items: center; justify-content: center; gap: 12px; 
-            font-weight: 700; font-size: 1.1rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
+            width: 100%; 
+            padding: 22px; 
+            border-radius: 28px; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 15px; 
+            font-weight: 700; 
+            font-size: 1.15rem; 
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; 
+            overflow: hidden;
+            border: 1px solid transparent;
         }
-        .btn:hover { transform: translateY(-5px) scale(1.02); }
 
-        .wa { background: #25d366; color: #fff; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25); }
-        .msg { background: var(--ms-grad); color: #fff; box-shadow: 0 8px 20px rgba(0, 106, 255, 0.2); }
-        .mail { border: 2.5px solid var(--gold); color: var(--text-main); }
+        /* وميض الأزرار الناعم */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -60%; width: 20%; height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(30deg);
+            transition: 0.5s;
+        }
+        .btn:hover::after { left: 120%; }
 
-        /* الأنيميشن */
+        .wa { background: #25d366; color: #fff; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.25); }
+        .msg { background: var(--ms-grad); color: #fff; box-shadow: 0 10px 30px rgba(0, 106, 255, 0.2); }
+        .mail { background: transparent; border: 2px solid var(--gold); color: var(--text-main); }
+
+        .btn:hover { transform: translateY(-7px) scale(1.02); border-color: rgba(212, 175, 55, 0.5); }
+        .btn:active { transform: scale(0.97); }
+
+        /* شريط علوي أنيق */
+        .nav-header {
+            width: 100%; display: flex; justify-content: space-between; margin-bottom: 35px;
+        }
+        .nav-btn {
+            background: var(--card-bg); width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold); cursor: pointer; transition: 0.3s;
+        }
+        .nav-btn:hover { background: var(--gold); color: #fff; transform: scale(1.1); }
+
+        /* أنيميشن الدخول */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes pulse-border { 0% { box-shadow: 0 0 15px var(--glow); } 100% { box-shadow: 0 0 35px var(--gold); } }
 
-        /* تم حذف الـ Footer بناءً على طلبك */
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <div class="container">
-        <div style="width:100%; display:flex; justify-content:space-between; margin-bottom:30px;">
-            <div style="cursor:pointer; color:var(--gold); font-size:1.5rem;" onclick="toggleMode()"><i class="fas fa-moon"></i></div>
-            <div id="lBtn" style="cursor:pointer; color:var(--gold); font-weight:900;" onclick="toggleLang()">EN</div>
+        <div class="nav-header">
+            <div class="nav-btn" onclick="toggleMode()"><i class="fas fa-palette"></i></div>
+            <div id="lBtn" style="cursor:pointer; color:var(--gold); font-weight:900; background:var(--card-bg); padding:12px 22px; border-radius:20px; border: 1px solid rgba(212, 175, 55, 0.2);" onclick="toggleLang()">EN</div>
         </div>
 
         <div class="profile-area">
@@ -130,36 +195,29 @@
 
         <div class="links-area">
             <a href="https://wa.me/966591388202" class="btn wa">
-                <i class="fab fa-whatsapp fa-lg"></i> <span id="w">واتساب</span>
+                <i class="fab fa-whatsapp fa-2x"></i> <span id="w">تواصل عبر واتساب</span>
             </a>
             <a href="https://m.me/abdullah.fallatah.507" target="_blank" class="btn msg">
-                <i class="fab fa-facebook-messenger fa-lg"></i> <span id="ms">تواصل ماسنجر</span>
+                <i class="fab fa-facebook-messenger fa-2x"></i> <span id="ms">تواصل عبر ماسنجر</span>
             </a>
             <a href="mailto:iioe@outlook.sa" class="btn mail">
-                <i class="fas fa-envelope-open-text"></i> <span id="m">البريد المهني</span>
+                <i class="fas fa-envelope-open-text fa-lg"></i> <span id="m">البريد المهني الرسمي</span>
             </a>
         </div>
     </div>
 
     <script>
         document.onkeydown = function(e) { if(e.keyCode == 123) return false; };
+        function toggleMode() { document.body.classList.toggle('light-mode'); }
         
-        function toggleMode() { 
-            document.body.classList.toggle('light-mode');
-            const icon = document.querySelector('.fa-moon');
-            if(icon) {
-                icon.classList.toggle('fa-sun');
-            }
-        }
-
         let isEn = false;
         function toggleLang() {
             isEn = !isEn;
             document.documentElement.dir = isEn ? 'ltr' : 'rtl';
             document.getElementById('lBtn').innerText = isEn ? 'AR' : 'EN';
             const t = {
-                ar: {n:"عبدالإله فلاته", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"واتساب", ms:"تواصل ماسنجر", m:"البريد المهني"},
-                en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"WhatsApp", ms:"Messenger", m:"Email"}
+                ar: {n:"عبدالإله فلاته", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"تواصل عبر واتساب", ms:"تواصل عبر ماسنجر", m:"البريد المهني الرسمي"},
+                en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"Contact via WhatsApp", ms:"Contact via Messenger", m:"Official Professional Email"}
             };
             const s = isEn ? t.en : t.ar;
             document.getElementById('n').innerText = s.n;
