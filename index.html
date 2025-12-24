@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>عبدالإله فلاته</title>
+    <title>عبدالإله فلاته | عقارات الرياض</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,213 +11,168 @@
     <style>
         :root {
             --gold: #d4af37;
-            --gold-light: #f1d592;
-            --bg: #080808;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --gold-soft: #f1d592;
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.04);
             --text-main: #ffffff;
             --text-sub: rgba(255, 255, 255, 0.7);
-            --glow: rgba(212, 175, 55, 0.3);
-            --ms-grad: linear-gradient(135deg, #00B2FF, #006AFF, #764BA2);
-            --name-grad: linear-gradient(to bottom, #ffffff 20%, var(--gold) 100%);
+            --glow: rgba(212, 175, 55, 0.25);
+            --name-grad: linear-gradient(to bottom, #ffffff 30%, var(--gold) 100%);
         }
 
         body.light-mode {
-            --bg: #fdfdfd;
+            --bg: #f8f9fa;
             --card-bg: rgba(255, 255, 255, 0.9);
-            --text-main: #121212;
-            --text-sub: #555555;
-            --glow: rgba(212, 175, 55, 0.15);
-            --name-grad: linear-gradient(to bottom, #222222 20%, var(--gold) 100%);
+            --text-main: #1a1a1b;
+            --text-sub: #4a4a4b;
+            --name-grad: linear-gradient(to bottom, #1a1a1b 20%, var(--gold) 100%);
         }
 
         * { user-select: none !important; -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
-            background: var(--bg); 
-            color: var(--text-main); 
-            font-family: 'Almarai', sans-serif; 
-            transition: background 0.8s ease; 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            overflow-x: hidden;
-            position: relative;
+            background: var(--bg); color: var(--text-main); font-family: 'Almarai', sans-serif; 
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; 
+            transition: all 0.5s ease; overflow-x: hidden;
         }
 
-        /* تأثير الخلفية الفاخر */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 90% 90%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
-            z-index: -1;
+        /* حاوية الموقع الأساسية */
+        .master-wrapper {
+            width: 100%; max-width: 1200px; /* العرض الأقصى للكمبيوتر */
+            padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
         }
 
-        .container { width: 90%; max-width: 440px; padding: 4vh 0; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+        /* شريط التحكم */
+        .top-bar {
+            width: 100%; max-width: 500px; display: flex; justify-content: space-between; margin-bottom: 40px;
+        }
+        .icon-btn {
+            background: var(--card-bg); width: 45px; height: 45px; display: flex; 
+            align-items: center; justify-content: center; border-radius: 15px; 
+            border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); cursor: pointer; transition: 0.3s;
+        }
+        .icon-btn:hover { background: var(--gold); color: #fff; transform: translateY(-3px); }
 
-        /* منطقة الصورة - ثابتة بدون تغيير بناءً على طلبك */
-        .profile-area { position: relative; margin-bottom: 45px; }
+        /* منطقة المحتوى - تتغير في الكمبيوتر */
+        .main-content {
+            display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 550px;
+        }
+
+        /* الصورة وتأثيراتها الثابتة */
+        .profile-area { position: relative; margin-bottom: 35px; }
         .orbit {
-            position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px;
+            position: absolute; top: -12px; left: -12px; right: -12px; bottom: -12px;
             border: 2px solid transparent; border-top-color: var(--gold);
             border-radius: 50%; animation: rotate 3s linear infinite; opacity: 0.6;
         }
-        .orbit::after {
-            content: ''; position: absolute; top: 10px; right: 10px; width: 8px; height: 8px;
-            background: var(--gold-bright); border-radius: 50%; box-shadow: 0 0 15px var(--gold);
-        }
         .profile-wrapper {
-            position: relative; width: 160px; height: 160px;
-            border-radius: 50%; padding: 6px;
+            position: relative; width: 160px; height: 160px; border-radius: 50%; padding: 6px;
             background: linear-gradient(135deg, var(--gold), #fff, var(--gold));
-            box-shadow: 0 0 30px var(--glow); z-index: 10;
-            animation: pulse-border 2s infinite alternate;
+            box-shadow: 0 0 30px var(--glow); z-index: 10; animation: pulse 2s infinite alternate;
         }
         .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg); }
 
         /* الاسم الملكي */
-        .name-container { text-align: center; margin-bottom: 25px; animation: fadeInUp 1s ease; }
         .name { 
-            font-family: 'Cairo', sans-serif; 
-            font-size: clamp(2.4rem, 10vw, 3.2rem); 
-            font-weight: 900; 
-            background: var(--name-grad);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            font-family: 'Cairo', sans-serif; font-size: clamp(2rem, 5vw, 3rem); 
+            font-weight: 900; background: var(--name-grad); -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 20px;
         }
 
-        /* صندوق الوصف بجمالية أعلى */
-        .intro-box { 
-            background: var(--card-bg); 
-            border: 1px solid rgba(212, 175, 55, 0.2); 
-            border-radius: 35px; 
-            padding: 30px 25px; 
-            margin-bottom: 35px; 
-            width: 100%; 
-            backdrop-filter: blur(25px); 
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            animation: fadeInUp 1.2s ease;
+        /* صندوق الوصف */
+        .description-card {
+            background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.15); 
+            border-radius: 25px; padding: 30px; text-align: center; margin-bottom: 35px;
+            backdrop-filter: blur(20px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 100%;
         }
-        .intro-box p { 
-            line-height: 2.1; 
-            font-size: 1.08rem; 
-            color: var(--text-sub); 
-            font-weight: 400;
+        .description-card p { line-height: 1.9; font-size: 1.1rem; color: var(--text-sub); }
+
+        /* منطقة الروابط */
+        .action-links { width: 100%; display: grid; gap: 15px; }
+        .nav-link {
+            padding: 18px; border-radius: 20px; text-decoration: none; color: #fff;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            font-weight: 700; font-size: 1.1rem; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+        .nav-link:hover { transform: translateY(-5px); filter: brightness(1.15); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        .whatsapp { background: #25d366; }
+        .messenger { background: linear-gradient(135deg, #00B2FF, #006AFF); }
+        .email { border: 2.5px solid var(--gold); color: var(--text-main); }
+
+        /* --- تنسيقات خاصة بالكمبيوتر (Desktop) --- */
+        @media (min-width: 768px) {
+            .description-card { padding: 40px; }
+            .action-links { grid-template-columns: repeat(2, 1fr); } /* توزيع الأزرار بشكل عرضي */
+            .email { grid-column: span 2; } /* زر الإيميل يأخذ العرض كاملاً تحتهم */
+            .main-content { max-width: 700px; }
+            body::before { /* هالة خلفية فخمة للكمبيوتر */
+                content: ''; position: fixed; width: 400px; height: 400px; 
+                background: var(--glow); filter: blur(150px); border-radius: 50%;
+                top: -100px; left: -100px; z-index: -1;
+            }
         }
 
-        /* تحسين الأزرار (تأثير السيولة) */
-        .links-area { width: 100%; display: flex; flex-direction: column; gap: 18px; }
-        .btn { 
-            width: 100%; 
-            padding: 22px; 
-            border-radius: 28px; 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 15px; 
-            font-weight: 700; 
-            font-size: 1.15rem; 
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; 
-            overflow: hidden;
-            border: 1px solid transparent;
-        }
-
-        /* وميض الأزرار الناعم */
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -60%; width: 20%; height: 200%;
-            background: rgba(255,255,255,0.1);
-            transform: rotate(30deg);
-            transition: 0.5s;
-        }
-        .btn:hover::after { left: 120%; }
-
-        .wa { background: #25d366; color: #fff; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.25); }
-        .msg { background: var(--ms-grad); color: #fff; box-shadow: 0 10px 30px rgba(0, 106, 255, 0.2); }
-        .mail { background: transparent; border: 2px solid var(--gold); color: var(--text-main); }
-
-        .btn:hover { transform: translateY(-7px) scale(1.02); border-color: rgba(212, 175, 55, 0.5); }
-        .btn:active { transform: scale(0.97); }
-
-        /* شريط علوي أنيق */
-        .nav-header {
-            width: 100%; display: flex; justify-content: space-between; margin-bottom: 35px;
-        }
-        .nav-btn {
-            background: var(--card-bg); width: 50px; height: 50px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);
-            color: var(--gold); cursor: pointer; transition: 0.3s;
-        }
-        .nav-btn:hover { background: var(--gold); color: #fff; transform: scale(1.1); }
-
-        /* أنيميشن الدخول */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes pulse-border { 0% { box-shadow: 0 0 15px var(--glow); } 100% { box-shadow: 0 0 35px var(--gold); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 15px var(--glow); } 100% { box-shadow: 0 0 40px var(--gold); } }
 
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-    <div class="container">
-        <div class="nav-header">
-            <div class="nav-btn" onclick="toggleMode()"><i class="fas fa-palette"></i></div>
-            <div id="lBtn" style="cursor:pointer; color:var(--gold); font-weight:900; background:var(--card-bg); padding:12px 22px; border-radius:20px; border: 1px solid rgba(212, 175, 55, 0.2);" onclick="toggleLang()">EN</div>
+    <div class="master-wrapper">
+        <div class="top-bar">
+            <div class="icon-btn" onclick="toggleMode()"><i class="fas fa-moon"></i></div>
+            <div id="lBtn" class="icon-btn" style="width: auto; padding: 0 15px; font-weight: 800;" onclick="toggleLang()">EN</div>
         </div>
 
-        <div class="profile-area">
-            <div class="orbit"></div>
-            <div class="profile-wrapper">
-                <img src="https://www2.0zz0.com/2025/12/17/06/790723590.jpg" class="profile-img" alt="عبدالإله فلاته">
+        <div class="main-content">
+            <div class="profile-area">
+                <div class="orbit"></div>
+                <div class="profile-wrapper">
+                    <img src="https://www2.0zz0.com/2025/12/17/06/790723590.jpg" class="profile-img" alt="عبدالإله فلاته">
+                </div>
             </div>
-        </div>
 
-        <div class="name-container">
             <h1 class="name" id="n">عبدالإله فلاته</h1>
-        </div>
 
-        <div class="intro-box">
-            <p id="b">
-                نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.
-            </p>
-        </div>
+            <div class="description-card">
+                <p id="b">نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.</p>
+            </div>
 
-        <div class="links-area">
-            <a href="https://wa.me/966591388202" class="btn wa">
-                <i class="fab fa-whatsapp fa-2x"></i> <span id="w">تواصل عبر واتساب</span>
-            </a>
-            <a href="https://m.me/abdullah.fallatah.507" target="_blank" class="btn msg">
-                <i class="fab fa-facebook-messenger fa-2x"></i> <span id="ms">تواصل عبر ماسنجر</span>
-            </a>
-            <a href="mailto:iioe@outlook.sa" class="btn mail">
-                <i class="fas fa-envelope-open-text fa-lg"></i> <span id="m">البريد المهني الرسمي</span>
-            </a>
+            <div class="action-links">
+                <a href="https://wa.me/966591388202" class="nav-link whatsapp">
+                    <i class="fab fa-whatsapp fa-xl"></i> <span id="w">واتساب</span>
+                </a>
+                <a href="https://m.me/abdullah.fallatah.507" target="_blank" class="nav-link messenger">
+                    <i class="fab fa-facebook-messenger fa-xl"></i> <span id="ms">ماسنجر</span>
+                </a>
+                <a href="mailto:iioe@outlook.sa" class="nav-link email">
+                    <i class="fas fa-envelope-open-text fa-lg"></i> <span id="m">البريد الرسمي</span>
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
         document.onkeydown = function(e) { if(e.keyCode == 123) return false; };
-        function toggleMode() { document.body.classList.toggle('light-mode'); }
         
+        function toggleMode() { 
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('.fa-moon, .fa-sun');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        }
+
         let isEn = false;
         function toggleLang() {
             isEn = !isEn;
             document.documentElement.dir = isEn ? 'ltr' : 'rtl';
             document.getElementById('lBtn').innerText = isEn ? 'AR' : 'EN';
             const t = {
-                ar: {n:"عبدالإله فلاته", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"تواصل عبر واتساب", ms:"تواصل عبر ماسنجر", m:"البريد المهني الرسمي"},
-                en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"Contact via WhatsApp", ms:"Contact via Messenger", m:"Official Professional Email"}
+                ar: {n:"عبدالإله فلاته", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"واتساب", ms:"ماسنجر", m:"البريد الرسمي"},
+                en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"WhatsApp", ms:"Messenger", m:"Email"}
             };
             const s = isEn ? t.en : t.ar;
             document.getElementById('n').innerText = s.n;
