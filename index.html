@@ -3,207 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منصة عبدالإله فلاته - OCR PRO</title>
+    <title>عبدالإله فلاته | الموثوقية العقارية</title>
     
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
-            --bg: #050505; --card-bg: #111113; --text: #ffffff;
-            --primary: #9d4edd; --accent: #00d4ff; --border: rgba(255, 255, 255, 0.1);
+            --primary: #d4af37;
+            --bg: #050505;
+            --card: #121212;
+            --text: #ffffff;
+            --sub-text: rgba(255,255,255,0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* نظام الوضع النهاري */
+        body.light-mode {
+            --bg: #f5f5f7;
+            --card: #ffffff;
+            --text: #1d1d1f;
+            --sub-text: rgba(0,0,0,0.6);
         }
 
         body { 
-            margin: 0; background-color: var(--bg); color: var(--text); 
-            font-family: 'Cairo', sans-serif; min-height: 100vh; 
-            display: flex; flex-direction: column; overflow-x: hidden;
+            margin: 0; background-color: var(--bg); color: var(--text);
+            font-family: 'Almarai', sans-serif; transition: var(--transition);
+            overflow-x: hidden;
         }
 
-        /* --- تأثيرات الهيدر والصورة --- */
-        .header-profile { 
-            display: flex; align-items: center; justify-content: space-between; 
-            padding: 15px 6%; background: rgba(18, 18, 20, 0.9); border-bottom: 1px solid var(--border); 
+        /* أدوات التحكم (لغة + نمط) */
+        .controls {
+            position: fixed; top: 20px; left: 20px; right: 20px;
+            display: flex; justify-content: space-between; z-index: 1000;
         }
 
-        .user-brand { display: flex; align-items: center; gap: 15px; }
-
-        .avatar-container { position: relative; padding: 3px; }
-
-        /* الإطار المضيء حول صورتك */
-        .avatar-box { 
-            width: 55px; height: 55px; border-radius: 50%; overflow: hidden; 
-            position: relative; z-index: 2; border: 2px solid transparent;
-            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-                        linear-gradient(45deg, var(--primary), var(--accent)) border-box;
-            animation: rotate-border 3s linear infinite;
+        .control-btn {
+            background: var(--card); border: 1px solid var(--primary);
+            color: var(--primary); padding: 10px 15px; border-radius: 12px;
+            cursor: pointer; font-weight: bold; font-family: 'Almarai';
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s;
         }
-        @keyframes rotate-border {
-            0% { filter: hue-rotate(0deg); transform: scale(1); }
+        .control-btn:hover { transform: scale(1.05); background: var(--primary); color: #000; }
+
+        /* الهيدر */
+        .hero {
+            padding: 100px 20px 40px; text-align: center;
+        }
+
+        .img-container {
+            width: 130px; height: 130px; margin: 0 auto 20px; position: relative;
+        }
+
+        .img-container img {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--primary); padding: 5px;
+        }
+
+        .verified {
+            position: absolute; bottom: 5px; right: 5px; color: #00d4ff;
+            font-size: 1.5rem; background: var(--bg); border-radius: 50%;
+        }
+
+        h1 { font-weight: 800; font-size: 2.2rem; margin: 10px 0; }
+
+        /* البطاقات */
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+
+        .card {
+            background: var(--card); border-radius: 25px; padding: 25px;
+            margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+        .card-h { color: var(--primary); font-weight: 800; margin-bottom: 10px; font-size: 1.2rem; }
+
+        /* أزرار التواصل مع الأنيميشن */
+        .contact-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 18px; border-radius: 18px; text-decoration: none;
+            font-weight: 800; margin-bottom: 15px; transition: var(--transition);
+            position: relative; overflow: hidden;
+        }
+
+        .whatsapp-btn {
+            background: #25d366; color: #fff;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+        .whatsapp-btn:hover { box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); transform: scale(1.02); }
+
+        .email-btn {
+            background: var(--card); color: var(--text);
+            border: 2px solid var(--primary);
+        }
+        .email-btn:hover { background: var(--primary); color: #000; }
+
+        /* أنيميشن النبض */
+        @keyframes pulse {
+            0% { transform: scale(1); }
             50% { transform: scale(1.05); }
-            100% { filter: hue-rotate(360deg); transform: scale(1); }
+            100% { transform: scale(1); }
         }
-        .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+        .pulse-effect { animation: pulse 2s infinite ease-in-out; }
 
-        /* نبض علامة التوثيق */
-        .v-badge { 
-            position: absolute; bottom: 0; right: 0; 
-            color: var(--accent); font-size: 1.1rem; z-index: 10;
-            filter: drop-shadow(0 0 5px var(--accent));
-            animation: bounce-in 1.5s infinite alternate;
+        footer {
+            text-align: center; padding: 50px 20px; font-size: 0.9rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1); opacity: 0.8;
         }
-        @keyframes bounce-in {
-            from { transform: scale(0.8); opacity: 0.7; }
-            to { transform: scale(1.2); opacity: 1; }
-        }
-
-        /* --- منطقة العمل --- */
-        .site-description { text-align: center; padding: 30px 20px 10px; animation: slideDown 1s ease; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .main-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .super-card { 
-            width: 100%; max-width: 550px; background: var(--card-bg); 
-            border-radius: 25px; padding: 25px; border: 1px solid var(--border); 
-            text-align: center; box-shadow: 0 0 30px rgba(157, 78, 221, 0.1);
-        }
-
-        .upload-box { 
-            border: 2px dashed var(--border); border-radius: 20px; padding: 40px; 
-            margin-bottom: 20px; cursor: pointer; transition: 0.4s;
-        }
-        .upload-box:hover { border-color: var(--primary); background: rgba(157, 78, 221, 0.05); transform: scale(1.02); }
-
-        .action-btn { 
-            background: linear-gradient(135deg, var(--primary), var(--accent)); 
-            border: none; padding: 18px; border-radius: 15px; color: #fff; 
-            font-weight: 900; cursor: pointer; width: 100%; font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transition: 0.3s;
-        }
-
-        textarea { 
-            width: 100%; height: 320px; background: #000; color: #fff; 
-            border: 1px solid var(--primary); border-radius: 15px; padding: 20px; 
-            margin-top: 20px; box-sizing: border-box; outline: none; resize: none; 
-            text-align: right; font-size: 1.3rem; line-height: 2; font-family: 'Amiri', serif;
-        }
-
-        /* --- تأثيرات أزرار التواصل --- */
-        .footer-section { padding: 25px; background: #0c0c0e; border-top: 1px solid var(--border); }
-        .contact-grid { display: flex; gap: 15px; max-width: 550px; margin: 0 auto 15px; }
-
-        .c-item { 
-            flex: 1; background: rgba(255,255,255,0.03); padding: 14px; 
-            border-radius: 14px; border: 1px solid var(--border); color: #fff; 
-            text-decoration: none; font-size: 0.9rem; font-weight: bold; 
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            position: relative; overflow: hidden; transition: 0.4s;
-            animation: entrance 1s ease-out;
-        }
-
-        /* تأثير اللمعان عند التمرير */
-        .c-item::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: 0.5s;
-        }
-        .c-item:hover::before { left: 100%; }
-
-        .c-item:hover { 
-            border-color: var(--accent); color: var(--accent);
-            transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-            background: rgba(0, 212, 255, 0.05);
-        }
-
-        .c-item i { font-size: 1.1rem; transition: 0.3s; }
-        .c-item:hover i { transform: rotate(15deg) scale(1.2); }
-
-        @keyframes entrance {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        #status { display: none; margin: 20px 0; color: var(--accent); }
     </style>
 </head>
 <body>
 
-    <header class="header-profile">
-        <div class="user-brand">
-            <div class="avatar-container">
-                <div class="avatar-box"><img src="https://www2.0zz0.com/2025/12/17/06/790723590.jpg" alt="عبدالإله"></div>
-                <i class="fas fa-check-circle v-badge"></i>
-            </div>
-            <span style="font-weight: 900; letter-spacing: 0.5px;">عبدالإله فلاته</span>
-        </div>
-    </header>
+    <div class="controls">
+        <button class="control-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-sun"></i></button>
+        <button class="control-btn" onclick="toggleLang()" id="langBtn">English</button>
+    </div>
 
-    <section class="site-description">
-        <h1 style="background: linear-gradient(to left, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">مستخرج الخواطر الذكي</h1>
-        <p style="opacity: 0.7; font-size: 0.9rem;">بوابتك لتحويل الصور إلى نصوص أدبية منقحة</p>
+    <section class="hero">
+        <div class="img-container">
+            <img src="https://www2.0zz0.com/2025/12/17/06/790723590.jpg" alt="عبدالإله فلاته">
+            <i class="fas fa-check-circle verified"></i>
+        </div>
+        <h1 id="userName">عبدالإله فلاته</h1>
+        <p id="userTitle" style="color: var(--primary); font-weight: bold;">وسيط عقاري معتمد | تأجير شقق</p>
     </section>
 
-    <main class="main-content">
-        <div class="super-card">
-            <div class="upload-box" onclick="document.getElementById('imageInput').click()">
-                <i class="fas fa-wand-magic-sparkles fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
-                <h3>ارفع صورة الخاطرة</h3>
-                <p style="font-size: 0.85rem; opacity: 0.6;">دقة متناهية في قراءة الخطوط العربية</p>
-            </div>
-            
-            <input type="file" id="imageInput" hidden accept="image/*">
-            <div id="status"><i class="fas fa-spinner fa-spin"></i> جاري التحليل الذكي...</div>
-
-            <div id="resultArea" style="display:none;">
-                <textarea id="output" spellcheck="false"></textarea>
-                <button class="action-btn" style="background:#059669; margin-top:15px;" onclick="copyResult()">
-                    <i class="fas fa-copy"></i> نسخ النص المرتب
-                </button>
-            </div>
+    <div class="container">
+        
+        <div class="card">
+            <div class="card-h" id="h1">تأجير الشقق السكنية</div>
+            <p id="p1" style="line-height: 1.8; opacity: 0.9;">أعمل وسيطاً عقارياً معتمداً في مكاتب رسمية، متخصص في توفير وتأجير الشقق السكنية وتوثيق العقود عبر منصة إيجار.</p>
         </div>
-    </main>
 
-    <div class="footer-section">
-        <div class="contact-grid">
-            <a href="mailto:iioe@outlook.sa" class="c-item"><i class="fas fa-envelope"></i> iioe@outlook.sa</a>
-            <a href="tel:0591388202" class="c-item"><i class="fas fa-phone"></i> 0591388202</a>
-        </div>
-        <div style="text-align:center; opacity:0.5; font-size:0.75rem; margin-top:10px;">جميع الحقوق محفوظة لعبدالإله فلاته © 2025</div>
+        <a href="https://wa.me/966591388202" class="contact-btn whatsapp-btn pulse-effect">
+            <i class="fab fa-whatsapp fa-lg"></i>
+            <span id="waText">تواصل واتساب مباشر</span>
+        </a>
+
+        <a href="mailto:iioe@outlook.sa" class="contact-btn email-btn">
+            <i class="fas fa-envelope fa-lg"></i>
+            <span id="mailText">تواصل عبر البريد الإلكتروني</span>
+        </a>
+
+        <footer>
+            <span id="footerText">جميع الحقوق محفوظة لعبدالإله فلاته © 2025</span>
+        </footer>
     </div>
 
     <script>
-        document.getElementById('imageInput').addEventListener('change', async function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
+        // نظام تبديل اللغة
+        let currentLang = 'ar';
+        const content = {
+            ar: {
+                name: "عبدالإله فلاته",
+                title: "وسيط عقاري معتمد | تأجير شقق",
+                h1: "تأجير الشقق السكنية",
+                p1: "أعمل وسيطاً عقارياً معتمداً في مكاتب رسمية، متخصص في توفير وتأجير الشقق السكنية وتوثيق العقود عبر منصة إيجار.",
+                wa: "تواصل واتساب مباشر",
+                mail: "تواصل عبر البريد الإلكتروني",
+                footer: "جميع الحقوق محفوظة لعبدالإله فلاته © 2025",
+                langBtn: "English"
+            },
+            en: {
+                name: "Abdullah Fallatah",
+                title: "Certified Real Estate Broker | Apartment Rentals",
+                h1: "Residential Apartment Rentals",
+                p1: "I work as a certified real estate broker in official offices, specializing in providing and renting residential apartments and documenting contracts via the Ejar platform.",
+                wa: "Direct WhatsApp Contact",
+                mail: "Contact via Email",
+                footer: "All Rights Reserved to Abdullah Fallatah © 2025",
+                langBtn: "العربية"
+            }
+        };
 
-            document.getElementById('status').style.display = 'block';
-            document.getElementById('resultArea').style.display = 'none';
-
-            const worker = await Tesseract.createWorker('ara');
-            const { data: { text } } = await worker.recognize(file);
-            await worker.terminate();
-
-            document.getElementById('output').value = formatText(text);
-            document.getElementById('status').style.display = 'none';
-            document.getElementById('resultArea').style.display = 'block';
-        });
-
-        function formatText(raw) {
-            return raw.split('\n')
-                .map(line => line.trim())
-                .filter(line => line.length > 5 && !/بحث|تعليق|مشاركة/i.test(line))
-                .join('\n\n')
-                .replace(/يظتون/g, 'يظنون').replace(/تالفه/g, 'تألفه').replace(/هيئه/g, 'هيئة')
-                .trim();
+        function toggleLang() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+            
+            document.getElementById('userName').innerText = content[currentLang].name;
+            document.getElementById('userTitle').innerText = content[currentLang].title;
+            document.getElementById('h1').innerText = content[currentLang].h1;
+            document.getElementById('p1').innerText = content[currentLang].p1;
+            document.getElementById('waText').innerText = content[currentLang].wa;
+            document.getElementById('mailText').innerText = content[currentLang].mail;
+            document.getElementById('footerText').innerText = content[currentLang].footer;
+            document.getElementById('langBtn').innerText = content[currentLang].langBtn;
+            
+            document.body.style.fontFamily = currentLang === 'ar' ? "'Almarai', sans-serif" : "'Segoe UI', sans-serif";
         }
 
-        function copyResult() {
-            const out = document.getElementById('output');
-            out.select();
-            document.execCommand('copy');
-            alert('تم النسخ بنجاح!');
+        // نظام تبديل النمط (ليلي/نهاري)
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.getElementById('themeBtn').querySelector('i');
+            if (document.body.classList.contains('light-mode')) {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
         }
     </script>
 </body>
