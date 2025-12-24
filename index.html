@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>عبدالإله فلاته | خبير عقارات</title>
+    <title>عبدالإله فلاته</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Cairo:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Cairo:wght@900&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -13,12 +13,11 @@
             --gold: #d4af37;
             --gold-bright: #f1d592;
             --bg: #050505;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-bg: rgba(255, 255, 255, 0.04);
             --text-main: #ffffff;
-            --text-sub: rgba(255, 255, 255, 0.6);
-            --border: rgba(212, 175, 55, 0.2);
-            --glow: rgba(212, 175, 55, 0.3);
-            /* ألوان الماسنجر المطورة */
+            --text-sub: rgba(255, 255, 255, 0.9);
+            --border: rgba(212, 175, 55, 0.3);
+            --glow: rgba(212, 175, 55, 0.5);
             --messenger-grad: linear-gradient(135deg, #00B2FF 0%, #006AFF 50%, #764BA2 100%);
         }
 
@@ -26,17 +25,12 @@
             --bg: #fcfcfc;
             --card-bg: #ffffff;
             --text-main: #111111;
-            --text-sub: #555555;
-            --border: rgba(212, 175, 55, 0.4);
-            --glow: rgba(212, 175, 55, 0.15);
+            --text-sub: #222222;
+            --border: rgba(212, 175, 55, 0.5);
+            --glow: rgba(212, 175, 55, 0.2);
         }
 
-        /* حماية ومنع النسخ */
-        * { 
-            -webkit-user-select: none !important; user-select: none !important; 
-            -webkit-user-drag: none !important; -webkit-tap-highlight-color: transparent; 
-            box-sizing: border-box; margin: 0; padding: 0;
-        }
+        * { user-select: none !important; -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
             background: var(--bg); color: var(--text-main); font-family: 'Almarai', sans-serif; 
@@ -44,54 +38,125 @@
             flex-direction: column; align-items: center; overflow-x: hidden;
         }
 
-        .container { width: 95%; max-width: 500px; padding: 2vh 0; display: flex; flex-direction: column; align-items: center; flex-grow: 1; }
+        .container { width: 92%; max-width: 480px; padding: 4vh 0; display: flex; flex-direction: column; align-items: center; flex-grow: 1; }
 
-        /* الصورة والبرواز */
-        .profile-wrapper { position: relative; display: flex; justify-content: center; align-items: center; margin: 20px 0; }
-        .profile-glow { position: absolute; width: 160px; height: 160px; border-radius: 50%; background: var(--glow); filter: blur(25px); animation: pulse-glow 3s infinite alternate; }
-        .profile-frame { position: relative; width: 145px; height: 145px; border-radius: 50%; padding: 4px; background: linear-gradient(45deg, var(--gold), transparent, var(--gold-bright), transparent, var(--gold)); background-size: 200% 200%; animation: border-spin 6s linear infinite; z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg); pointer-events: none; }
-
-        @keyframes border-spin { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes pulse-glow { 0% { transform: scale(0.9); opacity: 0.5; } 100% { transform: scale(1.1); opacity: 0.8; } }
-
-        /* الاسم والمقدمة */
-        .name-container { text-align: center; margin-top: 20px; width: 100%; }
-        .name { font-family: 'Cairo', sans-serif; font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; background: linear-gradient(180deg, var(--text-main) 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
-        .role-tag { font-size: clamp(0.9rem, 4vw, 1.1rem); font-weight: 700; color: var(--gold); letter-spacing: 1.5px; margin-top: 10px; }
-        .intro-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 25px; padding: 25px; margin: 25px 0; width: 100%; backdrop-filter: blur(15px); text-align: center; }
-
-        /* الأزرار الروابط */
-        .links-area { width: 100%; display: flex; flex-direction: column; gap: 15px; }
-        .btn { width: 100%; padding: 18px; border-radius: 22px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 1.1rem; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-
-        /* جماليات زر واتساب */
-        .wa { background: #25d366; color: #fff; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); }
-
-        /* جماليات زر ماسنجر المطورة */
-        .msg { 
-            background: var(--messenger-grad); 
-            color: #fff; 
-            box-shadow: 0 10px 25px rgba(0, 106, 255, 0.3);
-            border: 1px solid rgba(255,255,255,0.1);
+        /* --- تطوير جماليات الصورة (تأثير النخبة) --- */
+        .profile-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 35px;
+            z-index: 10;
         }
-        .msg i { animation: msg-swing 2s infinite ease-in-out; }
-        @keyframes msg-swing { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(15deg); } }
 
-        /* جماليات زر البريد */
-        .mail { border: 2px solid var(--gold); color: var(--text-main); }
+        /* توهج نيون خلفي نابض */
+        .profile-glow {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+            animation: pulse-aura 3s infinite ease-in-out;
+            z-index: 1;
+        }
 
-        .btn:hover { transform: translateY(-5px) scale(1.02); filter: brightness(1.1); }
+        /* البرواز الذهبي المضيء */
+        .profile-frame {
+            position: relative;
+            width: 155px;
+            height: 155px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, var(--gold), #fff, var(--gold), #b8860b);
+            background-size: 300% 300%;
+            animation: shimmer 4s infinite linear;
+            box-shadow: 0 0 25px var(--glow), inset 0 0 10px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
 
-        footer { margin-top: auto; padding: 40px 10px; width: 100%; text-align: center; }
-        .owner { font-size: 0.95rem; font-weight: 800; color: var(--gold); }
+        /* تأثير الزجاج فوق الصورة */
+        .profile-frame::after {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg);
+            z-index: 3;
+            position: relative;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse-aura {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+        /* -------------------------------------- */
+
+        .name-container { text-align: center; margin-bottom: 20px; width: 100%; }
+        .name { 
+            font-family: 'Cairo', sans-serif; 
+            font-size: clamp(2.2rem, 10vw, 2.8rem); 
+            font-weight: 900; 
+            background: linear-gradient(180deg, #fff 10%, var(--gold) 90%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin: 0;
+            filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.3));
+        }
+
+        .intro-box { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 25px; 
+            padding: 25px 30px; 
+            margin-bottom: 25px; 
+            width: 100%; 
+            backdrop-filter: blur(15px); 
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .intro-box p { 
+            font-family: 'Aref Ruqaa', serif; 
+            line-height: 1.8; 
+            font-size: 1.45rem; 
+            color: var(--text-sub); 
+        }
+
+        .links-area { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+        .btn { width: 100%; padding: 18px; border-radius: 22px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 1.1rem; transition: 0.4s; }
+        
+        .wa { background: #25d366; color: #fff; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2); }
+        .msg { background: var(--messenger-grad); color: #fff; box-shadow: 0 8px 25px rgba(0, 106, 255, 0.25); }
+        .mail { border: 2.5px solid var(--gold); color: var(--text-main); }
+
+        .btn:hover { transform: translateY(-4px) scale(1.01); filter: brightness(1.1); }
+
+        footer { margin-top: auto; padding: 40px 10px; text-align: center; }
+        .owner { font-size: 1rem; font-weight: 800; color: var(--gold); text-shadow: 0 2px 10px rgba(212,175,55,0.3); }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <div class="container">
-        <div style="width:100%; display:flex; justify-content:space-between; margin-bottom:20px;">
-            <div style="cursor:pointer; color:var(--gold); font-size:1.5rem;" onclick="toggleMode()"><i class="fas fa-circle-half-stroke"></i></div>
+        <div style="width:100%; display:flex; justify-content:space-between; margin-bottom:25px;">
+            <div style="cursor:pointer; color:var(--gold); font-size:1.5rem;" onclick="toggleMode()"><i class="fas fa-moon"></i></div>
             <div id="lBtn" style="cursor:pointer; color:var(--gold); font-weight:900;" onclick="toggleLang()">EN</div>
         </div>
 
@@ -104,11 +169,12 @@
 
         <div class="name-container">
             <h1 class="name" id="n">عبدالإله فلاته</h1>
-            <div class="role-tag" id="r">خبير تسويق عقاري</div>
         </div>
 
         <div class="intro-box">
-            <p id="b">نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.</p>
+            <p id="b">
+                نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.
+            </p>
         </div>
 
         <div class="links-area">
@@ -126,18 +192,17 @@
         </div>
 
         <footer>
-            <div class="owner" id="o">مالك الموقع والمصمم: عبدالإله فلاته</div>
-            <div style="font-size:0.7rem; color:var(--text-sub); margin-top:5px;">جميع الحقوق محفوظة © 2025</div>
+            <div class="owner" id="o">عبدالإله فلاته</div>
+            <div style="font-size:0.75rem; color:var(--text-sub); margin-top:8px;">جميع الحقوق محفوظة © 2025</div>
         </footer>
     </div>
 
     <script>
-        // حماية الكود
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false;
-        };
-
-        function toggleMode() { document.body.classList.toggle('light-mode'); }
+        document.onkeydown = function(e) { if(e.keyCode == 123) return false; };
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('.fa-moon, .fa-sun');
+        }
 
         let isEn = false;
         function toggleLang() {
@@ -145,12 +210,11 @@
             document.documentElement.dir = isEn ? 'ltr' : 'rtl';
             document.getElementById('lBtn').innerText = isEn ? 'AR' : 'EN';
             const t = {
-                ar: {n:"عبدالإله فلاته", r:"خبير تسويق عقاري", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"واتساب", ms:"ماسنجر", m:"البريد المهني", o:"مالك الموقع والمصمم: عبدالإله فلاته"},
-                en: {n:"Abdullilah Flats", r:"Real Estate Expert", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices.", w:"WhatsApp", ms:"Messenger", m:"Professional Email", o:"Owner & Designer: Abdullilah Flats"}
+                ar: {n:"عبدالإله فلاته", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"واتساب", ms:"ماسنجر", m:"البريد المهني", o:"عبدالإله فلاته"},
+                en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"WhatsApp", ms:"Messenger", m:"Email", o:"Abdullilah Flats"}
             };
             const s = isEn ? t.en : t.ar;
             document.getElementById('n').innerText = s.n;
-            document.getElementById('r').innerText = s.r;
             document.getElementById('b').innerText = s.b;
             document.getElementById('w').innerText = s.w;
             document.getElementById('ms').innerText = s.ms;
