@@ -28,144 +28,83 @@
             --name-grad: linear-gradient(to bottom, #1a1a1b 20%, var(--gold) 100%);
         }
 
-        /* --- نظام الحماية من النسخ --- */
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-font-smoothing: antialiased;
-            /* منع تحديد النص */
-            user-select: none !important; 
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            -moz-user-select: none;
-            /* منع سحب العناصر */
-            -webkit-user-drag: none;
-        }
+        /* حماية المحتوى */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; user-select: none !important; -webkit-user-select: none; -webkit-user-drag: none; }
 
-        body { 
-            background: var(--bg); color: var(--text-main); font-family: 'Almarai', sans-serif; 
-            min-height: 100vh; display: flex; justify-content: center; transition: background 0.4s ease;
-            overflow-x: hidden;
-        }
+        body { background: var(--bg); color: var(--text-main); font-family: 'Almarai', sans-serif; min-height: 100vh; display: flex; justify-content: center; transition: background 0.4s ease; overflow-x: hidden; }
 
-        /* --- شاشة المقدمة --- */
+        /* --- شاشة المقدمة المحدثة (نورت الموقع) --- */
         .intro-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); z-index: 9999;
+            background: #050505; z-index: 9999;
             display: flex; justify-content: center; align-items: center;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
+            transition: opacity 1s ease-in-out, visibility 1s;
         }
         .intro-overlay.fade-out { opacity: 0; visibility: hidden; }
-        .intro-text {
-             font-family: 'Cairo', sans-serif; font-weight: 900; font-size: 2.5rem;
+        
+        .welcome-msg {
+             font-family: 'Cairo', sans-serif; font-weight: 900; font-size: clamp(2rem, 8vw, 3.5rem);
+             text-align: center;
              background: var(--name-grad); -webkit-background-clip: text;
-             -webkit-text-fill-color: transparent; animation: intro-pulse 2.5s ease-in-out;
+             -webkit-text-fill-color: transparent;
+             display: flex; flex-direction: column; gap: 10px;
         }
-        @keyframes intro-pulse { 0% {opacity: 0; transform: scale(0.9);} 50% {opacity: 1; transform: scale(1.05);} 100% {opacity: 1; transform: scale(1);} }
+        .fade-text { animation: welcomeFade 3.5s forwards; }
+        
+        @keyframes welcomeFade {
+            0% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+            20% { opacity: 1; transform: translateY(0); filter: blur(0); }
+            80% { opacity: 1; transform: translateY(0); filter: blur(0); }
+            100% { opacity: 0; transform: translateY(-10px); filter: blur(5px); }
+        }
 
+        /* --- المحتوى الرئيسي --- */
         .master-wrapper {
             width: 100%; max-width: 1200px; padding: 30px 20px;
             display: flex; flex-direction: column; align-items: center;
-            opacity: 0; animation: fadeInContent 1s ease-out 2.2s forwards;
+            opacity: 0; animation: fadeInContent 1s ease-out 3.5s forwards;
         }
         @keyframes fadeInContent { to { opacity: 1; } }
 
         .top-bar { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; gap: 10px; }
-        
-        .icon-btn {
-            background: var(--card-bg); width: 45px; height: 45px; display: flex; 
-            align-items: center; justify-content: center; border-radius: 12px; 
-            border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); cursor: pointer;
-            text-decoration: none; transition: 0.3s;
-        }
+        .icon-btn { background: var(--card-bg); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); cursor: pointer; text-decoration: none; transition: 0.3s; }
         .icon-btn:hover { background: var(--gold); color: var(--bg); transform: translateY(-3px); }
 
         .profile-area { position: relative; margin-bottom: 30px; }
-        .orbit {
-            position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
-            border: 2px solid transparent; border-top-color: var(--gold);
-            border-radius: 50%; animation: rotate 3s linear infinite;
-        }
-        .profile-wrapper {
-            width: 150px; height: 150px; border-radius: 50%; padding: 5px;
-            background: linear-gradient(135deg, var(--gold), #fff, var(--gold));
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 5;
-        }
+        .orbit { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border: 2px solid transparent; border-top-color: var(--gold); border-radius: 50%; animation: rotate 3s linear infinite; }
+        .profile-wrapper { width: 150px; height: 150px; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, var(--gold), #fff, var(--gold)); box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 5; }
         .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg); pointer-events: none; }
 
-        .name { 
-            font-family: 'Cairo', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); 
-            font-weight: 900; background: var(--name-grad); -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 20px;
-        }
+        .name { font-family: 'Cairo', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 900; background: var(--name-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 20px; }
 
-        /* --- الصندوق المطلوب في الصورة --- */
         .description-card {
-            background: var(--card-bg); 
-            border: 1px solid rgba(212, 175, 55, 0.15); 
-            border-radius: 20px; 
-            padding: 25px; 
-            text-align: center; 
-            margin-bottom: 30px; 
-            width: 100%; 
-            max-width: 500px;
-            position: relative;
-            overflow: hidden;
-            animation: slideUp 1s ease-out 2.5s both;
+            background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 20px; padding: 25px; text-align: center; margin-bottom: 30px; width: 100%; max-width: 500px;
+            animation: slideUp 1s ease-out 3.8s both;
         }
-        
-        /* تأثير التوهج الضوئي للنص */
-        .description-card p { 
-            line-height: 1.8; 
-            font-size: 1.05rem; 
-            color: var(--text-sub);
-            animation: textGlow 3s ease-in-out infinite alternate;
-        }
+        .description-card p { line-height: 1.8; font-size: 1.05rem; color: var(--text-sub); animation: textGlow 3s ease-in-out infinite alternate; }
 
-        @keyframes textGlow {
-            from { text-shadow: 0 0 2px rgba(255,255,255,0.05); color: var(--text-sub); }
-            to { text-shadow: 0 0 8px rgba(212, 175, 55, 0.3); color: var(--text-main); }
-        }
+        @keyframes textGlow { from { text-shadow: 0 0 2px rgba(255,255,255,0.05); } to { text-shadow: 0 0 8px rgba(212, 175, 55, 0.3); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* الأزرار مع اهتزاز */
         .action-links { width: 100%; max-width: 500px; display: grid; gap: 12px; }
-        .nav-link {
-            padding: 18px; border-radius: 18px; text-decoration: none; color: #fff;
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            font-weight: 700; font-size: 1.1rem; transition: transform 0.2s;
-        }
-        .nav-link:active {
-            animation: shake 0.3s both;
-            transform: scale(0.95);
-        }
-
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
-            40%, 60% { transform: translate3d(3px, 0, 0); }
-        }
+        .nav-link { padding: 18px; border-radius: 18px; text-decoration: none; color: #fff; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; font-size: 1.1rem; transition: 0.2s; }
+        .nav-link:active { animation: shake 0.3s both; transform: scale(0.95); }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-3px, 0, 0); } }
 
         .whatsapp { background: #25d366; }
         .messenger { background: #0084ff; }
         .email { border: 2px solid var(--gold); color: var(--text-main); }
 
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        @media (min-width: 768px) {
-            .action-links { grid-template-columns: repeat(2, 1fr); }
-            .email { grid-column: span 2; }
-        }
+        @media (min-width: 768px) { .action-links { grid-template-columns: repeat(2, 1fr); } .email { grid-column: span 2; } }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div class="intro-overlay" id="introOverlay">
-        <h1 class="intro-text">عبدالإله فلاته</h1>
+<body oncontextmenu="return false;">
+
+    <div class="intro-overlay" id="introOverlay">
+        <div class="welcome-msg fade-text" id="welcomeMsg">
+            أهلاً بك.. نورت الموقع
+        </div>
     </div>
 
     <div class="master-wrapper">
@@ -204,21 +143,21 @@
     </div>
 
     <script>
-        // منع اختصارات لوحة المفاتيح (نسخ، قص، عرض كود)
+        // نظام الحماية ومنع الاختصارات
         document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'i' || e.key === 's')) {
-                e.preventDefault();
-            }
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'i' || e.key === 's')) e.preventDefault();
         });
 
+        // إدارة شاشة الترحيب
         window.addEventListener('load', function() {
-            setTimeout(function() {
+            // تغيير النص بعد ثانية ونصف لجعلها أكثر حيوية
+            const msg = document.getElementById('welcomeMsg');
+            setTimeout(() => {
                 document.getElementById('introOverlay').classList.add('fade-out');
-            }, 2000);
+            }, 3500); // تنتهي المقدمة بعد 3.5 ثانية
         });
 
         function toggleMode() { document.body.classList.toggle('light-mode'); }
-        
         let isEn = false;
         function toggleLang() {
             isEn = !isEn;
@@ -229,11 +168,8 @@
                 en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"WhatsApp", ms:"Messenger", m:"Email"}
             };
             const s = isEn ? t.en : t.ar;
-            document.getElementById('n').innerText = s.n;
-            document.getElementById('b').innerText = s.b;
-            document.getElementById('w').innerText = s.w;
-            document.getElementById('ms').innerText = s.ms;
-            document.getElementById('m').innerText = s.m;
+            document.getElementById('n').innerText = s.n; document.getElementById('b').innerText = s.b;
+            document.getElementById('w').innerText = s.w; document.getElementById('ms').innerText = s.ms; document.getElementById('m').innerText = s.m;
         }
     </script>
 </body>
