@@ -3,151 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP NETFLIX | هويتنا التميز</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+    <title>NETFLIX ELITE V11 | تجربة جيل القادم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;600;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --p: #E50914;
-            --g: linear-gradient(135deg, #E50914 0%, #ff5e62 100%);
+            --primary: #E50914;
+            --accent: #FFD700;
+            --dark: #000000;
         }
 
         body, html {
-            margin: 0; padding: 0; min-height: 100vh;
+            margin: 0; padding: 0; height: 100%;
             font-family: 'Cairo', sans-serif;
-            background: #050505; color: #fff;
-            overflow-x: hidden; scroll-behavior: smooth;
+            background: var(--dark);
+            color: #fff;
+            overflow: hidden; /* لمنع السكرول التقليدي واعتماد نظام الشرائح */
         }
 
-        /* الإضاءة الخلفية الهولوجرافية */
-        .glow-sphere {
-            position: fixed; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(229, 9, 20, 0.15) 0%, transparent 70%);
-            border-radius: 50%; z-index: -1; filter: blur(60px);
-            pointer-events: none; transition: 0.1s;
+        /* خلفية جزيئات متحركة بالـ CSS */
+        .bg-animate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
+            z-index: -1;
         }
 
-        /* الحاوية المتطورة */
-        .app-shell {
-            max-width: 1200px; margin: 0 auto; padding: 40px 20px;
-            display: flex; flex-direction: column; align-items: center;
+        .blob {
+            position: absolute; width: 400px; height: 400px;
+            background: var(--primary);
+            filter: blur(150px); opacity: 0.15;
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
         }
 
-        /* البطاقة الرئيسية الغامرة */
-        .main-stage {
-            width: 100%; min-height: 600px;
-            background: rgba(255, 255, 255, 0.02);
+        @keyframes move {
+            0% { transform: translate(-10%, -10%); }
+            100% { transform: translate(50%, 50%); }
+        }
+
+        /* تصميم الشريحة المركزية */
+        .slide {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 40px;
-            display: grid; grid-template-columns: 1.2fr 1fr;
-            overflow: hidden; position: relative;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            padding: 60px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            transform: perspective(1000px);
         }
 
-        .info-side { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .visual-side { 
-            background: url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=1935') center/cover;
-            position: relative; overflow: hidden;
-        }
-        .visual-side::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(5,5,5,1) 0%, transparent 40%);
-        }
-
-        /* النصوص */
-        .typewriter { font-size: 1.1rem; color: var(--p); letter-spacing: 5px; font-weight: 600; margin-bottom: 10px; }
-        h1 { font-size: 4.5rem; margin: 0; font-weight: 900; line-height: 1; }
-        .price-tag { font-size: 5rem; font-weight: 300; margin: 20px 0; color: #fff; }
-
-        /* الأزرار والمميزات */
-        .features-row { display: flex; gap: 20px; margin-top: 30px; }
-        .f-pill { 
-            background: rgba(255,255,255,0.05); padding: 10px 20px; 
-            border-radius: 100px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.1);
+        h1 {
+            font-size: 5rem;
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .order-btn-ultra {
-            background: var(--g); color: #fff; text-decoration: none;
-            padding: 25px 60px; border-radius: 100px; font-weight: 900;
-            font-size: 1.5rem; margin-top: 50px; display: inline-block;
+        .price-text {
+            font-size: 6rem;
+            font-weight: 200;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+
+        /* نظام الأزرار التفاعلية */
+        .cta-container {
+            margin-top: 40px;
+        }
+
+        .magnetic-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 25px 60px;
+            border-radius: 100px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
             box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
+            transition: 0.3s;
+            position: relative;
         }
-        .order-btn-ultra:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 30px 60px rgba(229, 9, 20, 0.5); }
 
-        /* لايف بار */
-        .live-bar {
-            position: fixed; bottom: 30px; right: 30px; 
-            background: #fff; color: #000; padding: 12px 25px;
-            border-radius: 100px; display: flex; align-items: center; gap: 10px;
-            font-weight: bold; font-size: 0.9rem; z-index: 1000;
+        .magnetic-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 30px 60px rgba(229, 9, 20, 0.5);
         }
-        .dot-live { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 1s infinite; }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        /* شريط المعلومات السفلي */
+        .info-bar {
+            position: fixed; bottom: 30px; width: 100%;
+            display: flex; justify-content: center; gap: 50px;
+            font-size: 0.8rem; color: #555;
+            letter-spacing: 2px;
+        }
 
-        @media (max-width: 900px) {
-            .main-stage { grid-template-columns: 1fr; border-radius: 30px; }
-            .visual-side { height: 250px; order: -1; }
-            .info-side { padding: 40px 25px; text-align: center; }
-            h1 { font-size: 2.8rem; }
-            .price-tag { font-size: 3.5rem; }
-            .features-row { flex-wrap: wrap; justify-content: center; }
+        .counter-box {
+            position: absolute; top: 30px; right: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px; border-radius: 15px;
+            font-size: 0.9rem; border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .live-dot {
+            height: 8px; width: 8px; background: #22c55e;
+            display: inline-block; border-radius: 50%; margin-left: 8px;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .price-text { font-size: 4rem; }
+            .glass-panel { padding: 40px 20px; border-radius: 30px; }
+            .info-bar { gap: 20px; flex-wrap: wrap; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-sphere" id="sphere"></div>
+    <div class="bg-animate">
+        <div class="blob"></div>
+    </div>
 
-    <div class="app-shell">
-        <nav style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 50px;">
-            <div style="font-weight: 900; font-size: 1.5rem;">NETFLIX <span style="color:var(--p)">VIP</span></div>
-            <div style="color: #666; font-size: 0.8rem;">EDITION 2026</div>
-        </nav>
-
-        <div class="main-stage">
-            <div class="info-side">
-                <div class="typewriter">PLATINUM QUALITY</div>
-                <h1>سينما<br>في ملفك الخاص</h1>
-                <div class="price-tag">200 <span style="font-size: 1.5rem; color: #444;">SAR / سنة</span></div>
-                
-                <p style="color: #888; font-size: 1.1rem; max-width: 450px;">
-                    لا تساوم على الجودة. احصل على حسابك الشخصي المستقل بدقة 4K فائقة الوضوح مع ضمان ذهبي شامل.
-                </p>
-
-                <div class="features-row">
-                    <div class="f-pill">🛡️ ضمان ذهبي</div>
-                    <div class="f-pill">🎬 Ultra HD 4K</div>
-                    <div class="f-pill">🔒 ملف خاص</div>
-                </div>
-
-                <a href="https://wa.me/966591388202" class="order-btn-ultra">ابدأ المشاهدة الآن</a>
+    <div class="slide">
+        <div class="glass-panel" id="panel">
+            <div class="counter-box">
+                <span id="stock-count">8</span> حسابات متوفرة الآن <div class="live-dot"></div>
             </div>
+
+            <div style="color: var(--primary); font-weight: 600; letter-spacing: 5px;">EXCLUSIVE OFFER</div>
+            <h1>نـتـفـلـيـكـس<br>VIP</h1>
             
-            <div class="visual-side"></div>
+            <div class="price-text">200 <span style="font-size: 1.5rem; color: #fff;">ريال / سنة</span></div>
+            
+            <p style="color: #888; line-height: 1.6; max-width: 500px; margin: 0 auto;">
+                استلم ملفك الخاص (Private Profile) فوراً بضمان ذهبي شامل 365 يوم ودقة 4K كاملة.
+            </p>
+
+            <div class="cta-container">
+                <a href="https://wa.me/966591388202" class="magnetic-btn" id="buyBtn">تفعيل الاشتراك</a>
+            </div>
         </div>
     </div>
 
-    <div class="live-bar">
-        <div class="dot-live"></div>
-        <span>18 شخص يشاهدون العرض الآن</span>
+    <div class="info-bar">
+        <span>4K ULTRA HD</span>
+        <span>ضمان استبدال فوري</span>
+        <span>دعم فني 24/7</span>
     </div>
 
     <script>
-        // تأثير تتبع الماوس للإضاءة
-        const sphere = document.getElementById('sphere');
+        // تأثير إمالة اللوحة (3D Tilt) مع الماوس
+        const panel = document.getElementById('panel');
         document.addEventListener('mousemove', (e) => {
-            sphere.style.left = e.clientX - 300 + 'px';
-            sphere.style.top = e.clientY - 300 + 'px';
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            panel.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
 
-        // تغيير عدد المشاهدين بشكل عشوائي للواقعية
+        // تأثير الزر المغناطيسي (Magnetic Button)
+        const btn = document.getElementById('buyBtn');
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = `translate(0px, 0px) scale(1)`;
+        });
+
+        // نظام نقص الكمية الوهمي (لزيادة الطلب)
+        let count = 8;
         setInterval(() => {
-            const viewers = Math.floor(Math.random() * (25 - 12 + 1)) + 12;
-            document.querySelector('.live-bar span').innerText = `${viewers} شخص يشاهدون العرض الآن`;
-        }, 8000);
+            if(count > 2) {
+                count--;
+                document.getElementById('stock-count').innerText = count;
+                document.getElementById('stock-count').style.color = "var(--primary)";
+            }
+        }, 15000);
     </script>
 </body>
 </html>
