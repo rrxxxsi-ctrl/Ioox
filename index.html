@@ -37,62 +37,89 @@
 
         header { text-align: center; margin-bottom: 25px; grid-column: span 2; }
 
-        /* --- تأثير اسم المتجر المطور --- */
-        .brand { 
-            color: var(--primary); 
-            font-weight: 900; 
-            letter-spacing: 3px; 
-            font-size: 0.9rem; 
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            display: inline-block;
+        /* --- تطوير اسم المتجر الملكي --- */
+        .brand-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
             position: relative;
-            animation: brandGlow 3s infinite alternate ease-in-out;
         }
 
-        @keyframes brandGlow {
-            0% { text-shadow: 0 0 5px rgba(229, 9, 20, 0.2); transform: scale(1); }
-            100% { text-shadow: 0 0 20px rgba(229, 9, 20, 0.8), 0 0 30px rgba(229, 9, 20, 0.4); transform: scale(1.05); }
+        .brand-crown {
+            font-size: 1.5rem;
+            color: var(--gold);
+            animation: crownBounce 2s infinite alternate;
+            filter: drop-shadow(0 0 10px var(--gold));
         }
 
-        /* تصغير العنوان لضمان الظهور كاملاً مع حركة خفيفة */
-        h1 { 
-            font-size: clamp(1.3rem, 4vw, 2.2rem); 
-            margin: 0; font-weight: 900; 
-            background: linear-gradient(90deg, #fff, #888, #fff);
+        @keyframes crownBounce {
+            from { transform: translateY(0) rotate(-10deg); }
+            to { transform: translateY(-5px) rotate(10deg); }
+        }
+
+        .brand { 
+            color: #fff; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            font-size: 1.1rem; 
+            text-transform: uppercase;
+            position: relative;
+            background: linear-gradient(90deg, #fff, var(--primary), #fff);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shineText 5s linear infinite;
+            animation: brandShine 3s linear infinite;
         }
 
-        @keyframes shineText {
+        @keyframes brandShine {
             to { background-position: 200% center; }
         }
 
+        /* خط النيون السفلي المتحرك */
+        .brand-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 5px auto;
+            border-radius: 10px;
+            animation: lineExpand 2s infinite alternate;
+        }
+
+        @keyframes lineExpand {
+            from { width: 40px; opacity: 0.5; }
+            to { width: 120px; opacity: 1; box-shadow: 0 0 15px var(--primary); }
+        }
+
+        h1 { 
+            font-size: clamp(1.3rem, 4vw, 2.2rem); 
+            margin: 5px 0; font-weight: 900; 
+            color: #fff;
+        }
+
+        /* باقي تنسيقات الموقع */
         .glass-card {
             background: var(--glass); border: 1px solid var(--border);
             border-radius: 20px; padding: 20px; backdrop-filter: blur(20px);
             transition: 0.3s;
         }
-        .glass-card:hover { border-color: rgba(229, 9, 20, 0.3); }
 
         .tabs { display: flex; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.8rem; transition: 0.3s; }
+        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
         .tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
 
-        ul li { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; color: #bbb; list-style: none; transition: 0.3s; }
-        ul li:hover { color: #fff; transform: translateX(-5px); }
+        ul li { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; color: #bbb; list-style: none; }
 
         .selectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 15px 0; }
         .chip { 
             background: rgba(255,255,255,0.02); padding: 10px; border-radius: 10px; text-align: center; 
             cursor: pointer; font-size: 0.75rem; border: 1px solid var(--border); transition: 0.2s;
         }
-        .chip.active { border-color: var(--primary); background: rgba(229,9,20,0.1); color: #fff; box-shadow: 0 0 15px rgba(229,9,20,0.2); }
+        .chip.active { border-color: var(--primary); background: rgba(229,9,20,0.1); color: #fff; }
 
         .price-box { text-align: center; margin: 15px 0; }
-        .price-num { font-size: 3.5rem; font-weight: 900; line-height: 1; color: #fff; transition: 0.3s; }
+        .price-num { font-size: 3.5rem; font-weight: 900; line-height: 1; color: #fff; }
         .price-num span { font-size: 1rem; color: #444; }
 
         .bank-info { 
@@ -105,18 +132,13 @@
             color: #fff; text-align: center; padding: 18px; border-radius: 15px;
             text-decoration: none; font-weight: 900; font-size: 1.2rem; transition: 0.3s;
             display: block; border: none; cursor: pointer; width: 100%;
-            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
         }
-        .cta-button:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(229, 9, 20, 0.5); }
         .cta-button:active { transform: scale(0.97); }
 
-        @keyframes fadeInPage { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
         @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; margin-top: 10px; gap: 10px; }
+            .container { grid-template-columns: 1fr; margin-top: 10px; }
             header { grid-column: span 1; }
             h1 { font-size: 1.25rem; }
-            .price-num { font-size: 3rem; }
         }
     </style>
 </head>
@@ -126,7 +148,11 @@
 
 <div class="container">
     <header>
-        <div class="brand">متجر NIKAI – للاشتراكات الرقمية</div>
+        <div class="brand-wrapper">
+            <span class="brand-crown">👑</span>
+            <div class="brand">متجر NIKAI – للاشتراكات الرقمية</div>
+        </div>
+        <div class="brand-line"></div>
         <h1>اشتراكات نتفليكس اختر باقتك</h1>
     </header>
 
@@ -155,7 +181,7 @@
     </div>
 
     <div class="glass-card">
-        <div style="font-weight: bold; font-size: 0.8rem; text-align: center; color: #555;">حدد المدة 💳</div>
+        <div style="font-weight: bold; font-size: 0.8rem; text-align: center; color: #555;">حدد الباقة 💳</div>
         <div class="selectors">
             <div class="chip" onclick="update(20, 'شهر واحد', this)">شهر</div>
             <div class="chip" onclick="update(75, '3 أشهر', this)">3 أشهر</div>
