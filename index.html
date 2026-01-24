@@ -114,6 +114,18 @@
             background: var(--primary-light);
         }
 
+        .logo::after {
+            content: 'متميزون منذ 2020';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            color: var(--gold);
+            white-space: nowrap;
+            font-weight: 700;
+        }
+
         .logo i {
             font-size: 1.6rem;
             animation: pulse 2s infinite;
@@ -943,6 +955,11 @@
                 font-size: 1.2rem;
             }
             
+            .logo::after {
+                font-size: 0.5rem;
+                top: -8px;
+            }
+            
             .tool-btn {
                 padding: 8px 12px;
                 font-size: 0.8rem;
@@ -1401,7 +1418,7 @@
         // تعيين السعر الافتراضي
         setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
         
-        // التحكم في عرض حقل البريد الإلكتروني - الإصلاح النهائي
+        // التحكم في عرض حقل البريد الإلكتروني
         const emailBox = document.getElementById('emailBox');
         
         if (id === 'canva') {
