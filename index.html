@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>متجر NIKAI | للاشتراكات الرقمية</title>
+    <title>متجر NIKAI | اشتراكات رقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #E50914;
+            --primary: #E50914; /* لون نتفليكس الافتراضي */
+            --disney: #0063e5; /* لون ديزني بلس */
             --gold: #D4AF37;
             --bg: #050505;
             --glass: rgba(255, 255, 255, 0.03);
@@ -19,220 +20,235 @@
             font-family: 'Cairo', sans-serif;
             background-color: var(--bg); color: #fff;
             overflow-y: auto; overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
+            transition: background 0.5s ease;
         }
 
         .ambient-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
-            z-index: -1;
+            z-index: -1; transition: 0.5s;
         }
 
+        /* نظام تبديل المنتجات العلوي */
+        .product-nav {
+            display: flex; justify-content: center; gap: 15px;
+            margin: 20px auto; width: 95%; max-width: 500px;
+        }
+        .nav-item {
+            flex: 1; padding: 15px; border-radius: 20px; border: 1px solid var(--border);
+            background: var(--glass); cursor: pointer; text-align: center;
+            transition: 0.4s; font-weight: 900; opacity: 0.6;
+        }
+        .nav-item.active-netflix { opacity: 1; border-color: var(--primary); background: rgba(229, 9, 20, 0.1); color: var(--primary); }
+        .nav-item.active-disney { opacity: 1; border-color: var(--disney); background: rgba(0, 99, 229, 0.1); color: var(--disney); }
+
         .container {
-            width: 95%; max-width: 1000px;
-            margin: 15px auto 80px auto;
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 15px;
+            width: 95%; max-width: 1000px; margin: 0 auto 80px auto;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;
             animation: fadeInPage 0.8s ease-out;
         }
 
-        header { text-align: center; margin-bottom: 25px; grid-column: span 2; }
+        header { text-align: center; margin-bottom: 20px; grid-column: span 2; }
+        .brand-wrapper { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        .brand { font-weight: 900; letter-spacing: 2px; font-size: 1rem; color: #fff; }
+        h1 { font-size: clamp(1.4rem, 4vw, 2.4rem); margin: 0; font-weight: 900; }
 
-        /* --- تطوير اسم المتجر الملكي --- */
-        .brand-wrapper {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .brand-crown {
-            font-size: 1.5rem;
-            color: var(--gold);
-            animation: crownBounce 2s infinite alternate;
-            filter: drop-shadow(0 0 10px var(--gold));
-        }
-
-        @keyframes crownBounce {
-            from { transform: translateY(0) rotate(-10deg); }
-            to { transform: translateY(-5px) rotate(10deg); }
-        }
-
-        .brand { 
-            color: #fff; 
-            font-weight: 900; 
-            letter-spacing: 2px; 
-            font-size: 1.1rem; 
-            text-transform: uppercase;
-            position: relative;
-            background: linear-gradient(90deg, #fff, var(--primary), #fff);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: brandShine 3s linear infinite;
-        }
-
-        @keyframes brandShine {
-            to { background-position: 200% center; }
-        }
-
-        /* خط النيون السفلي المتحرك */
-        .brand-line {
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            margin: 5px auto;
-            border-radius: 10px;
-            animation: lineExpand 2s infinite alternate;
-        }
-
-        @keyframes lineExpand {
-            from { width: 40px; opacity: 0.5; }
-            to { width: 120px; opacity: 1; box-shadow: 0 0 15px var(--primary); }
-        }
-
-        h1 { 
-            font-size: clamp(1.3rem, 4vw, 2.2rem); 
-            margin: 5px 0; font-weight: 900; 
-            color: #fff;
-        }
-
-        /* باقي تنسيقات الموقع */
-        .glass-card {
-            background: var(--glass); border: 1px solid var(--border);
-            border-radius: 20px; padding: 20px; backdrop-filter: blur(20px);
-            transition: 0.3s;
-        }
+        .glass-card { background: var(--glass); border: 1px solid var(--border); border-radius: 25px; padding: 25px; backdrop-filter: blur(20px); }
 
         .tabs { display: flex; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
-        .tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
+        .tab-btn.active { color: #fff; border-bottom: 2px solid #fff; }
 
-        ul li { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; color: #bbb; list-style: none; }
+        ul li { margin-bottom: 10px; font-size: 0.9rem; line-height: 1.5; color: #bbb; list-style: none; }
+        .warning { color: #ff4d4d; font-weight: bold; }
 
-        .selectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 15px 0; }
-        .chip { 
-            background: rgba(255,255,255,0.02); padding: 10px; border-radius: 10px; text-align: center; 
-            cursor: pointer; font-size: 0.75rem; border: 1px solid var(--border); transition: 0.2s;
-        }
-        .chip.active { border-color: var(--primary); background: rgba(229,9,20,0.1); color: #fff; }
+        .selectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
+        .chip { background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; text-align: center; cursor: pointer; font-size: 0.8rem; border: 1px solid var(--border); transition: 0.3s; }
+        .chip.active { background: rgba(255,255,255,0.1); border-color: #fff; color: #fff; }
 
-        .price-box { text-align: center; margin: 15px 0; }
-        .price-num { font-size: 3.5rem; font-weight: 900; line-height: 1; color: #fff; }
-        .price-num span { font-size: 1rem; color: #444; }
+        .price-box { text-align: center; margin: 20px 0; }
+        .price-num { font-size: 4.5rem; font-weight: 900; line-height: 1; color: #fff; }
+        .price-num span { font-size: 1.2rem; color: #444; }
 
-        .bank-info { 
-            background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); 
-            border-radius: 15px; padding: 15px; margin-bottom: 15px;
-        }
-
+        .bank-info { background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); border-radius: 18px; padding: 18px; margin-bottom: 20px; }
+        
         .cta-button {
-            background: linear-gradient(45deg, #E50914, #ff3c45);
-            color: #fff; text-align: center; padding: 18px; border-radius: 15px;
-            text-decoration: none; font-weight: 900; font-size: 1.2rem; transition: 0.3s;
+            background: #fff; color: #000; text-align: center; padding: 22px; border-radius: 20px;
+            text-decoration: none; font-weight: 900; font-size: 1.4rem; transition: 0.4s;
             display: block; border: none; cursor: pointer; width: 100%;
         }
-        .cta-button:active { transform: scale(0.97); }
+        .cta-button:active { transform: scale(0.96); }
+
+        @keyframes fadeInPage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; margin-top: 10px; }
+            .container { grid-template-columns: 1fr; }
             header { grid-column: span 1; }
-            h1 { font-size: 1.25rem; }
+            .price-num { font-size: 3.5rem; }
         }
     </style>
 </head>
-<body>
+<body id="mainBody">
 
-<div class="ambient-glow"></div>
+<div class="ambient-glow" id="glow"></div>
+
+<div class="product-nav">
+    <div class="nav-item active-netflix" id="navNet" onclick="switchProduct('netflix')">Netflix</div>
+    <div class="nav-item" id="navDisney" onclick="switchProduct('disney')">Disney+</div>
+</div>
 
 <div class="container">
     <header>
         <div class="brand-wrapper">
-            <span class="brand-crown">👑</span>
+            <span id="productIcon" style="font-size: 1.5rem;">👑</span>
             <div class="brand">متجر NIKAI – للاشتراكات الرقمية</div>
         </div>
-        <div class="brand-line"></div>
-        <h1>اشتراكات نتفليكس اختر باقتك</h1>
+        <h1 id="productTitle">اشتراك نتفليكس اختر باقتك</h1>
     </header>
 
     <div class="glass-card">
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'f')">⭐ المزايا</button>
-            <button class="tab-btn" onclick="openTab(event, 'r')">📌 الشروط</button>
+            <button class="tab-btn active" id="tabM" onclick="openTab('f')">⭐ المزايا</button>
+            <button class="tab-btn" id="tabS" onclick="openTab('r')">📌 الشروط</button>
         </div>
 
         <div id="f" class="tab-content" style="display: block;">
-            <ul>
-                <li>✅ <b>جودة خرافية:</b> 4K ULTRA HD.</li>
-                <li>✅ <b>الضمان:</b> ضمان ذهبي طوال المدة.</li>
-                <li>✅ <b>الخصوصية:</b> ملف برقم سري خاص بك.</li>
-                <li>✅ <b>الأجهزة:</b> يدعم العمل على جميع الأجهزة.</li>
-            </ul>
+            <ul id="featuresList">
+                </ul>
         </div>
 
         <div id="r" class="tab-content" style="display: none;">
-            <ul>
-                <li>📍 جهاز واحد للمشاهدة.</li>
-                <li>📍 يمنع تغيير الإيميل أو كلمة المرور.</li>
-                <li style="color:var(--primary); font-weight: 900;">⚠️ التلاعب يعرض الحساب للإلغاء.</li>
-            </ul>
+            <ul id="rulesList">
+                </ul>
         </div>
     </div>
 
     <div class="glass-card">
-        <div style="font-weight: bold; font-size: 0.8rem; text-align: center; color: #555;">حدد الباقة 💳</div>
+        <div style="font-weight: bold; font-size: 0.85rem; text-align: center; color: #666;">حدد مدة الاشتراك 💳</div>
         <div class="selectors">
-            <div class="chip" onclick="update(20, 'شهر واحد', this)">شهر</div>
-            <div class="chip" onclick="update(75, '3 أشهر', this)">3 أشهر</div>
-            <div class="chip" onclick="update(120, '6 أشهر', this)">6 أشهر</div>
-            <div class="chip active" onclick="update(200, 'سنة كاملة', this)">سنة كاملة</div>
+            <div class="chip" onclick="updatePrice(20, 'شهر واحد', this)">شهر</div>
+            <div class="chip" onclick="updatePrice(75, '3 أشهر', this)">3 أشهر</div>
+            <div class="chip" onclick="updatePrice(120, '6 أشهر', this)">6 أشهر</div>
+            <div class="chip active" id="defaultChip" onclick="updatePrice(200, 'سنة كاملة', this)">سنة كاملة</div>
         </div>
 
         <div class="price-box">
-            <div class="price-num" id="p">200<span> ريال</span></div>
-            <div id="save-tag" style="color:#4ade80; font-size: 0.75rem; font-weight: bold;">توفير 45% 🔥</div>
+            <div class="price-num" id="priceLabel">200<span> ريال</span></div>
+            <div id="saveTag" style="color:#4ade80; font-size: 0.8rem; font-weight: bold; margin-top: 5px;">توفير يصل لـ 45% 🔥</div>
         </div>
 
         <div class="bank-info">
-            <div style="color:var(--gold); font-weight: 900; margin-bottom: 5px; font-size: 0.85rem;">بنك البلاد 🏦</div>
-            <p style="margin: 2px 0; font-size: 0.75rem;">سليمان فلاته</p>
-            <p id="iban" style="font-size: 0.65rem; color: #fff; word-break: break-all;">SA0315000900133520020007</p>
+            <div style="color:var(--gold); font-weight: 900; margin-bottom: 5px; font-size: 0.9rem;">تحويل بنك البلاد 🏦</div>
+            <p style="margin: 2px 0; font-size: 0.8rem;">سليمان فلاته</p>
+            <p id="iban" style="font-size: 0.7rem; color: #fff; letter-spacing: 0.5px;">SA0315000900133520020007</p>
             <span style="color:var(--gold); font-size: 0.65rem; cursor:pointer;" onclick="copyIban()">📋 نسخ الآيبان</span>
         </div>
 
-        <button class="cta-button" onclick="go()">تأكيد الطلب واتساب ⚡</button>
+        <button class="cta-button" id="ctaBtn" onclick="sendOrder()">تأكيد الطلب عبر واتساب ⚡</button>
     </div>
 </div>
 
 <script>
-    function openTab(evt, tName) {
-        let tc = document.getElementsByClassName("tab-content");
-        for (let i = 0; i < tc.length; i++) tc[i].style.display = "none";
-        let tb = document.getElementsByClassName("tab-btn");
-        for (let i = 0; i < tb.length; i++) tb[i].classList.remove("active");
-        document.getElementById(tName).style.display = "block";
-        evt.currentTarget.classList.add("active");
+    let currentProduct = 'netflix';
+    let selectedPrice = 200;
+    let selectedPlan = "سنة كاملة";
+
+    const data = {
+        netflix: {
+            title: "اشتراك نتفليكس اختر باقتك",
+            icon: "👑",
+            color: "#E50914",
+            glow: "radial-gradient(circle at center, #1a0505 0%, #000 100%)",
+            features: [
+                "✅ جودة خرافية 4K ULTRA HD لمتعة سينمائية",
+                "✅ لغة الحساب والترجمة عربية بالكامل",
+                "✅ ضمان ذهبي شامل طوال فترة الاشتراك",
+                "✅ شاشة خاصة بك برمز سري مستقل",
+                "✅ يدعم العمل على جميع الأجهزة الذكية"
+            ],
+            rules: [
+                "📌 يسمح بتغيير اسم الملف والصورة الشخصية",
+                "📌 المشاهدة بـجهاز واحد فقط في نفس الوقت",
+                "⚠️ يمنع تغيير الإيميل أو كلمة المرور نهائياً",
+                "⚠️ التلاعب بملفات الآخرين يلغي الاشتراك فوراً"
+            ]
+        },
+        disney: {
+            title: "اشتراك ديزني بلس اختر باقتك",
+            icon: "✨",
+            color: "#0063e5",
+            glow: "radial-gradient(circle at center, #001a3d 0%, #000 100%)",
+            features: [
+                "🌠 شاهد آلاف الساعات من عوالم ديزني و مارفل",
+                "🇸🇦 استمتع بمحتوى ديزني+ باللغة العربية",
+                "📲 جودة عالية مع تقنية الصوت المحيطي",
+                "✨ اشتراك رسمي ونظامي 100% مع ضمان كامل",
+                "🚨 يتطلب كود تحقق للدخول (يتم إرساله واتساب)"
+            ],
+            rules: [
+                "📍 الحساب مخصص لجهاز واحد فقط لك",
+                "📍 يمنع تفعيل رمز الرقابة الأبوية نهائياً",
+                "⚠️ يمنع تغيير أي معلومات خاصة بالحساب",
+                "⚠️ يمنع مشاركة الحساب مع أي شخص آخر"
+            ]
+        }
+    };
+
+    function switchProduct(p) {
+        currentProduct = p;
+        const pData = data[p];
+        
+        // تحديث الواجهة
+        document.getElementById('productTitle').innerText = pData.title;
+        document.getElementById('productIcon').innerText = pData.icon;
+        document.getElementById('glow').style.background = pData.glow;
+        document.getElementById('ctaBtn').style.background = pData.color;
+        document.getElementById('ctaBtn').style.color = "#fff";
+        
+        // تحديث الأزرار
+        document.getElementById('navNet').className = `nav-item ${p === 'netflix' ? 'active-netflix' : ''}`;
+        document.getElementById('navDisney').className = `nav-item ${p === 'disney' ? 'active-disney' : ''}`;
+
+        // ملء القوائم
+        fillLists();
     }
 
-    let pPrice = 200, pName = "سنة كاملة";
-    function update(pr, pl, el) {
-        pPrice = pr; pName = pl;
-        document.getElementById('p').innerHTML = `${pr}<span> ريال</span>`;
+    function fillLists() {
+        const featList = document.getElementById('featuresList');
+        const ruleList = document.getElementById('rulesList');
+        featList.innerHTML = data[currentProduct].features.map(f => `<li>${f}</li>`).join('');
+        ruleList.innerHTML = data[currentProduct].rules.map(r => `<li>${r}</li>`).join('');
+    }
+
+    function openTab(t) {
+        document.getElementById('f').style.display = t === 'f' ? 'block' : 'none';
+        document.getElementById('r').style.display = t === 'r' ? 'block' : 'none';
+        document.getElementById('tabM').className = `tab-btn ${t === 'f' ? 'active' : ''}`;
+        document.getElementById('tabS').className = `tab-btn ${t === 'r' ? 'active' : ''}`;
+    }
+
+    function updatePrice(pr, pl, el) {
+        selectedPrice = pr;
+        selectedPlan = pl;
+        document.getElementById('priceLabel').innerHTML = `${pr}<span> ريال</span>`;
         document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
         el.classList.add('active');
-        document.getElementById('save-tag').style.display = (pl === 'شهر واحد') ? 'none' : 'block';
+        document.getElementById('saveTag').style.display = pl === 'شهر واحد' ? 'none' : 'block';
     }
 
     function copyIban() {
         navigator.clipboard.writeText("SA0315000900133520020007");
-        alert("تم نسخ الآيبان بنجاح ✅");
+        alert("تم نسخ آيبان سليمان فلاته بنجاح ✅");
     }
 
-    function go() {
-        const msg = `مرحباً متجر Nikai 👋%0Aأود طلب اشتراك نتفلكس: ${pName}%0Aالسعر: ${pPrice} ريال%0A🏦 بنك البلاد - سليمان فلاته%0A--%0Aأوافق على الشروط ✅`;
+    function sendOrder() {
+        const prodName = currentProduct === 'netflix' ? 'نتفليكس' : 'ديزني بلس';
+        const msg = `مرحباً متجر Nikai 👋%0Aأطلب اشتراك ${prodName}:%0A📦 الباقة: ${selectedPlan}%0A💰 السعر: ${selectedPrice} ريال%0A🏦 بنك البلاد - سليمان فلاته%0A--%0Aلقد قرأت الشروط وأوافق عليها ✅`;
         window.location.href = `https://wa.me/966591388202?text=${msg}`;
     }
+
+    // تشغيل نتفليكس كافتراضي
+    switchProduct('netflix');
 </script>
 
 </body>
