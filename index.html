@@ -2,191 +2,191 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر NIKAI | اشتراكات رقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #E50914; --disney: #0063e5; --canva: #7d2ae8; --fasel: #00bcd4; --chatgpt: #10a37f;
-            --gold: #D4AF37; --bg: #050505;
-            --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
+            --gold: #D4AF37; --bg: #050505; --border: rgba(255, 255, 255, 0.1);
         }
-
-        body, html {
-            margin: 0; padding: 0; min-height: 100vh;
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--bg); color: #fff;
-            overflow-y: auto; overflow-x: hidden;
+        body {
+            margin: 0; padding: 0; background-color: var(--bg); color: #fff;
+            font-family: 'Cairo', sans-serif; direction: rtl;
         }
-
-        .ambient-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; transition: 0.8s ease;
-            background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
+        /* شريط المنتجات */
+        .nav-container {
+            display: flex; gap: 10px; padding: 15px; overflow-x: auto;
+            background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border);
         }
-
-        .product-nav {
-            display: flex; gap: 10px; padding: 15px;
-            overflow-x: auto; white-space: nowrap;
-            justify-content: flex-start; scrollbar-width: none;
+        .nav-btn {
+            padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05); color: #fff; cursor: pointer;
+            white-space: nowrap; font-weight: bold; font-family: 'Cairo';
         }
-        .product-nav::-webkit-scrollbar { display: none; }
+        .nav-btn.active { border-color: var(--primary); background: rgba(229, 9, 20, 0.2); color: var(--primary); }
 
-        .nav-item {
-            flex: 0 0 auto; padding: 12px 20px; border-radius: 15px; 
-            border: 1px solid var(--border); background: var(--glass);
-            cursor: pointer; font-weight: 900; opacity: 0.5; font-size: 0.85rem;
-        }
-        .nav-item.active-netflix { opacity: 1; border-color: var(--primary); background: rgba(229, 9, 20, 0.2); color: var(--primary); }
-        .nav-item.active-disney { opacity: 1; border-color: var(--disney); background: rgba(0, 99, 229, 0.2); color: var(--disney); }
-        .nav-item.active-canva { opacity: 1; border-color: var(--canva); background: rgba(125, 42, 232, 0.2); color: var(--canva); }
-        .nav-item.active-fasel { opacity: 1; border-color: var(--fasel); background: rgba(0, 188, 212, 0.2); color: var(--fasel); }
-        .nav-item.active-chatgpt { opacity: 1; border-color: var(--chatgpt); background: rgba(16, 163, 127, 0.2); color: var(--chatgpt); }
-
-        .container {
-            width: 95%; max-width: 1000px; margin: 15px auto 100px auto;
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;
-        }
-
-        header { text-align: center; margin-bottom: 20px; grid-column: span 2; }
-        h1 { font-size: clamp(1.2rem, 5vw, 2.2rem); margin: 0; font-weight: 900; }
-
-        .glass-card { background: var(--glass); border: 1px solid var(--border); border-radius: 25px; padding: 25px; backdrop-filter: blur(20px); }
+        .main-content { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 20px; }
         
-        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; justify-content: center; }
-        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.9rem; padding: 5px 15px; transition: 0.3s; }
-        .tab-btn.active { color: #fff; border-bottom: 2px solid var(--primary); }
+        /* التبويبات */
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .tab { padding: 10px; cursor: pointer; color: #777; font-weight: bold; }
+        .tab.active { color: #fff; border-bottom: 2px solid #fff; }
+        .tab-content { display: none; padding-top: 10px; }
+        .tab-content.active { display: block; }
+        ul { padding: 0; list-style: none; }
+        li { margin-bottom: 10px; font-size: 0.95rem; color: #ccc; }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease forwards; }
+        /* الأسعار */
+        .price-display { text-align: center; font-size: 3.5rem; font-weight: 900; margin: 15px 0; }
+        .price-display span { font-size: 1.2rem; color: #666; }
+        .selectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        .chip { padding: 12px; border: 1px solid var(--border); border-radius: 12px; text-align: center; cursor: pointer; background: rgba(255,255,255,0.02); }
+        .chip.active { background: #fff; color: #000; font-weight: bold; }
 
-        ul { padding: 0; margin: 0; }
-        ul li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ccc; list-style: none; }
-
-        .selectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .chip { background: rgba(255,255,255,0.02); padding: 14px; border-radius: 12px; text-align: center; cursor: pointer; font-size: 0.85rem; border: 1px solid var(--border); transition: 0.3s; }
-        .chip.active { background: rgba(255,255,255,0.1); border-color: #fff; }
-
-        .price-num { font-size: 4rem; font-weight: 900; text-align: center; margin: 10px 0; }
-        .price-num span { font-size: 1.2rem; color: #444; }
-
-        .email-box { display: none; margin: 15px 0; }
-        .email-box input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: #fff; font-family: 'Cairo'; text-align: right; box-sizing: border-box; }
-
-        .bank-info { background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); border-radius: 18px; padding: 18px; margin-bottom: 20px; text-align: center; }
-
-        .cta-button {
-            background: #fff; color: #000; text-align: center; padding: 22px; border-radius: 20px;
-            text-decoration: none; font-weight: 900; font-size: 1.4rem; display: block; border: none; cursor: pointer; width: 100%; transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        /* البنك والطلب */
+        .bank-box { background: rgba(212,175,55,0.05); border: 1px dashed var(--gold); border-radius: 15px; padding: 15px; text-align: center; margin-bottom: 20px; }
+        .cta-btn {
+            width: 100%; padding: 20px; border-radius: 15px; border: none;
+            background: #fff; color: #000; font-size: 1.3rem; font-weight: 900;
+            cursor: pointer; font-family: 'Cairo'; transition: 0.3s;
         }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; }
-            header { grid-column: span 1; }
-        }
+        .email-input { width: 100%; padding: 15px; border-radius: 12px; background: #111; border: 1px solid var(--border); color: #fff; margin-bottom: 15px; display: none; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
-<div class="ambient-glow" id="glow"></div>
-
-<div class="product-nav">
-    <div class="nav-item active-netflix" id="navNet" onclick="switchProduct('netflix')">Netflix</div>
-    <div class="nav-item" id="navDisney" onclick="switchProduct('disney')">Disney+</div>
-    <div class="nav-item" id="navCanva" onclick="switchProduct('canva')">Canva Pro</div>
-    <div class="nav-item" id="navFasel" onclick="switchProduct('fasel')">Fasel Plus</div>
-    <div class="nav-item" id="navChat" onclick="switchProduct('chatgpt')">ChatGPT 5</div>
+<div class="nav-container">
+    <button class="nav-btn active" onclick="changeP('netflix', this)">نتفلكس</button>
+    <button class="nav-btn" onclick="changeP('disney', this)">ديزني+</button>
+    <button class="nav-btn" onclick="changeP('canva', this)">كانفا برو</button>
+    <button class="nav-btn" onclick="changeP('fasel', this)">فاصل بلس</button>
+    <button class="nav-btn" onclick="changeP('chatgpt', this)">ChatGPT</button>
 </div>
 
-<div class="container">
-    <header>
-        <div style="font-size: 0.8rem; font-weight: 900; color: var(--gold); margin-bottom: 5px;">متجر NIKAI – للاشتراكات الرقمية</div>
-        <h1 id="pTitle">نتفلكس لمدة 12 شهر</h1>
-    </header>
+<div class="main-content">
+    <h2 id="title" style="text-align: center;">نتفلكس بريميوم 4K</h2>
 
-    <div class="glass-card">
+    <div class="card">
         <div class="tabs">
-            <button class="tab-btn active" id="btnM" onclick="openTab('f')">⭐ المزايا</button>
-            <button class="tab-btn" id="btnS" onclick="openTab('r')">📌 الشروط</button>
+            <div class="tab active" onclick="showTab('m', this)">المزايا</div>
+            <div class="tab" onclick="showTab('s', this)">الشروط</div>
         </div>
-        <div id="f" class="tab-content active"> <ul id="fList"></ul> </div>
-        <div id="r" class="tab-content"> <ul id="rList"></ul> </div>
+        <div id="m" class="tab-content active"><ul id="m-list"></ul></div>
+        <div id="s" class="tab-content"><ul id="s-list"></ul></div>
     </div>
 
-    <div class="glass-card">
-        <div style="text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 10px;">اختر مدة الاشتراك 💳</div>
-        <div class="selectors" id="pSelectors"></div>
-        <div class="price-num" id="pLabel">200<span> ريال</span></div>
-        <div id="saveTag" style="text-align:center; color:#4ade80; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px;">توفير يصل إلى 45% مع الاشتراك السنوي</div>
+    <div class="card">
+        <p style="text-align: center; color: #777;">حدد المدة</p>
+        <div class="selectors" id="price-selectors"></div>
+        <div class="price-display"><span id="price-val">200</span><span> ريال</span></div>
         
-        <div class="email-box" id="emailBox">
-            <input type="email" id="userEmail" placeholder="أدخل إيميلك (لطلب كانفا فقط)">
-        </div>
+        <input type="email" id="email" class="email-input" placeholder="أدخل إيميلك الشخصي">
 
-        <div class="bank-info">
-            <p style="font-size:0.9rem; margin:0">المستفيد: <b>سليمان فلاته</b></p>
-            <p id="ibanDisplay" style="font-size:0.75rem; color:var(--gold); margin:8px 0; letter-spacing: 0.5px;">SA0315000900133520020007</p>
-            <button onclick="copyIban()" style="background:none; border:none; color:var(--gold); cursor:pointer; font-size:0.7rem; font-weight: bold;">📋 اضغط لنسخ الآيبان</button>
+        <div class="bank-box">
+            <p style="margin: 0; font-weight: bold;">المستفيد: سليمان فلاته</p>
+            <p style="color: var(--gold); font-size: 0.8rem; margin: 5px 0;">SA0315000900133520020007</p>
+            <small style="cursor: pointer; color: #999;" onclick="copyI()">📋 نسخ الآيبان</small>
         </div>
-        <button class="cta-button" id="cta" onclick="send()">⚡ تأكيد الطلب واتساب</button>
+        <button class="cta-btn" onclick="order()">تأكيد الطلب واتساب ⚡</button>
     </div>
 </div>
 
 <script>
     const data = {
         netflix: {
-            t: "نتفلكس لمدة 12 شهر", c: "#E50914", g: "radial-gradient(circle, #1a0505 0%, #000 100%)",
-            f: ["✅ جودة خرافية: 4K ULTRA HD لتجربة سينمائية.", "✅ المدة: سنة كاملة من المتعة والترفيه.", "✅ اللغة: لغة الحساب والترجمة عربية.", "✅ الضمان: ضمان ذهبي طوال فترة الاشتراك.", "✅ الخصوصية: شاشة خاصة بك برقم سري."],
-            r: ["📌 جهاز واحد للمشاهدة فقط في نفس الوقت.", "📌 يسمح بتغيير اسم الملف والصورة الرمزية.", "⚠️ يمنع تغيير الإيميل أو كلمة المرور نهائياً."],
-            p: [{v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة كاملة"}]
+            name: "نتفلكس بريميوم 4K",
+            m: ["✅ جودة خرافية 4K ULTRA HD", "✅ اشتراك سنة كاملة (12 شهر)", "✅ ملف خاص برقم سري", "✅ ضمان ذهبي طوال المدة"],
+            s: ["📌 جهاز واحد فقط للمشاهدة", "⚠️ يمنع تغيير كلمة المرور", "✅ يسمح بتغيير اسم الملف"],
+            prices: [{n:"3 أشهر", v:75}, {n:"6 أشهر", v:120}, {n:"سنة كاملة", v:200}]
         },
         disney: {
-            t: "ديزني بلس الشرق الأوسط", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
-            f: ["🌠 عوالم ديزني و مارفل.", "🇸🇦 محتوى باللغة العربية بالكامل.", "📲 جودة عالية مع تقنية الصوت المحيطي."],
-            r: ["📍 جهاز واحد مخصص لك فقط.", "⚠️ يمنع تفعيل الرقابة الأبوية."],
-            p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
+            name: "ديزني بلس",
+            m: ["🌠 عوالم ديزني و مارفل", "🇸🇦 دعم كامل للغة العربية", "✅ ضمان كامل المدة"],
+            s: ["📌 جهاز واحد فقط", "⚠️ يمنع تغيير بيانات الحساب"],
+            prices: [{n:"3 أشهر", v:75}, {n:"6 أشهر", v:120}, {n:"سنة", v:200}]
         },
         canva: {
-            t: "كانفا برو مدى الحياة", c: "#7d2ae8", g: "radial-gradient(circle, #1a082d 0%, #000 100%)",
-            f: ["🖌️ اشتراك آمن على إيميلك الشخصي.", "🖌️ الوصول لكل أدوات Canva Pro.", "⚠️ الضمان لمدة سنة كاملة."],
-            r: ["📍 نوع الاشتراك: برو تعليمي.", "📍 التفعيل خلال (1-12) ساعة."],
-            p: [{v:39, n:"مدى الحياة"}]
+            name: "كانفا برو مدى الحياة",
+            m: ["🖌️ اشتراك على إيميلك الشخصي", "🖌️ وصول لكافة أدوات التصميم Pro", "✅ ضمان لمدة سنة"],
+            s: ["📍 التفعيل خلال 1-12 ساعة"],
+            prices: [{n:"مدى الحياة", v:39}]
         },
         fasel: {
-            t: "فاصل بلس (Fasel Plus)", c: "#00bcd4", g: "radial-gradient(circle, #001f24 0%, #000 100%)",
-            f: ["📺 بدون إعلانات نهائياً.", "✅ جودة بث تصل إلى 4K.", "⚡ تفعيل رسمي ومضمون."],
-            r: ["📌 جهاز واحد مخصص لك فقط.", "⚠️ يمنع مشاركة الحساب."],
-            p: [{v:15, n:"شهر"}, {v:59, n:"6 شهور"}, {v:98, n:"سنة"}]
+            name: "فاصل بلس",
+            m: ["📺 بدون إعلانات", "✅ جودة عالية 4K", "⚡ تفعيل فوري"],
+            s: ["📌 جهاز واحد فقط"],
+            prices: [{n:"شهر", v:15}, {n:"6 أشهر", v:59}, {n:"سنة", v:98}]
         },
         chatgpt: {
-            t: "ChatGPT Plus (النسخة 5)", c: "#10a37f", g: "radial-gradient(circle, #082d24 0%, #000 100%)",
-            f: ["🤖 الوصول لـ ChatGPT 5 المحسن.", "⚡ استجابة فورية وسريعة.", "⚠️ يتطلب كود دخول."],
-            r: ["🔴 الحساب مشترك (خصوصية محدودة).", "🔴 حد الاستخدام: 40 رسالة / 3 ساعات."],
-            p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
+            name: "ChatGPT Plus",
+            m: ["🤖 الوصول لنسخة GPT-5", "⚡ استجابة سريعة جداً"],
+            s: ["🔴 الحساب مشترك", "⚠️ كود دخول واتساب"],
+            prices: [{n:"شهر", v:20}, {n:"3 أشهر", v:75}, {n:"سنة", v:200}]
         }
     };
 
-    let curP = 'netflix', sPrice = 200, sPlan = "سنة";
+    let currentP = 'netflix', currentV = 200, currentN = "سنة كاملة";
 
-    function switchProduct(p) {
-        curP = p; const d = data[p];
-        document.getElementById('pTitle').innerText = d.t;
-        document.getElementById('glow').style.background = d.g;
-        document.getElementById('cta').style.background = d.c;
-        document.getElementById('cta').style.color = "#fff";
-        document.getElementById('emailBox').style.display = p === 'canva' ? 'block' : 'none';
+    function changeP(p, btn) {
+        currentP = p;
+        const d = data[p];
+        document.getElementById('title').innerText = d.name;
         
-        ['navNet','navDisney','navCanva','navFasel','navChat'].forEach(id => {
-            if(document.getElementById(id)) document.getElementById(id).className = 'nav-item';
-        });
-        const activeNavId = 'nav' + (p==='chatgpt'?'Chat':p.charAt(0).toUpperCase() + p.slice(1));
-        document.getElementById(activeNavId).className = 'nav-item active-' + p;
+        // تحديث الأزرار العلوية
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-        // تحديث النصوص فوراً لضمان الظهور
-        const fList = document.getElementById('fList');
-        const rList = document.getElementById('rList');
-        fList.innerHTML = d.f.map(i => `<li>${i}</li>`).join('');
-        rList.innerHTML = d.r.map(i =>
+        // تحديث المزايا والشروط
+        document.getElementById('m-list').innerHTML = d.m.map(i => `<li>${i}</li>`).join('');
+        document.getElementById('s-list').innerHTML = d.s.map(i => `<li>${i}</li>`).join('');
+
+        // تحديث الأسعار
+        const pSel = document.getElementById('price-selectors');
+        pSel.innerHTML = d.prices.map(x => `<div class="chip" onclick="setV(${x.v}, '${x.n}', this)">${x.n}</div>`).join('');
+        
+        // اختيار آخر سعر تلقائياً
+        const lastPrice = d.prices[d.prices.length-1];
+        setV(lastPrice.v, lastPrice.n, pSel.lastChild);
+
+        // إظهار حقل الإيميل لكانفا فقط
+        document.getElementById('email').style.display = (p === 'canva') ? 'block' : 'none';
+        
+        showTab('m', document.querySelector('.tab')); // العودة لتبويب المزايا
+    }
+
+    function setV(v, n, el) {
+        currentV = v; currentN = n;
+        document.getElementById('price-val').innerText = v;
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        if(el) el.classList.add('active');
+    }
+
+    function showTab(id, el) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        el.classList.add('active');
+    }
+
+    function copyI() {
+        navigator.clipboard.writeText("SA0315000900133520020007");
+        alert("تم نسخ الآيبان ✅");
+    }
+
+    function order() {
+        const e = document.getElementById('email').value;
+        if(currentP === 'canva' && !e) return alert("أدخل الإيميل أولاً");
+        let msg = `طلب ${data[currentP].name}%0Aالباقة: ${currentN}%0Aالسعر: ${currentV} ريال`;
+        if(e) msg += `%0Aالإيميل: ${e}`;
+        msg += `%0A--%0Aالمستفيد: سليمان فلاته ✅`;
+        window.location.href = `https://wa.me/966591388202?text=${msg}`;
+    }
+
+    // التشغيل الأول
+    window.onload = () => changeP('netflix', document.querySelector('.nav-btn'));
+</script>
+
+</body>
+</html>
