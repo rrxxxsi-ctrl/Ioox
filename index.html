@@ -2,174 +2,209 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>عبدالإله فلاته</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP NETFLIX - اشتراك السنة الذهبي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #d4af37;
-            --bg: #050505;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-main: #ffffff;
-            --text-sub: rgba(255, 255, 255, 0.75);
-            --name-grad: linear-gradient(to bottom, #ffffff 30%, var(--gold) 100%);
+            --primary: #E50914;
+            --gold: #FFD700;
+            --dark: #080808;
+            --card: #1a1a1a;
+            --success: #25D366;
         }
 
-        body.light-mode {
-            --bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-main: #1a1a1b;
-            --text-sub: #4a4a4b;
-            --name-grad: linear-gradient(to bottom, #1a1a1b 20%, var(--gold) 100%);
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark);
+            color: #fff;
+            margin: 0;
+            scroll-behavior: smooth;
         }
 
-        /* حماية المحتوى */
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; user-select: none !important; -webkit-user-select: none; -webkit-user-drag: none; }
-
-        body { background: var(--bg); color: var(--text-main); font-family: 'Almarai', sans-serif; min-height: 100vh; display: flex; justify-content: center; transition: background 0.4s ease; overflow-x: hidden; }
-
-        /* --- شاشة المقدمة المحدثة (نورت الموقع) --- */
-        .intro-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #050505; z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            transition: opacity 1s ease-in-out, visibility 1s;
-        }
-        .intro-overlay.fade-out { opacity: 0; visibility: hidden; }
-        
-        .welcome-msg {
-             font-family: 'Cairo', sans-serif; font-weight: 900; font-size: clamp(2rem, 8vw, 3.5rem);
-             text-align: center;
-             background: var(--name-grad); -webkit-background-clip: text;
-             -webkit-text-fill-color: transparent;
-             display: flex; flex-direction: column; gap: 10px;
-        }
-        .fade-text { animation: welcomeFade 3.5s forwards; }
-        
-        @keyframes welcomeFade {
-            0% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
-            20% { opacity: 1; transform: translateY(0); filter: blur(0); }
-            80% { opacity: 1; transform: translateY(0); filter: blur(0); }
-            100% { opacity: 0; transform: translateY(-10px); filter: blur(5px); }
+        /* تنسيق الهيدر المطور */
+        header {
+            height: 90vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--dark)), 
+                        url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-9a10-87d37418a653/5676757f-2b36-4078-9892-23b207590897/SA-en-20220502-popsignuptwoweeks-perspective_alpha_website_large.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
         }
 
-        /* --- المحتوى الرئيسي --- */
-        .master-wrapper {
-            width: 100%; max-width: 1200px; padding: 30px 20px;
-            display: flex; flex-direction: column; align-items: center;
-            opacity: 0; animation: fadeInContent 1s ease-out 3.5s forwards;
+        .badge {
+            background: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
         }
-        @keyframes fadeInContent { to { opacity: 1; } }
 
-        .top-bar { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; gap: 10px; }
-        .icon-btn { background: var(--card-bg); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); cursor: pointer; text-decoration: none; transition: 0.3s; }
-        .icon-btn:hover { background: var(--gold); color: var(--bg); transform: translateY(-3px); }
-
-        .profile-area { position: relative; margin-bottom: 30px; }
-        .orbit { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border: 2px solid transparent; border-top-color: var(--gold); border-radius: 50%; animation: rotate 3s linear infinite; }
-        .profile-wrapper { width: 150px; height: 150px; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, var(--gold), #fff, var(--gold)); box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 5; }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg); pointer-events: none; }
-
-        .name { font-family: 'Cairo', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 900; background: var(--name-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 20px; }
-
-        .description-card {
-            background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 20px; padding: 25px; text-align: center; margin-bottom: 30px; width: 100%; max-width: 500px;
-            animation: slideUp 1s ease-out 3.8s both;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        .description-card p { line-height: 1.8; font-size: 1.05rem; color: var(--text-sub); animation: textGlow 3s ease-in-out infinite alternate; }
 
-        @keyframes textGlow { from { text-shadow: 0 0 2px rgba(255,255,255,0.05); } to { text-shadow: 0 0 8px rgba(212, 175, 55, 0.3); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { font-size: 3rem; margin: 0; font-weight: 900; }
+        .gold-text { color: var(--gold); text-shadow: 0 0 10px rgba(255,215,0,0.5); }
 
-        .action-links { width: 100%; max-width: 500px; display: grid; gap: 12px; }
-        .nav-link { padding: 18px; border-radius: 18px; text-decoration: none; color: #fff; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; font-size: 1.1rem; transition: 0.2s; }
-        .nav-link:active { animation: shake 0.3s both; transform: scale(0.95); }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-3px, 0, 0); } }
+        /* عداد الوقت */
+        .timer-container {
+            margin: 25px 0;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px dashed var(--gold);
+        }
 
-        .whatsapp { background: #25d366; }
-        .messenger { background: #0084ff; }
-        .email { border: 2px solid var(--gold); color: var(--text-main); }
+        /* البطاقات السعرية */
+        .pricing-section {
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+        }
 
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @media (min-width: 768px) { .action-links { grid-template-columns: repeat(2, 1fr); } .email { grid-column: span 2; } }
+        .card {
+            background: var(--card);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "الأكثر طلباً";
+            position: absolute;
+            top: 20px;
+            left: -35px;
+            background: var(--gold);
+            color: #000;
+            padding: 5px 40px;
+            transform: rotate(-45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .price-tag { font-size: 4rem; font-weight: 900; color: #fff; margin: 20px 0; }
+        .price-tag span { font-size: 1.5rem; color: #aaa; }
+
+        .features-list { list-style: none; padding: 0; text-align: right; margin: 30px 0; }
+        .features-list li { margin: 15px 0; display: flex; align-items: center; }
+        .features-list li::before { content: "✔️"; margin-left: 10px; color: var(--success); }
+
+        .btn-whatsapp {
+            display: block;
+            background: var(--success);
+            color: #fff;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp:hover { background: #1eb954; transform: scale(1.02); }
+
+        /* قسم الأسئلة الشائعة */
+        .faq { max-width: 800px; margin: 50px auto; padding: 20px; }
+        .faq-item { background: #111; padding: 20px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; }
+        .faq-item h3 { margin: 0; font-size: 1.1rem; color: var(--gold); }
+        .faq-item p { margin-top: 10px; color: #ccc; display: none; }
+
+        footer { text-align: center; padding: 50px; color: #555; font-size: 0.8rem; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-    <div class="intro-overlay" id="introOverlay">
-        <div class="welcome-msg fade-text" id="welcomeMsg">
-            أهلاً بك.. نورت الموقع
+    <header>
+        <div class="badge">خصم حصري لفترة محدودة ⚡</div>
+        <h1>نتفليكس <span class="gold-text">سنة كاملة</span></h1>
+        <p style="font-size: 1.2rem; color: #eee;">باقة بريميوم 4K Ultra HD مع ضمان ذهبي 365 يوم</p>
+        
+        <div class="timer-container">
+            <span>ينتهي العرض خلال:</span>
+            <div id="timer" style="font-size: 1.5rem; font-weight: bold; color: var(--gold);">05:40:12</div>
         </div>
-    </div>
+        
+        <a href="#buy" style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--primary);">اكتشف المميزات ↓</a>
+    </header>
 
-    <div class="master-wrapper">
-        <div class="top-bar">
-            <div class="icon-btn" onclick="toggleMode()"><i class="fas fa-adjust"></i></div>
-            <a href="Https://maps.app.goo.gl/iDduiMAzGVbJEHYS8" target="_blank" class="icon-btn">
-                <i class="fas fa-map-marker-alt"></i>
+    <section id="buy" class="pricing-section">
+        <div class="card">
+            <h2 style="margin: 0;">باقة السنة الـ VIP</h2>
+            <div class="price-tag">200 <span>ريال</span></div>
+            
+            <ul class="features-list">
+                <li>اشتراك لمدة 12 شهر متواصلة.</li>
+                <li>جودة 4K Ultra HD فائقة الوضوح.</li>
+                <li>ملف (Profile) خاص بك برمز سري.</li>
+                <li>يعمل على التلفزيون، الجوال، والكمبيوتر.</li>
+                <li>دعم كامل للغة العربية والترجمة.</li>
+                <li>الضمان الذهبي: تعويض فوري حال الانقطاع.</li>
+            </ul>
+
+            <a href="https://wa.me/966591388202?text=أرغب%20في%20الحصول%20على%20عرض%20الـ%20200%20ريال" class="btn-whatsapp">
+                اشترك الآن عبر واتساب
             </a>
-            <div id="lBtn" style="cursor:pointer; color:var(--gold); font-weight:800; background:var(--card-bg); padding:10px 18px; border-radius:12px; border: 1px solid rgba(212, 175, 55, 0.15);" onclick="toggleLang()">EN</div>
+            <p style="font-size: 0.8rem; color: #777; margin-top: 15px;">تسليم سريع خلال 5 - 30 دقيقة ⚡</p>
         </div>
+    </section>
 
-        <div class="profile-area">
-            <div class="orbit"></div>
-            <div class="profile-wrapper">
-                <img src="https://www2.0zz0.com/2025/12/17/06/790723590.jpg" class="profile-img" alt="عبدالإله فلاته">
-            </div>
+    <section class="faq">
+        <h2 style="text-align: center;">الأسئلة الشائعة 🤔</h2>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>هل الاشتراك رسمي ويحتاج كود؟</h3>
+            <p>نعم، اشتراك رسمي نرسل لك بيانات دخول مباشرة (إيميل وباسورد) وتدخل لملفك الخاص فوراً.</p>
         </div>
-
-        <h1 class="name" id="n">عبدالإله فلاته</h1>
-
-        <div class="description-card">
-            <p id="b">نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.</p>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <h3>وش يعني الضمان الذهبي؟</h3>
+            <p>يعني لو صار أي شيء للحساب خلال السنة، نتكفل بتعويضك بحساب جديد فوراً أو إصلاح المشكلة بدون دفع أي ريال إضافي.</p>
         </div>
+    </section>
 
-        <div class="action-links">
-            <a href="https://wa.me/966591388202" class="nav-link whatsapp">
-                <i class="fab fa-whatsapp fa-xl"></i> <span id="w">واتساب</span>
-            </a>
-            <a href="https://m.me/abdullah.fallatah.507" target="_blank" class="nav-link messenger">
-                <i class="fab fa-facebook-messenger fa-xl"></i> <span id="ms">ماسنجر</span>
-            </a>
-            <a href="mailto:iioe@outlook.sa" class="nav-link email">
-                <i class="fas fa-envelope fa-lg"></i> <span id="m">البريد الرسمي</span>
-            </a>
-        </div>
-    </div>
+    <footer>
+        <p>© 2026 جميع الحقوق محفوظة لمتجر الاشتراك الرقمي</p>
+        <p>شعار نتفليكس وعلامتها التجارية ملك لشركة Netflix, Inc. نحن وسيط لتوفير الخدمة فقط.</p>
+    </footer>
 
     <script>
-        // نظام الحماية ومنع الاختصارات
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'i' || e.key === 's')) e.preventDefault();
-        });
+        // كود تشغيل العداد التنازلي
+        function startTimer(duration, display) {
+            var timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
 
-        // إدارة شاشة الترحيب
-        window.addEventListener('load', function() {
-            // تغيير النص بعد ثانية ونصف لجعلها أكثر حيوية
-            const msg = document.getElementById('welcomeMsg');
-            setTimeout(() => {
-                document.getElementById('introOverlay').classList.add('fade-out');
-            }, 3500); // تنتهي المقدمة بعد 3.5 ثانية
-        });
+                display.textContent = (hours < 10 ? "0" + hours : hours) + ":" + 
+                                      (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                                      (seconds < 10 ? "0" + seconds : seconds);
 
-        function toggleMode() { document.body.classList.toggle('light-mode'); }
-        let isEn = false;
-        function toggleLang() {
-            isEn = !isEn;
-            document.documentElement.dir = isEn ? 'ltr' : 'rtl';
-            document.getElementById('lBtn').innerText = isEn ? 'AR' : 'EN';
-            const t = {
-                ar: {n:"عبدالإله فلاته", b:"نساعدكم في إيجاد السكن الأنسب ضمن نطاق عملنا في أحياء الشميسي والجرادية بالرياض، من خلال تعاوننا مع مكاتب معتمدة لضمان خدمة موثوقة ونظامية.", w:"واتساب", ms:"ماسنجر", m:"البريد الرسمي"},
-                en: {n:"Abdullilah Flats", b:"We help you find the best housing in Ash Shumaysi and Al Jaradiyah, Riyadh, through certified offices to ensure reliable and official service.", w:"WhatsApp", ms:"Messenger", m:"Email"}
-            };
-            const s = isEn ? t.en : t.ar;
-            document.getElementById('n').innerText = s.n; document.getElementById('b').innerText = s.b;
-            document.getElementById('w').innerText = s.w; document.getElementById('ms').innerText = s.ms; document.getElementById('m').innerText = s.m;
+                if (--timer < 0) { timer = duration; }
+            }, 1000);
+        }
+        window.onload = function () {
+            var fiveHours = 60 * 60 * 5 + 40 * 60 + 12;
+            var display = document.querySelector('#timer');
+            startTimer(fiveHours, display);
+        };
+
+        // كود تفتح وتغلق الأسئلة
+        function toggleFaq(element) {
+            var p = element.querySelector('p');
+            p.style.display = (p.style.display === "block") ? "none" : "block";
         }
     </script>
 </body>
