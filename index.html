@@ -17,24 +17,28 @@
             font-family: 'Cairo', sans-serif;
             background-color: var(--bg); color: #fff;
             overflow-y: auto; overflow-x: hidden;
-            transition: 0.5s ease;
+            -webkit-overflow-scrolling: touch;
         }
 
         .ambient-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
-            z-index: -1; transition: 0.8s ease-in-out;
+            z-index: -1; transition: 0.8s ease;
         }
 
+        /* شريط التنقل العلوي - يدعم اللمس والسحب */
         .product-nav {
-            display: flex; justify-content: center; gap: 8px;
-            margin: 15px auto; width: 98%; max-width: 800px;
-            flex-wrap: wrap;
+            display: flex; gap: 10px; padding: 15px;
+            overflow-x: auto; white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; justify-content: flex-start;
         }
+        .product-nav::-webkit-scrollbar { display: none; }
+
         .nav-item {
-            flex: 1; min-width: 75px; padding: 10px; border-radius: 12px; border: 1px solid var(--border);
-            background: var(--glass); cursor: pointer; text-align: center;
-            transition: 0.4s; font-weight: 900; opacity: 0.4; font-size: 0.7rem;
+            flex: 0 0 auto; padding: 12px 20px; border-radius: 15px; 
+            border: 1px solid var(--border); background: var(--glass);
+            cursor: pointer; font-weight: 900; opacity: 0.5; font-size: 0.85rem;
         }
         .nav-item.active-netflix { opacity: 1; border-color: var(--primary); background: rgba(229, 9, 20, 0.2); color: var(--primary); }
         .nav-item.active-disney { opacity: 1; border-color: var(--disney); background: rgba(0, 99, 229, 0.2); color: var(--disney); }
@@ -45,40 +49,41 @@
         .container {
             width: 95%; max-width: 1000px; margin: 0 auto 100px auto;
             display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;
-            animation: fadeIn 0.8s ease;
         }
 
-        header { text-align: center; margin-bottom: 15px; grid-column: span 2; }
-        h1 { font-size: clamp(1.1rem, 4vw, 1.8rem); margin: 0; font-weight: 900; }
+        header { text-align: center; margin-bottom: 20px; grid-column: span 2; }
+        h1 { font-size: clamp(1.2rem, 5vw, 2.2rem); margin: 0; font-weight: 900; }
 
         .glass-card { background: var(--glass); border: 1px solid var(--border); border-radius: 25px; padding: 25px; backdrop-filter: blur(20px); }
+        
         .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
+        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
         .tab-btn.active { color: #fff; border-bottom: 2px solid #fff; }
 
-        ul li { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.5; color: #ccc; list-style: none; }
+        ul li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ccc; list-style: none; }
+
         .selectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .chip { background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; text-align: center; cursor: pointer; font-size: 0.8rem; border: 1px solid var(--border); transition: 0.3s; }
+        .chip { background: rgba(255,255,255,0.02); padding: 14px; border-radius: 12px; text-align: center; cursor: pointer; font-size: 0.85rem; border: 1px solid var(--border); transition: 0.3s; }
         .chip.active { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-        .price-num { font-size: 3.5rem; font-weight: 900; text-align: center; margin: 15px 0; }
-        .price-num span { font-size: 1rem; color: #444; }
+        .price-num { font-size: 4rem; font-weight: 900; text-align: center; margin: 15px 0; }
+        .price-num span { font-size: 1.2rem; color: #444; }
 
-        .email-input-container { margin: 15px 0; display: none; }
-        .email-input-container input {
-            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border);
-            background: rgba(255,255,255,0.05); color: #fff; font-family: 'Cairo'; text-align: right; box-sizing: border-box;
-        }
+        .email-box { display: none; margin: 15px 0; }
+        .email-box input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: #fff; font-family: 'Cairo'; text-align: right; box-sizing: border-box; }
 
         .bank-info { background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); border-radius: 18px; padding: 18px; margin-bottom: 20px; }
-        
+
         .cta-button {
-            background: #fff; color: #000; text-align: center; padding: 20px; border-radius: 18px;
-            text-decoration: none; font-weight: 900; font-size: 1.3rem; display: block; border: none; cursor: pointer; width: 100%; transition: 0.4s;
+            background: #fff; color: #000; text-align: center; padding: 22px; border-radius: 20px;
+            text-decoration: none; font-weight: 900; font-size: 1.4rem; display: block; border: none; cursor: pointer; width: 100%; transition: 0.4s;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } header { grid-column: span 1; } }
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
+            header { grid-column: span 1; }
+            .product-nav { justify-content: flex-start; }
+        }
     </style>
 </head>
 <body>
@@ -95,8 +100,8 @@
 
 <div class="container">
     <header>
-        <div style="font-size: 0.75rem; font-weight: 900; color: var(--gold); margin-bottom: 5px;">متجر NIKAI – للاشتراكات الرقمية</div>
-        <h1 id="pTitle">نتفلكس بريميوم</h1>
+        <div style="font-size: 0.8rem; font-weight: 900; color: var(--gold); margin-bottom: 5px;">متجر NIKAI – للاشتراكات الرقمية</div>
+        <h1 id="pTitle">نتفلكس بريميوم 4K</h1>
     </header>
 
     <div class="glass-card">
@@ -104,24 +109,24 @@
             <button class="tab-btn active" id="btnM" onclick="openTab('f')">⭐ المزايا</button>
             <button class="tab-btn" id="btnS" onclick="openTab('r')">📌 الشروط</button>
         </div>
-        <div id="f" class="tab-content"> <ul id="fList"></ul> </div>
+        <div id="f" class="tab-content" style="display:block"> <ul id="fList"></ul> </div>
         <div id="r" class="tab-content" style="display:none"> <ul id="rList"></ul> </div>
     </div>
 
     <div class="glass-card">
-        <div id="selText" style="text-align: center; font-size: 0.8rem; color: #666;">حدد مدة الاشتراك 💳</div>
+        <div style="text-align: center; font-size: 0.85rem; color: #666;">اختر المدة 💳</div>
         <div class="selectors" id="pSelectors"></div>
         <div class="price-num" id="pLabel">200<span> ريال</span></div>
 
-        <div class="email-input-container" id="emailBox">
-            <input type="email" id="userEmail" placeholder="أدخل إيميلك الشخصي (لطلب كانفا فقط)">
+        <div class="email-box" id="emailBox">
+            <input type="email" id="userEmail" placeholder="أدخل إيميلك (لطلب كانفا فقط)">
         </div>
 
         <div class="bank-info">
-            <p style="font-size:0.8rem; margin:0">المستفيد: <b>سليمان فلاته</b></p>
-            <p style="font-size:0.6rem; color:var(--gold); margin:5px 0">SA0315000900133520020007</p>
+            <p style="font-size:0.85rem; margin:0">المستفيد: <b>سليمان فلاته</b></p>
+            <p style="font-size:0.7rem; color:var(--gold); margin:5px 0">SA0315000900133520020007</p>
         </div>
-        <button class="cta-button" id="cta" onclick="send()">تأكيد الطلب عبر واتساب ⚡</button>
+        <button class="cta-button" id="cta" onclick="send()">تأكيد الطلب واتساب ⚡</button>
     </div>
 </div>
 
@@ -129,34 +134,34 @@
     let curP = 'netflix', sPrice = 200, sPlan = "سنة كاملة";
     const data = {
         netflix: {
-            t: "اشتراك نتفليكس 4K بريميوم", c: "#E50914", g: "radial-gradient(circle, #1a0505 0%, #000 100%)",
-            f: ["✅ جودة 4K ULTRA HD سينمائية", "✅ ملف خاص بك برقم سري", "✅ ضمان ذهبي طوال المدة"],
+            t: "نتفلكس لمدة 12 شهر", c: "#E50914", g: "radial-gradient(circle, #1a0505 0%, #000 100%)",
+            f: ["✅ جودة خرافية 4K ULTRA HD", "✅ ضمان ذهبي طوال فترة الاشتراك", "✅ ملف خاص بك برقم سري", "✅ لغة الحساب والترجمة عربية"],
             r: ["📌 جهاز واحد للمشاهدة فقط", "⚠️ يمنع تغيير الإيميل أو الباسورد"],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         },
         disney: {
-            t: "اشتراك ديزني بلس الرسمي", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
-            f: ["🌠 عوالم ديزني و مارفل", "🇸🇦 محتوى باللغة العربية", "🚨 يتطلب كود تحقق للدخول"],
+            t: "ديزني بلس الشرق الأوسط", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
+            f: ["🌠 عوالم ديزني، مارفل وستار وورز", "🇸🇦 محتوى باللغة العربية", "🚨 يتطلب كود تحقق للدخول"],
             r: ["📍 جهاز واحد مخصص لك فقط", "⚠️ يمنع تفعيل الرقابة الأبوية"],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         },
         canva: {
-            t: "اشتراك كانفا برو (إيميلك الشخصي)", c: "#7d2ae8", g: "radial-gradient(circle, #1a082d 0%, #000 100%)",
-            f: ["🖌️ اشتراك آمن على إيميلك", "🖌️ الوصول لـ 100 مليون عنصر", "🖌️ دعم الذكاء الاصطناعي"],
-            r: ["📍 نوع الاشتراك: برو تعليمي", "⚠️ الضمان لمدة سنة كاملة"],
+            t: "كانفا برو مدى الحياة", c: "#7d2ae8", g: "radial-gradient(circle, #1a082d 0%, #000 100%)",
+            f: ["🖌️ اشتراك آمن على إيميلك الشخصي", "🖌️ الوصول لكل أدوات Pro", "⚠️ الضمان لمدة سنة كاملة"],
+            r: ["📍 نوع الاشتراك: برو تعليمي", "📍 التفعيل خلال (1-12) ساعة"],
             p: [{v:39, n:"مدى الحياة"}]
         },
         fasel: {
-            t: "اشتراك فاصل بلس (Fasel Plus)", c: "#00bcd4", g: "radial-gradient(circle, #001f24 0%, #000 100%)",
-            f: ["📺 مشاهدة بدون إعلانات نهائياً", "✅ جودة بث تصل إلى 4K", "⚡ تفعيل رسمي ومضمون"],
-            r: ["📌 الاشتراك مخصص لجهاز واحد", "⚠️ يمنع مشاركة الحساب"],
-            p: [{v:15, n:"شهر"}, {v:59, n:"6 شهور"}, {v:98, n:"سنة كاملة"}]
+            t: "فاصل بلس (Fasel Plus)", c: "#00bcd4", g: "radial-gradient(circle, #001f24 0%, #000 100%)",
+            f: ["📺 بدون إعلانات نهائياً", "✅ جودة بث تصل إلى 4K", "⚡ تفعيل رسمي ومضمون"],
+            r: ["📌 جهاز واحد مخصص لك", "⚠️ يمنع مشاركة الحساب"],
+            p: [{v:15, n:"شهر"}, {v:59, n:"6 شهور"}, {v:98, n:"سنة"}]
         },
         chatgpt: {
-            t: "اشتراك ChatGPT Plus (النسخة 5)", c: "#10a37f", g: "radial-gradient(circle, #082d24 0%, #000 100%)",
-            f: ["🤖 الوصول الكامل لـ ChatGPT 5 المحسن", "⚡ استجابة فورية وسريعة جداً", "🎓 حلول مبتكرة للعمل والدراسة"],
-            r: ["🔴 الحساب مشترك (الخصوصية محدودة)", "🔴 حد الاستخدام: 40 رسالة كل 3 ساعات", "⚠️ يتطلب كود دخول يتم تسليمه واتساب"],
-            p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة كاملة"}]
+            t: "ChatGPT Plus (النسخة 5)", c: "#10a37f", g: "radial-gradient(circle, #082d24 0%, #000 100%)",
+            f: ["🤖 الوصول لـ ChatGPT 5 المحسن", "⚡ استجابة فورية وسريعة", "⚠️ يتطلب كود دخول"],
+            r: ["🔴 الحساب مشترك (خصوصية محدودة)", "🔴 حد الاستخدام: 40 رسالة / 3 ساعات"],
+            p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         }
     };
 
@@ -165,7 +170,6 @@
         document.getElementById('pTitle').innerText = d.t;
         document.getElementById('glow').style.background = d.g;
         document.getElementById('cta').style.background = d.c;
-        document.getElementById('cta').style.color = "#fff";
         document.getElementById('emailBox').style.display = p === 'canva' ? 'block' : 'none';
         
         ['navNet','navDisney','navCanva','navFasel','navChat'].forEach(id => {
@@ -199,15 +203,13 @@
 
     function send() {
         const email = document.getElementById('userEmail').value;
-        if(curP === 'canva' && !email) { alert("يرجى إدخال الإيميل لإتمام الطلب"); return; }
-        
-        let m = `مرحباً متجر Nikai 👋%0Aأطلب اشتراك ${data[curP].t}:%0A📦 الباقة: ${sPlan}%0A💰 السعر: ${sPrice} ريال%0A`;
+        if(curP === 'canva' && !email) { alert("يرجى إدخال الإيميل"); return; }
+        let m = `مرحباً متجر Nikai 👋%0Aطلب اشتراك ${data[curP].t}:%0Aالباقة: ${sPlan}%0Aالسعر: ${sPrice} ريال%0A`;
         if(curP === 'canva') m += `📧 الإيميل: ${email}%0A`;
-        m += `🏦 بنك البلاد - سليمان فلاته%0A--%0Aلقد قرأت الشروط وأوافق عليها ✅`;
-        
+        m += `🏦 بنك البلاد - سليمان فلاته%0A--%0Aأوافق على الشروط ✅`;
         window.location.href = `https://wa.me/966591388202?text=${m}`;
     }
-    switchProduct('netflix');
+    switchProduct('netflix'); // تعيين نتفليكس كافتراضي
 </script>
 </body>
 </html>
