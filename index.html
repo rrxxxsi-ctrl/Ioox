@@ -234,25 +234,6 @@
             font-size: 1.1rem;
         }
 
-        /* مؤشر العدد المباع */
-        .sale-badge {
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            background: var(--success);
-            color: white;
-            font-size: 0.7rem;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-weight: 900;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
         /* تحسين الحاوية الرئيسية */
         .container {
             width: 95%;
@@ -1113,12 +1094,6 @@
     let currentTheme = 'dark';
     let activeV = 200;
     let activeN = 'سنة';
-    let ordersCount = {
-        netflix: 1247,
-        disney: 892,
-        canva: 1563,
-        fasel: 743
-    };
 
     // بيانات الترجمة
     const lang = {
@@ -1349,7 +1324,7 @@
         }
     };
 
-    // وظيفة إنشاء شريط التنقل
+    // وظيفة إنشاء شريط التنقل - بدون شارات العدد المباع
     function renderNav() {
         const nav = document.getElementById('navBar');
         const names = {
@@ -1363,7 +1338,6 @@
             <button class="nav-btn ${activeID === key ? 'active' : ''}" onclick="loadP('${key}', this)" style="border-color: ${products[key].color}20">
                 <i class="${products[key].icon}"></i>
                 ${names[key][currentLang]}
-                <span class="sale-badge">${ordersCount[key]}+</span>
             </button>
         `).join('');
     }
@@ -1427,9 +1401,8 @@
         // تعيين السعر الافتراضي
         setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
         
-        // التحكم في عرض حقل البريد الإلكتروني - الإصلاح هنا
+        // التحكم في عرض حقل البريد الإلكتروني - الإصلاح النهائي
         const emailBox = document.getElementById('emailBox');
-        const emailNote = document.getElementById('emailNote');
         
         if (id === 'canva') {
             emailBox.style.display = 'block';
@@ -1607,10 +1580,6 @@
         // إضافة تأثير التحميل على الزر
         mainBtn.classList.add('loading');
         mainBtn.innerHTML = `<i class="fas fa-spinner"></i><span>${currentLang === 'ar' ? 'جاري التوجيه...' : 'Redirecting...'}</span>`;
-        
-        // زيادة عداد الطلبات
-        ordersCount[activeID]++;
-        renderNav();
         
         // إنشاء رسالة الطلب
         let m = currentLang === 'ar' 
