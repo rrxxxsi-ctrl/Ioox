@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #E50914; --disney: #0063e5; --canva: #7d2ae8; --fasel: #00bcd4;
+            --primary: #E50914; --disney: #0063e5; --canva: #7d2ae8; --fasel: #00bcd4; --chatgpt: #10a37f;
             --gold: #D4AF37; --bg: #050505;
             --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
         }
@@ -26,21 +26,21 @@
             z-index: -1; transition: 0.8s ease-in-out;
         }
 
-        /* نظام التبديل العلوي */
         .product-nav {
             display: flex; justify-content: center; gap: 8px;
-            margin: 15px auto; width: 98%; max-width: 700px;
+            margin: 15px auto; width: 98%; max-width: 800px;
             flex-wrap: wrap;
         }
         .nav-item {
-            flex: 1; min-width: 80px; padding: 10px; border-radius: 12px; border: 1px solid var(--border);
+            flex: 1; min-width: 75px; padding: 10px; border-radius: 12px; border: 1px solid var(--border);
             background: var(--glass); cursor: pointer; text-align: center;
-            transition: 0.4s; font-weight: 900; opacity: 0.4; font-size: 0.75rem;
+            transition: 0.4s; font-weight: 900; opacity: 0.4; font-size: 0.7rem;
         }
         .nav-item.active-netflix { opacity: 1; border-color: var(--primary); background: rgba(229, 9, 20, 0.2); color: var(--primary); }
         .nav-item.active-disney { opacity: 1; border-color: var(--disney); background: rgba(0, 99, 229, 0.2); color: var(--disney); }
         .nav-item.active-canva { opacity: 1; border-color: var(--canva); background: rgba(125, 42, 232, 0.2); color: var(--canva); }
         .nav-item.active-fasel { opacity: 1; border-color: var(--fasel); background: rgba(0, 188, 212, 0.2); color: var(--fasel); }
+        .nav-item.active-chatgpt { opacity: 1; border-color: var(--chatgpt); background: rgba(16, 163, 127, 0.2); color: var(--chatgpt); }
 
         .container {
             width: 95%; max-width: 1000px; margin: 0 auto 100px auto;
@@ -49,7 +49,7 @@
         }
 
         header { text-align: center; margin-bottom: 15px; grid-column: span 2; }
-        h1 { font-size: clamp(1.2rem, 4vw, 2rem); margin: 0; font-weight: 900; }
+        h1 { font-size: clamp(1.1rem, 4vw, 1.8rem); margin: 0; font-weight: 900; }
 
         .glass-card { background: var(--glass); border: 1px solid var(--border); border-radius: 25px; padding: 25px; backdrop-filter: blur(20px); }
         .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
@@ -90,11 +90,12 @@
     <div class="nav-item" id="navDisney" onclick="switchProduct('disney')">Disney+</div>
     <div class="nav-item" id="navCanva" onclick="switchProduct('canva')">Canva Pro</div>
     <div class="nav-item" id="navFasel" onclick="switchProduct('fasel')">Fasel Plus</div>
+    <div class="nav-item" id="navChat" onclick="switchProduct('chatgpt')">ChatGPT 5</div>
 </div>
 
 <div class="container">
     <header>
-        <div style="font-size: 0.8rem; font-weight: 900; color: var(--gold); margin-bottom: 5px;">متجر NIKAI – للاشتراكات الرقمية</div>
+        <div style="font-size: 0.75rem; font-weight: 900; color: var(--gold); margin-bottom: 5px;">متجر NIKAI – للاشتراكات الرقمية</div>
         <h1 id="pTitle">نتفلكس بريميوم</h1>
     </header>
 
@@ -110,18 +111,17 @@
     <div class="glass-card">
         <div id="selText" style="text-align: center; font-size: 0.8rem; color: #666;">حدد مدة الاشتراك 💳</div>
         <div class="selectors" id="pSelectors"></div>
-        
         <div class="price-num" id="pLabel">200<span> ريال</span></div>
 
         <div class="email-input-container" id="emailBox">
-            <input type="email" id="userEmail" placeholder="أدخل إيميلك الشخصي (Gmail)">
+            <input type="email" id="userEmail" placeholder="أدخل إيميلك الشخصي (لطلب كانفا فقط)">
         </div>
 
         <div class="bank-info">
             <p style="font-size:0.8rem; margin:0">المستفيد: <b>سليمان فلاته</b></p>
-            <p style="font-size:0.65rem; color:var(--gold); margin:5px 0">SA0315000900133520020007</p>
+            <p style="font-size:0.6rem; color:var(--gold); margin:5px 0">SA0315000900133520020007</p>
         </div>
-        <button class="cta-button" id="cta" onclick="send()">تأكيد الطلب واتساب ⚡</button>
+        <button class="cta-button" id="cta" onclick="send()">تأكيد الطلب عبر واتساب ⚡</button>
     </div>
 </div>
 
@@ -129,28 +129,34 @@
     let curP = 'netflix', sPrice = 200, sPlan = "سنة كاملة";
     const data = {
         netflix: {
-            t: "اشتراك نتفليكس 4K", c: "#E50914", g: "radial-gradient(circle, #1a0505 0%, #000 100%)",
-            f: ["✅ جودة 4K ULTRA HD سينمائية", "✅ ملف خاص بك برقم سري", "✅ ضمان ذهبي طوال المدة", "✅ لغة الحساب والترجمة عربية"],
+            t: "اشتراك نتفليكس 4K بريميوم", c: "#E50914", g: "radial-gradient(circle, #1a0505 0%, #000 100%)",
+            f: ["✅ جودة 4K ULTRA HD سينمائية", "✅ ملف خاص بك برقم سري", "✅ ضمان ذهبي طوال المدة"],
             r: ["📌 جهاز واحد للمشاهدة فقط", "⚠️ يمنع تغيير الإيميل أو الباسورد"],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         },
         disney: {
-            t: "اشتراك ديزني بلس", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
-            f: ["🌠 عوالم ديزني، مارفل وستار وورز", "🇸🇦 محتوى باللغة العربية", "✨ جودة عالية وصوت محيطي", "🚨 يتطلب كود تحقق للدخول"],
+            t: "اشتراك ديزني بلس الرسمي", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
+            f: ["🌠 عوالم ديزني و مارفل", "🇸🇦 محتوى باللغة العربية", "🚨 يتطلب كود تحقق للدخول"],
             r: ["📍 جهاز واحد مخصص لك فقط", "⚠️ يمنع تفعيل الرقابة الأبوية"],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         },
         canva: {
-            t: "اشتراك كانفا برو مدى الحياة", c: "#7d2ae8", g: "radial-gradient(circle, #1a082d 0%, #000 100%)",
-            f: ["🖌️ اشتراك آمن على إيميلك الشخصي", "🖌️ الوصول لـ 100 مليون صورة وفيديو", "🖌️ إزالة الخلفية بضغطة واحدة", "🖌️ دعم تطبيقات الذكاء الاصطناعي"],
-            r: ["📍 نوع الاشتراك: برو تعليمي", "⚠️ الضمان لمدة سنة كاملة", "📍 التفعيل خلال (1-12) ساعة"],
+            t: "اشتراك كانفا برو (إيميلك الشخصي)", c: "#7d2ae8", g: "radial-gradient(circle, #1a082d 0%, #000 100%)",
+            f: ["🖌️ اشتراك آمن على إيميلك", "🖌️ الوصول لـ 100 مليون عنصر", "🖌️ دعم الذكاء الاصطناعي"],
+            r: ["📍 نوع الاشتراك: برو تعليمي", "⚠️ الضمان لمدة سنة كاملة"],
             p: [{v:39, n:"مدى الحياة"}]
         },
         fasel: {
             t: "اشتراك فاصل بلس (Fasel Plus)", c: "#00bcd4", g: "radial-gradient(circle, #001f24 0%, #000 100%)",
-            f: ["📺 مشاهدة بدون إعلانات نهائياً", "✅ جودة بث تصل إلى 4K", "🌐 المنصة الأكبر عربياً للمسلسلات", "⚡ تفعيل رسمي ومضمون طوال المدة"],
-            r: ["📌 الاشتراك مخصص لجهاز واحد فقط", "📌 تفعيل وتسليم فوري بعد الدفع", "⚠️ يمنع مشاركة الحساب مع الآخرين"],
+            f: ["📺 مشاهدة بدون إعلانات نهائياً", "✅ جودة بث تصل إلى 4K", "⚡ تفعيل رسمي ومضمون"],
+            r: ["📌 الاشتراك مخصص لجهاز واحد", "⚠️ يمنع مشاركة الحساب"],
             p: [{v:15, n:"شهر"}, {v:59, n:"6 شهور"}, {v:98, n:"سنة كاملة"}]
+        },
+        chatgpt: {
+            t: "اشتراك ChatGPT Plus (النسخة 5)", c: "#10a37f", g: "radial-gradient(circle, #082d24 0%, #000 100%)",
+            f: ["🤖 الوصول الكامل لـ ChatGPT 5 المحسن", "⚡ استجابة فورية وسريعة جداً", "🎓 حلول مبتكرة للعمل والدراسة"],
+            r: ["🔴 الحساب مشترك (الخصوصية محدودة)", "🔴 حد الاستخدام: 40 رسالة كل 3 ساعات", "⚠️ يتطلب كود دخول يتم تسليمه واتساب"],
+            p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة كاملة"}]
         }
     };
 
@@ -162,8 +168,10 @@
         document.getElementById('cta').style.color = "#fff";
         document.getElementById('emailBox').style.display = p === 'canva' ? 'block' : 'none';
         
-        ['navNet','navDisney','navCanva','navFasel'].forEach(id => document.getElementById(id).className = 'nav-item');
-        document.getElementById('nav' + p.charAt(0).toUpperCase() + p.slice(1)).className = 'nav-item active-' + p;
+        ['navNet','navDisney','navCanva','navFasel','navChat'].forEach(id => {
+            if(document.getElementById(id)) document.getElementById(id).className = 'nav-item';
+        });
+        document.getElementById('nav' + (p==='chatgpt'?'Chat':p.charAt(0).toUpperCase() + p.slice(1))).className = 'nav-item active-' + p;
 
         document.getElementById('fList').innerHTML = d.f.map(i => `<li>${i}</li>`).join('');
         document.getElementById('rList').innerHTML = d.r.map(i => `<li>${i}</li>`).join('');
@@ -193,9 +201,9 @@
         const email = document.getElementById('userEmail').value;
         if(curP === 'canva' && !email) { alert("يرجى إدخال الإيميل لإتمام الطلب"); return; }
         
-        let m = `مرحباً متجر Nikai 👋%0Aطلب اشتراك ${data[curP].t}:%0Aالباقة: ${sPlan}%0Aالسعر: ${sPrice} ريال%0A`;
+        let m = `مرحباً متجر Nikai 👋%0Aأطلب اشتراك ${data[curP].t}:%0A📦 الباقة: ${sPlan}%0A💰 السعر: ${sPrice} ريال%0A`;
         if(curP === 'canva') m += `📧 الإيميل: ${email}%0A`;
-        m += `🏦 بنك البلاد - سليمان فلاته%0A--%0Aأوافق على الشروط ✅`;
+        m += `🏦 بنك البلاد - سليمان فلاته%0A--%0Aلقد قرأت الشروط وأوافق عليها ✅`;
         
         window.location.href = `https://wa.me/966591388202?text=${m}`;
     }
