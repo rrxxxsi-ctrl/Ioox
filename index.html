@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>متجر NIKAI | اشتراكات رقمية</title>
+    <title>متجر NIKAI | للاشتراكات الرقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,9 +22,9 @@
         .ambient-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; transition: 0.8s ease;
+            background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
         }
 
-        /* شريط التنقل العلوي */
         .product-nav {
             display: flex; gap: 10px; padding: 15px;
             overflow-x: auto; white-space: nowrap;
@@ -44,7 +44,7 @@
         .nav-item.active-chatgpt { opacity: 1; border-color: var(--chatgpt); background: rgba(16, 163, 127, 0.2); color: var(--chatgpt); }
 
         .container {
-            width: 95%; max-width: 1000px; margin: 0 auto 100px auto;
+            width: 95%; max-width: 1000px; margin: 15px auto 100px auto;
             display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;
         }
 
@@ -53,12 +53,12 @@
 
         .glass-card { background: var(--glass); border: 1px solid var(--border); border-radius: 25px; padding: 25px; backdrop-filter: blur(20px); }
         
-        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
-        .tab-btn.active { color: #fff; border-bottom: 2px solid #fff; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; justify-content: center; }
+        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.9rem; padding: 5px 15px; transition: 0.3s; }
+        .tab-btn.active { color: #fff; border-bottom: 2px solid var(--primary); }
 
         .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
 
         ul { padding: 0; margin: 0; }
         ul li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ccc; list-style: none; }
@@ -67,18 +67,21 @@
         .chip { background: rgba(255,255,255,0.02); padding: 14px; border-radius: 12px; text-align: center; cursor: pointer; font-size: 0.85rem; border: 1px solid var(--border); transition: 0.3s; }
         .chip.active { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-        .price-num { font-size: 4rem; font-weight: 900; text-align: center; margin: 15px 0; }
+        .price-num { font-size: 4rem; font-weight: 900; text-align: center; margin: 10px 0; }
         .price-num span { font-size: 1.2rem; color: #444; }
 
         .email-box { display: none; margin: 15px 0; }
         .email-box input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: #fff; font-family: 'Cairo'; text-align: right; box-sizing: border-box; }
 
-        .bank-info { background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); border-radius: 18px; padding: 18px; margin-bottom: 20px; }
+        .bank-info { background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); border-radius: 18px; padding: 18px; margin-bottom: 20px; text-align: center; }
 
         .cta-button {
-            background: #fff; color: #000; text-align: center; padding: 22px; border-radius: 20px;
+            background: var(--primary); color: #fff; text-align: center; padding: 22px; border-radius: 20px;
             text-decoration: none; font-weight: 900; font-size: 1.4rem; display: block; border: none; cursor: pointer; width: 100%; transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
         }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 850px) {
             .container { grid-template-columns: 1fr; }
@@ -101,7 +104,7 @@
 <div class="container">
     <header>
         <div style="font-size: 0.8rem; font-weight: 900; color: var(--gold); margin-bottom: 5px;">متجر NIKAI – للاشتراكات الرقمية</div>
-        <h1 id="pTitle">نتفلكس بريميوم 4K</h1>
+        <h1 id="pTitle">نتفلكس لمدة 12 شهر</h1>
     </header>
 
     <div class="glass-card">
@@ -114,17 +117,21 @@
     </div>
 
     <div class="glass-card">
-        <div style="text-align: center; font-size: 0.85rem; color: #666;">اختر المدة 💳</div>
+        <div style="text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 10px;">اختر مدة الاشتراك 💳</div>
         <div class="selectors" id="pSelectors"></div>
         <div class="price-num" id="pLabel">200<span> ريال</span></div>
+        <div id="saveTag" style="text-align:center; color:#4ade80; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px;">توفير يصل إلى 45% مع الاشتراك السنوي</div>
+        
         <div class="email-box" id="emailBox">
-            <input type="email" id="userEmail" placeholder="أدخل إيميلك (لطلب كانفا فقط)">
+            <input type="email" id="userEmail" placeholder="أدخل إيميلك الشخصي المراد تفعيل كانفا عليه">
         </div>
+
         <div class="bank-info">
-            <p style="font-size:0.85rem; margin:0">المستفيد: <b>سليمان فلاته</b></p>
-            <p style="font-size:0.7rem; color:var(--gold); margin:5px 0">SA0315000900133520020007</p>
+            <p style="font-size:0.9rem; margin:0">المستفيد: <b>سليمان فلاته</b></p>
+            <p id="ibanDisplay" style="font-size:0.75rem; color:var(--gold); margin:8px 0; letter-spacing: 0.5px;">SA0315000900133520020007</p>
+            <button onclick="copyIban()" style="background:none; border:none; color:var(--gold); cursor:pointer; font-size:0.7rem; font-weight: bold;">📋 اضغط لنسخ الآيبان</button>
         </div>
-        <button class="cta-button" id="cta" onclick="send()">تأكيد الطلب واتساب ⚡</button>
+        <button class="cta-button" id="cta" onclick="send()">⚡ تأكيد الطلب واتساب</button>
     </div>
 </div>
 
@@ -132,32 +139,32 @@
     const data = {
         netflix: {
             t: "نتفلكس لمدة 12 شهر", c: "#E50914", g: "radial-gradient(circle, #1a0505 0%, #000 100%)",
-            f: ["✅ جودة خرافية 4K ULTRA HD", "✅ ضمان ذهبي طوال فترة الاشتراك", "✅ ملف خاص بك برقم سري", "✅ لغة الحساب والترجمة عربية"],
-            r: ["📌 جهاز واحد للمشاهدة فقط", "📌 يسمح بتغيير اسم الملف والصورة", "⚠️ يمنع تغيير الإيميل أو الباسورد"],
-            p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
+            f: ["✅ جودة خرافية: 4K ULTRA HD لتجربة سينمائية.", "✅ المدة: سنة كاملة من المتعة والترفيه.", "✅ اللغة: لغة الحساب والترجمة عربية.", "✅ الضمان: ضمان ذهبي طوال فترة الاشتراك.", "✅ الخصوصية: شاشة خاصة بك برقم سري."],
+            r: ["📌 جهاز واحد للمشاهدة فقط في نفس الوقت.", "📌 يسمح بتغيير اسم الملف والصورة الرمزية.", "⚠️ يمنع تغيير الإيميل أو كلمة المرور نهائياً."],
+            p: [{v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة كاملة"}]
         },
         disney: {
             t: "ديزني بلس الشرق الأوسط", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
-            f: ["🌠 عوالم ديزني، مارفل وستار وورز", "🇸🇦 محتوى باللغة العربية", "🚨 يتطلب كود تحقق للدخول"],
-            r: ["📍 جهاز واحد مخصص لك فقط", "⚠️ يمنع تفعيل الرقابة الأبوية"],
+            f: ["🌠 عوالم ديزني، مارفل وستار وورز.", "🇸🇦 محتوى باللغة العربية بالكامل.", "🚨 يتطلب كود تحقق للدخول يتم إرساله واتساب."],
+            r: ["📍 جهاز واحد مخصص لك فقط.", "⚠️ يمنع تفعيل الرقابة الأبوية."],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         },
         canva: {
             t: "كانفا برو مدى الحياة", c: "#7d2ae8", g: "radial-gradient(circle, #1a082d 0%, #000 100%)",
-            f: ["🖌️ اشتراك آمن على إيميلك الشخصي", "🖌️ الوصول لكل أدوات Pro", "⚠️ الضمان لمدة سنة كاملة"],
-            r: ["📍 نوع الاشتراك: برو تعليمي", "📍 التفعيل خلال (1-12) ساعة"],
+            f: ["🖌️ اشتراك آمن على إيميلك الشخصي.", "🖌️ الوصول لكل أدوات Canva Pro.", "⚠️ الضمان لمدة سنة كاملة."],
+            r: ["📍 نوع الاشتراك: برو تعليمي.", "📍 التفعيل خلال (1-12) ساعة."],
             p: [{v:39, n:"مدى الحياة"}]
         },
         fasel: {
             t: "فاصل بلس (Fasel Plus)", c: "#00bcd4", g: "radial-gradient(circle, #001f24 0%, #000 100%)",
-            f: ["📺 بدون إعلانات نهائياً", "✅ جودة بث تصل إلى 4K", "⚡ تفعيل رسمي ومضمون"],
-            r: ["📌 جهاز واحد مخصص لك", "⚠️ يمنع مشاركة الحساب"],
+            f: ["📺 بدون إعلانات نهائياً.", "✅ جودة بث تصل إلى 4K.", "⚡ تفعيل رسمي ومضمون."],
+            r: ["📌 جهاز واحد مخصص لك فقط.", "⚠️ يمنع مشاركة الحساب."],
             p: [{v:15, n:"شهر"}, {v:59, n:"6 شهور"}, {v:98, n:"سنة"}]
         },
         chatgpt: {
             t: "ChatGPT Plus (النسخة 5)", c: "#10a37f", g: "radial-gradient(circle, #082d24 0%, #000 100%)",
-            f: ["🤖 الوصول لـ ChatGPT 5 المحسن", "⚡ استجابة فورية وسريعة", "⚠️ يتطلب كود دخول"],
-            r: ["🔴 الحساب مشترك (خصوصية محدودة)", "🔴 حد الاستخدام: 40 رسالة / 3 ساعات"],
+            f: ["🤖 الوصول لـ ChatGPT 5 المحسن.", "⚡ استجابة فورية وسريعة.", "⚠️ يتطلب كود دخول."],
+            r: ["🔴 الحساب مشترك (خصوصية محدودة).", "🔴 حد الاستخدام: 40 رسالة / 3 ساعات."],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         }
     };
@@ -169,10 +176,10 @@
         document.getElementById('pTitle').innerText = d.t;
         document.getElementById('glow').style.background = d.g;
         document.getElementById('cta').style.background = d.c;
-        document.getElementById('cta').style.color = "#fff";
         document.getElementById('emailBox').style.display = p === 'canva' ? 'block' : 'none';
         
-        ['navNet','navDisney','navCanva','navFasel','navChat'].forEach(id => {
+        const navIds = ['navNet','navDisney','navCanva','navFasel','navChat'];
+        navIds.forEach(id => {
             if(document.getElementById(id)) document.getElementById(id).className = 'nav-item';
         });
         const activeNavId = 'nav' + (p==='chatgpt'?'Chat':p.charAt(0).toUpperCase() + p.slice(1));
@@ -184,6 +191,9 @@
         const sel = document.getElementById('pSelectors');
         sel.innerHTML = d.p.map((x, i) => `<div class="chip ${i===d.p.length-1?'active':''}" onclick="up(${x.v},'${x.n}',this)">${x.n}</div>`).join('');
         up(d.p[d.p.length-1].v, d.p[d.p.length-1].n, null);
+        
+        // إعادة التبويب للمزايا دائما عند التبديل
+        openTab('f');
     }
 
     function up(v, n, el) {
@@ -193,6 +203,7 @@
             document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
         }
+        document.getElementById('saveTag').style.display = (n.includes('سنة') || n.includes('حياة')) ? 'block' : 'none';
     }
 
     function openTab(t) {
@@ -201,6 +212,11 @@
         document.getElementById(t).classList.add('active');
         document.getElementById('btnM').classList.toggle('active', t==='f');
         document.getElementById('btnS').classList.toggle('active', t==='r');
+    }
+
+    function copyIban() {
+        navigator.clipboard.writeText("SA0315000900133520020007");
+        alert("تم نسخ الآيبان بنجاح ✅");
     }
 
     function send() {
@@ -212,7 +228,6 @@
         window.location.href = `https://wa.me/966591388202?text=${m}`;
     }
     
-    // تشغيل نتفليكس كافتراضي فور التحميل
     window.onload = () => switchProduct('netflix');
 </script>
 </body>
