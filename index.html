@@ -3,185 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE CINEMA | تجربة النخبة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;900&display=swap" rel="stylesheet">
+    <title>VIP NETFLIX | هويتنا التميز</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; }
+        :root {
+            --p: #E50914;
+            --g: linear-gradient(135deg, #E50914 0%, #ff5e62 100%);
+        }
+
         body, html {
-            margin: 0; padding: 0; height: 100%;
+            margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Cairo', sans-serif;
-            background: #000; color: #fff;
-            overflow: hidden; /* جعل الموقع كأنه تطبيق */
+            background: #050505; color: #fff;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* الخلفية السينمائية */
-        .bg-video {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=2070&auto=format&fit=crop') center/cover;
-            filter: brightness(0.3) blur(5px);
-            z-index: -1;
-            transform: scale(1.1);
+        /* الإضاءة الخلفية الهولوجرافية */
+        .glow-sphere {
+            position: fixed; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.15) 0%, transparent 70%);
+            border-radius: 50%; z-index: -1; filter: blur(60px);
+            pointer-events: none; transition: 0.1s;
         }
 
-        /* الحاوية المركزية */
-        .wrapper {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        /* الحاوية المتطورة */
+        .app-shell {
+            max-width: 1200px; margin: 0 auto; padding: 40px 20px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .cinema-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            max-width: 900px;
-            height: 550px;
+        /* البطاقة الرئيسية الغامرة */
+        .main-stage {
+            width: 100%; min-height: 600px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 40px;
-            display: flex;
-            overflow: hidden;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-            position: relative;
+            display: grid; grid-template-columns: 1.2fr 1fr;
+            overflow: hidden; position: relative;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
 
-        /* الجانب الأيمن: المحتوى */
-        .content {
-            flex: 1;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            z-index: 2;
+        .info-side { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .visual-side { 
+            background: url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=1935') center/cover;
+            position: relative; overflow: hidden;
+        }
+        .visual-side::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(5,5,5,1) 0%, transparent 40%);
         }
 
-        .label {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-bottom: 10px;
-            border-right: 2px solid #E50914;
-            padding-right: 10px;
+        /* النصوص */
+        .typewriter { font-size: 1.1rem; color: var(--p); letter-spacing: 5px; font-weight: 600; margin-bottom: 10px; }
+        h1 { font-size: 4.5rem; margin: 0; font-weight: 900; line-height: 1; }
+        .price-tag { font-size: 5rem; font-weight: 300; margin: 20px 0; color: #fff; }
+
+        /* الأزرار والمميزات */
+        .features-row { display: flex; gap: 20px; margin-top: 30px; }
+        .f-pill { 
+            background: rgba(255,255,255,0.05); padding: 10px 20px; 
+            border-radius: 100px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin: 0;
-            line-height: 1;
+        .order-btn-ultra {
+            background: var(--g); color: #fff; text-decoration: none;
+            padding: 25px 60px; border-radius: 100px; font-weight: 900;
+            font-size: 1.5rem; margin-top: 50px; display: inline-block;
+            box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
         }
+        .order-btn-ultra:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 30px 60px rgba(229, 9, 20, 0.5); }
 
-        .price-section {
-            margin: 30px 0;
-            display: flex;
-            align-items: baseline;
-            gap: 15px;
+        /* لايف بار */
+        .live-bar {
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #fff; color: #000; padding: 12px 25px;
+            border-radius: 100px; display: flex; align-items: center; gap: 10px;
+            font-weight: bold; font-size: 0.9rem; z-index: 1000;
         }
+        .dot-live { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 1s infinite; }
 
-        .price { font-size: 4rem; font-weight: 200; }
-        .currency { font-size: 1.2rem; color: #888; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        .desc {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-weight: 200;
-        }
-
-        /* زر الأكشن المختصر */
-        .buy-btn {
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            padding: 18px 45px;
-            border-radius: 100px;
-            font-weight: 900;
-            width: fit-content;
-            transition: 0.4s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .buy-btn:hover {
-            background: #E50914;
-            color: #fff;
-            transform: scale(1.05);
-        }
-
-        /* الجانب الأيسر: الصورة التعبيرية */
-        .visual {
-            flex: 1;
-            background: url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=1935&auto=format&fit=crop') center/cover;
-            position: relative;
-        }
-
-        .visual::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
-        }
-
-        /* ميزات صغيرة في الأسفل */
-        .mini-features {
-            position: absolute;
-            bottom: 40px;
-            display: flex;
-            gap: 20px;
-            font-size: 0.7rem;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .cinema-card { flex-direction: column; height: auto; border-radius: 25px; }
-            .visual { height: 200px; }
-            .content { padding: 40px 30px; }
-            h1 { font-size: 2.2rem; }
-            .price { font-size: 3rem; }
-            body { overflow-y: auto; }
+        @media (max-width: 900px) {
+            .main-stage { grid-template-columns: 1fr; border-radius: 30px; }
+            .visual-side { height: 250px; order: -1; }
+            .info-side { padding: 40px 25px; text-align: center; }
+            h1 { font-size: 2.8rem; }
+            .price-tag { font-size: 3.5rem; }
+            .features-row { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-video"></div>
+    <div class="glow-sphere" id="sphere"></div>
 
-    <div class="wrapper">
-        <div class="cinema-card">
-            
-            <div class="content">
-                <div class="label">اشتراك بريميوم 2026</div>
-                <h1>نتفليكس<br><span style="font-weight: 200;">سنة كاملة</span></h1>
+    <div class="app-shell">
+        <nav style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 50px;">
+            <div style="font-weight: 900; font-size: 1.5rem;">NETFLIX <span style="color:var(--p)">VIP</span></div>
+            <div style="color: #666; font-size: 0.8rem;">EDITION 2026</div>
+        </nav>
+
+        <div class="main-stage">
+            <div class="info-side">
+                <div class="typewriter">PLATINUM QUALITY</div>
+                <h1>سينما<br>في ملفك الخاص</h1>
+                <div class="price-tag">200 <span style="font-size: 1.5rem; color: #444;">SAR / سنة</span></div>
                 
-                <div class="price-section">
-                    <span class="price">200</span>
-                    <span class="currency">ريال سعودي / مدفوعة مرة واحدة</span>
-                </div>
-
-                <p class="desc">
-                    استمتع بخصوصية تامة مع ملفك الشخصي الخاص. جودة 4K Ultra HD، ضمان ذهبي لمدة 365 يوماً، ودعم فني متواصل.
+                <p style="color: #888; font-size: 1.1rem; max-width: 450px;">
+                    لا تساوم على الجودة. احصل على حسابك الشخصي المستقل بدقة 4K فائقة الوضوح مع ضمان ذهبي شامل.
                 </p>
 
-                <a href="https://wa.me/966591388202" class="buy-btn">
-                    اشترك الآن 
-                    <span style="font-size: 1.2rem;">→</span>
-                </a>
-
-                <div class="mini-features">
-                    <span>• ملف خاص برمز سري</span>
-                    <span>• ضمان استبدال فوري</span>
-                    <span>• يعمل على جميع الأجهزة</span>
+                <div class="features-row">
+                    <div class="f-pill">🛡️ ضمان ذهبي</div>
+                    <div class="f-pill">🎬 Ultra HD 4K</div>
+                    <div class="f-pill">🔒 ملف خاص</div>
                 </div>
+
+                <a href="https://wa.me/966591388202" class="order-btn-ultra">ابدأ المشاهدة الآن</a>
             </div>
-
-            <div class="visual"></div>
-
+            
+            <div class="visual-side"></div>
         </div>
     </div>
 
+    <div class="live-bar">
+        <div class="dot-live"></div>
+        <span>18 شخص يشاهدون العرض الآن</span>
+    </div>
+
+    <script>
+        // تأثير تتبع الماوس للإضاءة
+        const sphere = document.getElementById('sphere');
+        document.addEventListener('mousemove', (e) => {
+            sphere.style.left = e.clientX - 300 + 'px';
+            sphere.style.top = e.clientY - 300 + 'px';
+        });
+
+        // تغيير عدد المشاهدين بشكل عشوائي للواقعية
+        setInterval(() => {
+            const viewers = Math.floor(Math.random() * (25 - 12 + 1)) + 12;
+            document.querySelector('.live-bar span').innerText = `${viewers} شخص يشاهدون العرض الآن`;
+        }, 8000);
+    </script>
 </body>
 </html>
