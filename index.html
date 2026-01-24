@@ -57,7 +57,6 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 120px;
         }
 
         body {
@@ -250,33 +249,11 @@
         /* تحسين الحاوية الرئيسية */
         .container {
             width: 95%;
-            max-width: 700px;
+            max-width: 650px;
             margin: 30px auto 140px auto;
             display: flex;
             flex-direction: column;
             gap: 30px;
-        }
-
-        /* مؤشر الشحن */
-        .charging-indicator {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: conic-gradient(var(--success) 0%, transparent 0%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            animation: rotate 3s linear infinite;
-            box-shadow: 0 0 15px rgba(0, 168, 107, 0.5);
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* تحسين البطاقات */
@@ -309,70 +286,6 @@
             transform: translateY(-5px);
         }
 
-        /* عداد العملاء السعداء */
-        .happy-counter {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 168, 107, 0.1);
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            color: var(--success);
-            font-weight: 700;
-            z-index: 2;
-        }
-
-        .happy-counter i {
-            color: var(--success);
-        }
-
-        /* شريط حالة المخزون */
-        .stock-bar {
-            margin: 20px 0;
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .stock-fill {
-            height: 100%;
-            width: 75%;
-            background: var(--gradient);
-            border-radius: 4px;
-            position: relative;
-            transition: width 1s ease;
-        }
-
-        .stock-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: stockShimmer 2s infinite;
-        }
-
-        @keyframes stockShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .stock-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 5px;
-        }
-
         /* شارة التوفير */
         .save-badge {
             position: absolute;
@@ -391,26 +304,6 @@
         @keyframes glow {
             0%, 100% { box-shadow: 0 0 5px var(--success); }
             50% { box-shadow: 0 0 15px var(--success); }
-        }
-
-        /* نظام التقييم */
-        .rating {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            margin: 15px 0;
-        }
-
-        .rating i {
-            color: var(--gold);
-            font-size: 1rem;
-        }
-
-        .rating-count {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-right: 8px;
         }
 
         /* تحسين التبويبات */
@@ -601,27 +494,77 @@
             z-index: 1;
         }
 
-        /* تحسين حقل الإيميل */
-        .mail-field-container {
-            width: 100%;
+        /* حقل الإيميل المخصص لمنتج كانفا */
+        .canva-email-section {
+            background: rgba(0, 196, 204, 0.08);
+            border: 2px dashed #00c4cc;
+            border-radius: 20px;
+            padding: 25px;
             margin: 25px 0;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: none;
             animation: slideUp 0.6s ease;
-            display: none; /* مخفي افتراضيًا */
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
+        .canva-email-section.show {
+            display: block;
         }
 
-        .mail-field-container input {
+        .canva-email-section::before {
+            content: '📧 تفعيل خاص';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #00c4cc;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .canva-email-section:hover {
+            background: rgba(0, 196, 204, 0.12);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .email-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .email-header i {
+            color: #00c4cc;
+            font-size: 1.5rem;
+        }
+
+        .email-header h3 {
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .email-input-container {
+            position: relative;
             width: 100%;
-            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 20px 50px 20px 20px;
             border-radius: 15px;
-            border: 2px solid var(--gold);
+            border: 2px solid #00c4cc;
             background: var(--card);
             color: var(--text);
-            text-align: center;
+            text-align: right;
             font-family: 'Cairo';
             outline: none;
             font-size: 1.1rem;
@@ -629,25 +572,43 @@
             font-weight: 600;
         }
 
-        .mail-field-container input:focus {
+        .email-input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.15);
+            box-shadow: 0 0 0 4px rgba(0, 196, 204, 0.15);
             transform: translateY(-2px);
         }
 
-        .mail-field-container input.valid {
+        .email-input.valid {
             border-color: var(--success);
         }
 
-        .mail-field-container input.invalid {
+        .email-input.invalid {
             border-color: #ff4757;
             animation: shake 0.5s;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+        .email-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00c4cc;
+            font-size: 1.2rem;
+        }
+
+        .email-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 15px;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .email-note i {
+            color: var(--gold);
         }
 
         /* تحسين بطاقة البنك */
@@ -835,137 +796,6 @@
             100% { transform: translateX(100%); }
         }
 
-        /* نافذة تأكيد الطلب */
-        .order-summary-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .order-summary-modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .order-summary-content {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 40px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            transform: translateY(30px);
-            transition: transform 0.4s ease;
-            position: relative;
-        }
-
-        .order-summary-modal.show .order-summary-content {
-            transform: translateY(0);
-        }
-
-        .order-summary-content h3 {
-            color: var(--gold);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-
-        .order-details {
-            text-align: right;
-            margin: 25px 0;
-            padding: 20px;
-            background: var(--bg-light);
-            border-radius: var(--radius-sm);
-        }
-
-        .order-details p {
-            margin: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .order-details p:last-child {
-            border-bottom: none;
-            font-weight: 900;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .modal-btn {
-            flex: 1;
-            padding: 18px;
-            border-radius: 15px;
-            border: none;
-            font-family: 'Cairo';
-            font-weight: 800;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-
-        .modal-btn.cancel {
-            background: var(--bg-light);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .modal-btn.cancel:hover {
-            background: var(--card-hover);
-            transform: translateY(-3px);
-        }
-
-        .modal-btn.confirm {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .modal-btn.confirm:hover {
-            background: var(--gradient-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--bg-light);
-            border: 1px solid var(--border);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            background: var(--primary);
-            color: white;
-            transform: rotate(90deg);
-        }
-
         /* التذييل المحسن */
         footer {
             text-align: center;
@@ -1115,57 +945,6 @@
             color: var(--text-secondary);
         }
 
-        /* مؤشر التمرير الحالي */
-        .scroll-indicator {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 998;
-        }
-
-        .scroll-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--border);
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .scroll-dot.active {
-            background: var(--primary);
-            transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
-        }
-
-        .scroll-dot::after {
-            content: attr(data-product);
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--card);
-            color: var(--text);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-        }
-
-        .scroll-dot:hover::after {
-            opacity: 1;
-            visibility: visible;
-        }
-
         /* تأثيرات دخول */
         .fade-in {
             animation: fadeInUp 0.8s ease forwards;
@@ -1234,20 +1013,13 @@
                 max-width: 220px;
             }
             
-            .scroll-indicator {
-                right: 10px;
+            .canva-email-section {
+                padding: 20px 15px;
             }
             
-            .scroll-dot::after {
-                display: none;
-            }
-            
-            .modal-actions {
-                flex-direction: column;
-            }
-            
-            .order-summary-content {
-                padding: 25px 20px;
+            .email-input {
+                padding: 18px 45px 18px 15px;
+                font-size: 1rem;
             }
         }
 
@@ -1304,18 +1076,18 @@
                 max-width: calc(100% - 40px);
             }
             
-            .happy-counter, .charging-indicator {
-                position: relative;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                left: 0;
-                margin: 10px auto;
-                justify-content: center;
+            .email-header {
+                flex-direction: column;
+                gap: 8px;
             }
             
-            .scroll-indicator {
-                display: none;
+            .email-header h3 {
+                font-size: 1rem;
+            }
+            
+            .email-note {
+                font-size: 0.75rem;
+                text-align: center;
             }
         }
     </style>
@@ -1338,20 +1110,8 @@
 
 <div class="nav-scroll" id="navBar"></div>
 
-<!-- مؤشر التمرير -->
-<div class="scroll-indicator" id="scrollIndicator"></div>
-
 <div class="container">
     <div class="card fade-in">
-        <div class="charging-indicator">
-            <i class="fas fa-bolt" style="font-size: 0.8rem; color: white;"></i>
-        </div>
-        
-        <div class="happy-counter">
-            <i class="fas fa-user-check"></i>
-            <span id="happyCount">+2,847 عميل سعيد</span>
-        </div>
-        
         <div class="save-badge" id="saveBadge">وفر 40%</div>
         
         <div class="progress-bar">
@@ -1360,25 +1120,6 @@
         
         <div id="brandName" style="color: var(--gold); font-weight: 900; font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 1px;"></div>
         <h1 id="titleDisplay" style="margin-bottom: 15px;"></h1>
-        
-        <!-- نظام التقييم -->
-        <div class="rating">
-            <div class="rating-count">4.8/5</div>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-        </div>
-        
-        <!-- شريط حالة المخزون -->
-        <div class="stock-bar">
-            <div class="stock-fill" id="stockFill"></div>
-        </div>
-        <div class="stock-text">
-            <span>المخزون: <span id="stockPercent">75%</span></span>
-            <span id="stockStatus">ينفد بسرعة!</span>
-        </div>
         
         <div class="tabs">
             <div class="tab active" id="tabM" onclick="setTab('m')">
@@ -1400,17 +1141,30 @@
         
         <div class="price-val" id="priceShow"></div>
         
-        <!-- حقل البريد مخفي افتراضيًا ويظهر فقط لمنتج كانفا -->
-        <div class="mail-field-container" id="emailBox">
-            <p id="mailLabel" style="color: var(--gold); font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <i class="fas fa-envelope"></i>
-                <span id="mailLabelText"></span>
-            </p>
-            <input type="email" id="userEmail" placeholder="example@gmail.com">
-            <p id="emailNote" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px;">
+        <!-- قسم الإيميل المخصص لمنتج كانفا -->
+        <div class="canva-email-section" id="canvaEmailSection">
+            <div class="email-header">
+                <i class="fas fa-envelope-circle-check"></i>
+                <h3 id="emailSectionTitle">تفعيل حساب كانفا برو</h3>
+            </div>
+            
+            <div class="email-input-container">
+                <i class="fas fa-at email-icon"></i>
+                <input type="email" class="email-input" id="canvaUserEmail" 
+                       placeholder="أدخل بريدك الإلكتروني هنا">
+            </div>
+            
+            <p class="email-note">
                 <i class="fas fa-info-circle"></i>
-                <span id="emailNoteText">لـ Canva Pro فقط: سيتم إرسال بيانات الحساب لهذا البريد</span>
+                <span id="emailNoteText">سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني وتستلم بيانات الدخول عليه خلال 24 ساعة</span>
             </p>
+            
+            <div style="margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 10px;">
+                <p style="font-size: 0.8rem; color: var(--gold); margin: 0;">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>نضمن خصوصية بريدك الإلكتروني ولا نشاركه مع أي طرف ثالث</span>
+                </p>
+            </div>
         </div>
         
         <div class="bank-card fade-in delay-2">
@@ -1422,27 +1176,10 @@
             </button>
         </div>
         
-        <button class="action-btn" id="mainBtn" onclick="openOrderSummary()">
+        <button class="action-btn" id="mainBtn" onclick="goToChat()">
             <i class="fab fa-whatsapp"></i>
             <span id="btnText"></span>
         </button>
-    </div>
-</div>
-
-<!-- نافذة تأكيد الطلب -->
-<div class="order-summary-modal" id="orderSummaryModal">
-    <div class="order-summary-content">
-        <div class="close-modal" onclick="closeOrderSummary()">
-            <i class="fas fa-times"></i>
-        </div>
-        <h3 id="summaryTitle">تأكيد طلبك</h3>
-        <div class="order-details" id="orderDetails">
-            <!-- سيتم تعبئتها ديناميكيًا -->
-        </div>
-        <div class="modal-actions">
-            <button class="modal-btn cancel" onclick="closeOrderSummary()" id="cancelBtn">إلغاء</button>
-            <button class="modal-btn confirm" onclick="confirmOrder()" id="confirmBtn">تأكيد والانتقال لواتساب</button>
-        </div>
     </div>
 </div>
 
@@ -1478,7 +1215,6 @@
     let currentTheme = 'dark';
     let activeV = 200;
     let activeN = 'سنة';
-    let orderConfirmed = false;
 
     // بيانات الترجمة
     const lang = {
@@ -1489,13 +1225,14 @@
             s: "الشروط",
             btn: "🚀 تأكيد الطلب السريع",
             curr: "ريال",
-            label: "ضع إيميلك الشخصي هنا للتفعيل",
+            emailSectionTitle: "تفعيل حساب كانفا برو",
+            emailPlaceholder: "أدخل بريدك الإلكتروني هنا",
+            emailNote: "سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني وتستلم بيانات الدخول عليه خلال 24 ساعة",
             wait: "يرجى إدخال البريد الإلكتروني أولاً! 📧",
             lang: "English",
             theme: "وضع النهار",
             copy: "نسخ رقم الحساب",
             copied: "تم النسخ بنجاح! ✅",
-            emailNote: "لـ Canva Pro فقط: سيتم إرسال بيانات الحساب لهذا البريد",
             copiedSuccess: "تم النسخ!",
             emailInvalid: "بريد إلكتروني غير صالح",
             orderSuccess: "جاري توجيهك إلى واتساب...",
@@ -1504,18 +1241,7 @@
             saleBadge: "وفر",
             soldCount: "مباع",
             today: "اليوم",
-            total: "الإجمالي",
-            confirmTitle: "تأكيد طلبك",
-            product: "المنتج",
-            period: "المدة",
-            price: "السعر",
-            email: "البريد الإلكتروني",
-            totalAmount: "المبلغ الإجمالي",
-            cancel: "إلغاء",
-            confirm: "تأكيد والانتقال لواتساب",
-            stockLow: "ينفد بسرعة!",
-            stockMedium: "متوفر",
-            stockHigh: "متوفر بكثرة"
+            total: "الإجمالي"
         },
         en: {
             brand: "NIKAI DIGITAL STORE",
@@ -1524,13 +1250,14 @@
             s: "Terms",
             btn: "🚀 Quick Order",
             curr: "SAR",
-            label: "Enter your personal email for activation",
+            emailSectionTitle: "Canva Pro Account Activation",
+            emailPlaceholder: "Enter your email address here",
+            emailNote: "Canva Pro account will be activated on this email and you'll receive login details within 24 hours",
             wait: "Please enter your email first! 📧",
             lang: "العربية",
             theme: "Light Mode",
             copy: "Copy Account Number",
             copied: "Copied successfully! ✅",
-            emailNote: "For Canva Pro only: Account details will be sent to this email",
             copiedSuccess: "Copied!",
             emailInvalid: "Invalid email address",
             orderSuccess: "Redirecting to WhatsApp...",
@@ -1539,18 +1266,7 @@
             saleBadge: "Save",
             soldCount: "Sold",
             today: "Today",
-            total: "Total",
-            confirmTitle: "Confirm Your Order",
-            product: "Product",
-            period: "Period",
-            price: "Price",
-            email: "Email",
-            totalAmount: "Total Amount",
-            cancel: "Cancel",
-            confirm: "Confirm & Go to WhatsApp",
-            stockLow: "Low Stock!",
-            stockMedium: "In Stock",
-            stockHigh: "High Stock"
+            total: "Total"
         }
     };
 
@@ -1598,9 +1314,7 @@
             ],
             icon: "fas fa-film",
             requiresEmail: false,
-            color: "#E50914",
-            stock: 75,
-            rating: 4.8
+            color: "#E50914"
         },
         disney: {
             ar: {
@@ -1643,9 +1357,7 @@
             ],
             icon: "fas fa-crown",
             requiresEmail: false,
-            color: "#0063e5",
-            stock: 60,
-            rating: 4.7
+            color: "#0063e5"
         },
         canva: {
             ar: {
@@ -1687,9 +1399,7 @@
             ],
             icon: "fas fa-palette",
             requiresEmail: true,
-            color: "#00c4cc",
-            stock: 45,
-            rating: 4.9
+            color: "#00c4cc"
         },
         fasel: {
             ar: {
@@ -1733,17 +1443,13 @@
             ],
             icon: "fas fa-play-circle",
             requiresEmail: false,
-            color: "#ff6b00",
-            stock: 85,
-            rating: 4.6
+            color: "#ff6b00"
         }
     };
 
-    // وظيفة إنشاء شريط التنقل ومؤشر التمرير
+    // وظيفة إنشاء شريط التنقل
     function renderNav() {
         const nav = document.getElementById('navBar');
-        const indicator = document.getElementById('scrollIndicator');
-        
         const names = {
             netflix: {ar: 'نتفلكس', en: 'Netflix'},
             disney: {ar: 'ديزني+', en: 'Disney+'},
@@ -1756,11 +1462,6 @@
                 <i class="${products[key].icon}"></i>
                 ${names[key][currentLang]}
             </button>
-        `).join('');
-        
-        // تحديث مؤشر التمرير
-        indicator.innerHTML = Object.keys(products).map(key => `
-            <div class="scroll-dot ${activeID === key ? 'active' : ''}" onclick="loadP('${key}')" data-product="${names[key][currentLang]}"></div>
         `).join('');
     }
 
@@ -1790,9 +1491,7 @@
         
         // تحديث الأزرار
         document.getElementById('btnText').innerText = lang[currentLang].btn;
-        document.getElementById('mailLabelText').innerText = lang[currentLang].label;
         document.getElementById('copyText').innerText = lang[currentLang].copy;
-        document.getElementById('emailNoteText').innerText = lang[currentLang].emailNote;
         
         // تحديث شارة التوفير
         const saveBadge = document.getElementById('saveBadge');
@@ -1804,43 +1503,11 @@
             saveBadge.style.display = 'none';
         }
         
-        // تحديث شريط المخزون
-        const stockPercent = products[id].stock;
-        const stockFill = document.getElementById('stockFill');
-        const stockPercentText = document.getElementById('stockPercent');
-        const stockStatus = document.getElementById('stockStatus');
-        
-        stockFill.style.width = `${stockPercent}%`;
-        stockPercentText.textContent = `${stockPercent}%`;
-        
-        if (stockPercent < 30) {
-            stockStatus.textContent = lang[currentLang].stockLow;
-            stockFill.style.background = 'linear-gradient(135deg, #ff4757 0%, #ff3838 100%)';
-        } else if (stockPercent < 60) {
-            stockStatus.textContent = lang[currentLang].stockMedium;
-            stockFill.style.background = 'linear-gradient(135deg, #ff9f1a 0%, #ffaf40 100%)';
-        } else {
-            stockStatus.textContent = lang[currentLang].stockHigh;
-            stockFill.style.background = 'var(--gradient)';
-        }
-        
-        // تحديث التقييم
-        const ratingElement = document.querySelector('.rating-count');
-        if (ratingElement) {
-            ratingElement.textContent = `${products[id].rating}/5`;
-        }
-        
         // تحديث أزرار التنقل النشطة
         if (btn) {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
-        
-        // تحديث مؤشر التمرير
-        document.querySelectorAll('.scroll-dot').forEach(dot => dot.classList.remove('active'));
-        const dots = document.querySelectorAll('.scroll-dot');
-        const index = Object.keys(products).indexOf(id);
-        if (dots[index]) dots[index].classList.add('active');
         
         // تحديث شبكة الأسعار
         const grid = document.getElementById('priceGrid');
@@ -1855,17 +1522,27 @@
         // تعيين السعر الافتراضي
         setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
         
-        // التحكم في عرض حقل البريد الإلكتروني
-        const emailBox = document.getElementById('emailBox');
+        // التحكم في عرض قسم الإيميل لمنتج كانفا
+        const canvaEmailSection = document.getElementById('canvaEmailSection');
+        const emailInput = document.getElementById('canvaUserEmail');
         
         if (id === 'canva') {
-            emailBox.style.display = 'block';
-            document.getElementById('userEmail').placeholder = currentLang === 'ar' ? "example@gmail.com (مطلوب)" : "example@gmail.com (required)";
-            document.getElementById('userEmail').required = true;
+            // إظهار قسم الإيميل لمنتج كانفا
+            canvaEmailSection.classList.add('show');
+            
+            // تحديث نصوص قسم الإيميل
+            document.getElementById('emailSectionTitle').innerText = lang[currentLang].emailSectionTitle;
+            emailInput.placeholder = lang[currentLang].emailPlaceholder;
+            document.getElementById('emailNoteText').innerText = lang[currentLang].emailNote;
+            
+            // إضافة علامة مطلوب
+            emailInput.required = true;
+            emailInput.value = ''; // مسح أي قيمة سابقة
         } else {
-            emailBox.style.display = 'none';
-            document.getElementById('userEmail').required = false;
-            document.getElementById('userEmail').value = ''; // مسح قيمة الإيميل عند التبديل
+            // إخفاء قسم الإيميل للمنتجات الأخرى
+            canvaEmailSection.classList.remove('show');
+            emailInput.required = false;
+            emailInput.value = ''; // مسح قيمة الإيميل عند التبديل
         }
         
         // تعيين التبويب الافتراضي
@@ -1878,24 +1555,6 @@
         
         // إظهار إشعار الطلب السريع
         showQuickOrderNotice();
-        
-        // تحديث عداد العملاء السعداء
-        updateHappyCounter();
-    }
-
-    // تحديث عداد العملاء السعداء
-    function updateHappyCounter() {
-        const counts = {
-            netflix: 2847,
-            disney: 1562,
-            canva: 3219,
-            fasel: 1893
-        };
-        
-        const happyCount = document.getElementById('happyCount');
-        happyCount.textContent = currentLang === 'ar' 
-            ? `+${counts[activeID].toLocaleString('ar-EG')} عميل سعيد` 
-            : `+${counts[activeID].toLocaleString()} Happy Customers`;
     }
 
     // وظيفة تعيين السعر
@@ -1928,11 +1587,6 @@
         document.getElementById('langText').innerText = lang[currentLang].lang;
         renderNav();
         loadP(activeID);
-        
-        // تحديث نصوص النافذة المنبثقة
-        document.getElementById('summaryTitle').innerText = lang[currentLang].confirmTitle;
-        document.getElementById('cancelBtn').innerText = lang[currentLang].cancel;
-        document.getElementById('confirmBtn').innerText = lang[currentLang].confirm;
         
         showToast(currentLang === 'ar' ? 'تم التبديل إلى اللغة العربية' : 'Switched to English');
     }
@@ -2006,16 +1660,16 @@
         }, 3000);
     }
 
-    // فتح نافذة تأكيد الطلب
-    function openOrderSummary() {
-        const e = document.getElementById('userEmail').value;
-        const product = products[activeID];
+    // وظيفة الانتقال للواتساب
+    function goToChat() {
+        const e = document.getElementById('canvaUserEmail').value;
+        const mainBtn = document.getElementById('mainBtn');
         
         // إذا كان المنتج كانفا والإيميل فارغ أو غير صالح
         if (activeID === 'canva') {
             if (!e) {
                 showToast(lang[currentLang].wait, 'error');
-                const emailField = document.getElementById('userEmail');
+                const emailField = document.getElementById('canvaUserEmail');
                 emailField.classList.add('invalid');
                 emailField.focus();
                 
@@ -2027,7 +1681,7 @@
             
             if (!validateEmail(e)) {
                 showToast(lang[currentLang].emailInvalid, 'error');
-                const emailField = document.getElementById('userEmail');
+                const emailField = document.getElementById('canvaUserEmail');
                 emailField.classList.add('invalid');
                 emailField.focus();
                 
@@ -2039,9 +1693,9 @@
         }
         
         // تحقق من صحة الإيميل إذا تم إدخاله (اختياري للخدمات الأخرى)
-        if (e && !validateEmail(e)) {
+        if (activeID !== 'canva' && e && !validateEmail(e)) {
             showToast(lang[currentLang].emailInvalid, 'error');
-            const emailField = document.getElementById('userEmail');
+            const emailField = document.getElementById('canvaUserEmail');
             emailField.classList.add('invalid');
             emailField.focus();
             
@@ -2050,37 +1704,6 @@
             }, 1000);
             return;
         }
-        
-        // تعبئة تفاصيل الطلب
-        const orderDetails = document.getElementById('orderDetails');
-        const productName = product[currentLang].h;
-        const emailField = e ? `<p><span>${lang[currentLang].email}:</span> <span>${e}</span></p>` : '';
-        
-        orderDetails.innerHTML = `
-            <p><span>${lang[currentLang].product}:</span> <span>${productName}</span></p>
-            <p><span>${lang[currentLang].period}:</span> <span>${activeN}</span></p>
-            <p><span>${lang[currentLang].price}:</span> <span>${activeV} ${lang[currentLang].curr}</span></p>
-            ${emailField}
-            <p><span>${lang[currentLang].totalAmount}:</span> <span>${activeV} ${lang[currentLang].curr}</span></p>
-        `;
-        
-        // إظهار النافذة
-        document.getElementById('orderSummaryModal').classList.add('show');
-        orderConfirmed = false;
-    }
-
-    // إغلاق نافذة تأكيد الطلب
-    function closeOrderSummary() {
-        document.getElementById('orderSummaryModal').classList.remove('show');
-    }
-
-    // تأكيد الطلب
-    function confirmOrder() {
-        const e = document.getElementById('userEmail').value;
-        const mainBtn = document.getElementById('mainBtn');
-        
-        orderConfirmed = true;
-        closeOrderSummary();
         
         // عرض رسالة الانتقال
         showToast(lang[currentLang].orderSuccess, 'success');
@@ -2094,9 +1717,13 @@
             ? `مرحباً سليمان 👋 أطلب اشتراك ${products[activeID].ar.h} - باقة ${activeN} بسعر ${activeV} ريال` 
             : `Hello 👋 I want to order ${products[activeID].en.h} - Plan ${activeN} for ${activeV} SAR`;
         
-        if (e) m += ` - Email: ${e}`;
+        if (activeID === 'canva' && e) {
+            m += currentLang === 'ar' 
+                ? ` - البريد الإلكتروني للتفعيل: ${e}` 
+                : ` - Activation email: ${e}`;
+        }
         
-        // توجيه إلى واتساب بعد ثانية
+        // توجيه إلى واتساب بعد ثانيتين
         setTimeout(() => {
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(m)}`, '_blank');
             
@@ -2105,7 +1732,7 @@
                 mainBtn.classList.remove('loading');
                 mainBtn.innerHTML = `<i class="fab fa-whatsapp"></i><span>${lang[currentLang].btn}</span>`;
             }, 1000);
-        }, 1500);
+        }, 2000);
     }
 
     // وظيفة إظهار إشعار الطلب السريع
@@ -2143,38 +1770,6 @@
         showToast(currentLang === 'ar' ? 'قريباً: سياسة الخصوصية' : 'Coming soon: Privacy policy', 'success');
     }
 
-    // تتبع التمرير
-    function handleScroll() {
-        const backToTop = document.getElementById('backToTop');
-        const scrollIndicator = document.getElementById('scrollIndicator');
-        
-        // إظهار/إخفاء زر العودة للأعلى
-        if (window.scrollY > 300) {
-            backToTop.classList.add('show');
-        } else {
-            backToTop.classList.remove('show');
-        }
-        
-        // تحديث مؤشر التمرير
-        const scrollPosition = window.scrollY + 200;
-        const sections = document.querySelectorAll('.card');
-        
-        sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                const productKeys = Object.keys(products);
-                if (index === 0 && activeID !== productKeys[0]) {
-                    // تحديث إذا كان المستخدم قد مرر إلى القسم الأول (تفاصيل المنتج)
-                    const dots = document.querySelectorAll('.scroll-dot');
-                    document.querySelectorAll('.scroll-dot').forEach(dot => dot.classList.remove('active'));
-                    if (dots[0]) dots[0].classList.add('active');
-                }
-            }
-        });
-    }
-
     // تهيئة الصفحة عند التحميل
     window.onload = () => {
         renderNav();
@@ -2184,12 +1779,9 @@
         document.getElementById('langText').innerText = lang[currentLang].lang;
         document.getElementById('themeText').innerText = lang[currentLang].theme;
         document.getElementById('copyText').innerText = lang[currentLang].copy;
-        document.getElementById('summaryTitle').innerText = lang[currentLang].confirmTitle;
-        document.getElementById('cancelBtn').innerText = lang[currentLang].cancel;
-        document.getElementById('confirmBtn').innerText = lang[currentLang].confirm;
         
         // إضافة التحقق من الإيميل في الوقت الحقيقي
-        const emailField = document.getElementById('userEmail');
+        const emailField = document.getElementById('canvaUserEmail');
         emailField.addEventListener('input', function() {
             if (this.value) {
                 if (validateEmail(this.value)) {
@@ -2210,24 +1802,20 @@
             el.style.animationDelay = `${index * 0.1}s`;
         });
         
-        // إضافة مستمع التمرير
-        window.addEventListener('scroll', handleScroll);
+        // إظهار زر العودة للأعلى عند التمرير
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
         
         // رسالة ترحيب
         setTimeout(() => {
             showToast(currentLang === 'ar' ? 'مرحباً بك في متجر NIKAI! 🎉' : 'Welcome to NIKAI Store! 🎉', 'success');
         }, 1000);
-        
-        // تحريك المؤشرات بشكل دوري
-        setInterval(() => {
-            const chargingIndicator = document.querySelector('.charging-indicator');
-            if (chargingIndicator) {
-                chargingIndicator.style.animation = 'none';
-                setTimeout(() => {
-                    chargingIndicator.style.animation = 'rotate 3s linear infinite';
-                }, 50);
-            }
-        }, 5000);
     };
 </script>
 </body>
