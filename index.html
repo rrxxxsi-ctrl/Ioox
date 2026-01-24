@@ -3,194 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Sub | اشتراكات النخبة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>THE CINEMA | تجربة النخبة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0f172a;
-            --accent: #ef4444;
-            --glass: rgba(30, 41, 59, 0.7);
-            --text: #f8fafc;
+        * { box-sizing: border-box; }
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Cairo', sans-serif;
+            background: #000; color: #fff;
+            overflow: hidden; /* جعل الموقع كأنه تطبيق */
         }
 
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: var(--bg);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(229, 9, 20, 0.15) 0, transparent 50%), 
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0, transparent 50%);
-            color: var(--text);
-            margin: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
+        /* الخلفية السينمائية */
+        .bg-video {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=2070&auto=format&fit=crop') center/cover;
+            filter: brightness(0.3) blur(5px);
+            z-index: -1;
+            transform: scale(1.1);
         }
 
-        /* واجهة التنقل */
-        nav {
-            padding: 25px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .status-pill {
-            background: rgba(34, 197, 94, 0.1);
-            color: #4ade80;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        /* الحاوية المركزية */
+        .wrapper {
+            height: 100vh;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        /* قسم العرض الرئيسي */
-        .main-container {
-            max-width: 1200px;
-            margin: 40px auto;
+            justify-content: center;
             padding: 20px;
-            text-align: center;
         }
 
-        .hero-tag {
-            background: var(--accent);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        h1 { font-size: 3.5rem; margin: 0; font-weight: 900; line-height: 1.2; }
-
-        /* البطاقة الجديدة المنحنية */
-        .subscription-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 35px;
-            padding: 50px;
-            margin: 60px auto;
-            max-width: 800px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 40px;
-            align-items: center;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-
-        .price-info { text-align: right; }
-        .price-big { font-size: 5rem; font-weight: 900; color: #fff; margin: 10px 0; }
-        .price-big span { font-size: 1.5rem; color: #94a3b8; }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            text-align: right;
-        }
-
-        .feature-item {
-            background: rgba(255,255,255,0.03);
-            padding: 12px 20px;
-            border-radius: 12px;
+        .cinema-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 900px;
+            height: 550px;
+            border-radius: 40px;
             display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            position: relative;
         }
 
-        /* زر الأكشن الحديث */
-        .btn-modern {
+        /* الجانب الأيمن: المحتوى */
+        .content {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .label {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 10px;
+            border-right: 2px solid #E50914;
+            padding-right: 10px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .price-section {
+            margin: 30px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+        }
+
+        .price { font-size: 4rem; font-weight: 200; }
+        .currency { font-size: 1.2rem; color: #888; }
+
+        .desc {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 200;
+        }
+
+        /* زر الأكشن المختصر */
+        .buy-btn {
             background: #fff;
             color: #000;
-            padding: 20px 40px;
-            border-radius: 18px;
-            font-size: 1.3rem;
-            font-weight: 900;
             text-decoration: none;
-            display: block;
-            margin-top: 30px;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+            padding: 18px 45px;
+            border-radius: 100px;
+            font-weight: 900;
+            width: fit-content;
+            transition: 0.4s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .btn-modern:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+        .buy-btn:hover {
+            background: #E50914;
+            color: #fff;
+            transform: scale(1.05);
+        }
 
-        /* أيقونة الدردشة */
-        .chat-bubble {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: #2563eb;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 30px 30px 30px 5px;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-            cursor: pointer;
-            z-index: 1000;
+        /* الجانب الأيسر: الصورة التعبيرية */
+        .visual {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=1935&auto=format&fit=crop') center/cover;
+            position: relative;
+        }
+
+        .visual::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+        }
+
+        /* ميزات صغيرة في الأسفل */
+        .mini-features {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            gap: 20px;
+            font-size: 0.7rem;
+            color: #666;
         }
 
         @media (max-width: 768px) {
-            .subscription-card { grid-template-columns: 1fr; padding: 30px; }
+            .cinema-card { flex-direction: column; height: auto; border-radius: 25px; }
+            .visual { height: 200px; }
+            .content { padding: 40px 30px; }
             h1 { font-size: 2.2rem; }
-            .price-big { font-size: 4rem; }
+            .price { font-size: 3rem; }
+            body { overflow-y: auto; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div style="font-size: 1.5rem; font-weight: 900; color: #fff;">PREMIUM<span style="color:var(--accent)">.</span></div>
-        <div class="status-pill">
-            <span style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%;"></span>
-            تسليم فوري متاح الآن
-        </div>
-    </nav>
+    <div class="bg-video"></div>
 
-    <div class="main-container">
-        <div class="hero-tag">عرض السنة 2026</div>
-        <h1>ترفيه بلا حدود<br>بأقل تكلفة في السعودية</h1>
-        <p style="color: #94a3b8; font-size: 1.2rem; margin-top: 20px;">اشترك في نتفليكس بريميوم بملف خاص وجودة 4K وضمان كامل.</p>
-
-        <div class="subscription-card">
-            <div class="price-info">
-                <div style="color: #94a3b8; font-weight: bold;">باقة الـ VIP السنوية</div>
-                <div class="price-big">200 <span>ريال</span></div>
-                <div style="color: #4ade80; font-size: 0.9rem;">⭐ وفر 500 ريال سنوياً</div>
+    <div class="wrapper">
+        <div class="cinema-card">
+            
+            <div class="content">
+                <div class="label">اشتراك بريميوم 2026</div>
+                <h1>نتفليكس<br><span style="font-weight: 200;">سنة كاملة</span></h1>
                 
-                <a href="https://wa.me/966591388202?text=أرغب%20في%20اشتراك%20السنة" class="btn-modern">اطلب عبر واتساب</a>
+                <div class="price-section">
+                    <span class="price">200</span>
+                    <span class="currency">ريال سعودي / مدفوعة مرة واحدة</span>
+                </div>
+
+                <p class="desc">
+                    استمتع بخصوصية تامة مع ملفك الشخصي الخاص. جودة 4K Ultra HD، ضمان ذهبي لمدة 365 يوماً، ودعم فني متواصل.
+                </p>
+
+                <a href="https://wa.me/966591388202" class="buy-btn">
+                    اشترك الآن 
+                    <span style="font-size: 1.2rem;">→</span>
+                </a>
+
+                <div class="mini-features">
+                    <span>• ملف خاص برمز سري</span>
+                    <span>• ضمان استبدال فوري</span>
+                    <span>• يعمل على جميع الأجهزة</span>
+                </div>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-item"><span>🎬</span> جودة 4K Ultra HD كاملة</div>
-                <div class="feature-item"><span>🔒</span> ملف شخصي خاص برمز سري</div>
-                <div class="feature-item"><span>🛡️</span> ضمان ذهبي ضد الانقطاع</div>
-                <div class="feature-item"><span>📱</span> يعمل على التلفزيون والجوال</div>
-                <div class="feature-item"><span>🌍</span> يدعم الترجمة والدبلجة العربية</div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 50px; opacity: 0.5;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Mada_Logo.svg/1200px-Mada_Logo.svg.png" height="20" style="margin: 0 15px;">
-            <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/44/STC_Pay_Logo.svg/1200px-STC_Pay_Logo.svg.png" height="20" style="margin: 0 15px;">
+            <div class="visual"></div>
+
         </div>
     </div>
-
-    <div class="chat-bubble" onclick="window.location.href='https://wa.me/966591388202'">
-        💬 هل لديك سؤال؟ تواصل معنا
-    </div>
-
-    <footer style="padding: 60px 20px; text-align: center; color: #475569; border-top: 1px solid rgba(255,255,255,0.05);">
-        <p>© 2026 متجر النخبة الرقمي. جميع الحقوق محفوظة.</p>
-    </footer>
 
 </body>
 </html>
