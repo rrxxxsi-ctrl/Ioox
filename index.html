@@ -1,158 +1,1020 @@
+
+
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlTag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="متجر NIKAI - اشتراكات رقمية بأفضل الأسعار">
+    <meta name="keywords" content="نتفلكس, ديزني, كانفا, فاصل بلس, اشتراكات, رقمية">
     <title>متجر NIKAI | للخدمات الرقمية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #E50914; --gold: #D4AF37;
-            --bg: #050505; --text: #ffffff; --card: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1); --nav: rgba(0,0,0,0.8);
+            --primary: #E50914;
+            --primary-dark: #b20710;
+            --gold: #D4AF37;
+            --gold-light: #f5d76e;
+            --bg: #050505;
+            --bg-light: #121212;
+            --text: #ffffff;
+            --text-secondary: #b0b0b0;
+            --card: rgba(255, 255, 255, 0.03);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(255, 255, 255, 0.05);
+            --nav: rgba(0, 0, 0, 0.9);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient: linear-gradient(135deg, #E50914 0%, #D4AF37 100%);
         }
+
         .light-mode {
-            --bg: #f5f5f7; --text: #1d1d1f; --card: #ffffff;
-            --border: rgba(0, 0, 0, 0.1); --nav: rgba(255,255,255,0.8);
+            --bg: #f5f5f7;
+            --bg-light: #ffffff;
+            --text: #1d1d1f;
+            --text-secondary: #515154;
+            --card: #ffffff;
+            --card-hover: #f8f8fa;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-light: rgba(0, 0, 0, 0.03);
+            --nav: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: 0.3s; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; min-height: 100vh; overflow-x: hidden; }
-        .toolbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: var(--nav); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 1001; border-bottom: 1px solid var(--border); }
-        .tool-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 8px 15px; border-radius: 10px; cursor: pointer; font-family: 'Cairo'; font-size: 0.8rem; }
-        .nav-scroll { display: flex; gap: 10px; padding: 15px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
-        .nav-scroll::-webkit-scrollbar { display: none; }
-        .nav-btn { flex: 0 0 auto; padding: 10px 22px; border-radius: 25px; border: 1px solid var(--border); background: var(--card); color: #777; cursor: pointer; font-weight: 700; font-size: 0.8rem; }
-        .nav-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
-        .container { width: 95%; max-width: 600px; margin: 20px auto 100px auto; display: flex; flex-direction: column; gap: 20px; }
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 25px; padding: 25px; backdrop-filter: blur(10px); width: 100%; text-align: center; }
-        .tabs { display: flex; gap: 15px; margin: 15px 0; border-bottom: 1px solid var(--border); justify-content: center; }
-        .tab { padding: 8px 15px; cursor: pointer; font-weight: bold; color: #555; }
-        .tab.active { color: var(--text); border-bottom: 2px solid var(--primary); }
-        .info-list { text-align: right; margin: 15px 0; display: none; }
-        .info-list.active { display: block; }
-        ul li { margin-bottom: 10px; font-size: 0.9rem; color: #bbb; list-style: none; }
-        .price-val { font-size: 4rem; font-weight: 900; margin: 10px 0; }
-        .price-val span { font-size: 1.2rem; color: #777; margin: 0 5px; }
-        .grid-prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .chip { padding: 12px; border: 1px solid var(--border); border-radius: 12px; text-align: center; cursor: pointer; font-weight: bold; }
-        .chip.active { background: var(--text); color: var(--bg); }
-        .mail-field-container { width: 100%; margin: 15px 0; display: none; }
-        .mail-field-container input { width: 100%; padding: 18px; border-radius: 15px; border: 2px solid var(--gold); background: var(--card); color: var(--text); text-align: center; font-family: 'Cairo'; outline: none; }
-        .bank-card { background: rgba(212,175,55,0.05); border: 1px dashed var(--gold); border-radius: 20px; padding: 20px; margin: 15px 0; }
-        .action-btn { width: 100%; padding: 20px; border-radius: 20px; border: none; background: var(--text); color: var(--bg); font-size: 1.3rem; font-weight: 900; cursor: pointer; font-family: 'Cairo'; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.5s ease;
+        }
+
+        /* تحسين شريط الأدوات */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: var(--nav);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 1.3rem;
+        }
+
+        .tool-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .tool-btn:hover {
+            background: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
+        /* تحسين شريط التنقل */
+        .nav-scroll {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-light);
+            position: sticky;
+            top: 57px;
+            z-index: 1000;
+        }
+
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-btn {
+            flex: 0 0 auto;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+        }
+
+        .nav-btn i {
+            font-size: 1rem;
+        }
+
+        /* تحسين الحاوية الرئيسية */
+        .container {
+            width: 95%;
+            max-width: 600px;
+            margin: 25px auto 120px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* تحسين البطاقات */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* تحسين التبويبات */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin: 20px 0;
+            border-radius: 12px;
+            padding: 5px;
+            background: var(--bg-light);
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-secondary);
+            border-radius: 10px;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:hover {
+            background: var(--card);
+        }
+
+        .tab.active {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 4px 8px rgba(229, 9, 20, 0.2);
+        }
+
+        .info-list {
+            text-align: right;
+            margin: 20px 0;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .info-list.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        ul li i {
+            color: var(--gold);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .price-val {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 15px 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+
+        .price-val span {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 0 5px;
+        }
+
+        /* تحسين شبكة الأسعار */
+        .grid-prices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .chip {
+            padding: 16px 10px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .chip:hover {
+            background: var(--card-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.2);
+        }
+
+        .chip .period {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .chip .price {
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        /* تحسين حقل الإيميل */
+        .mail-field-container {
+            width: 100%;
+            margin: 20px 0;
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mail-field-container input {
+            width: 100%;
+            padding: 18px;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            background: var(--card);
+            color: var(--text);
+            text-align: center;
+            font-family: 'Cairo';
+            outline: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .mail-field-container input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+        }
+
+        /* تحسين بطاقة البنك */
+        .bank-card {
+            background: rgba(212,175,55,0.05);
+            border: 1px dashed var(--gold);
+            border-radius: 20px;
+            padding: 22px;
+            margin: 20px 0;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .bank-card:hover {
+            background: rgba(212,175,55,0.08);
+            transform: translateY(-3px);
+        }
+
+        .bank-card p:first-child {
+            margin: 0;
+            font-weight: 900;
+            font-size: 1.1rem;
+        }
+
+        .bank-card .account-number {
+            color: var(--gold);
+            font-size: 0.85rem;
+            margin: 12px 0;
+            font-family: monospace;
+            letter-spacing: 1px;
+            direction: ltr;
+            display: block;
+        }
+
+        .copy-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'Cairo';
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        /* تحسين زر الإجراء الرئيسي */
+        .action-btn {
+            width: 100%;
+            padding: 22px;
+            border-radius: 20px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 900;
+            cursor: pointer;
+            font-family: 'Cairo';
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(229, 9, 20, 0.4);
+        }
+
+        .action-btn:active {
+            transform: translateY(-2px);
+        }
+
+        /* شريط التقدم */
+        .progress-bar {
+            height: 4px;
+            width: 100%;
+            background: var(--border);
+            border-radius: 2px;
+            margin: 10px 0 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient);
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        /* التذييل */
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* رسائل التنبيه */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: var(--text);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .container {
+                width: 92%;
+                margin: 15px auto 100px auto;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .price-val {
+                font-size: 3rem;
+            }
+            
+            .action-btn {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+            
+            .grid-prices {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .toolbar {
+                padding: 10px 15px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+            
+            .price-val {
+                font-size: 2.5rem;
+            }
+            
+            .grid-prices {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
     </style>
 </head>
 <body id="bodyTag">
 <div class="toolbar">
-    <button class="tool-btn" onclick="toggleLanguage()" id="langBtn">English 🌐</button>
-    <div style="font-weight: 900; color: var(--primary);">NIKAI</div>
-    <button class="tool-btn" onclick="toggleTheme()" id="themeBtn">☀️/🌙</button>
+    <button class="tool-btn" onclick="toggleLanguage()" id="langBtn">
+        <i class="fas fa-globe"></i>
+        <span id="langText">English</span>
+    </button>
+    <div class="logo">
+        <i class="fas fa-store"></i>
+        <span>NIKAI</span>
+    </div>
+    <button class="tool-btn" onclick="toggleTheme()" id="themeBtn">
+        <i class="fas fa-sun" id="themeIcon"></i>
+        <span id="themeText">وضع النهار</span>
+    </button>
 </div>
+
 <div class="nav-scroll" id="navBar"></div>
+
 <div class="container">
     <div class="card">
-        <div id="brandName" style="color: var(--gold); font-weight: 900; font-size: 0.8rem; margin-bottom: 5px;"></div>
-        <h1 id="titleDisplay"></h1>
-        <div class="tabs">
-            <div class="tab active" id="tabM" onclick="setTab('m')"></div>
-            <div class="tab" id="tabS" onclick="setTab('s')"></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
         </div>
+        
+        <div id="brandName" style="color: var(--gold); font-weight: 900; font-size: 0.85rem; margin-bottom: 8px; letter-spacing: 1px;"></div>
+        <h1 id="titleDisplay" style="margin-bottom: 10px;"></h1>
+        
+        <div class="tabs">
+            <div class="tab active" id="tabM" onclick="setTab('m')">
+                <i class="fas fa-star"></i>
+                <span id="tabMText"></span>
+            </div>
+            <div class="tab" id="tabS" onclick="setTab('s')">
+                <i class="fas fa-file-contract"></i>
+                <span id="tabSText"></span>
+            </div>
+        </div>
+        
         <div id="mList" class="info-list active"><ul></ul></div>
         <div id="sList" class="info-list"><ul></ul></div>
     </div>
+    
     <div class="card">
         <div id="priceGrid" class="grid-prices"></div>
+        
         <div class="price-val" id="priceShow"></div>
+        
         <div class="mail-field-container" id="emailBox">
-            <p id="mailLabel" style="color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; font-weight: bold;"></p>
+            <p id="mailLabel" style="color: var(--gold); font-size: 0.85rem; margin-bottom: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="fas fa-envelope"></i>
+                <span id="mailLabelText"></span>
+            </p>
             <input type="email" id="userEmail" placeholder="example@gmail.com">
         </div>
+        
         <div class="bank-card">
             <p style="margin: 0; font-weight: 900;" id="accOwner"></p>
-            <p style="color: var(--gold); font-size: 0.75rem; margin: 10px 0;">SA0315000900133520020007</p>
+            <p class="account-number">SA0315000900133520020007</p>
+            <button class="copy-btn" onclick="copyAccount()">
+                <i class="fas fa-copy"></i>
+                <span id="copyText">نسخ رقم الحساب</span>
+            </button>
         </div>
-        <button class="action-btn" id="mainBtn" onclick="goToChat()"></button>
+        
+        <button class="action-btn" id="mainBtn" onclick="goToChat()">
+            <i class="fab fa-whatsapp"></i>
+            <span id="btnText"></span>
+        </button>
     </div>
 </div>
+
+<footer>
+    <p>© 2023 متجر NIKAI. جميع الحقوق محفوظة.</p>
+    <p style="margin-top: 8px; font-size: 0.75rem; opacity: 0.7;">تسوق بأمان | دعم فني 24/7 | ضمان استرجاع</p>
+</footer>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">تم النسخ إلى الحافظة</span>
+</div>
+
 <script>
-    let activeID = 'netflix', currentLang = 'ar', currentTheme = 'dark', activeV = 200, activeN = 'سنة';
+    // البيانات الأساسية
+    let activeID = 'netflix';
+    let currentLang = 'ar';
+    let currentTheme = 'dark';
+    let activeV = 200;
+    let activeN = 'سنة';
+
+    // بيانات الترجمة
     const lang = {
-        ar: { brand: "متجر NIKAI – للاشتراكات الرقمية", owner: "المستفيد: سليمان فلاته", m: "المزايا", s: "الشروط", btn: "تأكيد الطلب واتساب ⚡", curr: "ريال", label: "👇 ضع إيميلك الشخصي هنا للتفعيل 👇", wait: "يرجى إدخال البريد الإلكتروني أولاً! 📧", lang: "English 🌐" },
-        en: { brand: "NIKAI DIGITAL STORE", owner: "Beneficiary: Suliman Fallatah", m: "Features", s: "Terms", btn: "Confirm Order ⚡", curr: "SAR", label: "👇 Enter your email here 👇", wait: "Please enter your email! 📧", lang: "العربية 🌐" }
-    };
-    const products = {
-        netflix: {
-            ar: { h: "نتفلكس بريميوم 4K", m: ["✅ جودة 4K خرافية", "✅ ضمان كامل المدة", "✅ ملف خاص برمز سري"], s: ["📌 جهاز واحد فقط", "⚠️ يمنع تغيير البيانات"] },
-            en: { h: "Netflix Premium 4K", m: ["✅ 4K Ultra HD Quality", "✅ Full Warranty", "✅ Private Profile"], s: ["📌 One device only", "⚠️ Do not change data"] },
-            p: [{v:75, n:{ar:"3 أشهر", en:"3 Months"}}, {v:120, n:{ar:"6 أشهر", en:"6 Months"}}, {v:200, n:{ar:"سنة", en:"1 Year"}}]
+        ar: {
+            brand: "متجر NIKAI – اشتراكات رقمية متميزة",
+            owner: "المستفيد: سليمان فلاته",
+            m: "المزايا",
+            s: "الشروط",
+            btn: "تأكيد الطلب عبر واتساب ⚡",
+            curr: "ريال",
+            label: "ضع إيميلك الشخصي هنا للتفعيل",
+            wait: "يرجى إدخال البريد الإلكتروني أولاً! 📧",
+            lang: "English",
+            theme: "وضع النهار",
+            copy: "نسخ رقم الحساب",
+            copied: "تم النسخ!",
+            months: "أشهر",
+            year: "سنة"
         },
-        disney: {
-            ar: { h: "ديزني بلس الرسمي", m: ["🌠 عالم ديزني ومارفل", "🇸🇦 دعم كامل للعربية"], s: ["📌 جهاز واحد لك", "⚠️ كود دخول واتساب"] },
-            en: { h: "Disney+ Official", m: ["🌠 Disney & Marvel", "🇸🇦 Arabic Support"], s: ["📌 One device only", "⚠️ Login code required"] },
-            p: [{v:20, n:{ar:"شهر", en:"1 Month"}}, {v:200, n:{ar:"سنة", en:"1 Year"}}]
-        },
-        canva: {
-            ar: { h: "كانفا برو مدى الحياة", m: ["🖌️ تفعيل على إيميلك", "🖌️ أدوات Pro كاملة"], s: ["📍 تفعيل خلال 12 ساعة"] },
-            en: { h: "Canva Pro Lifetime", m: ["🖌️ Active on your email", "🖌️ Full Pro Access"], s: ["📍 Active within 12h"] },
-            p: [{v:39, n:{ar:"مدى الحياة", en:"Lifetime"}}]
-        },
-        fasel: {
-            ar: { h: "فاصل بلس (Fasel Plus)", m: ["📺 بدون إعلانات نهائياً", "✅ جودة بث عالية 4K"], s: ["📌 جهاز واحد فقط", "⚠️ يمنع مشاركة الحساب"] },
-            en: { h: "Fasel Plus", m: ["📺 No ads forever", "✅ 4K High Quality"], s: ["📌 One device only", "⚠️ No account sharing"] },
-            p: [{v:15, n:{ar:"شهر", en:"1 Month"}}, {v:59, n:{ar:"6 شهور", en:"6 Months"}}, {v:98, n:{ar:"سنة", en:"1 Year"}}]
+        en: {
+            brand: "NIKAI DIGITAL STORE",
+            owner: "Beneficiary: Suliman Fallatah",
+            m: "Features",
+            s: "Terms",
+            btn: "Confirm Order via WhatsApp ⚡",
+            curr: "SAR",
+            label: "Enter your personal email for activation",
+            wait: "Please enter your email first! 📧",
+            lang: "العربية",
+            theme: "Light Mode",
+            copy: "Copy Account Number",
+            copied: "Copied!",
+            months: "Months",
+            year: "Year"
         }
     };
+
+    // بيانات المنتجات
+    const products = {
+        netflix: {
+            ar: {
+                h: "نتفلكس بريميوم 4K",
+                m: [
+                    "✅ جودة 4K خرافية مع دعم HDR",
+                    "✅ مشاهدة على 4 أجهزة في نفس الوقت",
+                    "✅ ملف خاص برمز سري للمشاهدة الخاصة",
+                    "✅ ضمان كامل طوال مدة الاشتراك",
+                    "✅ دعم فني متواصل 24/7"
+                ],
+                s: [
+                    "📌 للاستخدام الشخصي فقط",
+                    "⚠️ يمنع مشاركة الحساب خارج العائلة",
+                    "📌 يرجى عدم تغيير كلمة المرور",
+                    "🔒 الحساب محمي بضمان استرجاع"
+                ]
+            },
+            en: {
+                h: "Netflix Premium 4K",
+                m: [
+                    "✅ 4K Ultra HD Quality with HDR support",
+                    "✅ Watch on 4 devices simultaneously",
+                    "✅ Private profile with PIN protection",
+                    "✅ Full warranty throughout subscription",
+                    "✅ 24/7 technical support"
+                ],
+                s: [
+                    "📌 For personal use only",
+                    "⚠️ No account sharing outside family",
+                    "📌 Please don't change the password",
+                    "🔒 Account protected with refund guarantee"
+                ]
+            },
+            p: [
+                {v: 75, n: {ar: "3 أشهر", en: "3 Months"}},
+                {v: 120, n: {ar: "6 أشهر", en: "6 Months"}},
+                {v: 200, n: {ar: "سنة كاملة", en: "1 Year"}}
+            ],
+            icon: "fas fa-film"
+        },
+        disney: {
+            ar: {
+                h: "ديزني بلس الرسمي",
+                m: [
+                    "🌠 عالم ديزني ومارفل بالكامل",
+                    "🇸🇦 دعم كامل للغة العربية",
+                    "🎬 إمكانية التحميل للمشاهدة دون اتصال",
+                    "👪 7 ملفات شخصية مختلفة للعائلة",
+                    "📱 مشاهدة على 4 أجهزة في نفس الوقت"
+                ],
+                s: [
+                    "📌 جهاز واحد لك",
+                    "⚠️ يتطلب كود تأكيد عبر واتساب",
+                    "📌 يمنع استخدام الحساب خارج المملكة",
+                    "🔔 تجديد يدوي عند انتهاء الاشتراك"
+                ]
+            },
+            en: {
+                h: "Disney+ Official",
+                m: [
+                    "🌠 Complete Disney & Marvel universe",
+                    "🇸🇦 Full Arabic language support",
+                    "🎬 Download content for offline viewing",
+                    "👪 7 different profiles for family",
+                    "📱 Watch on 4 devices simultaneously"
+                ],
+                s: [
+                    "📌 One device per user",
+                    "⚠️ Requires confirmation code via WhatsApp",
+                    "📌 No usage outside Saudi Arabia",
+                    "🔔 Manual renewal upon expiration"
+                ]
+            },
+            p: [
+                {v: 20, n: {ar: "شهر واحد", en: "1 Month"}},
+                {v: 200, n: {ar: "سنة كاملة", en: "1 Year"}}
+            ],
+            icon: "fas fa-crown"
+        },
+        canva: {
+            ar: {
+                h: "كانفا برو مدى الحياة",
+                m: [
+                    "🖌️ تفعيل مباشر على إيميلك الشخصي",
+                    "🎨 أدوات Pro كاملة بدون قيود",
+                    "📊 مكتبة صور ومقاطع مميزة",
+                    "🔄 تحديثات مجانية مدى الحياة",
+                    "👥 إمكانية العمل التعاوني"
+                ],
+                s: [
+                    "📍 التفعيل يتم خلال 12 ساعة كحد أقصى",
+                    "📌 يمنع تغيير الإيميل بعد التفاعيل",
+                    "✅ ضمان استرجاع لمدة 7 أيام",
+                    "🔒 للاستخدام الشخصي أو التجاري"
+                ]
+            },
+            en: {
+                h: "Canva Pro Lifetime",
+                m: [
+                    "🖌️ Direct activation on your personal email",
+                    "🎨 Full Pro tools without limitations",
+                    "📊 Premium image and video library",
+                    "🔄 Free lifetime updates",
+                    "👥 Collaboration features included"
+                ],
+                s: [
+                    "📍 Activation within maximum 12 hours",
+                    "📌 Email change not allowed after activation",
+                    "✅ 7-day refund guarantee",
+                    "🔒 For personal or commercial use"
+                ]
+            },
+            p: [
+                {v: 39, n: {ar: "مدى الحياة", en: "Lifetime"}}
+            ],
+            icon: "fas fa-palette"
+        },
+        fasel: {
+            ar: {
+                h: "فاصل بلس (Fasel Plus)",
+                m: [
+                    "📺 بدون إعلانات نهائياً",
+                    "✅ جودة بث عالية تصل إلى 4K",
+                    "🎥 مكتبة أفلام ومسلسلات ضخمة",
+                    "📱 تطبيق على جميع المنصات",
+                    "⚡ سرعة تحميل عالية"
+                ],
+                s: [
+                    "📌 جهاز واحد فقط لكل اشتراك",
+                    "⚠️ يمنع مشاركة الحساب مع آخرين",
+                    "📌 يفضل استخدام داخل المملكة",
+                    "🔔 تجديد تلقائي مع إشعار مسبق"
+                ]
+            },
+            en: {
+                h: "Fasel Plus Premium",
+                m: [
+                    "📺 No ads forever",
+                    "✅ High streaming quality up to 4K",
+                    "🎥 Huge library of movies and series",
+                    "📱 App available on all platforms",
+                    "⚡ High download speed"
+                ],
+                s: [
+                    "📌 One device per subscription",
+                    "⚠️ No account sharing with others",
+                    "📌 Preferably use within Saudi Arabia",
+                    "🔔 Auto-renewal with prior notification"
+                ]
+            },
+            p: [
+                {v: 15, n: {ar: "شهر واحد", en: "1 Month"}},
+                {v: 59, n: {ar: "6 أشهر", en: "6 Months"}},
+                {v: 98, n: {ar: "سنة كاملة", en: "1 Year"}}
+            ],
+            icon: "fas fa-play-circle"
+        }
+    };
+
+    // وظيفة إنشاء شريط التنقل
     function renderNav() {
         const nav = document.getElementById('navBar');
-        const names = { netflix: {ar:'نتفلكس', en:'Netflix'}, disney:{ar:'ديزني+', en:'Disney+'}, canva:{ar:'كانفا', en:'Canva'}, fasel:{ar:'فاصل بلس', en:'Fasel+'} };
-        nav.innerHTML = Object.keys(products).map(key => `<button class="nav-btn ${activeID === key ? 'active' : ''}" onclick="loadP('${key}', this)">${names[key][currentLang]}</button>`).join('');
+        const names = {
+            netflix: {ar: 'نتفلكس', en: 'Netflix'},
+            disney: {ar: 'ديزني+', en: 'Disney+'},
+            canva: {ar: 'كانفا برو', en: 'Canva Pro'},
+            fasel: {ar: 'فاصل بلس', en: 'Fasel+'}
+        };
+        
+        nav.innerHTML = Object.keys(products).map(key => `
+            <button class="nav-btn ${activeID === key ? 'active' : ''}" onclick="loadP('${key}', this)">
+                <i class="${products[key].icon}"></i>
+                ${names[key][currentLang]}
+            </button>
+        `).join('');
     }
+
+    // وظيفة تحميل المنتج
     function loadP(id, btn) {
-        activeID = id; const d = products[id][currentLang]; const p = products[id].p;
+        activeID = id;
+        const d = products[id][currentLang];
+        const p = products[id].p;
+        
+        // تحديث شريط التقدم
+        document.getElementById('progressFill').style.width = '100%';
+        
+        // تحديث معلومات المنتج
         document.getElementById('brandName').innerText = lang[currentLang].brand;
         document.getElementById('titleDisplay').innerText = d.h;
-        document.getElementById('mList').innerHTML = `<ul>${d.m.map(i=>`<li>${i}</li>`).join('')}</ul>`;
-        document.getElementById('sList').innerHTML = `<ul>${d.s.map(i=>`<li>${i}</li>`).join('')}</ul>`;
-        document.getElementById('tabM').innerText = lang[currentLang].m;
-        document.getElementById('tabS').innerText = lang[currentLang].s;
+        
+        // تحديث المزايا والشروط
+        document.getElementById('mList').innerHTML = `<ul>${d.m.map(i => `<li><i class="fas fa-check"></i>${i}</li>`).join('')}</ul>`;
+        document.getElementById('sList').innerHTML = `<ul>${d.s.map(i => `<li><i class="fas fa-info-circle"></i>${i}</li>`).join('')}</ul>`;
+        
+        // تحديث التبويبات
+        document.getElementById('tabMText').innerText = lang[currentLang].m;
+        document.getElementById('tabSText').innerText = lang[currentLang].s;
+        
+        // تحديث المعلومات البنكية
         document.getElementById('accOwner').innerText = lang[currentLang].owner;
-        document.getElementById('mainBtn').innerText = lang[currentLang].btn;
-        document.getElementById('mailLabel').innerText = lang[currentLang].label;
-        if(btn) { document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+        
+        // تحديث الأزرار
+        document.getElementById('btnText').innerText = lang[currentLang].btn;
+        document.getElementById('mailLabelText').innerText = lang[currentLang].label;
+        document.getElementById('copyText').innerText = lang[currentLang].copy;
+        
+        // تحديث أزرار التنقل النشطة
+        if (btn) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        
+        // تحديث شبكة الأسعار
         const grid = document.getElementById('priceGrid');
-        grid.innerHTML = p.map(x => `<div class="chip" onclick="setP(${x.v}, '${x.n[currentLang]}', this)">${x.n[currentLang]}</div>`).join('');
-        setP(p[p.length-1].v, p[p.length-1].n[currentLang], grid.lastChild);
+        grid.innerHTML = p.map(x => `
+            <div class="chip" onclick="setP(${x.v}, '${x.n[currentLang]}', this)">
+                <div class="period">${x.n[currentLang]}</div>
+                <div class="price">${x.v} ${lang[currentLang].curr}</div>
+            </div>
+        `).join('');
+        
+        // تعيين السعر الافتراضي
+        setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
+        
+        // إظهار/إخفاء حقل الإيميل
         document.getElementById('emailBox').style.display = id === 'canva' ? 'block' : 'none';
+        
+        // تعيين التبويب الافتراضي
         setTab('m');
+        
+        // إعادة تعيين شريط التقدم بعد ثانية
+        setTimeout(() => {
+            document.getElementById('progressFill').style.width = '0%';
+        }, 1000);
     }
+
+    // وظيفة تعيين السعر
     function setP(v, n, el) {
-        activeV = v; activeN = n; document.getElementById('priceShow').innerHTML = v + `<span> ${lang[currentLang].curr}</span>`;
-        if(el) { document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); }
+        activeV = v;
+        activeN = n;
+        document.getElementById('priceShow').innerHTML = v + `<span> ${lang[currentLang].curr}</span>`;
+        
+        if (el) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+        }
     }
+
+    // وظيفة تعيين التبويب
     function setTab(t) {
         document.getElementById('mList').classList.toggle('active', t === 'm');
         document.getElementById('sList').classList.toggle('active', t === 's');
         document.getElementById('tabM').classList.toggle('active', t === 'm');
         document.getElementById('tabS').classList.toggle('active', t === 's');
     }
+
+    // وظيفة تبديل اللغة
     function toggleLanguage() {
         currentLang = currentLang === 'ar' ? 'en' : 'ar';
-        const h = document.getElementById('htmlTag'); h.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; h.lang = currentLang;
-        document.getElementById('langBtn').innerText = lang[currentLang].lang;
-        renderNav(); loadP(activeID);
+        const h = document.getElementById('htmlTag');
+        h.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        h.lang = currentLang;
+        
+        document.getElementById('langText').innerText = lang[currentLang].lang;
+        renderNav();
+        loadP(activeID);
     }
+
+    // وظيفة تبديل الثيم
     function toggleTheme() {
         currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
         document.getElementById('bodyTag').classList.toggle('light-mode');
+        
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+        
+        if (currentTheme === 'light') {
+            themeIcon.className = 'fas fa-moon';
+            themeText.innerText = currentLang === 'ar' ? 'وضع الليل' : 'Dark Mode';
+        } else {
+            themeIcon.className = 'fas fa-sun';
+            themeText.innerText = currentLang === 'ar' ? 'وضع النهار' : 'Light Mode';
+        }
     }
+
+    // وظيفة نسخ رقم الحساب
+    function copyAccount() {
+        const accountNumber = "SA0315000900133520020007";
+        navigator.clipboard.writeText(accountNumber).then(() => {
+            showToast(lang[currentLang].copied);
+        });
+    }
+
+    // وظيفة عرض رسالة التنبيه
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMessage').innerText = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // وظيفة الانتقال للواتساب
     function goToChat() {
         const e = document.getElementById('userEmail').value;
-        if(activeID === 'canva' && !e) return alert(lang[currentLang].wait);
-        let m = currentLang === 'ar' ? `مرحباً سليمان 👋 أطلب اشتراك ${products[activeID].ar.h} - باقة ${activeN} بسعر ${activeV} ريال` : `Hello 👋 I want to order ${products[activeID].en.h} - Plan ${activeN} for ${activeV} SAR`;
-        if(e) m += ` - Email: ${e}`;
-        window.location.href = `https://wa.me/966591388202?text=${encodeURIComponent(m)}`;
+        if (activeID === 'canva' && !e) {
+            showToast(lang[currentLang].wait);
+            return;
+        }
+        
+        let m = currentLang === 'ar' 
+            ? `مرحباً سليمان 👋 أطلب اشتراك ${products[activeID].ar.h} - باقة ${activeN} بسعر ${activeV} ريال` 
+            : `Hello 👋 I want to order ${products[activeID].en.h} - Plan ${activeN} for ${activeV} SAR`;
+        
+        if (e) m += ` - Email: ${e}`;
+        
+        window.open(`https://wa.me/966591388202?text=${encodeURIComponent(m)}`, '_blank');
     }
-    window.onload = () => { renderNav(); loadP('netflix'); };
+
+    // تهيئة الصفحة عند التحميل
+    window.onload = () => {
+        renderNav();
+        loadP('netflix');
+        
+        // تعيين النص الأولي للأزرار
+        document.getElementById('langText').innerText = lang[currentLang].lang;
+        document.getElementById('themeText').innerText = lang[currentLang].theme;
+        document.getElementById('copyText').innerText = lang[currentLang].copy;
+    };
 </script>
 </body>
 </html>
