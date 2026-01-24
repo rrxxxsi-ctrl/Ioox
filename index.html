@@ -1059,9 +1059,9 @@
                 <span id="mailLabelText"></span>
             </p>
             <input type="email" id="userEmail" placeholder="example@gmail.com">
-            <p id="emailNote" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; display: none;">
+            <p id="emailNote" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px;">
                 <i class="fas fa-info-circle"></i>
-                <span id="emailNoteText"></span>
+                <span id="emailNoteText">لـ Canva Pro فقط: سيتم إرسال بيانات الحساب لهذا البريد</span>
             </p>
         </div>
         
@@ -1427,18 +1427,16 @@
         // تعيين السعر الافتراضي
         setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
         
-        // التحكم في عرض حقل البريد الإلكتروني
+        // التحكم في عرض حقل البريد الإلكتروني - الإصلاح هنا
         const emailBox = document.getElementById('emailBox');
         const emailNote = document.getElementById('emailNote');
         
         if (id === 'canva') {
             emailBox.style.display = 'block';
-            emailNote.style.display = 'block';
             document.getElementById('userEmail').placeholder = currentLang === 'ar' ? "example@gmail.com (مطلوب)" : "example@gmail.com (required)";
             document.getElementById('userEmail').required = true;
         } else {
             emailBox.style.display = 'none';
-            emailNote.style.display = 'none';
             document.getElementById('userEmail').required = false;
             document.getElementById('userEmail').value = ''; // مسح قيمة الإيميل عند التبديل
         }
