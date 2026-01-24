@@ -100,34 +100,22 @@
 
         .logo {
             font-weight: 900;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             position: relative;
             padding: 5px 15px;
             border-radius: 15px;
             background: var(--primary-light);
         }
 
-        .logo::after {
-            content: 'متميزون منذ 2020';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.6rem;
-            color: var(--gold);
-            white-space: nowrap;
-            font-weight: 700;
-        }
-
         .logo i {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             animation: pulse 2s infinite;
         }
 
@@ -518,6 +506,7 @@
             width: 100%;
             margin: 25px 0;
             animation: slideUp 0.6s ease;
+            display: none; /* مخفي افتراضيًا */
         }
 
         @keyframes slideUp {
@@ -1063,6 +1052,7 @@
         
         <div class="price-val" id="priceShow"></div>
         
+        <!-- حقل البريد مخفي افتراضيًا ويظهر فقط لمنتج كانفا -->
         <div class="mail-field-container" id="emailBox">
             <p id="mailLabel" style="color: var(--gold); font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <i class="fas fa-envelope"></i>
@@ -1437,16 +1427,20 @@
         // تعيين السعر الافتراضي
         setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
         
-        // التحكم في عرض ملاحظة الإيميل
+        // التحكم في عرض حقل البريد الإلكتروني
+        const emailBox = document.getElementById('emailBox');
         const emailNote = document.getElementById('emailNote');
+        
         if (id === 'canva') {
+            emailBox.style.display = 'block';
             emailNote.style.display = 'block';
             document.getElementById('userEmail').placeholder = currentLang === 'ar' ? "example@gmail.com (مطلوب)" : "example@gmail.com (required)";
             document.getElementById('userEmail').required = true;
         } else {
+            emailBox.style.display = 'none';
             emailNote.style.display = 'none';
-            document.getElementById('userEmail').placeholder = currentLang === 'ar' ? "example@gmail.com (اختياري)" : "example@gmail.com (optional)";
             document.getElementById('userEmail').required = false;
+            document.getElementById('userEmail').value = ''; // مسح قيمة الإيميل عند التبديل
         }
         
         // تعيين التبويب الافتراضي
@@ -1596,7 +1590,7 @@
             }
         }
         
-        // تحقق من صحة الإيميل إذا تم إدخاله
+        // تحقق من صحة الإيميل إذا تم إدخاله (اختياري للخدمات الأخرى)
         if (e && !validateEmail(e)) {
             showToast(lang[currentLang].emailInvalid, 'error');
             const emailField = document.getElementById('userEmail');
