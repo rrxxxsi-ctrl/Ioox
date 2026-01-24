@@ -332,7 +332,6 @@
         .mail-field-container {
             width: 100%;
             margin: 20px 0;
-            display: none;
             animation: slideUp 0.5s ease;
         }
 
@@ -403,6 +402,11 @@
             cursor: pointer;
             margin-top: 10px;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
         }
 
         .copy-btn:hover {
@@ -428,6 +432,7 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3);
+            margin-top: 15px;
         }
 
         .action-btn:hover {
@@ -601,12 +606,17 @@
         
         <div class="price-val" id="priceShow"></div>
         
+        <!-- تم إزالة الشرط المخفي لحقل الإيميل، فهو يظهر دائماً الآن -->
         <div class="mail-field-container" id="emailBox">
             <p id="mailLabel" style="color: var(--gold); font-size: 0.85rem; margin-bottom: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
                 <i class="fas fa-envelope"></i>
                 <span id="mailLabelText"></span>
             </p>
             <input type="email" id="userEmail" placeholder="example@gmail.com">
+            <p id="emailNote" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px; display: none;">
+                <i class="fas fa-info-circle"></i>
+                <span id="emailNoteText"></span>
+            </p>
         </div>
         
         <div class="bank-card">
@@ -659,7 +669,8 @@
             copy: "نسخ رقم الحساب",
             copied: "تم النسخ!",
             months: "أشهر",
-            year: "سنة"
+            year: "سنة",
+            emailNote: "لـ Canva Pro فقط: سيتم إرسال بيانات الحساب لهذا البريد"
         },
         en: {
             brand: "NIKAI DIGITAL STORE",
@@ -675,7 +686,8 @@
             copy: "Copy Account Number",
             copied: "Copied!",
             months: "Months",
-            year: "Year"
+            year: "Year",
+            emailNote: "For Canva Pro only: Account details will be sent to this email"
         }
     };
 
@@ -719,7 +731,8 @@
                 {v: 120, n: {ar: "6 أشهر", en: "6 Months"}},
                 {v: 200, n: {ar: "سنة كاملة", en: "1 Year"}}
             ],
-            icon: "fas fa-film"
+            icon: "fas fa-film",
+            requiresEmail: false
         },
         disney: {
             ar: {
@@ -758,7 +771,8 @@
                 {v: 20, n: {ar: "شهر واحد", en: "1 Month"}},
                 {v: 200, n: {ar: "سنة كاملة", en: "1 Year"}}
             ],
-            icon: "fas fa-crown"
+            icon: "fas fa-crown",
+            requiresEmail: false
         },
         canva: {
             ar: {
@@ -796,7 +810,8 @@
             p: [
                 {v: 39, n: {ar: "مدى الحياة", en: "Lifetime"}}
             ],
-            icon: "fas fa-palette"
+            icon: "fas fa-palette",
+            requiresEmail: true
         },
         fasel: {
             ar: {
@@ -836,7 +851,8 @@
                 {v: 59, n: {ar: "6 أشهر", en: "6 Months"}},
                 {v: 98, n: {ar: "سنة كاملة", en: "1 Year"}}
             ],
-            icon: "fas fa-play-circle"
+            icon: "fas fa-play-circle",
+            requiresEmail: false
         }
     };
 
@@ -886,6 +902,7 @@
         document.getElementById('btnText').innerText = lang[currentLang].btn;
         document.getElementById('mailLabelText').innerText = lang[currentLang].label;
         document.getElementById('copyText').innerText = lang[currentLang].copy;
+        document.getElementById('emailNoteText').innerText = lang[currentLang].emailNote;
         
         // تحديث أزرار التنقل النشطة
         if (btn) {
@@ -905,8 +922,15 @@
         // تعيين السعر الافتراضي
         setP(p[p.length - 1].v, p[p.length - 1].n[currentLang], grid.lastChild);
         
-        // إظهار/إخفاء حقل الإيميل
-        document.getElementById('emailBox').style.display = id === 'canva' ? 'block' : 'none';
+        // التحكم في عرض ملاحظة الإيميل
+        const emailNote = document.getElementById('emailNote');
+        if (id === 'canva') {
+            emailNote.style.display = 'block';
+            document.getElementById('userEmail').placeholder = currentLang === 'ar' ? "example@gmail.com (مطلوب)" : "example@gmail.com (required)";
+        } else {
+            emailNote.style.display = 'none';
+            document.getElementById('userEmail').placeholder = currentLang === 'ar' ? "example@gmail.com (اختياري)" : "example@gmail.com (optional)";
+        }
         
         // تعيين التبويب الافتراضي
         setTab('m');
@@ -988,8 +1012,20 @@
     // وظيفة الانتقال للواتساب
     function goToChat() {
         const e = document.getElementById('userEmail').value;
+        
+        // إذا كان المنتج كانفا والإيميل فارغ
         if (activeID === 'canva' && !e) {
             showToast(lang[currentLang].wait);
+            
+            // إضافة اهتزاز للحقل
+            const emailField = document.getElementById('userEmail');
+            emailField.style.borderColor = 'red';
+            emailField.focus();
+            
+            setTimeout(() => {
+                emailField.style.borderColor = 'var(--gold)';
+            }, 1000);
+            
             return;
         }
         
@@ -1011,6 +1047,13 @@
         document.getElementById('langText').innerText = lang[currentLang].lang;
         document.getElementById('themeText').innerText = lang[currentLang].theme;
         document.getElementById('copyText').innerText = lang[currentLang].copy;
+        
+        // جعل حقل الإيميل يركز عند النقر على كانفا
+        document.getElementById('userEmail').addEventListener('focus', function() {
+            if (activeID === 'canva') {
+                document.getElementById('emailNote').style.display = 'block';
+            }
+        });
     };
 </script>
 </body>
