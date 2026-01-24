@@ -22,7 +22,6 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* خلفية سينمائية متحركة ناعمة */
         .ambient-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
@@ -31,74 +30,65 @@
 
         .container {
             width: 95%; max-width: 1000px;
-            margin: 40px auto 100px auto;
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px;
-            animation: fadeInPage 1s ease-out;
+            margin: 20px auto 80px auto;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;
+            animation: fadeInPage 0.8s ease-out;
         }
 
-        /* الهيدر المتطور */
-        header { text-align: center; margin-bottom: 40px; grid-column: span 2; }
-        .brand { color: var(--primary); font-weight: 900; letter-spacing: 4px; font-size: 1rem; margin-bottom: 10px; }
-        h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0; font-weight: 900; background: linear-gradient(to bottom, #fff, #777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header { text-align: center; margin-bottom: 25px; grid-column: span 2; }
+        .brand { color: var(--primary); font-weight: 900; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 5px; }
+        
+        /* تصغير العنوان ليناسب الشاشة */
+        h1 { 
+            font-size: clamp(1.5rem, 4.5vw, 2.8rem); 
+            margin: 0; font-weight: 900; 
+            background: linear-gradient(to bottom, #fff, #999); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
 
         .glass-card {
             background: var(--glass); border: 1px solid var(--border);
-            border-radius: 30px; padding: 30px; backdrop-filter: blur(20px);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 25px; padding: 25px; backdrop-filter: blur(20px);
+            transition: 0.3s ease;
         }
-        .glass-card:hover { border-color: rgba(229, 9, 20, 0.3); transform: translateY(-5px); }
 
-        /* نظام التبويبات */
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-        .tab-btn { background: none; border: none; color: #666; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
-        .tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); transform: scale(1.1); }
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .tab-btn { background: none; border: none; color: #555; font-family: 'Cairo'; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
+        .tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
 
-        .tab-content { display: none; animation: fadeIn 0.5s ease; }
-        .tab-content.active { display: block; }
-        
-        ul li { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ccc; list-style: none; }
-        ul li b { color: #fff; }
+        ul li { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; color: #bbb; list-style: none; }
 
-        /* اختيار الباقات */
-        .selectors { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 25px 0; }
+        .selectors { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
         .chip { 
-            background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; text-align: center; 
-            cursor: pointer; font-size: 0.9rem; border: 1px solid var(--border); transition: 0.3s;
+            background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; text-align: center; 
+            cursor: pointer; font-size: 0.8rem; border: 1px solid var(--border); transition: 0.3s;
         }
-        .chip.active { border-color: var(--primary); background: rgba(229,9,20,0.15); color: #fff; box-shadow: 0 0 20px rgba(229,9,20,0.2); }
+        .chip.active { border-color: var(--primary); background: rgba(229,9,20,0.1); color: #fff; }
 
-        .price-box { text-align: center; margin: 30px 0; }
-        .price-num { font-size: 5rem; font-weight: 900; line-height: 1; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .price-num span { font-size: 1.2rem; color: #444; }
+        .price-box { text-align: center; margin: 20px 0; }
+        .price-num { font-size: 4rem; font-weight: 900; line-height: 1; color: #fff; }
+        .price-num span { font-size: 1.1rem; color: #444; }
 
         .bank-info { 
-            background: rgba(212,175,55,0.05); border: 1px dashed var(--gold); 
-            border-radius: 20px; padding: 20px; margin-bottom: 25px;
+            background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); 
+            border-radius: 18px; padding: 18px; margin-bottom: 20px;
         }
 
-        /* زر التأكيد المتحرك */
         .cta-button {
             position: relative; overflow: hidden;
             background: linear-gradient(45deg, #E50914, #ff3c45);
-            color: #fff; text-align: center; padding: 22px; border-radius: 20px;
-            text-decoration: none; font-weight: 900; font-size: 1.5rem; transition: 0.4s;
+            color: #fff; text-align: center; padding: 20px; border-radius: 18px;
+            text-decoration: none; font-weight: 900; font-size: 1.3rem; transition: 0.4s;
             display: block; border: none; cursor: pointer; width: 100%;
-            box-shadow: 0 15px 35px rgba(229, 9, 20, 0.4);
         }
-        .cta-button:hover { transform: scale(1.02) translateY(-5px); box-shadow: 0 20px 50px rgba(229, 9, 20, 0.6); }
-        .cta-button::after {
-            content: ''; position: absolute; top: -50%; left: -60%; width: 50px; height: 200%;
-            background: rgba(255,255,255,0.2); transform: rotate(30deg);
-            animation: shine 4s infinite;
-        }
+        .cta-button:active { transform: scale(0.96); }
 
-        @keyframes shine { from { left: -60%; } to { left: 140%; } }
-        @keyframes fadeInPage { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInPage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; margin-top: 20px; }
+            .container { grid-template-columns: 1fr; margin-top: 15px; }
             header { grid-column: span 1; }
+            .price-num { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -109,7 +99,7 @@
 <div class="container">
     <header>
         <div class="brand">متجر NIKAI – للاشتراكات الرقمية</div>
-        <h1>اشتراك نتفلكس اختر باقتك</h1>
+        <h1>اشتراكات نتفليكس اختر باقتك</h1>
     </header>
 
     <div class="glass-card">
@@ -118,28 +108,28 @@
             <button class="tab-btn" onclick="openTab(event, 'r')">📌 الشروط</button>
         </div>
 
-        <div id="f" class="tab-content active">
+        <div id="f" class="tab-content" style="display: block;">
             <ul>
-                <li>✅ <b>جودة خرافية:</b> 4K ULTRA HD بدقة متناهية.</li>
-                <li>✅ <b>المدة:</b> خيارات مرنة من شهر إلى سنة كاملة.</li>
-                <li>✅ <b>اللغة:</b> دعم كامل للترجمة والقوائم العربية.</li>
-                <li>✅ <b>الضمان:</b> ضمان ذهبي شامل طوال فترة الاشتراك.</li>
-                <li>✅ <b>الخصوصية:</b> ملف شخصي خاص بك برمز سري.</li>
+                <li>✅ <b>جودة خرافية:</b> 4K ULTRA HD.</li>
+                <li>✅ <b>اللغة:</b> دعم كامل للعربية.</li>
+                <li>✅ <b>الضمان:</b> ضمان ذهبي طوال المدة.</li>
+                <li>✅ <b>الخصوصية:</b> ملف شخصي برقم سري.</li>
+                <li>✅ <b>الأجهزة:</b> يدعم العمل على جميع الأجهزة.</li>
             </ul>
         </div>
 
-        <div id="r" class="tab-content">
+        <div id="r" class="tab-content" style="display: none;">
             <ul>
-                <li>📍 جهاز واحد فقط للمشاهدة في نفس الوقت.</li>
-                <li>📍 يمنع تغيير الإيميل أو كلمة المرور نهائياً.</li>
-                <li>📍 ملف واحد مخصص لك، يمنع دخول ملفات الآخرين.</li>
-                <li style="color:var(--primary); font-weight: 900;">⚠️ التلاعب بالحساب يلغي الضمان والاشتراك فوراً.</li>
+                <li>📍 جهاز واحد للمشاهدة في نفس الوقت.</li>
+                <li>📍 يمنع تغيير الإيميل أو كلمة المرور.</li>
+                <li>📍 ملف واحد مخصص لك فقط.</li>
+                <li style="color:var(--primary); font-weight: 900;">⚠️ التلاعب يعرض الحساب للإلغاء.</li>
             </ul>
         </div>
     </div>
 
     <div class="glass-card">
-        <div style="font-weight: bold; font-size: 1rem; text-align: center; color: #888;">حدد مدة الاشتراك 💳</div>
+        <div style="font-weight: bold; font-size: 0.85rem; text-align: center; color: #666;">حدد مدة الاشتراك 💳</div>
         <div class="selectors">
             <div class="chip" onclick="update(20, 'شهر واحد', this)">شهر</div>
             <div class="chip" onclick="update(75, '3 أشهر', this)">3 أشهر</div>
@@ -149,14 +139,14 @@
 
         <div class="price-box">
             <div class="price-num" id="p">200<span> ريال</span></div>
-            <div id="save-tag" style="color:#4ade80; font-size: 0.9rem; font-weight: bold; margin-top: 10px;">أفضل قيمة توفير 🔥</div>
+            <div id="save-tag" style="color:#4ade80; font-size: 0.8rem; font-weight: bold; margin-top: 5px;">توفير 45% 🔥</div>
         </div>
 
         <div class="bank-info">
-            <div style="color:var(--gold); font-weight: 900; margin-bottom: 8px;">تحويل بنك البلاد 🏦</div>
-            <p style="margin: 5px 0;">المستفيد: <b>سليمان فلاته</b></p>
-            <p id="iban" style="font-size: 0.75rem; letter-spacing: 0.5px; color: #fff;">SA0315000900133520020007</p>
-            <span style="color:var(--gold); font-size: 0.7rem; cursor:pointer; display: block; margin-top: 5px;" onclick="copyIban()">📋 اضغط لنسخ الآيبان</span>
+            <div style="color:var(--gold); font-weight: 900; margin-bottom: 5px; font-size: 0.9rem;">تحويل بنك البلاد 🏦</div>
+            <p style="margin: 2px 0; font-size: 0.8rem;">المستفيد: <b>سليمان فلاته</b></p>
+            <p id="iban" style="font-size: 0.7rem; color: #fff; letter-spacing: 0.5px;">SA0315000900133520020007</p>
+            <span style="color:var(--gold); font-size: 0.65rem; cursor:pointer;" onclick="copyIban()">📋 نسخ الآيبان</span>
         </div>
 
         <button class="cta-button" onclick="go()">تأكيد الطلب عبر واتساب ⚡</button>
@@ -188,7 +178,7 @@
     }
 
     function go() {
-        const msg = `مرحباً متجر Nikai 👋%0Aأود طلب اشتراك نتفلكس: ${pName}%0Aالسعر: ${pPrice} ريال%0Aطريقة الدفع: تحويل بنك البلاد🏦%0A--%0Aلقد قرأت الشروط وأوافق عليها ✅`;
+        const msg = `مرحباً متجر Nikai 👋%0Aأود طلب اشتراك نتفلكس: ${pName}%0Aالسعر: ${pPrice} ريال%0A🏦 بنك البلاد - سليمان فلاته%0A--%0Aلقد قرأت الشروط وأوافق عليها ✅`;
         window.location.href = `https://wa.me/966591388202?text=${msg}`;
     }
 </script>
