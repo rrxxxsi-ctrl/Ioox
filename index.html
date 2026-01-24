@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر Nikai | اشتراكات رقمية</title>
+    <title>متجر NIKAI – للاشتراكات الرقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,9 +17,10 @@
         body, html {
             margin: 0; padding: 0; font-family: 'Cairo', sans-serif;
             background-color: var(--bg); color: #fff; scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* تأثير الخلفية السينمائي */
+        /* خلفية سينمائية ثابتة */
         .ambient-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, #1a0505 0%, #000 100%);
@@ -28,61 +29,73 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        /* الهيدر */
-        header { text-align: center; margin-bottom: 60px; }
-        .logo-text { font-size: 1.1rem; letter-spacing: 4px; color: var(--primary); font-weight: 900; }
-        h1 { font-size: 3.5rem; margin: 10px 0; font-weight: 900; }
+        header { text-align: center; margin-bottom: 50px; }
+        .logo-text { font-size: 1.1rem; letter-spacing: 3px; color: var(--primary); font-weight: 900; }
+        h1 { font-size: 3rem; margin: 15px 0; font-weight: 900; }
 
-        /* شبكة المعلومات (بنتو غرايد) */
-        .bento-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; margin-bottom: 40px; }
+        .bento-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 25px; margin-bottom: 40px; }
 
+        /* البطاقات الزجاجية مع أنيميشن هادئ */
         .card {
             background: var(--glass); backdrop-filter: blur(20px);
-            border: 1px solid var(--border); border-radius: 30px; padding: 35px;
-            transition: 0.4s;
+            border: 1px solid var(--border); border-radius: 35px; padding: 35px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
+        .card:hover { border-color: rgba(229, 9, 20, 0.3); transform: translateY(-5px); }
 
-        h2 { font-size: 1.6rem; color: var(--primary); margin-top: 0; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-
+        h2 { font-size: 1.5rem; color: var(--primary); margin-top: 0; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
         ul { list-style: none; padding: 0; }
-        li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ddd; }
+        li { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; }
         .warning { color: #ff4d4d; font-weight: bold; }
 
-        /* محرك اختيار الباقة */
+        /* منطقة اختيار السعر والدفع */
         .plan-box {
-            background: rgba(255,255,255,0.03); border-radius: 40px; padding: 40px;
-            text-align: center; border: 2px solid var(--border);
+            background: rgba(255,255,255,0.03); border-radius: 40px; padding: 45px;
+            text-align: center; border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .selectors { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; }
+        .selectors { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
         .chip {
-            padding: 10px 25px; border-radius: 100px; border: 1px solid var(--border);
-            cursor: pointer; transition: 0.3s; font-weight: bold; font-size: 0.9rem;
+            padding: 12px 25px; border-radius: 100px; border: 1px solid var(--border);
+            cursor: pointer; transition: 0.3s; font-weight: bold; font-size: 0.9rem; background: transparent; color: #fff;
         }
-        .chip.active { background: var(--primary); border-color: var(--primary); color: #fff; transform: scale(1.1); }
+        .chip.active { background: var(--primary); border-color: var(--primary); transform: scale(1.05); }
 
-        .price-display { font-size: 5rem; font-weight: 900; margin: 20px 0; }
-        .price-display span { font-size: 1.2rem; color: #666; }
+        .price-display { font-size: 5.5rem; font-weight: 900; margin: 20px 0; color: #fff; line-height: 1; }
+        .price-display span { font-size: 1.5rem; color: #555; }
 
-        /* بيانات بنك البلاد */
         .bank-card {
             background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--gold);
-            border-radius: 20px; padding: 25px; margin-top: 20px;
+            border-radius: 25px; padding: 25px; margin-top: 30px; text-align: right;
         }
 
-        /* زر الطلب */
+        /* إصلاح زر التأكيد - حل مشكلة الارتجاج */
         .cta-btn {
-            display: block; width: 100%; background: #fff; color: #000;
-            padding: 22px; border-radius: 20px; text-decoration: none;
-            font-weight: 900; font-size: 1.5rem; margin-top: 30px;
-            transition: 0.4s; box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            width: 100%; background: #fff; color: #000;
+            padding: 25px; border-radius: 25px; text-decoration: none;
+            font-weight: 900; font-size: 1.6rem; margin-top: 35px;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            cursor: pointer; border: none; outline: none;
         }
-        .cta-btn:hover { background: var(--primary); color: #fff; transform: translateY(-5px); }
+        .cta-btn:hover { 
+            background: var(--primary); color: #fff; 
+            transform: scale(1.01); /* حركة بسيطة جداً وغير مرجوجة */
+            box-shadow: 0 15px 40px rgba(229, 9, 20, 0.4);
+        }
+
+        .live-status {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 20px; font-size: 0.8rem; color: #4ade80; font-weight: bold;
+        }
+        .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.3; } }
 
         @media (max-width: 850px) {
             .bento-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-            .selectors { flex-direction: column; }
+            h1 { font-size: 2.4rem; }
+            .price-display { font-size: 4rem; }
         }
     </style>
 </head>
@@ -92,66 +105,72 @@
 
     <div class="container">
         <header>
-            <div class="logo-text">متجر NIKAI – اشتراكات رقمية</div>
-            <h1>نتفلكس لمدة 12 شهر – Netflix</h1>
-            <p style="color: #666;">جودة خرافية • ملف خاص بقفل سري • ضمان شامل</p>
+            <div class="logo-text">متجر NIKAI – للاشتراكات الرقمية</div>
+            <h1>نتفلكس لمدة 12 شهر</h1>
+            <p style="color: #666; font-weight: 600;">باقة البريميوم • 4K UHD • ملف خاص</p>
         </header>
 
         <div class="bento-grid">
             <div class="card">
                 <h2>⭐ مزايا اشتراك نتفلكس بريميوم</h2>
                 <ul>
-                    <li>✅ <b>جودة خرافية 4K ULTRA HD:</b> تخليك تعيش التجربة بكل تفاصيلها.</li>
-                    <li>✅ <b>مدة الاشتراك:</b> سنة كاملة من المتعة والترفيه.</li>
-                    <li>✅ <b>لغة الحساب والترجمة:</b> عربية وبإمكانك تغيّرها بسهولة.</li>
-                    <li>✅ <b>ضمان ذهبي:</b> على الاشتراك طول المدة، علشان تطمّن وتستمتع.</li>
-                    <li>✅ <b>شاشة خاصة بك:</b> بقفل سري، محد يقدر يدخل عليها غيرك.</li>
+                    <li>✅ <b>جودة خرافية 4K ULTRA HD:</b> تجربة سينمائية متكاملة.</li>
+                    <li>✅ <b>مدة الاشتراك:</b> سنة كاملة من الترفيه.</li>
+                    <li>✅ <b>اللغة والترجمة:</b> عربية بالكامل وقابلة للتغيير.</li>
+                    <li>✅ <b>ضمان ذهبي:</b> حماية واطمئنان طوال المدة.</li>
+                    <li>✅ <b>شاشة خاصة:</b> ملفك مقفل برمز سري خاص بك.</li>
                 </ul>
                 <h2 style="margin-top: 30px;">🎟️ تفاصيل الاشتراك</h2>
                 <ul>
-                    <li>🎟️ اشتراك رسمي وقانوني 100%</li>
-                    <li>🌍 يشتغل في كل مكان بالعالم بدون أي مشاكل.</li>
-                    <li>⏳ ضمان شامل على طول مدة الاشتراك.</li>
+                    <li>🎟️ اشتراك رسمي وقانوني 100%.</li>
+                    <li>🌍 يعمل في كافة دول العالم بلا قيود.</li>
+                    <li>⏳ الضمان شامل لكل ثانية في اشتراكك.</li>
                 </ul>
             </div>
 
-            <div class="card" style="border-color: rgba(229, 9, 20, 0.2);">
+            <div class="card">
                 <h2>📌 شروط الاستخدام</h2>
                 <ul style="font-size: 0.9rem;">
-                    <li>• تقدر تغيّر اسم الشاشة والصورة حسب ذوقك.</li>
-                    <li>• الاشتراك لجهاز واحد فقط.</li>
-                    <li>• لك شاشة وحدة (ملف واحد)، وما تقدر تدخل شاشات غيرك.</li>
-                    <li>• حمل الأفلام والمسلسلات واستمتع فيها وقت ما تبغى.</li>
-                    <li>• شاشتك آمنة وتقدر تقفلها برقم سري.</li>
-                    <li class="warning">⚠️ ما تقدر تغيّر كلمة المرور أو الإيميل أو تضيف رقم جوال.</li>
-                    <li class="warning">⚠️ ممنوع التلاعب أو الدخول في شاشات المستخدمين الآخرين.</li>
+                    <li>• حرية تغيير اسم وصورة الشاشة.</li>
+                    <li>• الاستخدام لجهاز واحد فقط في وقت واحد.</li>
+                    <li>• ملف واحد خاص بك، يمنع دخول ملفات الآخرين.</li>
+                    <li>• ميزة تحميل المحتوى للمشاهدة بدون إنترنت.</li>
+                    <li class="warning">⚠️ يمنع بتاتاً تغيير الإيميل أو كلمة المرور.</li>
+                    <li class="warning">⚠️ التلاعب بملفات المستخدمين يعرضك لإلغاء الاشتراك.</li>
                 </ul>
             </div>
         </div>
 
         <div class="plan-box">
-            <h2 style="color: #fff; border: 0;">الأسعار والعروض 🏷️</h2>
+            <h2 style="color: #fff; border: 0;">الأسعار والعروض المتاحة 🏷️</h2>
             <div class="selectors">
-                <div class="chip" onclick="updatePlan(75, '3 أشهر', this)">اشتراك 3 أشهر</div>
-                <div class="chip" onclick="updatePlan(120, '6 أشهر', this)">اشتراك 6 أشهر</div>
-                <div class="chip active" onclick="updatePlan(200, 'سنة كاملة', this)">اشتراك سنة كاملة</div>
+                <div class="chip" onclick="updatePlan(75, '3 أشهر', this)">3 أشهر</div>
+                <div class="chip" onclick="updatePlan(120, '6 أشهر', this)">6 أشهر</div>
+                <div class="chip active" onclick="updatePlan(200, 'سنة كاملة', this)">سنة كاملة</div>
             </div>
 
             <div class="price-display" id="price">200<span> ريال</span></div>
-            <div style="color: #4ade80; font-weight: bold; margin-bottom: 20px;">💰 توفير يصل إلى 45% مع الاشتراك السنوي</div>
+            <div style="color: #4ade80; font-weight: 900; margin-bottom: 20px;">توفير 45% عند اختيار الباقة السنوية 💸</div>
 
             <div class="bank-card">
-                <div style="color: var(--gold); font-weight: 900; margin-bottom: 10px;">طريقة الدفع: تحويل بنك البلاد 🏦</div>
+                <div style="color: var(--gold); font-weight: 900; margin-bottom: 10px;">تحويل بنكي: بنك البلاد 🏦</div>
                 <p>الآيبان: <b id="iban">SA00000000000000000000</b></p>
                 <p>المستفيد: <b>متجر نيكا للاشتراكات</b></p>
-                <button onclick="copyIban()" style="background: var(--gold); border: 0; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">نسخ الآيبان</button>
+                <button onclick="copyIban()" style="background: var(--gold); border: 0; padding: 8px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px;">نسخ الآيبان</button>
             </div>
 
-            <a href="#" class="cta-btn" onclick="sendOrder()">تأكيد الطلب عبر الواتساب ⚡</a>
+            <button class="cta-btn" onclick="sendOrder()">
+                تأكيد الطلب عبر الواتساب ⚡
+            </button>
+
+            <div class="live-status">
+                <div class="dot"></div>
+                الخدمة نشطة الآن • تسليم فوري
+            </div>
         </div>
 
-        <footer style="text-align: center; margin-top: 60px; color: #333; font-size: 0.8rem; letter-spacing: 2px;">
-            متجر NIKAI – اشتراكات رقمية © 2026
+        <footer style="text-align: center; margin-top: 60px; color: #222; font-size: 0.8rem; letter-spacing: 2px;">
+            متجر NIKAI – للاشتراكات الرقمية © 2026
         </footer>
     </div>
 
@@ -169,11 +188,11 @@
 
         function copyIban() {
             navigator.clipboard.writeText(document.getElementById('iban').innerText);
-            alert("تم نسخ الآيبان بنجاح");
+            alert("تم نسخ الآيبان بنجاح ✅");
         }
 
         function sendOrder() {
-            const msg = `مرحباً متجر Nikai 👋%0Aأرغب في طلب اشتراك نتفليكس:%0Aالباقة: ${selectedPlan}%0Aالسعر: ${selectedPrice} ريال%0Aطريقة الدفع: تحويل بنك البلاد 🏦%0A---%0Aلقد قرأت شروط الاستخدام وأوافق عليها ✅`;
+            const msg = `مرحباً متجر Nikai 👋%0Aأود طلب اشتراك نتفلكس:%0A📦 الباقة: ${selectedPlan}%0A💰 السعر: ${selectedPrice} ريال%0A🏦 طريقة الدفع: بنك البلاد%0A---%0Aلقد اطلعت على كافة الشروط وأوافق عليها ✅`;
             window.location.href = `https://wa.me/966591388202?text=${msg}`;
         }
     </script>
