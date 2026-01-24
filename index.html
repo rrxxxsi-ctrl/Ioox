@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP NETFLIX - اشتراك السنة الذهبي</title>
+    <title>VIP NETFLIX | المتجر الرسمي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #E50914;
             --gold: #FFD700;
-            --dark: #080808;
-            --card: #1a1a1a;
-            --success: #25D366;
+            --dark: #0a0a0a;
+            --accent: #25D366;
         }
 
         body {
             font-family: 'Cairo', sans-serif;
             background-color: var(--dark);
-            color: #fff;
+            color: white;
             margin: 0;
-            scroll-behavior: smooth;
+            transition: 0.5s;
         }
 
-        /* تنسيق الهيدر المطور */
-        header {
-            height: 90vh;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--dark)), 
-                        url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-9a10-87d37418a653/5676757f-2b36-4078-9892-23b207590897/SA-en-20220502-popsignuptwoweeks-perspective_alpha_website_large.jpg');
+        /* شريط التحميل العلوي */
+        #progress-bar {
+            position: fixed; top: 0; right: 0; height: 4px; background: var(--primary);
+            width: 0%; z-index: 1001; transition: 0.2s;
+        }
+
+        /* الواجهة الرئيسية بتأثير سينمائي */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop');
             background-size: cover;
-            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -37,175 +41,140 @@
             padding: 20px;
         }
 
-        .badge {
-            background: var(--primary);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
+        .hero-logo { width: 150px; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--primary)); }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        h1 { font-size: 3rem; margin: 0; font-weight: 900; }
-        .gold-text { color: var(--gold); text-shadow: 0 0 10px rgba(255,215,0,0.5); }
-
-        /* عداد الوقت */
-        .timer-container {
-            margin: 25px 0;
-            background: rgba(255,255,255,0.1);
-            padding: 15px 30px;
-            border-radius: 10px;
-            border: 1px dashed var(--gold);
-        }
-
-        /* البطاقات السعرية */
-        .pricing-section {
-            padding: 50px 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid #333;
+        /* نموذج الطلب الذكي */
+        .order-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
+            border: 1px solid rgba(255,215,0,0.2);
+            max-width: 450px;
+            width: 90%;
+            margin: -100px auto 50px;
+        }
+
+        input, select {
             width: 100%;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            font-family: 'Cairo';
         }
 
-        .card::before {
-            content: "الأكثر طلباً";
-            position: absolute;
-            top: 20px;
-            left: -35px;
-            background: var(--gold);
-            color: #000;
-            padding: 5px 40px;
-            transform: rotate(-45deg);
+        .btn-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .price-tag { font-size: 4rem; font-weight: 900; color: #fff; margin: 20px 0; }
-        .price-tag span { font-size: 1.5rem; color: #aaa; }
-
-        .features-list { list-style: none; padding: 0; text-align: right; margin: 30px 0; }
-        .features-list li { margin: 15px 0; display: flex; align-items: center; }
-        .features-list li::before { content: "✔️"; margin-left: 10px; color: var(--success); }
-
-        .btn-whatsapp {
-            display: block;
-            background: var(--success);
-            color: #fff;
-            text-decoration: none;
-            padding: 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 1.2rem;
+            cursor: pointer;
+            font-size: 1.1rem;
             transition: 0.3s;
         }
 
-        .btn-whatsapp:hover { background: #1eb954; transform: scale(1.02); }
+        .btn-send:hover { background: #b20710; transform: translateY(-3px); }
 
-        /* قسم الأسئلة الشائعة */
-        .faq { max-width: 800px; margin: 50px auto; padding: 20px; }
-        .faq-item { background: #111; padding: 20px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; }
-        .faq-item h3 { margin: 0; font-size: 1.1rem; color: var(--gold); }
-        .faq-item p { margin-top: 10px; color: #ccc; display: none; }
+        /* قسم الضمان */
+        .guarantee-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 50px;
+            margin: 40px auto;
+            max-width: 300px;
+            border: 1px solid var(--gold);
+        }
 
-        footer { text-align: center; padding: 50px; color: #555; font-size: 0.8rem; }
+        /* زر الطفو للواتساب */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="badge">خصم حصري لفترة محدودة ⚡</div>
-        <h1>نتفليكس <span class="gold-text">سنة كاملة</span></h1>
-        <p style="font-size: 1.2rem; color: #eee;">باقة بريميوم 4K Ultra HD مع ضمان ذهبي 365 يوم</p>
+<div id="progress-bar"></div>
+
+<section class="hero-section">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="hero-logo" alt="Netflix">
+    <h1 style="font-weight: 900;">اشتراك <span style="color: var(--gold);">VIP</span> السنوي</h1>
+    <p>ملف خاص • جودة 4K • ضمان كامل 365 يوم</p>
+    <div style="font-size: 2.5rem; font-weight: 900; margin-top: 10px;">200 ريال <span style="font-size: 1rem; color: #888;">/ سنة</span></div>
+</section>
+
+<div class="order-container">
+    <h3 style="text-align: center; margin-top: 0;">طلب اشتراك سريع ⚡</h3>
+    <input type="text" id="cust-name" placeholder="اسمك الكريم">
+    <select id="pay-method">
+        <option value="التحويل البنكي">التحويل البنكي (الراجحي/الأهلي)</option>
+        <option value="STC Pay">STC Pay</option>
+        <option value="UrPay">UrPay</option>
+    </select>
+    <button class="btn-send" onclick="sendToWhatsapp()">إتمام الطلب عبر واتساب</button>
+</div>
+
+<div class="guarantee-badge">
+    <span style="font-size: 1.5rem; margin-left: 10px;">🛡️</span>
+    <div style="text-align: right;">
+        <div style="font-weight: bold; color: var(--gold);">الضمان الذهبي</div>
+        <div style="font-size: 0.8rem;">تعويض فوري طوال السنة</div>
+    </div>
+</div>
+
+<div class="whatsapp-float" onclick="window.location.href='https://wa.me/966591388202'">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+</div>
+
+<footer style="text-align: center; padding: 40px; color: #444;">
+    <p>متجر المبدعين لخدمات نتفليكس 2026</p>
+</footer>
+
+<script>
+    // شريط التقدم عند التمرير
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+
+    // وظيفة إرسال البيانات للواتساب بشكل منظم
+    function sendToWhatsapp() {
+        const name = document.getElementById('cust-name').value;
+        const method = document.getElementById('pay-method').value;
+        const number = "966591388202";
         
-        <div class="timer-container">
-            <span>ينتهي العرض خلال:</span>
-            <div id="timer" style="font-size: 1.5rem; font-weight: bold; color: var(--gold);">05:40:12</div>
-        </div>
-        
-        <a href="#buy" style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--primary);">اكتشف المميزات ↓</a>
-    </header>
+        if(name === "") { alert("لطفاً أدخل اسمك"); return; }
 
-    <section id="buy" class="pricing-section">
-        <div class="card">
-            <h2 style="margin: 0;">باقة السنة الـ VIP</h2>
-            <div class="price-tag">200 <span>ريال</span></div>
-            
-            <ul class="features-list">
-                <li>اشتراك لمدة 12 شهر متواصلة.</li>
-                <li>جودة 4K Ultra HD فائقة الوضوح.</li>
-                <li>ملف (Profile) خاص بك برمز سري.</li>
-                <li>يعمل على التلفزيون، الجوال، والكمبيوتر.</li>
-                <li>دعم كامل للغة العربية والترجمة.</li>
-                <li>الضمان الذهبي: تعويض فوري حال الانقطاع.</li>
-            </ul>
+        const message = `مرحباً، أرغب في طلب اشتراك نتفليكس السنوي (200 ريال)%0A%0A👤 الاسم: ${name}%0A💳 وسيلة الدفع: ${method}%0A🎁 العرض: سنة كاملة 4K`;
+        window.location.href = `https://wa.me/${number}?text=${message}`;
+    }
+</script>
 
-            <a href="https://wa.me/966591388202?text=أرغب%20في%20الحصول%20على%20عرض%20الـ%20200%20ريال" class="btn-whatsapp">
-                اشترك الآن عبر واتساب
-            </a>
-            <p style="font-size: 0.8rem; color: #777; margin-top: 15px;">تسليم سريع خلال 5 - 30 دقيقة ⚡</p>
-        </div>
-    </section>
-
-    <section class="faq">
-        <h2 style="text-align: center;">الأسئلة الشائعة 🤔</h2>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <h3>هل الاشتراك رسمي ويحتاج كود؟</h3>
-            <p>نعم، اشتراك رسمي نرسل لك بيانات دخول مباشرة (إيميل وباسورد) وتدخل لملفك الخاص فوراً.</p>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <h3>وش يعني الضمان الذهبي؟</h3>
-            <p>يعني لو صار أي شيء للحساب خلال السنة، نتكفل بتعويضك بحساب جديد فوراً أو إصلاح المشكلة بدون دفع أي ريال إضافي.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 جميع الحقوق محفوظة لمتجر الاشتراك الرقمي</p>
-        <p>شعار نتفليكس وعلامتها التجارية ملك لشركة Netflix, Inc. نحن وسيط لتوفير الخدمة فقط.</p>
-    </footer>
-
-    <script>
-        // كود تشغيل العداد التنازلي
-        function startTimer(duration, display) {
-            var timer = duration, hours, minutes, seconds;
-            setInterval(function () {
-                hours = parseInt(timer / 3600, 10);
-                minutes = parseInt((timer % 3600) / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-
-                display.textContent = (hours < 10 ? "0" + hours : hours) + ":" + 
-                                      (minutes < 10 ? "0" + minutes : minutes) + ":" + 
-                                      (seconds < 10 ? "0" + seconds : seconds);
-
-                if (--timer < 0) { timer = duration; }
-            }, 1000);
-        }
-        window.onload = function () {
-            var fiveHours = 60 * 60 * 5 + 40 * 60 + 12;
-            var display = document.querySelector('#timer');
-            startTimer(fiveHours, display);
-        };
-
-        // كود تفتح وتغلق الأسئلة
-        function toggleFaq(element) {
-            var p = element.querySelector('p');
-            p.style.display = (p.style.display === "block") ? "none" : "block";
-        }
-    </script>
 </body>
 </html>
