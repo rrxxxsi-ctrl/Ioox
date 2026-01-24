@@ -3,155 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NETFLIX ELITE | الفخامة في المشاهدة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Premium Sub | اشتراكات النخبة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --n-red: #E50914;
-            --n-black: #000000;
-            --n-dark-grey: #181818;
-            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-        }
-
-        /* شاشة التحميل */
-        #loader {
-            position: fixed; width: 100%; height: 100vh; background: #000; 
-            display: flex; justify-content: center; align-items: center; z-index: 9999;
+            --bg: #0f172a;
+            --accent: #ef4444;
+            --glass: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--n-black);
-            color: white; margin: 0; opacity: 0; transition: opacity 1s;
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(229, 9, 20, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0, transparent 50%);
+            color: var(--text);
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* شريط علوي ذكي */
+        /* واجهة التنقل */
         nav {
-            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
-            position: absolute; width: 90%; z-index: 100;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        /* واجهة العرض الرئيسية */
-        .main-hero {
-            height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(circle, rgba(229,9,20,0.15) 0%, rgba(0,0,0,1) 80%);
+        .status-pill {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .hero-box { text-align: center; transform: translateY(30px); opacity: 0; transition: 1s all ease; }
-        .hero-box.active { transform: translateY(0); opacity: 1; }
-
-        .glitch-text {
-            font-size: 5rem; font-weight: 900; margin: 0;
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        /* قسم العرض الرئيسي */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
         }
 
-        /* قسم الدفع الموثوق */
-        .trust-icons {
-            display: flex; gap: 20px; justify-content: center; margin-top: 30px; filter: grayscale(1) brightness(2); opacity: 0.6;
-        }
-        .trust-icons img { height: 25px; }
-
-        /* البطاقة المطورة */
-        .ultimate-card {
-            background: var(--n-dark-grey); border-radius: 30px; padding: 60px 40px;
-            max-width: 500px; margin: -150px auto 100px; position: relative;
-            border: 1px solid rgba(255,255,255,0.05); text-align: center;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+        .hero-tag {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
-        .guarantee-seal {
-            position: absolute; top: -40px; right: -20px; width: 100px; height: 100px;
-            background: var(--gold-gradient); border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; color: black; font-weight: 900;
-            font-size: 0.7rem; transform: rotate(15deg); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        h1 { font-size: 3.5rem; margin: 0; font-weight: 900; line-height: 1.2; }
+
+        /* البطاقة الجديدة المنحنية */
+        .subscription-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 35px;
+            padding: 50px;
+            margin: 60px auto;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
 
-        .benefit-tag {
-            display: inline-block; background: rgba(255,255,255,0.05);
-            padding: 8px 15px; border-radius: 10px; margin: 5px; font-size: 0.85rem;
+        .price-info { text-align: right; }
+        .price-big { font-size: 5rem; font-weight: 900; color: #fff; margin: 10px 0; }
+        .price-big span { font-size: 1.5rem; color: #94a3b8; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            text-align: right;
         }
 
-        /* زر الأكشن المتوهج */
-        .glow-btn {
-            width: 100%; padding: 25px; margin-top: 30px; border: none; border-radius: 15px;
-            background: var(--n-red); color: white; font-size: 1.5rem; font-weight: 900;
-            cursor: pointer; box-shadow: 0 0 30px rgba(229,9,20,0.4); transition: 0.4s;
-            font-family: 'Cairo';
-        }
-        .glow-btn:hover { transform: scale(1.03); box-shadow: 0 0 50px rgba(229,9,20,0.6); }
-
-        /* قسم التقييمات */
-        .reviews-slider { padding: 50px 20px; text-align: center; }
-        .review-card {
-            background: #111; padding: 20px; border-radius: 15px; display: inline-block;
-            width: 250px; margin: 10px; border-bottom: 3px solid var(--n-red);
+        .feature-item {
+            background: rgba(255,255,255,0.03);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
+        /* زر الأكشن الحديث */
+        .btn-modern {
+            background: #fff;
+            color: #000;
+            padding: 20px 40px;
+            border-radius: 18px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-decoration: none;
+            display: block;
+            margin-top: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+        }
+
+        .btn-modern:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+
+        /* أيقونة الدردشة */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #2563eb;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px 30px 30px 5px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .subscription-card { grid-template-columns: 1fr; padding: 30px; }
+            h1 { font-size: 2.2rem; }
+            .price-big { font-size: 4rem; }
+        }
     </style>
 </head>
-<body onload="initSite()">
-
-    <div id="loader"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" width="150"></div>
+<body>
 
     <nav>
-        <div style="font-weight: 900; font-size: 1.5rem; color: var(--n-red);">ELITE STORE</div>
-        <div style="font-size: 0.9rem; border: 1px solid #444; padding: 5px 15px; border-radius: 20px;">حسابات رسمية 100%</div>
+        <div style="font-size: 1.5rem; font-weight: 900; color: #fff;">PREMIUM<span style="color:var(--accent)">.</span></div>
+        <div class="status-pill">
+            <span style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%;"></span>
+            تسليم فوري متاح الآن
+        </div>
     </nav>
 
-    <section class="main-hero">
-        <div class="hero-box" id="hero-content">
-            <h2 style="color: var(--n-red); margin: 0;">الآن في السعودية 🇸🇦</h2>
-            <h1 class="glitch-text">200 ريال</h1>
-            <p style="font-size: 1.5rem; letter-spacing: 2px;">اشتراك نـتـفـلـيـكـس لـمـدة سـنـة</p>
-            <div class="trust-icons">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Mada_Logo.svg/1200px-Mada_Logo.svg.png">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/1200px-Apple_Pay_logo.svg.png">
-                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/44/STC_Pay_Logo.svg/1200px-STC_Pay_Logo.svg.png">
-            </div>
-        </div>
-    </section>
+    <div class="main-container">
+        <div class="hero-tag">عرض السنة 2026</div>
+        <h1>ترفيه بلا حدود<br>بأقل تكلفة في السعودية</h1>
+        <p style="color: #94a3b8; font-size: 1.2rem; margin-top: 20px;">اشترك في نتفليكس بريميوم بملف خاص وجودة 4K وضمان كامل.</p>
 
-    <section style="padding: 20px;">
-        <div class="ultimate-card">
-            <div class="guarantee-seal">ضمان ذهبي<br>365 يوم</div>
-            <h2 style="font-size: 2rem; margin-bottom: 10px;">باقة الـ VIP السنوية</h2>
-            <p style="color: #888;">وفر أكثر من 500 ريال واستمتع بالمميزات الكاملة</p>
-            
-            <div style="margin: 30px 0;">
-                <div class="benefit-tag">💎 دقة 4K Ultra HD</div>
-                <div class="benefit-tag">🔒 ملف خاص برقم سري</div>
-                <div class="benefit-tag">🖥️ يدعم جميع الشاشات</div>
-                <div class="benefit-tag">🌍 ترجمة عربية كاملة</div>
+        <div class="subscription-card">
+            <div class="price-info">
+                <div style="color: #94a3b8; font-weight: bold;">باقة الـ VIP السنوية</div>
+                <div class="price-big">200 <span>ريال</span></div>
+                <div style="color: #4ade80; font-size: 0.9rem;">⭐ وفر 500 ريال سنوياً</div>
+                
+                <a href="https://wa.me/966591388202?text=أرغب%20في%20اشتراك%20السنة" class="btn-modern">اطلب عبر واتساب</a>
             </div>
 
-            <button class="glow-btn" onclick="redirectToWA()">اضغط لتفعيل اشتراكك</button>
+            <div class="features-grid">
+                <div class="feature-item"><span>🎬</span> جودة 4K Ultra HD كاملة</div>
+                <div class="feature-item"><span>🔒</span> ملف شخصي خاص برمز سري</div>
+                <div class="feature-item"><span>🛡️</span> ضمان ذهبي ضد الانقطاع</div>
+                <div class="feature-item"><span>📱</span> يعمل على التلفزيون والجوال</div>
+                <div class="feature-item"><span>🌍</span> يدعم الترجمة والدبلجة العربية</div>
+            </div>
         </div>
-    </section>
-
-    <section class="reviews-slider">
-        <h3>ماذا يقول عملاؤنا؟ ⭐</h3>
-        <div class="review-card">
-            <p style="font-size: 0.9rem;">"والله أطلق متجر، الحساب شغال معي 4K ولا قد انقطع."</p>
-            <div style="color: var(--gold-gradient); font-weight: bold;">أحمد العتيبي</div>
+        
+        <div style="margin-top: 50px; opacity: 0.5;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Mada_Logo.svg/1200px-Mada_Logo.svg.png" height="20" style="margin: 0 15px;">
+            <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/44/STC_Pay_Logo.svg/1200px-STC_Pay_Logo.svg.png" height="20" style="margin: 0 15px;">
         </div>
-        <div class="review-card">
-            <p style="font-size: 0.9rem;">"التعامل سريع جداً، خلال 10 دقائق استلمت الحساب."</p>
-            <div style="color: var(--gold-gradient); font-weight: bold;">سارة محمد</div>
-        </div>
-    </section>
+    </div>
 
-    <script>
-        function initSite() {
-            // إخفاء اللودر وإظهار الموقع
-            document.getElementById('loader').style.display = 'none';
-            document.body.style.opacity = '1';
-            document.getElementById('hero-content').classList.add('active');
-        }
+    <div class="chat-bubble" onclick="window.location.href='https://wa.me/966591388202'">
+        💬 هل لديك سؤال؟ تواصل معنا
+    </div>
 
-        function redirectToWA() {
-            const msg = "مرحباً، أرغب في الاشتراك بـ باقة الـ VIP السنوية (200 ريال) 💎";
-            window.location.href = `https://wa.me/966591388202?text=${encodeURIComponent(msg)}`;
-        }
-    </script>
+    <footer style="padding: 60px 20px; text-align: center; color: #475569; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p>© 2026 متجر النخبة الرقمي. جميع الحقوق محفوظة.</p>
+    </footer>
+
 </body>
 </html>
