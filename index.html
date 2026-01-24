@@ -3,199 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NETFLIX ELITE V11 | تجربة جيل القادم</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;600;900&display=swap" rel="stylesheet">
+    <title>VIP EXPERIENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #E50914;
-            --accent: #FFD700;
-            --dark: #000000;
+            --color: #ff0000;
         }
 
         body, html {
             margin: 0; padding: 0; height: 100%;
+            background: #000;
             font-family: 'Cairo', sans-serif;
-            background: var(--dark);
-            color: #fff;
-            overflow: hidden; /* لمنع السكرول التقليدي واعتماد نظام الشرائح */
-        }
-
-        /* خلفية جزيئات متحركة بالـ CSS */
-        .bg-animate {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
-            z-index: -1;
-        }
-
-        .blob {
-            position: absolute; width: 400px; height: 400px;
-            background: var(--primary);
-            filter: blur(150px); opacity: 0.15;
-            border-radius: 50%;
-            animation: move 20s infinite alternate;
-        }
-
-        @keyframes move {
-            0% { transform: translate(-10%, -10%); }
-            100% { transform: translate(50%, 50%); }
-        }
-
-        /* تصميم الشريحة المركزية */
-        .slide {
-            height: 100vh;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 20px;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 40px;
-            padding: 60px;
-            max-width: 800px;
-            width: 100%;
+        /* الخلفية السائلة المتحركة */
+        .liquid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #330000 0%, #000 50%);
+            z-index: 1;
+        }
+
+        /* الكتلة المركزية */
+        .main-unit {
             position: relative;
-            transform: perspective(1000px);
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
         }
 
-        h1 {
-            font-size: 5rem;
+        .huge-text {
+            font-size: clamp(5rem, 20vw, 15rem);
+            line-height: 0.8;
             margin: 0;
             font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, #fff, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            text-transform: uppercase;
+            letter-spacing: -5px;
         }
 
-        .price-text {
-            font-size: 6rem;
-            font-weight: 200;
-            color: var(--accent);
-            margin: 20px 0;
+        .price-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(3rem, 10vw, 8rem);
+            color: #fff;
+            text-shadow: 0 0 50px var(--color);
+            pointer-events: auto;
         }
 
-        /* نظام الأزرار التفاعلية */
-        .cta-container {
-            margin-top: 40px;
-        }
-
-        .magnetic-btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 25px 60px;
-            border-radius: 100px;
-            font-size: 1.5rem;
-            font-weight: 900;
+        /* زر الأكشن المختصر جداً */
+        .action-circle {
+            position: fixed;
+            bottom: 50px;
+            width: 150px;
+            height: 150px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3);
-            transition: 0.3s;
-            position: relative;
+            color: #fff;
+            font-weight: bold;
+            transition: 0.5s;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            pointer-events: auto;
         }
 
-        .magnetic-btn:hover {
+        .action-circle:hover {
+            background: var(--color);
+            border-color: var(--color);
             transform: scale(1.1);
-            box-shadow: 0 30px 60px rgba(229, 9, 20, 0.5);
+            box-shadow: 0 0 80px var(--color);
         }
 
-        /* شريط المعلومات السفلي */
-        .info-bar {
-            position: fixed; bottom: 30px; width: 100%;
-            display: flex; justify-content: center; gap: 50px;
-            font-size: 0.8rem; color: #555;
-            letter-spacing: 2px;
+        .tagline {
+            position: fixed;
+            top: 40px;
+            letter-spacing: 10px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            width: 100%;
         }
 
-        .counter-box {
-            position: absolute; top: 30px; right: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px; border-radius: 15px;
-            font-size: 0.9rem; border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .live-dot {
-            height: 8px; width: 8px; background: #22c55e;
-            display: inline-block; border-radius: 50%; margin-left: 8px;
-            box-shadow: 0 0 10px #22c55e;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .price-text { font-size: 4rem; }
-            .glass-panel { padding: 40px 20px; border-radius: 30px; }
-            .info-bar { gap: 20px; flex-wrap: wrap; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="bg-animate">
-        <div class="blob"></div>
+    <div class="liquid-bg" id="bg"></div>
+
+    <div class="tagline">PREMIUM CINEMA ACCESS • 365 DAYS GUARANTEE</div>
+
+    <div class="main-unit">
+        <h1 class="huge-text">VIP</h1>
+        <div class="price-overlay">200<span style="font-size: 1rem;"> SAR</span></div>
     </div>
 
-    <div class="slide">
-        <div class="glass-panel" id="panel">
-            <div class="counter-box">
-                <span id="stock-count">8</span> حسابات متوفرة الآن <div class="live-dot"></div>
-            </div>
-
-            <div style="color: var(--primary); font-weight: 600; letter-spacing: 5px;">EXCLUSIVE OFFER</div>
-            <h1>نـتـفـلـيـكـس<br>VIP</h1>
-            
-            <div class="price-text">200 <span style="font-size: 1.5rem; color: #fff;">ريال / سنة</span></div>
-            
-            <p style="color: #888; line-height: 1.6; max-width: 500px; margin: 0 auto;">
-                استلم ملفك الخاص (Private Profile) فوراً بضمان ذهبي شامل 365 يوم ودقة 4K كاملة.
-            </p>
-
-            <div class="cta-container">
-                <a href="https://wa.me/966591388202" class="magnetic-btn" id="buyBtn">تفعيل الاشتراك</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="info-bar">
-        <span>4K ULTRA HD</span>
-        <span>ضمان استبدال فوري</span>
-        <span>دعم فني 24/7</span>
-    </div>
+    <a href="https://wa.me/966591388202" class="action-circle">
+        اشترك الآن
+    </a>
 
     <script>
-        // تأثير إمالة اللوحة (3D Tilt) مع الماوس
-        const panel = document.getElementById('panel');
+        // برمجة تتبع الإضاءة السائلة
+        const bg = document.getElementById('bg');
         document.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            panel.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            bg.style.setProperty('--x', x + '%');
+            bg.style.setProperty('--y', y + '%');
         });
 
-        // تأثير الزر المغناطيسي (Magnetic Button)
-        const btn = document.getElementById('buyBtn');
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
+        // دعم الجوال (لمس)
+        document.addEventListener('touchmove', (e) => {
+            const x = (e.touches[0].clientX / window.innerWidth) * 100;
+            const y = (e.touches[0].clientY / window.innerHeight) * 100;
+            bg.style.setProperty('--x', x + '%');
+            bg.style.setProperty('--y', y + '%');
         });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = `translate(0px, 0px) scale(1)`;
-        });
-
-        // نظام نقص الكمية الوهمي (لزيادة الطلب)
-        let count = 8;
-        setInterval(() => {
-            if(count > 2) {
-                count--;
-                document.getElementById('stock-count').innerText = count;
-                document.getElementById('stock-count').style.color = "var(--primary)";
-            }
-        }, 15000);
     </script>
 </body>
 </html>
