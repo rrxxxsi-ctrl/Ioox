@@ -3,131 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP EXPERIENCE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
+    <title>NETFLIX VIP | المذاق السينمائي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color: #ff0000;
+            --primary: #E50914;
+            --gold: #FFD700;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body, html {
-            margin: 0; padding: 0; height: 100%;
-            background: #000;
+            margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Cairo', sans-serif;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #000; color: #fff;
+            overflow-x: hidden;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* الخلفية السائلة المتحركة */
-        .liquid-bg {
+        /* تأثير الخلفية السائلة - برمجة CSS متطورة */
+        .bg-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #330000 0%, #000 50%);
-            z-index: 1;
+            background: radial-gradient(circle at 50% 50%, #1a0505 0%, #000 100%);
+            z-index: -1;
         }
 
-        /* الكتلة المركزية */
-        .main-unit {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            pointer-events: none;
+        /* الحاوية الكبسولية */
+        .capsule-site {
+            width: 90%; max-width: 1100px;
+            display: flex; flex-direction: column; gap: 20px;
+            animation: fadeIn 1s ease-out;
         }
 
-        .huge-text {
-            font-size: clamp(5rem, 20vw, 15rem);
-            line-height: 0.8;
-            margin: 0;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
-            text-transform: uppercase;
-            letter-spacing: -5px;
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* الأقسام العلوية (المميزات الذكية) */
+        .top-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;
         }
 
-        .price-overlay {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(3rem, 10vw, 8rem);
-            color: #fff;
-            text-shadow: 0 0 50px var(--color);
-            pointer-events: auto;
+        .mini-card {
+            background: var(--glass); backdrop-filter: blur(15px);
+            padding: 15px; border-radius: 20px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem;
         }
 
-        /* زر الأكشن المختصر جداً */
-        .action-circle {
-            position: fixed;
-            bottom: 50px;
-            width: 150px;
-            height: 150px;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            transition: 0.5s;
-            z-index: 20;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            pointer-events: auto;
+        /* الكتلة المركزية (البطل) */
+        .hero-unit {
+            background: var(--glass); backdrop-filter: blur(30px);
+            border-radius: 40px; padding: 60px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; overflow: hidden;
         }
 
-        .action-circle:hover {
-            background: var(--color);
-            border-color: var(--color);
-            transform: scale(1.1);
-            box-shadow: 0 0 80px var(--color);
+        .hero-unit::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.1) 0%, transparent 60%);
+            animation: rotateBg 10s linear infinite;
         }
 
-        .tagline {
-            position: fixed;
-            top: 40px;
-            letter-spacing: 10px;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-            width: 100%;
+        @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .price-tag { font-size: 6rem; font-weight: 900; margin: 0; line-height: 1; }
+        .price-tag span { font-size: 1.5rem; font-weight: 300; color: #888; }
+
+        h1 { font-size: 3rem; font-weight: 900; margin: 10px 0; color: var(--primary); }
+
+        /* زر الأكشن العملاق */
+        .mega-btn {
+            background: #fff; color: #000; text-decoration: none;
+            padding: 30px; border-radius: 30px; text-align: center;
+            font-size: 1.8rem; font-weight: 900;
+            transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 20px;
         }
 
+        .mega-btn:hover { background: var(--primary); color: #fff; transform: scale(1.02); }
+
+        /* شريط الضمان السفلي */
+        .guarantee-bar {
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            padding: 20px; text-align: center; border-radius: 100px;
+            border: 1px solid rgba(255,215,0,0.2); color: var(--gold);
+            font-weight: bold; letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-unit { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .top-grid { grid-template-columns: 1fr; }
+            .price-tag { font-size: 4rem; }
+            h1 { font-size: 2rem; }
+            .mega-btn { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="liquid-bg" id="bg"></div>
+    <div class="bg-layer"></div>
 
-    <div class="tagline">PREMIUM CINEMA ACCESS • 365 DAYS GUARANTEE</div>
+    <div class="capsule-site">
+        
+        <div class="top-grid">
+            <div class="mini-card">🎬 جودة 4K ULTRA HD</div>
+            <div class="mini-card">🔒 ملف خاص برقم سري</div>
+            <div class="mini-card">📱 يدعم جميع الأجهزة</div>
+        </div>
 
-    <div class="main-unit">
-        <h1 class="huge-text">VIP</h1>
-        <div class="price-overlay">200<span style="font-size: 1rem;"> SAR</span></div>
+        <div class="hero-unit">
+            <div style="z-index: 2;">
+                <div style="letter-spacing: 5px; color: #666; font-size: 0.8rem;">ANNUAL MEMBERSHIP</div>
+                <h1>نـتـفـلـيـكـس VIP</h1>
+                <p style="color: #aaa; max-width: 400px;">استمتع بسنة كاملة من المشاهدة بلا حدود بخصوصية تامة وضمان ذهبي شامل.</p>
+            </div>
+            
+            <div style="z-index: 2; text-align: center;">
+                <div class="price-tag">200<span> ريال</span></div>
+                <div style="color: #444; font-weight: bold;">دفع لمرة واحدة فقط</div>
+            </div>
+        </div>
+
+        <div class="guarantee-bar">
+            🛡️ الـضـمـان الـذهـبـي: تـعـويـض فـوري طـوال الـسـنـة
+        </div>
+
+        <a href="https://wa.me/966591388202" class="mega-btn">
+            اشترك الآن عبر الواتساب
+            <span style="font-size: 2rem;">→</span>
+        </a>
+
+        <footer style="text-align: center; color: #333; font-size: 0.7rem; margin-top: 20px;">
+            جميع الحقوق محفوظة - متجر النخبة الرقمي 2026
+        </footer>
     </div>
 
-    <a href="https://wa.me/966591388202" class="action-circle">
-        اشترك الآن
-    </a>
-
-    <script>
-        // برمجة تتبع الإضاءة السائلة
-        const bg = document.getElementById('bg');
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            bg.style.setProperty('--x', x + '%');
-            bg.style.setProperty('--y', y + '%');
-        });
-
-        // دعم الجوال (لمس)
-        document.addEventListener('touchmove', (e) => {
-            const x = (e.touches[0].clientX / window.innerWidth) * 100;
-            const y = (e.touches[0].clientY / window.innerHeight) * 100;
-            bg.style.setProperty('--x', x + '%');
-            bg.style.setProperty('--y', y + '%');
-        });
-    </script>
 </body>
 </html>
