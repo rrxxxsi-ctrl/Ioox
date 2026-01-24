@@ -2,8 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر NIKAI | اشتراكات رقمية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>متجر NIKAI | للاشتراكات الرقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,11 +14,16 @@
             --border: rgba(255, 255, 255, 0.1);
         }
 
+        /* إصلاح مشكلة التجمد: السماح بالتمرير الطبيعي */
         body, html {
-            margin: 0; padding: 0; min-height: 100vh;
+            margin: 0; padding: 0;
+            min-height: 100vh;
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg); color: #fff;
-            overflow-x: hidden; /* تم السماح بالتمرير العمودي وتثبيت العرض */
+            background-color: var(--bg);
+            color: #fff;
+            overflow-y: auto; 
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         .ambient-glow {
@@ -28,72 +33,72 @@
         }
 
         .main-app {
-            width: 95%; max-width: 1000px;
-            margin: 20px auto;
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;
+            width: 95%;
+            max-width: 1000px;
+            margin: 20px auto 120px auto; /* مسافة إضافية في الأسفل لضمان ظهور كامل المحتوى */
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
         }
 
-        /* لوحة المعلومات */
-        .info-panel {
-            background: var(--glass); border: 1px solid var(--border);
-            border-radius: 25px; padding: 25px; 
+        .info-panel, .payment-panel {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 25px;
             backdrop-filter: blur(10px);
+            height: fit-content; /* تجعل الطول يتناسب مع المحتوى */
         }
 
         header { border-bottom: 1px solid var(--border); margin-bottom: 15px; padding-bottom: 10px; }
         .logo-small { color: var(--primary); font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; }
-        h1 { font-size: 1.6rem; margin: 5px 0; }
+        h1 { font-size: 1.5rem; margin: 5px 0; }
 
-        .tab-buttons { display: flex; gap: 8px; margin-bottom: 15px; }
+        .tab-buttons { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
         .tab-btn { 
             background: rgba(255,255,255,0.05); border: 1px solid var(--border); 
-            color: #888; border-radius: 10px; cursor: pointer; padding: 8px 12px; font-size: 0.8rem;
+            color: #888; border-radius: 10px; cursor: pointer; padding: 10px 15px; font-size: 0.85rem;
+            font-family: 'Cairo';
         }
         .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
         .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
         
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; color: #ccc; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ccc; }
         li b { color: #fff; }
 
-        /* لوحة الدفع */
-        .payment-panel {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            border-radius: 25px; padding: 25px; display: flex; flex-direction: column;
-        }
-
-        .selectors { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 15px 0; }
+        .selectors { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
         .chip { 
             background: #151515; padding: 12px 5px; border-radius: 12px; text-align: center; 
-            cursor: pointer; font-size: 0.8rem; border: 1px solid transparent; 
+            cursor: pointer; font-size: 0.85rem; border: 1px solid transparent; transition: 0.3s;
         }
         .chip.active { border-color: var(--primary); background: rgba(229,9,20,0.15); color: #fff; }
 
-        .price-box { text-align: center; margin: 20px 0; }
+        .price-box { text-align: center; margin: 25px 0; }
         .price-num { font-size: 4.5rem; font-weight: 900; line-height: 1; color: #fff; }
-        .price-num span { font-size: 1.2rem; color: #555; }
+        .price-num span { font-size: 1.2rem; color: #666; }
 
         .bank-info { 
             background: rgba(212,175,55,0.05); border: 1px dashed var(--gold); 
-            border-radius: 15px; padding: 15px; margin-bottom: 20px;
+            border-radius: 15px; padding: 20px; margin-bottom: 25px;
         }
-        .bank-info p { margin: 5px 0; font-size: 0.85rem; }
+        .bank-info p { margin: 8px 0; font-size: 0.9rem; }
 
         .cta-button {
             background: #fff; color: #000; text-align: center; padding: 20px; border-radius: 18px;
-            text-decoration: none; font-weight: 900; font-size: 1.2rem; transition: 0.3s;
-            display: block;
+            text-decoration: none; font-weight: 900; font-size: 1.3rem; transition: 0.3s;
+            display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .cta-button:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
+        .cta-button:hover { background: var(--primary); color: #fff; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* تعديلات الجوال */
+        /* تعديلات الجوال الصغير */
         @media (max-width: 850px) {
-            .main-app { grid-template-columns: 1fr; margin-bottom: 100px; }
-            .price-num { font-size: 3.5rem; }
+            .main-app { grid-template-columns: 1fr; margin-bottom: 50px; }
+            .price-num { font-size: 4rem; }
             h1 { font-size: 1.4rem; }
         }
     </style>
@@ -117,9 +122,9 @@
 
         <div id="f" class="tab-content active">
             <ul>
-                <li>✅ <b>جودة خرافية:</b> 4K ULTRA HD لتفاصيل مذهلة.</li>
-                <li>✅ <b>المدة:</b> سنة كاملة من الترفيه المتواصل.</li>
-                <li>✅ <b>اللغة:</b> الحساب والترجمة باللغة العربية.</li>
+                <li>✅ <b>جودة خرافية:</b> 4K ULTRA HD لتجربة سينمائية.</li>
+                <li>✅ <b>المدة:</b> سنة كاملة من المتعة والترفيه.</li>
+                <li>✅ <b>اللغة:</b> لغة الحساب والترجمة عربية.</li>
                 <li>✅ <b>الضمان:</b> ضمان ذهبي شامل طوال المدة.</li>
                 <li>✅ <b>الخصوصية:</b> ملف شخصي خاص بك برمز سري.</li>
             </ul>
@@ -128,8 +133,8 @@
         <div id="d" class="tab-content">
             <ul>
                 <li>🎟️ اشتراك رسمي وقانوني 100%.</li>
-                <li>🌍 يعمل عالمياً في كافة الدول بدون مشاكل.</li>
-                <li>⏳ تسليم سريع وفوري بعد التأكد من الدفع.</li>
+                <li>🌍 يشتغل في كل مكان بالعالم بدون مشاكل.</li>
+                <li>⏳ ضمان شامل على طول مدة الاشتراك.</li>
             </ul>
         </div>
 
@@ -145,7 +150,7 @@
     </div>
 
     <div class="payment-panel">
-        <div style="font-weight: bold; font-size: 0.9rem; text-align: center;">اختر الباقة المناسبة:</div>
+        <div style="font-weight: bold; font-size: 1rem; text-align: center;">اختر مدة الاشتراك:</div>
         <div class="selectors">
             <div class="chip" onclick="update(75, '3 أشهر', this)">3 أشهر</div>
             <div class="chip" onclick="update(120, '6 أشهر', this)">6 أشهر</div>
@@ -154,13 +159,13 @@
 
         <div class="price-box">
             <div class="price-num" id="p">200<span> ريال</span></div>
-            <div style="color:#4ade80; font-size: 0.8rem; font-weight: bold;">توفير 45% مع الباقة السنوية 🔥</div>
+            <div style="color:#4ade80; font-size: 0.9rem; font-weight: bold;">توفير 45% مع الباقة السنوية 🔥</div>
         </div>
 
         <div class="bank-info">
             <div style="color:var(--gold); font-weight: 900; margin-bottom: 5px;">تحويل بنك البلاد 🏦</div>
             <p>المستفيد: <b>متجر نيكا الرقمي</b></p>
-            <p>الآيبان: <span style="font-size: 0.75rem; letter-spacing: 1px;">SA00000000000000000000</span></p>
+            <p>الآيبان: <span style="font-size: 0.8rem; letter-spacing: 1px;">SA00000000000000000000</span></p>
         </div>
 
         <a href="#" class="cta-button" onclick="go()">تأكيد الطلب عبر واتساب ⚡</a>
@@ -168,22 +173,21 @@
 </div>
 
 <script>
-    let pName = "سنة كاملة", pPrice = 200;
-
     function openTab(evt, tName) {
-        let i, tc, tb;
-        tc = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tc.length; i++) tc[i].style.display = "none";
-        tb = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tb.length; i++) tb[i].className = tb[i].className.replace(" active", "");
+        let tc = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tc.length; i++) tc[i].style.display = "none";
+        let tb = document.getElementsByClassName("tab-btn");
+        for (let i = 0; i < tb.length; i++) tb[i].classList.remove("active");
         document.getElementById(tName).style.display = "block";
-        evt.currentTarget.className += " active";
+        evt.currentTarget.classList.add("active");
     }
 
+    let pPrice = 200, pName = "سنة كاملة";
     function update(pr, pl, el) {
         pPrice = pr; pName = pl;
         document.getElementById('p').innerHTML = `${pr}<span> ريال</span>`;
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        let chips = document.querySelectorAll('.chip');
+        chips.forEach(c => c.classList.remove('active'));
         el.classList.add('active');
     }
 
