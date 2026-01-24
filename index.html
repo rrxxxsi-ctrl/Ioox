@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>متجر NIKAI | للاشتراكات الرقمية</title>
+    <title>متجر NIKAI | اشتراكات رقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -58,7 +58,7 @@
         .tab-btn.active { color: #fff; border-bottom: 2px solid var(--primary); }
 
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease forwards; }
 
         ul { padding: 0; margin: 0; }
         ul li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ccc; list-style: none; }
@@ -76,12 +76,12 @@
         .bank-info { background: rgba(212,175,55,0.04); border: 1px dashed var(--gold); border-radius: 18px; padding: 18px; margin-bottom: 20px; text-align: center; }
 
         .cta-button {
-            background: var(--primary); color: #fff; text-align: center; padding: 22px; border-radius: 20px;
+            background: #fff; color: #000; text-align: center; padding: 22px; border-radius: 20px;
             text-decoration: none; font-weight: 900; font-size: 1.4rem; display: block; border: none; cursor: pointer; width: 100%; transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 850px) {
             .container { grid-template-columns: 1fr; }
@@ -123,7 +123,7 @@
         <div id="saveTag" style="text-align:center; color:#4ade80; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px;">توفير يصل إلى 45% مع الاشتراك السنوي</div>
         
         <div class="email-box" id="emailBox">
-            <input type="email" id="userEmail" placeholder="أدخل إيميلك الشخصي المراد تفعيل كانفا عليه">
+            <input type="email" id="userEmail" placeholder="أدخل إيميلك (لطلب كانفا فقط)">
         </div>
 
         <div class="bank-info">
@@ -145,7 +145,7 @@
         },
         disney: {
             t: "ديزني بلس الشرق الأوسط", c: "#0063e5", g: "radial-gradient(circle, #001a3d 0%, #000 100%)",
-            f: ["🌠 عوالم ديزني، مارفل وستار وورز.", "🇸🇦 محتوى باللغة العربية بالكامل.", "🚨 يتطلب كود تحقق للدخول يتم إرساله واتساب."],
+            f: ["🌠 عوالم ديزني و مارفل.", "🇸🇦 محتوى باللغة العربية بالكامل.", "📲 جودة عالية مع تقنية الصوت المحيطي."],
             r: ["📍 جهاز واحد مخصص لك فقط.", "⚠️ يمنع تفعيل الرقابة الأبوية."],
             p: [{v:20, n:"شهر"}, {v:75, n:"3 أشهر"}, {v:120, n:"6 أشهر"}, {v:200, n:"سنة"}]
         },
@@ -176,59 +176,17 @@
         document.getElementById('pTitle').innerText = d.t;
         document.getElementById('glow').style.background = d.g;
         document.getElementById('cta').style.background = d.c;
+        document.getElementById('cta').style.color = "#fff";
         document.getElementById('emailBox').style.display = p === 'canva' ? 'block' : 'none';
         
-        const navIds = ['navNet','navDisney','navCanva','navFasel','navChat'];
-        navIds.forEach(id => {
+        ['navNet','navDisney','navCanva','navFasel','navChat'].forEach(id => {
             if(document.getElementById(id)) document.getElementById(id).className = 'nav-item';
         });
         const activeNavId = 'nav' + (p==='chatgpt'?'Chat':p.charAt(0).toUpperCase() + p.slice(1));
         document.getElementById(activeNavId).className = 'nav-item active-' + p;
 
-        document.getElementById('fList').innerHTML = d.f.map(i => `<li>${i}</li>`).join('');
-        document.getElementById('rList').innerHTML = d.r.map(i => `<li>${i}</li>`).join('');
-        
-        const sel = document.getElementById('pSelectors');
-        sel.innerHTML = d.p.map((x, i) => `<div class="chip ${i===d.p.length-1?'active':''}" onclick="up(${x.v},'${x.n}',this)">${x.n}</div>`).join('');
-        up(d.p[d.p.length-1].v, d.p[d.p.length-1].n, null);
-        
-        // إعادة التبويب للمزايا دائما عند التبديل
-        openTab('f');
-    }
-
-    function up(v, n, el) {
-        sPrice = v; sPlan = n;
-        document.getElementById('pLabel').innerHTML = `${v}<span> ريال</span>`;
-        if(el) {
-            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-        }
-        document.getElementById('saveTag').style.display = (n.includes('سنة') || n.includes('حياة')) ? 'block' : 'none';
-    }
-
-    function openTab(t) {
-        document.getElementById('f').classList.remove('active');
-        document.getElementById('r').classList.remove('active');
-        document.getElementById(t).classList.add('active');
-        document.getElementById('btnM').classList.toggle('active', t==='f');
-        document.getElementById('btnS').classList.toggle('active', t==='r');
-    }
-
-    function copyIban() {
-        navigator.clipboard.writeText("SA0315000900133520020007");
-        alert("تم نسخ الآيبان بنجاح ✅");
-    }
-
-    function send() {
-        const email = document.getElementById('userEmail').value;
-        if(curP === 'canva' && !email) { alert("يرجى إدخال الإيميل"); return; }
-        let m = `مرحباً متجر Nikai 👋%0Aطلب اشتراك ${data[curP].t}:%0Aالباقة: ${sPlan}%0Aالسعر: ${sPrice} ريال%0A`;
-        if(curP === 'canva') m += `📧 الإيميل: ${email}%0A`;
-        m += `🏦 بنك البلاد - سليمان فلاته%0A--%0Aأوافق على الشروط ✅`;
-        window.location.href = `https://wa.me/966591388202?text=${m}`;
-    }
-    
-    window.onload = () => switchProduct('netflix');
-</script>
-</body>
-</html>
+        // تحديث النصوص فوراً لضمان الظهور
+        const fList = document.getElementById('fList');
+        const rList = document.getElementById('rList');
+        fList.innerHTML = d.f.map(i => `<li>${i}</li>`).join('');
+        rList.innerHTML = d.r.map(i =>
