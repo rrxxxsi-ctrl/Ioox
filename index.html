@@ -3,198 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NETFLIX ELITE | التجربة المطلقة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;600;900&display=swap" rel="stylesheet">
+    <title>متجر Nikai | نتفليكس بريميوم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #E50914;
             --gold: #D4AF37;
-            --bg: #050505;
-            --glass: rgba(255, 255, 255, 0.01);
-            --border: rgba(255, 255, 255, 0.07);
+            --bg: #080808;
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body, html {
-            margin: 0; padding: 0; min-height: 100vh;
+            margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--bg);
             color: #fff;
-            display: flex; align-items: center; justify-content: center;
-            overflow-x: hidden;
-            perspective: 1200px;
+            scroll-behavior: smooth;
         }
 
-        /* محرك الإضاءة الخلفية التفاعلي */
-        .cursor-glow {
-            position: fixed; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(229, 9, 20, 0.12) 0%, transparent 70%);
-            border-radius: 50%; pointer-events: none; z-index: -1;
-            transform: translate(-50%, -50%); transition: 0.15s ease-out;
-            filter: blur(50px);
+        /* تصميم الواجهة السينمائية */
+        .hero-header {
+            height: 60vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle at center, rgba(229, 9, 20, 0.15) 0%, transparent 70%);
+            text-align: center;
         }
 
-        .main-wrapper {
-            width: 90%; max-width: 1100px;
-            display: flex; flex-direction: column; gap: 30px;
-            opacity: 0; transform: scale(0.9);
-            transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        .store-name { font-size: 1.2rem; letter-spacing: 5px; color: var(--primary); font-weight: 800; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin: 10px 0; font-weight: 900; }
+        
+        /* القسم السعري */
+        .price-capsule {
+            background: #fff; color: #000; padding: 10px 30px; border-radius: 50px;
+            font-size: 2rem; font-weight: 900; margin-top: 20px;
         }
 
-        .main-wrapper.active { opacity: 1; transform: scale(1); }
+        /* شبكة المعلومات (المزايا والشروط) */
+        .container { max-width: 1000px; margin: -50px auto 50px; padding: 20px; }
 
-        /* الكرت الرئيسي: تأثير السينما */
-        .hero-card {
-            background: var(--glass);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
-            border: 1px solid var(--border);
-            border-radius: 45px;
-            padding: 60px;
-            display: grid; grid-template-columns: 1.2fr 1fr;
-            gap: 40px; align-items: center;
-            position: relative; overflow: hidden;
-            transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        .info-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+
+        .bento-card {
+            background: var(--glass); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: 30px; padding: 35px;
         }
 
-        .hero-card:hover {
-            border-color: rgba(229, 9, 20, 0.3);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
-        }
+        h2 { font-size: 1.5rem; color: var(--primary); margin-top: 0; display: flex; align-items: center; gap: 10px; }
 
-        /* أنيميشن النص */
-        .reveal-text {
-            overflow: hidden; display: inline-block; vertical-align: bottom;
-        }
-        .reveal-text span {
-            display: inline-block; transform: translateY(100%);
-            transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .active .reveal-text span { transform: translateY(0); }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; color: #ccc; }
+        li b { color: #fff; }
 
-        h1 { font-size: 4.5rem; font-weight: 900; margin: 0; line-height: 0.85; }
-        .price-display { font-size: 7rem; font-weight: 200; color: #fff; text-align: left; }
-
-        /* الأيقونات الذكية */
-        .features-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        /* زر الواتساب الثابت */
+        .cta-fixed {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 500px; background: var(--primary);
+            color: #fff; text-align: center; padding: 20px; border-radius: 20px;
+            text-decoration: none; font-weight: 900; font-size: 1.3rem;
+            box-shadow: 0 20px 40px rgba(229, 9, 20, 0.4); z-index: 100;
+            transition: 0.3s;
         }
+        .cta-fixed:hover { transform: translateX(-50%) translateY(-5px); box-shadow: 0 30px 60px rgba(229, 9, 20, 0.6); }
 
-        .f-box {
-            background: rgba(255,255,255,0.02);
-            padding: 25px; border-radius: 30px; text-align: center;
-            border: 1px solid var(--border);
-            transition: 0.5s ease;
-        }
-        .f-box:hover {
-            background: rgba(229, 9, 20, 0.05);
-            transform: translateY(-10px);
-            border-color: var(--primary);
-        }
-
-        /* زر الأكشن "النيوني" */
-        .btn-ultimate {
-            background: #fff; color: #000;
-            text-decoration: none; padding: 25px 60px;
-            border-radius: 100px; text-align: center;
-            font-size: 1.8rem; font-weight: 900;
-            display: flex; align-items: center; justify-content: center; gap: 25px;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .btn-ultimate:hover {
-            background: var(--primary); color: #fff;
-            transform: scale(1.03) translateY(-8px);
-            box-shadow: 0 30px 60px rgba(229, 9, 20, 0.5);
-        }
-
-        .guarantee-label {
-            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent);
-            padding: 20px; border-radius: 100px; text-align: center;
-            border: 1px solid rgba(212,175,55,0.2); color: var(--gold);
-            font-weight: 900; letter-spacing: 5px; font-size: 0.8rem;
-        }
-
-        @media (max-width: 800px) {
-            .hero-card { grid-template-columns: 1fr; padding: 40px 20px; text-align: center; }
-            .price-display { text-align: center; font-size: 5rem; }
-            h1 { font-size: 3rem; }
-            .features-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="cursor-glow" id="glow"></div>
+    <section class="hero-header">
+        <div class="store-name">متجر NIKAI</div>
+        <h1>نتفليكس بريميوم</h1>
+        <div style="color: #666; font-weight: 600;">سنة كاملة • جودة 4K • ضمان شامل</div>
+        <div class="price-capsule">200 ريال</div>
+    </section>
 
-    <div class="main-wrapper" id="wrapper">
-        
-        <div class="features-grid">
-            <div class="f-box">🎬 UHD 4K QUALITY</div>
-            <div class="f-box">🔒 PRIVATE PROFILE</div>
-            <div class="f-box">🛡️ 365 DAYS GUARANTEE</div>
-        </div>
-
-        <div class="hero-card" id="card">
-            <div class="content-side">
-                <div style="color: var(--primary); font-weight: 600; letter-spacing: 8px; margin-bottom: 20px;">ELITE MEMBERSHIP</div>
-                <h1 class="reveal-text"><span>نـتـفـلـيـكـس</span></h1>
-                <h1 class="reveal-text" style="font-weight: 200;"><span>سنة كاملة</span></h1>
-                <p style="color: #777; margin-top: 30px; font-size: 1.1rem; line-height: 1.6;">بوابتك الحصرية لعالم من المحتوى اللامتناهي بخصوصية مطلقة وضمان استبدال فوري.</p>
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="bento-card">
+                <h2>⭐ مزايا الاشتراك</h2>
+                <ul>
+                    <li>✅ <b>جودة خرافية:</b> دقة 4K ULTRA HD تخليك تعيش التجربة بكل تفاصيلها.</li>
+                    <li>✅ <b>مدة الاشتراك:</b> سنة كاملة من المتعة والترفيه المتواصل.</li>
+                    <li>✅ <b>دعم اللغة:</b> لغة الحساب والترجمة عربية وبإمكانك تغيّرها بسهولة.</li>
+                    <li>✅ <b>ضمان ذهبي:</b> ضمان على الاشتراك طول المدة، علشان تطمّن وتستمتع.</li>
+                    <li>✅ <b>خصوصية تامة:</b> شاشة خاصة بك بقفل سري، محد يقدر يدخل عليها غيرك.</li>
+                </ul>
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
+                <h2>🎟️ تفاصيل إضافية</h2>
+                <ul>
+                    <li>🌍 يشتغل في كل مكان بالعالم بدون أي مشاكل.</li>
+                    <li>🔒 اشتراك رسمي وقانوني 100%.</li>
+                </ul>
             </div>
 
-            <div class="price-side">
-                <div class="price-display" id="price">0</div>
-                <div style="text-align: left; font-size: 1rem; color: #444; font-weight: 900; margin-top: -10px;">SAR / ANNUAL PLAN</div>
+            <div class="bento-card" style="background: rgba(229, 9, 20, 0.03);">
+                <h2>📌 شروط الاستخدام</h2>
+                <ul style="font-size: 0.85rem;">
+                    <li>• تقدر تغيّر اسم الشاشة والصورة حسب ذوقك.</li>
+                    <li>• الاشتراك لجهاز واحد فقط.</li>
+                    <li>• لك شاشة وحدة (ملف واحد)، وما تقدر تدخل شاشات غيرك.</li>
+                    <li>• حمل الأفلام والمسلسلات واستمتع فيها وقت ما تبغى.</li>
+                    <li>• شاشتك آمنة وتقدر تقفلها برقم سري.</li>
+                    <li>⚠️ <b>ممنوع</b> تغيّر كلمة المرور أو الإيميل أو تضيف رقم جوال.</li>
+                    <li>⚠️ <b>ممنوع</b> التلاعب أو الدخول في شاشات المستخدمين الآخرين.</li>
+                </ul>
             </div>
+
         </div>
-
-        <div class="guarantee-label">
-            الـضـمـان الـذهـبـي : تـعـويـض فـوري طـوال الـسـنـة 💎
-        </div>
-
-        <a href="https://wa.me/966591388202" class="btn-ultimate">
-            تفعيل الاشتراك الآن
-            <span style="font-size: 2.5rem;">→</span>
-        </a>
-
     </div>
 
-    <script>
-        // محرك إضاءة الماوس
-        const glow = document.getElementById('glow');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <a href="https://wa.me/966591388202?text=أرغب%20في%20اشتراك%20نتفليكس%20سنة%20من%20متجر%20Nikai" class="cta-fixed">
+        اطلب الآن واستلم حسابك ⚡
+    </a>
 
-        // تشغيل الأنيميشن عند التحميل
-        window.onload = () => {
-            document.getElementById('wrapper').classList.add('active');
-            animateValue(document.getElementById('price'), 0, 200, 2000);
-        };
+    <footer style="text-align: center; padding: 100px 20px 150px; color: #333; font-size: 0.8rem;">
+        جميع الحقوق محفوظة لمتجر Nikai © 2026
+    </footer>
 
-        // عداد السعر السلس
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // تأثير الميلان ثلاثي الأبعاد للكرت
-        const card = document.getElementById('card');
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 45;
-            const y = (window.innerHeight / 2 - e.pageY) / 45;
-            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-        });
-    </script>
 </body>
 </html>
