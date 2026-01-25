@@ -13,198 +13,189 @@
             --accent-color: #ffffff;
             --glow-color: rgba(255, 255, 255, 0.05);
             --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --transition: all 0.4s ease;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body.light-mode {
-            --bg-base: #f8f9fa;
+            --bg-base: #f0f2f5;
             --text-main: #1a1a1a;
-            --glass: rgba(0, 0, 0, 0.03);
-            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.05);
         }
 
-        /* ثيمات المنتجات */
-        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.2); }
-        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.2); }
-        body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.2); }
-        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.2); }
-        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
-        body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); }
-        body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
-        body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.2); }
-        body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.2); }
-        body.theme-chatgpt { --accent-color: #ffffff; --glow-color: rgba(255, 255, 255, 0.1); }
-        body.theme-fasel { --accent-color: #ffc107; --glow-color: rgba(255, 193, 7, 0.2); }
-        body.theme-crunchy { --accent-color: #ff6400; --glow-color: rgba(255, 100, 0, 0.2); }
+        /* أنظمة الألوان الديناميكية */
+        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); } 
+        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.3); } 
+        body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.3); }
+        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.3); }
+        body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.3); }
+        body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.3); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* جعل الصفحة تتمدد لضمان الحقوق في الأسفل */
         body { 
             font-family: 'Cairo', sans-serif; 
             background-color: var(--bg-base); 
             color: var(--text-main); 
-            transition: var(--transition);
+            transition: var(--transition-smooth);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        .main-wrapper { flex: 1; } /* حاوية تدفع الفوتر للأسفل */
-
+        /* خلفية متحركة نابضة بالحياة */
         .ambient-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, var(--glow-color) 0%, transparent 70%);
-            z-index: -1; transition: var(--transition);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 0%), var(--glow-color) 0%, transparent 60%);
+            z-index: -1; pointer-events: none; transition: background 0.8s ease;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; text-align: center; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; }
 
-        header { padding: 30px 0 20px; }
-        .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        /* Header Styles */
+        header { padding: 40px 0; animation: fadeInDown 0.8s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; }
         .control-btn { 
             background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-main);
-            padding: 8px 18px; border-radius: 50px; cursor: pointer; font-size: 12px; font-weight: 700;
+            padding: 10px 20px; border-radius: 50px; cursor: pointer; font-size: 13px; font-weight: 700;
+            backdrop-filter: blur(10px); transition: 0.3s;
         }
+        .control-btn:hover { background: var(--accent-color); color: #000; transform: translateY(-2px); }
 
-        .logo { font-size: 42px; font-weight: 900; letter-spacing: 5px; color: var(--accent-color); transition: var(--transition); }
+        .logo { font-size: 48px; font-weight: 900; letter-spacing: 8px; color: var(--accent-color); transition: var(--transition-smooth); text-shadow: 0 0 20px var(--glow-color); }
 
-        /* الشبكة المنتظمة */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin: 30px 0 50px; }
+        /* Grid & Cards Animation */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 15px; margin: 20px 0 40px; }
         .card {
-            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px;
-            padding: 25px 5px; cursor: pointer; transition: 0.3s;
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px;
+            padding: 25px 10px; cursor: pointer; transition: var(--transition-smooth);
+            backdrop-filter: blur(5px); position: relative;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
-        .card.active { border-color: var(--accent-color); background: var(--glass); box-shadow: 0 10px 25px var(--glow-color); }
-        .card i { font-size: 26px; margin-bottom: 10px; color: var(--accent-color); }
-        .card h3 { font-size: 11px; font-weight: 700; }
+        .card:hover { transform: translateY(-10px) scale(1.05); border-color: var(--accent-color); box-shadow: 0 15px 35px var(--glow-color); }
+        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.08); transform: scale(1.05); }
+        .card i { font-size: 32px; margin-bottom: 12px; color: var(--accent-color); transition: 0.5s; }
 
+        /* Checkout Panel */
         #checkout {
-            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px;
-            padding: 30px; margin-bottom: 60px; display: none; animation: fadeIn 0.5s ease;
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 40px;
+            padding: 40px 20px; margin-bottom: 60px; display: none; 
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(15px);
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 20px 0; }
         .plan-btn {
-            background: rgba(128,128,128,0.05); border: 1px solid var(--glass-border); padding: 15px;
-            border-radius: 15px; cursor: pointer; color: var(--text-main);
+            background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 18px;
+            border-radius: 20px; cursor: pointer; transition: 0.3s; color: var(--text-main);
         }
-        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 800; border-color: var(--accent-color); }
+        .plan-btn:hover { border-color: var(--accent-color); transform: scale(1.02); }
+        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 800; border-color: var(--accent-color); box-shadow: 0 10px 25px var(--glow-color); }
 
-        .info-panel { background: var(--glass); border: 1px solid var(--glass-border); padding: 25px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
-        html[dir="ltr"] .info-panel { text-align: left; }
-        .info-panel ul { padding-right: 20px; color: #ccc; line-height: 1.8; }
-
-        /* حل مشكلة الحساب البنكي النهائية */
+        /* الحساب البنكي المطور */
         .bank-section {
-            background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 25px;
-            padding: 30px; max-width: 480px; margin: 30px auto 0; text-align: center;
+            background: #000; border: 1px solid var(--glass-border); border-radius: 30px;
+            padding: 35px; max-width: 500px; margin: 40px auto 0; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .bank-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; }
         
         .iban-container {
-            width: 100%; background: rgba(255,255,255,0.02); border: 2px dashed #ff0000; /* الإطار الأحمر المتقطع */
-            padding: 15px; border-radius: 12px; margin: 20px 0; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 10px; overflow: hidden; 
+            width: 100%; background: rgba(255,255,255,0.03); border: 2px dashed #ff0000; 
+            padding: 18px; border-radius: 15px; margin: 25px 0; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            transition: 0.3s; overflow: hidden;
         }
-        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 3.5vw, 16px); color: #ff0000; font-weight: 900; white-space: nowrap; }
+        .iban-container:hover { background: rgba(255,0,0,0.05); transform: scale(1.02); }
+        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 4vw, 17px); color: #ff0000; font-weight: 900; white-space: nowrap; }
 
-        .btn-order { width: 100%; background: #ff0000; color: #fff; border: none; padding: 20px; border-radius: 15px; font-weight: 800; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .btn-order { 
+            width: 100%; background: #ff0000; color: #fff; border: none; padding: 22px; 
+            border-radius: 18px; font-weight: 800; font-size: 19px; cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.3); transition: 0.4s;
+            animation: pulseOrder 2s infinite;
+        }
+        @keyframes pulseOrder { 0% { box-shadow: 0 0 0 0 rgba(255,0,0,0.4); } 70% { box-shadow: 0 0 0 15px rgba(255,0,0,0); } 100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); } }
 
-        /* الحقوق في أقصى الأسفل */
         footer { 
-            padding: 30px 0; 
-            text-align: center; 
-            font-size: 12px; 
-            opacity: 0.5; 
-            margin-top: auto; /* يدفع الحقوق لآخر الصفحة */
-            border-top: 1px solid var(--glass-border);
+            padding: 40px 0; text-align: center; font-size: 13px; opacity: 0.6; 
+            border-top: 1px solid var(--glass-border); margin-top: auto; 
         }
 
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 12px 30px; border-radius: 50px; display: none; z-index: 2000; font-weight: 800; }
-        
-        @media (max-width: 500px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 15px 35px; border-radius: 50px; display: none; z-index: 2000; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
     </style>
 </head>
-<body class="theme-default">
+<body>
 
     <div class="ambient-bg"></div>
     <div class="toast" id="toast">تم النسخ ✅</div>
 
-    <div class="main-wrapper">
-        <div class="container">
-            <header>
-                <div class="controls">
-                    <button class="control-btn" id="langToggle" onclick="toggleLang()">English</button>
-                    <button class="control-btn" onclick="toggleTheme()">الوضع النهاري</button>
+    <div class="container" style="flex: 1;">
+        <header>
+            <div class="controls">
+                <button class="control-btn" id="langToggle" onclick="toggleLang()">English</button>
+                <button class="control-btn" onclick="toggleTheme()">الوضع النهاري</button>
+            </div>
+            <div class="logo">NIKAI</div>
+            <p id="sub-title" style="opacity: 0.7; margin-top: 10px;">متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان</p>
+        </header>
+
+        <div class="grid" id="mainGrid"></div>
+
+        <section id="checkout">
+            <h2 id="s-title" style="font-size: 32px; font-weight: 900; margin-bottom: 15px;"></h2>
+            <div class="plans-grid" id="s-plans"></div>
+            
+            <div id="email-area" style="margin: 25px 0; text-align: right; display: none;">
+                <label id="email-label" style="font-size: 14px; opacity: 0.8; display: block; margin-bottom: 10px;">البريد الإلكتروني:</label>
+                <input type="email" id="u-email" style="width:100%; padding:18px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo';" placeholder="example@mail.com">
+            </div>
+
+            <div class="bank-section">
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:15px;">
+                    <span id="b-bank">البنك:</span><strong>بنك البلاد</strong>
                 </div>
-                <div class="logo">NIKAI</div>
-                <p id="sub-title" style="opacity: 0.6; margin-top: 5px;">متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان</p>
-            </header>
-
-            <div class="grid" id="mainGrid"></div>
-
-            <section id="checkout">
-                <h2 id="s-title" style="font-size: 28px; font-weight: 900; margin-bottom: 10px;"></h2>
-                <div id="badge-area" style="margin-bottom: 20px;"></div>
-                
-                <div class="plans-grid" id="s-plans"></div>
-
-                <div id="dynamic-inputs" style="margin: 20px 0; text-align: right; display: none;">
-                    <label id="email-label" style="font-size: 13px; opacity: 0.7;">البريد الإلكتروني:</label>
-                    <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); margin-bottom:15px;" placeholder="example@mail.com">
-                    <div id="pass-field" style="display:none;">
-                        <label id="pass-label" style="font-size: 13px; opacity: 0.7;">كلمة المرور:</label>
-                        <input type="text" id="u-pass" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main);" placeholder="كلمة مرور الحساب">
-                    </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:15px;">
+                    <span id="b-user">المستفيد:</span><strong>سليمان فلاته</strong>
                 </div>
-
-                <div class="info-panel">
-                    <strong id="info-head">تفاصيل الاشتراك:</strong>
-                    <ul id="s-info"></ul>
+                <div class="iban-container" onclick="copyIBAN()">
+                    <span class="iban-text">SA0315000900133520020007</span>
+                    <i class="fas fa-copy" style="font-size: 14px; opacity: 0.6;"></i>
                 </div>
-
-                <div class="bank-section">
-                    <div class="bank-row"><span id="b-bank">البنك:</span><strong>بنك البلاد</strong></div>
-                    <div class="bank-row"><span id="b-user">المستفيد:</span><strong>سليمان فلاته</strong></div>
-                    <div class="iban-container" onclick="copyIBAN()">
-                        <span class="iban-text">SA0315000900133520020007</span>
-                        <i class="fas fa-copy" style="font-size: 12px; opacity: 0.5;"></i>
-                    </div>
-                    <button class="btn-order" onclick="placeOrder()">
-                        <i class="fab fa-whatsapp"></i> <span id="b-confirm">تأكيد الطلب عبر واتساب</span>
-                    </button>
-                </div>
-            </section>
-        </div>
+                <button class="btn-order" onclick="placeOrder()">
+                    <i class="fab fa-whatsapp"></i> <span id="b-confirm">تأكيد الطلب عبر واتساب</span>
+                </button>
+            </div>
+        </section>
     </div>
 
-    <footer id="footer-text">جميع الحقوق محفوظه للمتجر NIKAI</footer>
+    <footer>جميع الحقوق محفوظه للمتجر NIKAI</footer>
 
     <script>
-        let currentLang = 'ar';
+        // إعداد الإضاءة التفاعلية مع الماوس
+        document.addEventListener('mousemove', e => {
+            document.body.style.setProperty('--mouse-x', (e.clientX / window.innerWidth) * 100 + '%');
+            document.body.style.setProperty('--mouse-y', (e.clientY / window.innerHeight) * 100 + '%');
+        });
+
         const services = {
-            autodesk: { icon: 'fas fa-drafting-compass', name: {ar: "أوتوديسك", en: "Autodesk"}, plans: [{l:{ar:"6 أشهر", en:"6 Months"}, p:"150 ريال"}, {l:{ar:"12 شهر", en:"12 Months"}, p:"250 ريال"}], info: {ar:["أصلية 100%","تحديثات رسمية"], en:["100% Genuine","Official Updates"]}, email: true },
-            windows: { icon: 'fab fa-windows', name: {ar: "ويندوز", en: "Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}, {l:{ar:"11 Pro", en:"11 Pro"}, p:"28.99 ريال"}], info: {ar:["تنشيط مدى الحياة","أصلي 100%"], en:["Lifetime Activation","100% Genuine"]}, email: false },
-            osn: { icon: 'fas fa-plus-circle', name: {ar: "OSN+", en: "OSN+"}, plans: [{l:{ar:"12 شهر", en:"12 Months"}, p:"110 ريال"}], info: {ar:["جودة 4K","ضمان ذهبي"], en:["4K Quality","Golden Warranty"]}, email: false },
-            youtube: { icon: 'fab fa-youtube', name: {ar: "يوتيوب", en: "YouTube"}, plans: [{l:{ar:"دعوة عائلية", en:"Invite"}, p:"200 ريال", t:"invite"}, {l:{ar:"فردي خاص", en:"Individual"}, p:"350 ريال", t:"indiv"}], info: {ar:["بدون إعلانات","خلفية"], en:["No Ads","Background"]}, email: true },
-            netflix: { icon: 'fas fa-film', name: {ar: "نتفليكس", en: "Netflix"}, plans: [{l:{ar:"شهر", en:"Month"}, p:"20 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"200 ريال"}], info: {ar:["ملف خاص","4K UHD"], en:["Private Profile","4K UHD"]}, email: false },
-            shahid: { icon: 'fas fa-play-circle', name: {ar: "شاهد VIP", en: "Shahid VIP"}, plans: [{l:{ar:"شهر", en:"Month"}, p:"20 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"200 ريال"}], info: {ar:["بث مباريات","جودة 4K"], en:["Sports Stream","4K Quality"]}, email: false },
-            chatgpt: { icon: 'fas fa-robot', name: {ar: "ChatGPT", en: "ChatGPT"}, plans: [{l:{ar:"شهر", en:"Month"}, p:"10 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"100 ريال"}], info: {ar:["نموذج GPT-5","سرعة فائقة"], en:["GPT-5 Model","High Speed"]}, email: false },
-            adobe: { icon: 'fas fa-palette', name: {ar: "أدوبي", en: "Adobe"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"999 ريال"}], info: {ar:["أصلية 100%","كل البرامج"], en:["100% Genuine","All Apps"]}, email: true },
-            office: { icon: 'fas fa-file-word', name: {ar: "أوفيس", en: "Office"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"45 ريال"}], info: {ar:["تفعيل رسمي","5 أجهزة"], en:["Official Activation","5 Devices"]}, email: false },
-            crunchy: { icon: 'fas fa-tv', name: {ar: "كرانشي", en: "Crunchyroll"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"50 ريال"}], info: {ar:["أنمي 4K","بدون إعلانات"], en:["Anime 4K","No Ads"]}, email: false },
-            fasel: { icon: 'fas fa-bolt', name: {ar: "فاصل", en: "Fasel"}, plans: [{l:{ar:"شهر", en:"Month"}, p:"13 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"89 ريال"}], info: {ar:["بدون إعلانات","أضخم مكتبة"], en:["No Ads","Huge Library"]}, email: false },
-            linkedin: { icon: 'fab fa-linkedin', name: {ar: "لينكد إن", en: "LinkedIn"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"600 ريال"}], info: {ar:["باقة Business","رسمي"], en:["Business Plan","Official"]}, email: true }
+            autodesk: { icon: 'fas fa-drafting-compass', name: {ar: "أوتوديسك", en: "Autodesk"}, plans: [{l:{ar:"12 شهر", en:"12 Months"}, p:"250 ريال"}], email: true },
+            windows: { icon: 'fab fa-windows', name: {ar: "ويندوز", en: "Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}], email: false },
+            osn: { icon: 'fas fa-plus-circle', name: {ar: "OSN+", en: "OSN+"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"110 ريال"}], email: false },
+            youtube: { icon: 'fab fa-youtube', name: {ar: "يوتيوب", en: "YouTube"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"200 ريال"}], email: true },
+            netflix: { icon: 'fas fa-film', name: {ar: "نتفليكس", en: "Netflix"}, plans: [{l:{ar:"شهر", en:"Month"}, p:"20 ريال"}], email: false }
         };
 
         const texts = {
-            ar: { sub: "متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان", info: "تفاصيل الاشتراك:", email: "البريد الإلكتروني:", pass: "كلمة المرور:", bank: "البنك:", user: "المستفيد:", confirm: "تأكيد الطلب عبر واتساب", copy: "تم النسخ ✅", footer: "جميع الحقوق محفوظه للمتجر NIKAI" },
-            en: { sub: "Digital Subscriptions Specialist - Order Now", info: "Subscription Details:", email: "Email Address:", pass: "Password:", bank: "Bank:", user: "Beneficiary:", confirm: "Confirm via WhatsApp", copy: "Copied ✅", footer: "All Rights Reserved to NIKAI Store" }
+            ar: { sub: "متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان", email: "البريد الإلكتروني:", bank: "البنك:", user: "المستفيد:", confirm: "تأكيد الطلب عبر واتساب", copy: "تم النسخ ✅" },
+            en: { sub: "Digital Subscriptions Specialist - Order Now", email: "Email Address:", bank: "Bank:", user: "Beneficiary:", confirm: "Confirm via WhatsApp", copy: "Copied ✅" }
         };
+
+        let currentLang = 'ar';
 
         function renderGrid() {
             document.getElementById('mainGrid').innerHTML = Object.keys(services).map(id => `
@@ -220,18 +211,16 @@
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('langToggle').innerText = currentLang === 'ar' ? 'English' : 'العربية';
             document.getElementById('sub-title').innerText = texts[currentLang].sub;
-            document.getElementById('footer-text').innerText = texts[currentLang].footer;
             renderGrid();
             document.getElementById('checkout').style.display = 'none';
         }
 
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            event.target.innerText = isLight ? "الوضع الليلي" : "الوضع النهاري";
+            const isL = document.body.classList.contains('light-mode');
+            event.target.innerText = isL ? "الوضع الليلي" : "الوضع النهاري";
         }
 
-        let selP = "", selL = "", selT = "";
         function selectService(id) {
             document.body.className = (document.body.classList.contains('light-mode') ? 'light-mode ' : '') + 'theme-' + id;
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
@@ -242,21 +231,13 @@
             pnl.style.display = 'block';
             document.getElementById('s-title').innerText = s.name[currentLang];
             document.getElementById('s-plans').innerHTML = s.plans.map(p => `
-                <div class="plan-btn" onclick="setPlan(this, '${p.p}', '${p.l[currentLang]}', '${p.t || ''}')">
+                <div class="plan-btn selected">
                     <div>${p.l[currentLang]}</div>
                     <strong>${p.p}</strong>
                 </div>
             `).join('');
-            document.getElementById('s-info').innerHTML = s.info[currentLang].map(i => `<li>${i}</li>`).join('');
-            document.getElementById('dynamic-inputs').style.display = s.email ? 'block' : 'none';
-            document.querySelector('.plan-btn').click();
-            window.scrollTo({ top: pnl.offsetTop - 20, behavior: 'smooth' });
-        }
-
-        function setPlan(el, p, l, t) {
-            document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected'));
-            el.classList.add('selected'); selP = p; selL = l; selT = t;
-            document.getElementById('pass-field').style.display = (t === 'indiv') ? 'block' : 'none';
+            document.getElementById('email-area').style.display = s.email ? 'block' : 'none';
+            window.scrollTo({ top: pnl.offsetTop - 30, behavior: 'smooth' });
         }
 
         function copyIBAN() {
@@ -268,10 +249,8 @@
 
         function placeOrder() {
             const email = document.getElementById('u-email').value;
-            const pass = document.getElementById('u-pass').value;
-            let msg = `Hello NIKAI 👋\nSubscription: ${document.getElementById('s-title').innerText}\nPlan: ${selL}\nPrice: ${selP}`;
+            let msg = `Hello NIKAI 👋\nOrder: ${document.getElementById('s-title').innerText}`;
             if(email) msg += `\nEmail: ${email}`;
-            if(selT === 'indiv' && pass) msg += `\nPass: ${pass}`;
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
