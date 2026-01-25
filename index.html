@@ -14,25 +14,25 @@
             --glow-color: rgba(255, 255, 255, 0.05);
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body.light-mode {
-            --bg-base: #f8f9fa;
+            --bg-base: #f0f2f5;
             --text-main: #1a1a1a;
-            --glass: rgba(0, 0, 0, 0.03);
-            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.05);
         }
 
-        /* تنسيق الهوية اللونية للمنتجات */
-        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.2); } 
-        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.2); } 
-        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
-        body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
-        body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.2); }
-        body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.2); }
-        body.theme-chatgpt { --accent-color: #74aa9c; --glow-color: rgba(116, 170, 156, 0.2); }
-        body.theme-crunchy { --accent-color: #ff6400; --glow-color: rgba(255, 100, 0, 0.2); }
+        /* تنسيق الألوان للمنتجات */
+        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); } 
+        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.3); } 
+        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.3); }
+        body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.3); }
+        body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.3); }
+        body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.3); }
+        body.theme-chatgpt { --accent-color: #74aa9c; --glow-color: rgba(116, 170, 156, 0.3); }
+        body.theme-crunchy { --accent-color: #ff6400; --glow-color: rgba(255, 100, 0, 0.3); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -51,75 +51,94 @@
             z-index: -1; transition: var(--transition);
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; width: 100%; flex: 1; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; flex: 1; }
 
-        /* الأزرار العلوية */
-        header { padding: 30px 0 20px; text-align: center; }
-        .top-controls { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px; }
-        .ctrl-btn { 
-            background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-main);
-            padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;
+        /* التصميم الجديد والأنيق للأزرار العلوية */
+        .top-nav {
+            position: fixed; top: 20px; left: 20px; right: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; pointer-events: none;
         }
 
-        .logo { font-size: 45px; font-weight: 900; letter-spacing: 5px; color: #fff; margin-bottom: 5px; }
+        .nav-pill {
+            display: flex; gap: 8px; background: var(--glass); 
+            backdrop-filter: blur(15px); padding: 6px; border-radius: 50px;
+            border: 1px solid var(--glass-border); pointer-events: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .icon-btn {
+            width: 40px; height: 40px; border-radius: 50%; border: none;
+            background: transparent; color: var(--text-main); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; transition: 0.3s;
+        }
+        .icon-btn:hover { background: var(--accent-color); color: #000; transform: scale(1.1); }
+
+        header { padding: 80px 0 20px; text-align: center; }
+        .logo { font-size: 50px; font-weight: 900; letter-spacing: 10px; color: #fff; margin-bottom: 5px; }
         .sub-logo { opacity: 0.7; font-size: 16px; margin-bottom: 40px; }
 
-        /* الشبكة المرنة المصلحة */
+        /* الشبكة المرنة بـ 3 أعمدة */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 3 كروت في الصف مثل الصورة */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 15px; 
             margin-bottom: 50px; 
         }
 
         .card {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 25px;
-            padding: 30px 15px; cursor: pointer; transition: var(--transition);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 35px 15px; cursor: pointer; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center;
+            backdrop-filter: blur(5px);
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--accent-color); }
-        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.08); }
-        .card i { font-size: 32px; margin-bottom: 12px; }
+        .card:hover { transform: translateY(-10px) scale(1.05); border-color: var(--accent-color); box-shadow: 0 20px 40px var(--glow-color); }
+        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.08); transform: scale(1.05); }
+        .card i { font-size: 32px; margin-bottom: 15px; }
         .card h3 { font-size: 13px; font-weight: 700; text-align: center; }
 
-        /* لوحة الدفع */
+        /* لوحة التفاصيل */
         #checkout {
-            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 35px;
-            padding: 35px 20px; margin-bottom: 60px; display: none; animation: slideUp 0.5s ease;
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 40px;
+            padding: 40px 20px; margin-bottom: 60px; display: none; 
+            animation: slideIn 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+            backdrop-filter: blur(20px);
         }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 25px 0; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 25px 0; }
         .plan-btn {
-            background: rgba(128,128,128,0.05); border: 1px solid var(--glass-border); padding: 15px;
-            border-radius: 15px; cursor: pointer; color: var(--text-main); transition: 0.3s;
+            background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 18px;
+            border-radius: 20px; cursor: pointer; color: var(--text-main); transition: 0.3s;
         }
-        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 800; border-color: var(--accent-color); }
+        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 800; border-color: var(--accent-color); box-shadow: 0 10px 25px var(--glow-color); }
 
-        /* وزنية الحساب البنكي المصلحة */
+        /* وزنية الحساب البنكي المثالية */
         .bank-box {
             background: #000; border: 1px solid var(--glass-border); border-radius: 30px;
-            padding: 30px; max-width: 480px; margin: 30px auto 0; text-align: center; color: #fff;
+            padding: 35px; max-width: 480px; margin: 40px auto 0; text-align: center;
         }
-        .bank-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        .bank-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: #fff; }
         
         .iban-container {
-            width: 100%; background: rgba(255,255,255,0.02); border: 2px dashed #ff0000; /* الإطار الأحمر المتقطع */
-            padding: 18px; border-radius: 12px; margin: 20px 0; cursor: pointer;
+            width: 100%; background: rgba(255,255,255,0.03); border: 2px dashed #ff0000; /* الإطار الأحمر المتقطع */
+            padding: 18px; border-radius: 15px; margin: 20px 0; cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 10px; overflow: hidden; 
         }
-        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(11px, 3.8vw, 16px); color: #ff0000; font-weight: 900; white-space: nowrap; }
+        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 4vw, 17px); color: #ff0000; font-weight: 900; white-space: nowrap; }
 
-        .btn-whatsapp { 
-            width: 100%; background: #ff0000; color: #fff; border: none; padding: 20px; 
-            border-radius: 15px; font-weight: 800; font-size: 18px; cursor: pointer;
+        .btn-confirm { 
+            width: 100%; background: #ff0000; color: #fff; border: none; padding: 22px; 
+            border-radius: 18px; font-weight: 800; font-size: 19px; cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 12px;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.3);
         }
 
-        /* الحقوق */
-        footer { padding: 40px 0; text-align: center; font-size: 13px; opacity: 0.6; margin-top: auto; border-top: 1px solid var(--glass-border); }
+        /* الفوتر المثبت في الأسفل */
+        footer { padding: 50px 0; text-align: center; font-size: 13px; opacity: 0.6; margin-top: auto; border-top: 1px solid var(--glass-border); }
 
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 30px; border-radius: 50px; display: none; z-index: 2000; font-weight: 800; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 12px 35px; border-radius: 50px; display: none; z-index: 2000; font-weight: 800; }
 
         @media (max-width: 600px) { .grid { grid-template-columns: repeat(3, 1fr); } .card i { font-size: 24px; } .card h3 { font-size: 9px; } }
     </style>
@@ -128,12 +147,19 @@
     <div class="ambient-bg"></div>
     <div class="toast" id="toast"></div>
 
+    <nav class="top-nav">
+        <div></div> <div class="nav-pill">
+            <button class="icon-btn" onclick="toggleLang()" title="Language">
+                <i class="fas fa-globe"></i>
+            </button>
+            <button class="icon-btn" onclick="toggleTheme()" title="Theme">
+                <i id="theme-icon" class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
     <div class="container">
         <header>
-            <div class="top-controls">
-                <button class="ctrl-btn" id="langBtn" onclick="toggleLang()">English</button>
-                <button class="ctrl-btn" id="themeBtn" onclick="toggleTheme()">الوضع النهاري</button>
-            </div>
             <div class="logo">NIKAI</div>
             <p id="sub-title" class="sub-logo">متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان</p>
         </header>
@@ -141,15 +167,15 @@
         <div class="grid" id="mainGrid"></div>
 
         <section id="checkout">
-            <h2 id="s-title" style="font-size: 30px; font-weight: 900; margin-bottom: 20px;"></h2>
+            <h2 id="s-title" style="font-size: 32px; font-weight: 900; margin-bottom: 20px;"></h2>
             <div class="plans-grid" id="s-plans"></div>
 
-            <div id="input-fields" style="text-align: right; margin: 25px 0;">
-                <label id="l-email" style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;"></label>
-                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main);" placeholder="mail@example.com">
+            <div id="dynamic-inputs" style="text-align: right; margin: 30px 0;">
+                <label id="l-email" style="font-size: 14px; opacity: 0.8; display: block; margin-bottom: 10px;"></label>
+                <input type="email" id="u-email" style="width:100%; padding:18px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo';" placeholder="mail@example.com">
                 <div id="pass-area" style="display:none; margin-top: 15px;">
-                    <label id="l-pass" style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;"></label>
-                    <input type="text" id="u-pass" style="width:100%; padding:15px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main);" placeholder="Password">
+                    <label id="l-pass" style="font-size: 14px; opacity: 0.8; display: block; margin-bottom: 10px;"></label>
+                    <input type="text" id="u-pass" style="width:100%; padding:18px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo';" placeholder="Password">
                 </div>
             </div>
 
@@ -158,9 +184,9 @@
                 <div class="bank-row"><span id="l-user">المستفيد:</span><strong>سليمان فلاته</strong></div>
                 <div class="iban-container" onclick="copyIBAN()">
                     <span class="iban-text">SA0315000900133520020007</span>
-                    <i class="fas fa-copy" style="font-size: 12px; opacity: 0.5;"></i>
+                    <i class="fas fa-copy" style="font-size: 14px; opacity: 0.5;"></i>
                 </div>
-                <button class="btn-whatsapp" onclick="placeOrder()">
+                <button class="btn-confirm" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i> <span id="l-confirm">تأكيد الطلب عبر واتساب</span>
                 </button>
             </div>
@@ -175,20 +201,20 @@
             autodesk: { icon: 'fas fa-drafting-compass', name: {ar:"أوتوديسك", en:"Autodesk"}, plans: [{l:{ar:"6 أشهر", en:"6 Months"}, p:"150 ريال"}, {l:{ar:"12 شهر", en:"12 Months"}, p:"250 ريال"}], email: true },
             windows: { icon: 'fab fa-windows', name: {ar:"ويندوز", en:"Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}, {l:{ar:"11 Pro", en:"11 Pro"}, p:"28.99 ريال"}], email: false },
             osn: { icon: 'fas fa-plus-circle', name: {ar:"+OSN", en:"+OSN"}, plans: [{l:{ar:"سنة", en:"12 Months"}, p:"110 ريال"}], email: false },
-            youtube: { icon: 'fab fa-youtube', name: {ar:"يوتيوب بريميوم", en:"YouTube"}, plans: [{l:{ar:"دعوة (سنة)", en:"Invite"}, p:"200 ريال"}, {l:{ar:"فردي (سنة)", en:"Indiv"}, p:"350 ريال", t:"ind"}], email: true },
+            youtube: { icon: 'fab fa-youtube', name: {ar:"يوتيوب", en:"YouTube"}, plans: [{l:{ar:"دعوة (سنة)", en:"Invite"}, p:"200 ريال"}, {l:{ar:"فردي (سنة)", en:"Indiv"}, p:"350 ريال", t:"ind"}], email: true },
             netflix: { icon: 'fas fa-film', name: {ar:"نتفليكس", en:"Netflix"}, plans: [{l:{ar:"شهر", en:"1 mo"}, p:"20 ريال"}, {l:{ar:"سنة", en:"1 yr"}, p:"200 ريال"}], email: false },
             shahid: { icon: 'fas fa-play-circle', name: {ar:"شاهد VIP", en:"Shahid VIP"}, plans: [{l:{ar:"سنة", en:"1 yr"}, p:"200 ريال"}], email: false },
             office: { icon: 'fas fa-file-word', name: {ar:"أوفيس 365", en:"Office 365"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"45 ريال"}], email: false },
             crunchy: { icon: 'fas fa-tv', name: {ar:"كرانشي رول", en:"Crunchyroll"}, plans: [{l:{ar:"سنة", en:"1 yr"}, p:"50 ريال"}], email: false },
             chatgpt: { icon: 'fas fa-robot', name: {ar:"ChatGPT Plus", en:"ChatGPT Plus"}, plans: [{l:{ar:"شهر", en:"1 mo"}, p:"10 ريال"}, {l:{ar:"سنة", en:"1 yr"}, p:"100 ريال"}], email: false },
-            adobe: { icon: 'fas fa-palette', name: {ar:"أدوبي", en:"Adobe"}, plans: [{l:{ar:"سنة", en:"1 yr"}, p:"999 ريال"}], email: true },
+            adobe: { icon: 'fas fa-palette', name: {ar:"أدوبي", en:"Adobe CC"}, plans: [{l:{ar:"سنة", en:"1 yr"}, p:"999 ريال"}], email: true },
             linkedin: { icon: 'fab fa-linkedin', name: {ar:"لينكد إن", en:"LinkedIn"}, plans: [{l:{ar:"سنة", en:"1 yr"}, p:"600 ريال"}], email: true },
             fasel: { icon: 'fas fa-bolt', name: {ar:"فاصل بلس", en:"Fasel Plus"}, plans: [{l:{ar:"سنة", en:"1 yr"}, p:"89 ريال"}], email: false }
         };
 
         const ui = {
             ar: { sub: "متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان", email: "البريد الإلكتروني للتفعيل:", pass: "كلمة المرور:", bank: "البنك:", user: "المستفيد:", confirm: "تأكيد الطلب عبر واتساب", footer: "جميع الحقوق محفوظه للمتجر NIKAI", copied: "تم النسخ ✅" },
-            en: { sub: "Digital Subscriptions Specialist - Order Now", email: "Email for Activation:", pass: "Account Password:", bank: "Bank:", user: "Beneficiary:", confirm: "Confirm via WhatsApp", footer: "All Rights Reserved - NIKAI Store", copied: "Copied ✅" }
+            en: { sub: "Digital Subscriptions Specialist - Order Now", email: "Activation Email:", pass: "Account Password:", bank: "Bank:", user: "Beneficiary:", confirm: "Confirm via WhatsApp", footer: "All Rights Reserved - NIKAI Store", copied: "Copied ✅" }
         };
 
         function renderGrid() {
@@ -203,7 +229,6 @@
         function toggleLang() {
             lang = lang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').innerText = lang === 'ar' ? 'English' : 'العربية';
             document.getElementById('sub-title').innerText = ui[lang].sub;
             document.getElementById('l-footer').innerText = ui[lang].footer;
             renderGrid();
@@ -212,7 +237,8 @@
 
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
-            document.getElementById('themeBtn').innerText = document.body.classList.contains('light-mode') ? "الوضع الليلي" : "الوضع النهاري";
+            const isL = document.body.classList.contains('light-mode');
+            document.getElementById('theme-icon').className = isL ? 'fas fa-sun' : 'fas fa-moon';
         }
 
         let selP = "", selL = "", selT = "";
@@ -236,10 +262,10 @@
             document.getElementById('l-bank').innerText = ui[lang].bank;
             document.getElementById('l-user').innerText = ui[lang].user;
             document.getElementById('l-confirm').innerText = ui[lang].confirm;
-            document.getElementById('input-fields').style.display = s.email ? 'block' : 'none';
+            document.getElementById('dynamic-inputs').style.display = s.email ? 'block' : 'none';
 
             document.querySelector('.plan-btn').click();
-            window.scrollTo({ top: document.getElementById('checkout').offsetTop - 30, behavior: 'smooth' });
+            window.scrollTo({ top: document.getElementById('checkout').offsetTop - 40, behavior: 'smooth' });
         }
 
         function setPlan(el, p, l, t) {
