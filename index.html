@@ -15,6 +15,7 @@
             --primary-light: rgba(108, 99, 255, 0.1);
             --secondary: #FF6584;
             --accent: #36D399;
+            --accent-light: rgba(54, 211, 153, 0.1);
             --bg: #0F0F1E;
             --bg-light: #1A1A2E;
             --bg-lighter: #252542;
@@ -44,6 +45,7 @@
             --border: rgba(108, 99, 255, 0.15);
             --nav: rgba(255, 255, 255, 0.98);
             --shadow: 0 15px 50px rgba(108, 99, 255, 0.12);
+            --accent-light: rgba(54, 211, 153, 0.15);
         }
 
         * {
@@ -76,15 +78,14 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 101, 132, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(54, 211, 153, 0.04) 0%, transparent 60%);
+                radial-gradient(circle at 90% 80%, rgba(255, 101, 132, 0.08) 0%, transparent 40%);
             z-index: -1;
             pointer-events: none;
         }
 
         /* Header مميز */
         .header {
-            padding: 20px 0;
+            padding: 18px 0;
             background: var(--nav);
             backdrop-filter: blur(25px);
             position: sticky;
@@ -118,7 +119,7 @@
 
         .logo-main {
             font-weight: 900;
-            font-size: 2.2rem;
+            font-size: 2rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
@@ -127,28 +128,17 @@
             position: relative;
         }
 
-        .logo-main::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
         .logo-subtitle {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--secondary);
             font-weight: 700;
             letter-spacing: 1px;
-            margin-top: 5px;
+            margin-top: 3px;
         }
 
         .header-controls {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
@@ -156,15 +146,15 @@
             background: var(--card);
             border: 1px solid var(--border);
             color: var(--text);
-            padding: 12px 22px;
+            padding: 10px 18px;
             border-radius: var(--radius-sm);
             cursor: pointer;
             font-family: 'Cairo';
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: var(--transition);
         }
 
@@ -175,19 +165,19 @@
             border-color: var(--primary);
         }
 
-        /* Hero Section */
+        /* Hero Section - محسن */
         .hero-section {
             max-width: 1200px;
-            margin: 40px auto 60px;
+            margin: 40px auto 50px;
             padding: 0 20px;
             text-align: center;
         }
 
         .hero-title {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 50%, #36D399 100%);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -195,24 +185,24 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
             line-height: 1.6;
         }
 
-        /* Products Grid - تصميم مميز */
+        /* Products Grid - تصميم أكثر جاذبية */
         .products-section {
             max-width: 1200px;
-            margin: 0 auto 80px;
+            margin: 0 auto 60px;
             padding: 0 20px;
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             text-align: center;
             position: relative;
             display: inline-block;
@@ -225,7 +215,7 @@
             position: absolute;
             bottom: -10px;
             right: 0;
-            width: 60%;
+            width: 100px;
             height: 4px;
             background: var(--gradient);
             border-radius: 2px;
@@ -235,22 +225,22 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
 
         .product-card {
             background: var(--card);
             border-radius: var(--radius);
-            padding: 35px 30px;
+            padding: 30px 25px;
             text-align: center;
             transition: var(--transition);
             border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            min-height: 420px;
+            min-height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -267,27 +257,27 @@
         }
 
         .product-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border-color: var(--primary);
         }
 
         .product-card.active {
             border-color: var(--primary);
-            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.25);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.25);
             transform: translateY(-5px);
         }
 
         .product-icon-container {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             background: var(--primary-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            font-size: 2.2rem;
+            margin: 0 auto 25px;
+            font-size: 2rem;
             color: var(--primary);
             transition: var(--transition);
             position: relative;
@@ -315,17 +305,17 @@
         }
 
         .product-name {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: var(--text);
         }
 
         .product-price-tag {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--primary);
-            margin: 20px 0;
+            margin: 15px 0;
             position: relative;
             display: inline-block;
         }
@@ -333,52 +323,52 @@
         .product-price-tag::after {
             content: 'أفضل سعر';
             position: absolute;
-            bottom: -25px;
+            bottom: -20px;
             right: 50%;
             transform: translateX(50%);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent);
             font-weight: 700;
             white-space: nowrap;
         }
 
         .product-price-tag span {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             margin-right: 5px;
         }
 
         .product-badge {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 20px;
+            right: 20px;
             background: var(--secondary);
             color: white;
-            padding: 8px 18px;
-            border-radius: 25px;
+            padding: 6px 15px;
+            border-radius: 20px;
             font-weight: 800;
-            font-size: 0.85rem;
-            box-shadow: 0 5px 15px rgba(255, 101, 132, 0.3);
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(255, 101, 132, 0.3);
         }
 
         .product-features {
             list-style: none;
             text-align: right;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .product-features li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            padding: 8px 0;
+            font-size: 0.9rem;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(108, 99, 255, 0.1);
             transition: var(--transition);
         }
 
         .product-features li:hover {
             color: var(--text);
-            transform: translateX(-5px);
+            transform: translateX(-3px);
         }
 
         .product-features li:last-child {
@@ -387,51 +377,39 @@
 
         .product-features li i {
             color: var(--accent);
-            margin-left: 10px;
-            font-size: 1.1rem;
+            margin-left: 8px;
+            font-size: 1rem;
         }
 
-        /* Product Details - تصميم محسّن */
+        /* Product Details - أكثر ترتيباً */
         .product-details-section {
             max-width: 900px;
-            margin: 0 auto 80px;
+            margin: 0 auto 70px;
             padding: 0 20px;
         }
 
         .details-container {
             background: var(--card);
             border-radius: var(--radius);
-            padding: 45px;
+            padding: 40px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
         }
 
-        .details-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
-            z-index: 0;
-        }
-
         .details-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
             border-bottom: 2px solid var(--border);
             position: relative;
-            z-index: 1;
         }
 
         .current-product-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -440,42 +418,101 @@
         }
 
         .current-product-price {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
             color: var(--primary);
         }
 
         .current-product-price span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
         }
 
-        /* Plans Section - محسّن */
+        /* Features & Terms Grid */
+        .features-terms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin: 35px 0;
+        }
+
+        @media (max-width: 768px) {
+            .features-terms-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        .features-section, .terms-section {
+            text-align: right;
+        }
+
+        .section-label {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .features-list, .terms-list {
+            list-style: none;
+        }
+
+        .features-list li, .terms-list li {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: var(--primary-light);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border-right: 3px solid var(--primary);
+        }
+
+        .features-list li:hover, .terms-list li:hover {
+            background: var(--card-hover);
+            transform: translateX(-5px);
+        }
+
+        .features-list li i {
+            color: var(--accent);
+            margin-left: 10px;
+            font-size: 1.1rem;
+        }
+
+        .terms-list li i {
+            color: var(--secondary);
+            margin-left: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Plans Section - أنيق */
         .plans-section {
-            margin: 40px 0;
-            position: relative;
-            z-index: 1;
+            margin: 35px 0;
         }
 
         .plans-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
             color: var(--text);
         }
 
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
 
         .plan-card {
             background: var(--card);
             border: 2px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 28px 25px;
+            padding: 25px 20px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
@@ -485,68 +522,67 @@
 
         .plan-card:hover {
             border-color: var(--primary);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(108, 99, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
         }
 
         .plan-card.selected {
             border-color: var(--primary);
             background: var(--primary-light);
-            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.25);
-            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(108, 99, 255, 0.25);
+            transform: translateY(-3px);
         }
 
         .plan-card.selected::before {
             content: '✓ المختارة';
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 12px;
+            left: 12px;
             background: var(--accent);
             color: white;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 15px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
         }
 
         .plan-period {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: var(--text);
         }
 
         .plan-price {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .plan-save {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 12px;
+            right: 12px;
             background: var(--secondary);
             color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(255, 101, 132, 0.3);
+            box-shadow: 0 4px 10px rgba(255, 101, 132, 0.3);
         }
 
-        /* Canva Email Section - محسّن */
+        /* Canva Email Section - محسن للغاية */
         .canva-email-section {
-            background: linear-gradient(135deg, rgba(108, 99, 255, 0.08) 0%, rgba(0, 196, 204, 0.08) 100%);
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.05) 0%, rgba(0, 196, 204, 0.05) 100%);
             border: 2px dashed var(--primary);
             border-radius: var(--radius);
-            padding: 35px;
-            margin: 40px 0;
+            padding: 30px;
+            margin: 30px 0;
             display: none;
             animation: slideUp 0.6s ease;
             position: relative;
-            z-index: 1;
         }
 
         .canva-email-section.show {
@@ -556,7 +592,7 @@
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -568,42 +604,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .email-header i {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: #00c4cc;
-            background: rgba(0, 196, 204, 0.1);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .email-header h3 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text);
         }
 
         .email-input-container {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .email-input {
             width: 100%;
-            padding: 22px 60px 22px 25px;
+            padding: 18px 50px 18px 20px;
             background: var(--bg-light);
             border: 2px solid #00c4cc;
             border-radius: var(--radius-sm);
             color: var(--text);
             font-family: 'Cairo';
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             transition: var(--transition);
             text-align: right;
         }
@@ -611,7 +640,7 @@
         .email-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
             transform: translateY(-2px);
         }
 
@@ -632,77 +661,74 @@
 
         .email-icon {
             position: absolute;
-            left: 25px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: #00c4cc;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .email-note {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
             line-height: 1.6;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: var(--radius-sm);
         }
 
-        /* Payment Section - محسّن للغاية */
+        /* Payment Section - محسن بشكل كبير */
         .payment-section {
-            background: linear-gradient(135deg, rgba(54, 211, 153, 0.08) 0%, rgba(108, 99, 255, 0.08) 100%);
+            background: var(--accent-light);
             border: 1px solid var(--accent);
             border-radius: var(--radius);
-            padding: 35px;
-            margin: 40px 0;
+            padding: 30px;
+            margin: 30px 0;
             position: relative;
-            z-index: 1;
         }
 
         .payment-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
         }
 
         .payment-title i {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
 
         .account-info {
             background: var(--card);
             border-radius: var(--radius-sm);
-            padding: 30px;
-            margin: 25px 0;
+            padding: 25px;
+            margin: 20px 0;
             text-align: center;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .account-name {
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--text);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .account-number-container {
-            direction: ltr;
             text-align: center;
-            margin: 25px 0;
-            padding: 25px;
+            margin: 20px 0;
+            padding: 20px 15px;
             background: rgba(0, 0, 0, 0.1);
             border-radius: var(--radius-sm);
             border: 2px dashed var(--accent);
             position: relative;
-            overflow: hidden;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .light-mode .account-number-container {
@@ -711,49 +737,52 @@
 
         .account-number {
             font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--accent);
-            letter-spacing: 3px;
+            letter-spacing: 1.5px;
             display: block;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
             margin: 0 auto;
-            max-width: 600px;
             word-break: break-all;
             text-align: center;
+            line-height: 1.5;
+            max-width: 100%;
+            overflow-wrap: break-word;
         }
 
         .light-mode .account-number {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.08);
         }
 
         .account-number-label {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-top: 15px;
+            margin-top: 10px;
             text-align: center;
         }
 
         .copy-btn {
             width: 100%;
-            padding: 22px;
+            max-width: 300px;
+            padding: 18px;
             background: var(--gradient);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
             font-family: 'Cairo';
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
+            margin: 20px auto 0;
             position: relative;
             overflow: hidden;
         }
@@ -775,38 +804,36 @@
 
         .copy-btn:hover {
             background: var(--gradient-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(108, 99, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
         }
 
         .copy-btn.copied {
             background: var(--accent);
         }
 
-        /* Order Button - محسّن */
+        /* Order Button - أنيق */
         .order-section {
-            margin: 50px 0 30px;
-            position: relative;
-            z-index: 1;
+            margin: 40px 0 20px;
         }
 
         .order-btn {
             width: 100%;
-            padding: 28px;
+            padding: 24px;
             background: var(--gradient);
             color: white;
             border: none;
             border-radius: var(--radius);
             font-family: 'Cairo';
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.4);
+            gap: 15px;
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
             position: relative;
             overflow: hidden;
         }
@@ -818,7 +845,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.7s;
         }
 
@@ -828,12 +855,12 @@
 
         .order-btn:hover {
             background: var(--gradient-hover);
-            transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(108, 99, 255, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.5);
         }
 
         .order-btn:active {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
         }
 
         .order-btn.loading {
@@ -850,12 +877,12 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Footer - محسّن */
+        /* Footer - أنيق */
         .footer {
             background: var(--bg-light);
             border-top: 1px solid var(--border);
-            padding: 60px 0 30px;
-            margin-top: 100px;
+            padding: 50px 0 25px;
+            margin-top: 80px;
             position: relative;
         }
 
@@ -865,7 +892,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: var(--gradient);
         }
 
@@ -877,14 +904,14 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
         .footer-brand h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
@@ -893,12 +920,12 @@
 
         .footer-brand p {
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         .footer-links h4 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
             color: var(--primary);
             position: relative;
             display: inline-block;
@@ -909,7 +936,7 @@
             position: absolute;
             bottom: -8px;
             right: 0;
-            width: 40px;
+            width: 30px;
             height: 3px;
             background: var(--primary);
             border-radius: 2px;
@@ -920,7 +947,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
@@ -929,39 +956,39 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .footer-links a:hover {
             color: var(--primary);
-            transform: translateX(-5px);
+            transform: translateX(-3px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 30px;
             border-top: 1px solid var(--border);
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        /* Toast Notification - محسّن */
+        /* Toast Notification */
         .toast {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 22px 28px;
+            padding: 18px 24px;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 15px;
             transform: translateX(150%);
-            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 10000;
-            max-width: 400px;
+            max-width: 350px;
         }
 
         .toast.show {
@@ -969,7 +996,7 @@
         }
 
         .toast i {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--accent);
         }
 
@@ -983,51 +1010,80 @@
 
         .toast-title {
             font-weight: 800;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             color: var(--text);
+            font-size: 1rem;
         }
 
         .toast-message {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        /* Animations */
-        .fade-in {
-            animation: slideUp 0.8s ease forwards;
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.4rem;
             }
             
             .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .hero-title {
-                font-size: 2.3rem;
+                font-size: 2rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .section-title {
-                font-size: 1.9rem;
+                font-size: 1.7rem;
             }
             
             .product-card {
-                min-height: 380px;
+                min-height: 360px;
                 padding: 25px 20px;
             }
             
@@ -1036,134 +1092,78 @@
             }
             
             .current-product-title {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
             
             .current-product-price {
-                font-size: 2.5rem;
-            }
-            
-            .plans-grid {
-                grid-template-columns: 1fr;
+                font-size: 2.3rem;
             }
             
             .account-number {
-                font-size: 1.2rem;
-                letter-spacing: 2px;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
             }
             
             .order-btn {
-                padding: 24px;
+                padding: 22px;
                 font-size: 1.3rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .section-title {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
             }
             
             .product-card {
-                min-height: 350px;
+                min-height: 340px;
             }
             
             .product-name {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             
             .product-price-tag {
-                font-size: 2.3rem;
+                font-size: 2.2rem;
             }
             
             .control-btn {
-                padding: 10px 18px;
-                font-size: 0.9rem;
+                padding: 8px 15px;
+                font-size: 0.85rem;
             }
             
             .account-number {
                 font-size: 1rem;
-                letter-spacing: 1px;
-                padding: 12px;
+                padding: 10px;
+            }
+            
+            .account-number-container {
+                padding: 15px 10px;
             }
             
             .toast {
-                bottom: 20px;
-                right: 20px;
-                left: 20px;
-                max-width: calc(100% - 40px);
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+                max-width: calc(100% - 30px);
             }
-        }
-
-        /* Features & Terms Sections في التفاصيل */
-        .features-terms-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin: 40px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            .features-terms-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            
+            .scroll-to-top {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
             }
-        }
-
-        .features-section, .terms-section {
-            text-align: right;
-        }
-
-        .section-label {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .features-list, .terms-list {
-            list-style: none;
-        }
-
-        .features-list li, .terms-list li {
-            margin-bottom: 18px;
-            padding: 15px;
-            background: var(--primary-light);
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-            border-right: 3px solid var(--primary);
-        }
-
-        .features-list li:hover, .terms-list li:hover {
-            background: var(--card-hover);
-            transform: translateX(-8px);
-        }
-
-        .features-list li i {
-            color: var(--accent);
-            margin-left: 12px;
-            font-size: 1.2rem;
-        }
-
-        .terms-list li i {
-            color: var(--secondary);
-            margin-left: 12px;
-            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -1324,7 +1324,7 @@
             
             <div class="footer-bottom">
                 <p>© 2023 متجر NIKAI. جميع الحقوق محفوظة.</p>
-                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">تسوق بأمان | دعم فني 24/7 | ضمان استرجاع 7 أيام</p>
+                <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;">تسوق بأمان | دعم فني 24/7 | ضمان استرجاع 7 أيام</p>
             </div>
         </div>
     </footer>
@@ -1336,6 +1336,11 @@
             <div class="toast-title" id="toastTitle">تم بنجاح!</div>
             <div class="toast-message" id="toastMessage">تم النسخ إلى الحافظة</div>
         </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
     </div>
 
     <script>
@@ -1367,7 +1372,8 @@
                 toastEmailRequired: "الرجاء إدخال البريد الإلكتروني أولاً! 📧",
                 toastInvalidEmail: "بريد إلكتروني غير صالح",
                 toastRedirecting: "جاري توجيهك إلى واتساب...",
-                toastOrderConfirm: "تأكيد الطلب"
+                toastOrderConfirm: "تأكيد الطلب",
+                toastWelcome: "مرحباً بك في متجر NIKAI! 🎉"
             },
             en: {
                 features: "Features",
@@ -1388,7 +1394,8 @@
                 toastEmailRequired: "Please enter your email first! 📧",
                 toastInvalidEmail: "Invalid email address",
                 toastRedirecting: "Redirecting to WhatsApp...",
-                toastOrderConfirm: "Order Confirmation"
+                toastOrderConfirm: "Order Confirmation",
+                toastWelcome: "Welcome to NIKAI Store! 🎉"
             }
         };
 
@@ -1568,6 +1575,7 @@
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
+            setupEventListeners();
         });
 
         // تهيئة الصفحة
@@ -1584,8 +1592,33 @@
             
             // إظهار رسالة ترحيب بعد تحميل الصفحة
             setTimeout(() => {
-                showToast('مرحباً بك!', 'مرحباً بك في متجر NIKAI للخدمات الرقمية المتميزة 🎉');
-            }, 1000);
+                showToast('مرحباً بك!', lang[currentLang].toastWelcome);
+            }, 800);
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            // التحقق من الإيميل في الوقت الحقيقي
+            document.getElementById('canvaEmail').addEventListener('input', function(e) {
+                const email = e.target.value;
+                const isValid = validateEmail(email);
+                
+                if (email) {
+                    e.target.style.borderColor = isValid ? '#36D399' : '#FF6584';
+                } else {
+                    e.target.style.borderColor = '';
+                }
+            });
+            
+            // إظهار/إخفاء زر العودة للأعلى عند التمرير
+            window.addEventListener('scroll', function() {
+                const scrollToTopBtn = document.getElementById('scrollToTop');
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
         }
 
         // عرض شبكة المنتجات
@@ -1665,7 +1698,9 @@
             }
             
             // التمرير إلى قسم التفاصيل
-            document.getElementById('productDetails').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                document.getElementById('productDetails').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
         }
 
         // عرض الخطط
@@ -1681,7 +1716,7 @@
                     <div class="plan-card ${isSelected ? 'selected' : ''}" onclick="selectPlan(${index})">
                         ${plan.save > 0 ? `<div class="plan-save">وفر ${plan.save}%</div>` : ''}
                         <div class="plan-period">${plan.period[currentLang]}</div>
-                        <div class="plan-price">${plan.price} <span style="font-size: 1rem;">${currency}</span></div>
+                        <div class="plan-price">${plan.price} <span style="font-size: 0.9rem;">${currency}</span></div>
                     </div>
                 `;
             });
@@ -1889,23 +1924,6 @@
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        // التحقق من الإيميل في الوقت الحقيقي
-        document.getElementById('canvaEmail').addEventListener('input', function(e) {
-            const email = e.target.value;
-            
-            if (email) {
-                if (validateEmail(email)) {
-                    this.classList.add('valid');
-                    this.classList.remove('invalid');
-                } else {
-                    this.classList.remove('valid');
-                    this.classList.add('invalid');
-                }
-            } else {
-                this.classList.remove('valid', 'invalid');
-            }
-        });
     </script>
 </body>
 </html>
