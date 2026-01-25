@@ -2,337 +2,950 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدفع الآمن - سليمان فالت</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>متجر NIKAI | اشتراكات رقمية بأفضل الأسعار</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #554fd8;
+            --primary-light: rgba(108, 99, 255, 0.1);
+            --secondary: #FF6584;
+            --accent: #36D399;
+            --accent-light: rgba(54, 211, 153, 0.1);
+            --bg: #0F0F1E;
+            --bg-light: #1A1A2E;
+            --bg-lighter: #252542;
+            --text: #FFFFFF;
+            --text-secondary: #B8B8D1;
+            --card: #16162E;
+            --card-hover: #1E1E3A;
+            --border: rgba(108, 99, 255, 0.2);
+            --nav: rgba(15, 15, 30, 0.98);
+            --shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            --radius: 24px;
+            --radius-sm: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
+            --gradient-hover: linear-gradient(135deg, #FF6584 0%, #6C63FF 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        .light-mode {
+            --bg: #F5F7FF;
+            --bg-light: #FFFFFF;
+            --bg-lighter: #F0F2FF;
+            --text: #1A1A2E;
+            --text-secondary: #4A4A6A;
+            --card: #FFFFFF;
+            --card-hover: #F8F9FF;
+            --border: rgba(108, 99, 255, 0.15);
+            --nav: rgba(255, 255, 255, 0.98);
+            --shadow: 0 15px 50px rgba(108, 99, 255, 0.12);
+            --accent-light: rgba(54, 211, 153, 0.15);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
             min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
+            overflow-x: hidden;
+            line-height: 1.7;
+            transition: var(--transition);
+            position: relative;
         }
-        
-        .container {
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 101, 132, 0.08) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* تحسينات الشريط العلوي */
+        .header {
+            padding: 18px 0;
+            background: var(--nav);
+            backdrop-filter: blur(25px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        header {
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-weight: 900;
+            font-size: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .logo-main::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 1px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            background: var(--card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* قسم البطل المحسن */
+        .hero-section {
+            max-width: 1200px;
+            margin: 40px auto 50px;
+            padding: 0 20px;
             text-align: center;
-            margin-bottom: 40px;
-            animation: fadeInDown 1s ease;
         }
-        
-        header h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* شبكة المنتجات المحسنة */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
             position: relative;
             display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeIn 0.8s ease-out 0.4s both;
         }
-        
-        header h1:after {
+
+        .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
             right: 0;
-            width: 100%;
+            width: 100px;
             height: 4px;
-            background: linear-gradient(to left, #3498db, #2ecc71);
+            background: var(--gradient);
             border-radius: 2px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
-        header p {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 20px auto;
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
-        
-        .payment-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .secure-payment-box {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            animation: slideInLeft 0.8s ease;
-            border: 1px solid #eaeaea;
-        }
-        
-        .secure-payment-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .secure-payment-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px dashed #eee;
-        }
-        
-        .secure-payment-header h2 {
-            color: #2c3e50;
-            font-size: 1.8rem;
-        }
-        
-        .secure-badge {
-            background: linear-gradient(to right, #2ecc71, #3498db);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .beneficiary-info {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-right: 5px solid #3498db;
-            transition: all 0.3s ease;
-        }
-        
-        .beneficiary-info:hover {
-            background: #f0f7ff;
-            transform: translateX(-5px);
-        }
-        
-        .beneficiary-info h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-        }
-        
-        .beneficiary-info p {
-            color: #555;
-            font-size: 1.1rem;
-        }
-        
-        .account-details {
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-            border-radius: 15px;
-            padding: 25px;
+
+        .product-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px 25px;
             text-align: center;
-            margin-bottom: 25px;
-            border: 2px dashed #d5a770;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .product-card:nth-child(2) { animation-delay: 0.1s; }
+        .product-card:nth-child(3) { animation-delay: 0.2s; }
+        .product-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
+
+        .product-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .product-icon-container {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
-        
-        .account-details:before {
+
+        .product-icon-container::before {
             content: '';
             position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 40px;
-            height: 40px;
-            background: #3498db;
-            border-radius: 50%;
-            opacity: 0.2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        
-        .account-details:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: -15px;
-            width: 60px;
-            height: 60px;
-            background: #2ecc71;
-            border-radius: 50%;
-            opacity: 0.2;
+
+        .product-card.active .product-icon-container::before {
+            opacity: 0.1;
         }
-        
-        .account-number {
-            font-family: 'Courier New', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c3e50;
-            letter-spacing: 2px;
-            margin: 15px 0;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            direction: ltr;
-            text-align: center;
-            overflow-wrap: break-word;
-            transition: all 0.3s ease;
+
+        .product-card:hover .product-icon-container {
+            transform: scale(1.1) rotate(5deg);
         }
-        
-        .account-number:hover {
-            background: #f8f9fa;
-            transform: scale(1.02);
-        }
-        
-        .account-label {
-            color: #7f8c8d;
-            font-size: 1rem;
-            margin-top: 10px;
-        }
-        
-        .features-section {
-            flex: 1;
-            min-width: 300px;
-            animation: slideInRight 0.8s ease;
-        }
-        
-        .feature-box {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-            border-color: #3498db;
-        }
-        
-        .feature-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .feature-header h3 {
-            color: #2c3e50;
+
+        .product-name {
             font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .product-price-tag {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 15px 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .product-price-tag::after {
+            content: 'أفضل سعر';
+            position: absolute;
+            bottom: -20px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .product-price-tag span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-right: 5px;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(255, 101, 132, 0.3);
+        }
+
+        /* قسم الدفع المحسن - حساب قصير */
+        .payment-section {
+            background: var(--accent-light);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .payment-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
+            justify-content: center;
         }
-        
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+
+        .payment-title i {
+            font-size: 1.5rem;
+        }
+
+        .account-info {
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-name {
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .account-number-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px 15px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-sm);
+            border: 2px dashed var(--accent);
+            position: relative;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .light-mode .account-number-container {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .account-number {
+            font-family: 'Courier New', monospace;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: 2px;
+            display: block;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            direction: ltr;
+        }
+
+        .light-mode .account-number {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .account-number-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .copy-btn {
+            width: 100%;
+            max-width: 300px;
+            padding: 18px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Cairo';
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .support-icon {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-        }
-        
-        .warranty-icon {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-        }
-        
-        .feature-content {
-            max-height: 0;
+            gap: 12px;
+            margin: 20px auto 0;
+            position: relative;
             overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
         }
-        
-        .feature-content.active {
-            max-height: 500px;
-            padding-top: 15px;
+
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
         }
-        
-        .contact-info {
-            background: #f0f7ff;
-            border-radius: 10px;
-            padding: 20px;
+
+        .copy-btn:hover::before {
+            left: 100%;
+        }
+
+        .copy-btn:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: var(--accent);
+        }
+
+        /* قسم التفاصيل */
+        .product-details-section {
+            max-width: 900px;
+            margin: 0 auto 70px;
+            padding: 0 20px;
+        }
+
+        .details-container {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+        }
+
+        .current-product-title {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .current-product-price {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .current-product-price span {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* قسم سياسة الضمان */
+        .warranty-section {
+            background: rgba(255, 214, 0, 0.05);
+            border: 1px solid rgba(255, 214, 0, 0.3);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 40px 0;
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .warranty-section.show {
+            display: block;
+        }
+
+        .warranty-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .warranty-header i {
+            font-size: 2rem;
+            color: #FFD700;
+        }
+
+        .warranty-header h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .warranty-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            text-align: right;
+        }
+
+        .warranty-content h4 {
+            color: #FFD700;
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .warranty-content ul {
+            list-style: none;
+            padding-right: 20px;
+        }
+
+        .warranty-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .warranty-content li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        /* قسم الدعم */
+        .support-section {
+            background: rgba(108, 99, 255, 0.05);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 40px 0;
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .support-section.show {
+            display: block;
+        }
+
+        .support-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .support-header i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .support-header h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .support-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .support-item {
+            padding: 25px;
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .support-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+        }
+
+        .support-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .support-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .support-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .support-contact {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
             margin-top: 10px;
+            direction: ltr;
+            text-align: center;
         }
-        
-        .contact-item {
+
+        /* زر الطلب */
+        .order-section {
+            margin: 40px 0 20px;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 24px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Cairo';
+            font-weight: 900;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .order-btn:hover::before {
+            left: 100%;
+        }
+
+        .order-btn:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.5);
+            animation: none;
+        }
+
+        .order-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .order-btn.loading {
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .order-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        /* التذييل */
+        .footer {
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            padding: 50px 0 25px;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 30px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* الإشعارات */
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 18px 24px;
+            box-shadow: var(--shadow);
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10000;
+            max-width: 350px;
         }
-        
-        .contact-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+
+        .toast.show {
+            transform: translateX(0);
         }
-        
-        .contact-item i {
-            width: 40px;
-            height: 40px;
-            background: #3498db;
+
+        .toast i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .toast.error i {
+            color: var(--secondary);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 800;
+            margin-bottom: 3px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .toast-message {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* زر العودة للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
         }
-        
-        .warranty-policy {
-            background: #f0fff4;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 10px;
-            border-right: 5px solid #2ecc71;
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
-        
-        .warranty-policy h4 {
-            color: #27ae60;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
         }
-        
-        .warranty-policy ul {
-            padding-right: 20px;
-            color: #555;
+
+        /* أنيميشنات */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
-        .warranty-policy li {
-            margin-bottom: 10px;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            animation: fadeIn 1.5s ease;
-        }
-        
-        /* Animations */
+
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -343,299 +956,613 @@
                 transform: translateY(0);
             }
         }
-        
-        @keyframes slideInLeft {
+
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
-        
-        @keyframes slideInRight {
+
+        @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .payment-container {
-                flex-direction: column;
+
+        @keyframes pulse {
+            0% { box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4); }
+            50% { box-shadow: 0 15px 40px rgba(108, 99, 255, 0.6); }
+            100% { box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4); }
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 2.4rem;
             }
             
-            header h1 {
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-title {
                 font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .product-card {
+                min-height: 360px;
+                padding: 25px 20px;
+            }
+            
+            .details-container {
+                padding: 30px 25px;
+            }
+            
+            .current-product-title {
+                font-size: 1.7rem;
+            }
+            
+            .current-product-price {
+                font-size: 2.3rem;
             }
             
             .account-number {
                 font-size: 1.4rem;
-                padding: 12px;
+                letter-spacing: 1px;
             }
             
-            .secure-payment-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+            .order-btn {
+                padding: 22px;
+                font-size: 1.3rem;
+            }
+            
+            .support-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
-        
+
         @media (max-width: 480px) {
-            .container {
-                padding: 10px;
+            .hero-title {
+                font-size: 1.8rem;
             }
             
-            .secure-payment-box, .feature-box {
-                padding: 20px;
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .product-card {
+                min-height: 340px;
+            }
+            
+            .product-name {
+                font-size: 1.3rem;
+            }
+            
+            .product-price-tag {
+                font-size: 2.2rem;
+            }
+            
+            .control-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
             }
             
             .account-number {
-                font-size: 1.2rem;
-                letter-spacing: 1px;
+                font-size: 1.3rem;
+                padding: 12px;
             }
-        }
-        
-        /* Button styling for potential future use */
-        .action-button {
-            background: linear-gradient(to right, #3498db, #2ecc71);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-        }
-        
-        .action-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
-        }
-        
-        /* Notification for copy */
-        .copy-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #2ecc71;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-        
-        .copy-notification.show {
-            transform: translateY(0);
-            opacity: 1;
+            
+            .account-number-container {
+                padding: 15px 10px;
+            }
+            
+            .toast {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+                max-width: calc(100% - 30px);
+            }
+            
+            .scroll-to-top {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-lock"></i> نظام الدفع الآمن</h1>
-            <p>خدمة دفع آمنة وسريعة مع ضمان حماية معلوماتك المالية وخصوصيتك خلال عملية التحويل</p>
-        </header>
-        
-        <div class="payment-container">
-            <div class="secure-payment-box">
-                <div class="secure-payment-header">
-                    <h2>تفاصيل التحويل</h2>
-                    <div class="secure-badge">
-                        <i class="fas fa-shield-alt"></i>
-                        آمن ومشفّر
-                    </div>
-                </div>
-                
-                <div class="beneficiary-info">
-                    <h3>المستفيد: سليمان فالت</h3>
-                    <p>مرحباً بك في خدمة الدفع الآمن. يمكنك استخدام معلومات الحساب التالية لإتمام عملية التحويل بأمان وسهولة.</p>
-                </div>
-                
-                <div class="account-details">
-                    <h3>رقم الحساب البنكي</h3>
-                    <div class="account-number" id="accountNumber">
-                        SA03 1500 090 0 1335 2002 0 007
-                    </div>
-                    <p class="account-label">رقم الحساب البنكي الدولي (IBAN)</p>
-                </div>
-                
-                <div class="beneficiary-info" style="background: #fff8e1; border-right-color: #f39c12;">
-                    <h3><i class="fas fa-info-circle"></i> ملاحظات هامة</h3>
-                    <p>• تأكد من صحة معلومات المستفيد قبل إجراء التحويل</p>
-                    <p>• عمليات التحويل تتم خلال 1-3 أيام عمل</p>
-                    <p>• للاستفسارات يرجى استخدام خيار "تواصل مع الدعم"</p>
+<body id="bodyTag">
+    <!-- الشريط العلوي -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container" onclick="scrollToTop()">
+                <div class="logo">
+                    <div class="logo-main">NIKAI</div>
+                    <div class="logo-subtitle">اشتراكات رقمية بضمان كامل</div>
                 </div>
             </div>
             
-            <div class="features-section">
-                <div class="feature-box" id="supportFeature">
-                    <div class="feature-header">
-                        <h3><span class="feature-icon support-icon"><i class="fas fa-headset"></i></span> تواصل مع الدعم</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="feature-content" id="supportContent">
-                        <p>لديك استفسار أو تحتاج مساعدة؟ فريق الدعم جاهز لمساعدتك على مدار الساعة.</p>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <strong>البريد الإلكتروني</strong>
-                                    <p>iioe@outlook.sa</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <strong>رقم الهاتف</strong>
-                                    <p>0591388202</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <strong>ساعات العمل</strong>
-                                    <p>من الساعة 8 صباحاً حتى 10 مساءً (بتوقيت السعودية)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="feature-box" id="warrantyFeature">
-                    <div class="feature-header">
-                        <h3><span class="feature-icon warranty-icon"><i class="fas fa-award"></i></span> سياسة الضمان والاشتراكات الرقمية</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="feature-content" id="warrantyContent">
-                        <p>نحن نضمن لك أمان معاملاتك وخصوصية بياناتك وفق أعلى المعايير العالمية.</p>
-                        <div class="warranty-policy">
-                            <h4>بنود سياسة الضمان:</h4>
-                            <ul>
-                                <li>ضمان حماية كاملة لبياناتك المالية والشخصية</li>
-                                <li>ضمان استرداد المبالغ في حال حدوث أخطاء تقنية</li>
-                                <li>ضمان سرعة إتمام التحويل خلال الوقت المحدد</li>
-                                <li>تشفير متقدم لجميع المعاملات باستخدام تقنية SSL 256-bit</li>
-                                <li>مراقبة مستمرة للعمليات للكشف عن أي نشاط غير طبيعي</li>
-                                <li>تتبع وتحليل مستمر لتحسين تجربة المستخدم والأمان</li>
-                            </ul>
-                            <h4>الاشتراكات الرقمية:</h4>
-                            <p>نقدم خدمات اشتراكات رقمية آمنة مع تجديد تلقائي وإمكانية الإلغاء في أي وقت. يتم إشعارك قبل كل تجديد ويتم تطبيق أعلى معايير الحماية على معلومات الدفع الخاصة بك.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="feature-box">
-                    <div class="feature-header">
-                        <h3><i class="fas fa-mobile-alt" style="color: #3498db;"></i> يدعم جميع الأجهزة</h3>
-                    </div>
-                    <p>صممنا نظام الدفع ليعمل بكفاءة على جميع الأجهزة: الهواتف الذكية، الأجهزة اللوحية، وأجهزة الكمبيوتر المكتبية.</p>
-                </div>
-                
-                <div class="feature-box">
-                    <div class="feature-header">
-                        <h3><i class="fas fa-bolt" style="color: #f39c12;"></i> معاملات سريعة وآمنة</h3>
-                    </div>
-                    <p>نظام دفع سريع مع تأكيد فوري للمعاملات وتقنيات أمان متطورة لحماية أموالك.</p>
-                </div>
+            <div class="header-controls">
+                <button class="control-btn" onclick="toggleTheme()" id="themeBtn">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                    <span id="themeText">وضع النهار</span>
+                </button>
             </div>
         </div>
-        
-        <footer>
-            <p>© 2023 نظام الدفع الآمن. جميع الحقوق محفوظة.</p>
-            <p>تم تصميم هذه الصفحة لتدعم جميع الأجهزة وتوفر أفضل تجربة مستخدم مع الحماية الكاملة.</p>
-        </footer>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero-section">
+        <h1 class="hero-title">اشتراكات رقمية متميزة</h1>
+        <p class="hero-subtitle">
+            اكتشف عالمًا من المحتوى الرقمي المتميز مع اشتراكاتنا الحصرية. نتفلكس، ديزني بلس، كانفا برو، فاصل بلس وأكثر. كل ما تحتاجه في مكان واحد.
+        </p>
+    </section>
+
+    <!-- منتجاتنا -->
+    <section class="products-section">
+        <h2 class="section-title">اختر خدمتك المفضلة</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- سيتم تعبئتها بالجافاسكريبت -->
+        </div>
+    </section>
+
+    <!-- تفاصيل المنتج -->
+    <section class="product-details-section" id="productDetails">
+        <div class="details-container">
+            <div class="details-header">
+                <h2 class="current-product-title" id="currentProductTitle">نتفلكس بريميوم 4K</h2>
+                <div class="current-product-price" id="currentProductPrice">200 <span>ريال</span></div>
+            </div>
+            
+            <!-- سياسة الضمان -->
+            <div class="warranty-section" id="warrantySection">
+                <div class="warranty-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>سياسة الضمان الكاملة</h3>
+                </div>
+                <div class="warranty-content">
+                    <h4>ضمان استرجاع 7 أيام</h4>
+                    <p>نضمن لك استرجاع كامل المبلغ في حال عدم رضاك عن الخدمة خلال 7 أيام من تاريخ الشراء.</p>
+                    
+                    <h4>دعم فني 24/7</h4>
+                    <p>فريق الدعم الفني متاح على مدار الساعة طوال أيام الأسبوع لمساعدتك في أي مشكلة تواجهك.</p>
+                    
+                    <h4>تفعيل فوري</h4>
+                    <p>يتم تفعيل الخدمات خلال 24 ساعة كحد أقصى من تأكيد الدفع.</p>
+                    
+                    <h4>خصوصية كاملة</h4>
+                    <p>بياناتك محمية ولا نشاركها مع أي طرف ثالث. نلتزم بسياسة الخصوصية الكاملة.</p>
+                    
+                    <h4>جودة مضمونة</h4>
+                    <ul>
+                        <li>حسابات أصلية وليست مخترقة</li>
+                        <li>خدمات مباشرة من المصدر الرسمي</li>
+                        <li>ضمان استمرارية الخدمة</li>
+                        <li>تحديثات مجانية مدى الحياة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- معلومات الدعم -->
+            <div class="support-section" id="supportSection">
+                <div class="support-header">
+                    <i class="fas fa-headset"></i>
+                    <h3>الدعم الفني والاتصال</h3>
+                </div>
+                <div class="support-content">
+                    <div class="support-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4>واتساب مباشر</h4>
+                        <p>للطلبات السريعة والدعم الفوري</p>
+                        <div class="support-contact">0591388202</div>
+                    </div>
+                    
+                    <div class="support-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>البريد الإلكتروني</h4>
+                        <p>للتواصل الرسمي والاستفسارات</p>
+                        <div class="support-contact">iioe@outlook.sa</div>
+                    </div>
+                    
+                    <div class="support-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>أوقات الدعم</h4>
+                        <p>متاحون لخدمتك على مدار الساعة</p>
+                        <div class="support-contact">24/7</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- الدفع الآمن -->
+            <div class="payment-section">
+                <h3 class="payment-title">
+                    <i class="fas fa-credit-card"></i>
+                    الدفع الآمن
+                </h3>
+                <div class="account-info">
+                    <div class="account-name">المستفيد: سليمان فلاته</div>
+                    <div class="account-number-container">
+                        <span class="account-number">SA0380020007</span>
+                        <span class="account-number-label">رقم الحساب البنكي (قصير)</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyAccount()" id="copyBtn">
+                        <i class="fas fa-copy"></i>
+                        <span id="copyText">نسخ رقم الحساب</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- زر الطلب -->
+            <div class="order-section">
+                <button class="order-btn" id="orderBtn" onclick="placeOrder()">
+                    <i class="fab fa-whatsapp"></i>
+                    🚀 تأكيد الطلب السريع عبر واتساب
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>متجر NIKAI</h3>
+                    <p>
+                        متجر متخصص في الخدمات الرقمية والاشتراكات منذ 2020. نقدم أفضل الخدمات بأفضل الأسعار مع ضمان الجودة والدعم الفني المستمر.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>خدماتنا</h4>
+                    <ul>
+                        <li><a onclick="selectProduct('netflix')"><i class="fas fa-film"></i> نتفلكس بريميوم</a></li>
+                        <li><a onclick="selectProduct('disney')"><i class="fas fa-crown"></i> ديزني بلس</a></li>
+                        <li><a onclick="selectProduct('canva')"><i class="fas fa-palette"></i> كانفا برو</a></li>
+                        <li><a onclick="selectProduct('fasel')"><i class="fas fa-play-circle"></i> فاصل بلس</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>روابط مهمة</h4>
+                    <ul>
+                        <li><a onclick="scrollToTop()"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+                        <li><a onclick="showSupport()"><i class="fas fa-headset"></i> الدعم الفني</a></li>
+                        <li><a onclick="showWarranty()"><i class="fas fa-shield-alt"></i> سياسة الضمان</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 متجر NIKAI. جميع الحقوق محفوظة.</p>
+                <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;">تسوق بأمان | دعم فني 24/7 | ضمان استرجاع 7 أيام</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- إشعار -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">تم بنجاح!</div>
+            <div class="toast-message" id="toastMessage">تم النسخ إلى الحافظة</div>
+        </div>
     </div>
-    
-    <div class="copy-notification" id="copyNotification">
-        <i class="fas fa-check-circle"></i> تم نسخ رقم الحساب بنجاح!
+
+    <!-- زر العودة للأعلى -->
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
     </div>
-    
+
     <script>
-        // عناصر DOM
-        const supportFeature = document.getElementById('supportFeature');
-        const warrantyFeature = document.getElementById('warrantyFeature');
-        const supportContent = document.getElementById('supportContent');
-        const warrantyContent = document.getElementById('warrantyContent');
-        const accountNumber = document.getElementById('accountNumber');
-        const copyNotification = document.getElementById('copyNotification');
-        
-        // إدارة فتح/إغلاق محتوى الميزات
-        supportFeature.addEventListener('click', () => {
-            supportContent.classList.toggle('active');
-            warrantyContent.classList.remove('active');
-            updateChevrons();
+        // البيانات
+        const products = {
+            netflix: {
+                name: "نتفلكس بريميوم 4K",
+                icon: "fas fa-film",
+                color: "#E50914",
+                price: 200,
+                features: [
+                    "🎬 جودة 4K خرافية مع دعم HDR",
+                    "📺 مشاهدة على 4 أجهزة في نفس الوقت",
+                    "🔒 ملف خاص برمز سري للمشاهدة الخاصة",
+                    "🛡️ ضمان كامل طوال مدة الاشتراك",
+                    "⚡ دعم فني متواصل 24/7",
+                    "🌍 تشغيل على جميع الأجهزة الذكية"
+                ]
+            },
+            disney: {
+                name: "ديزني بلس الرسمي",
+                icon: "fas fa-crown",
+                color: "#0063e5",
+                price: 200,
+                features: [
+                    "🌠 عالم ديزني ومارفل بالكامل",
+                    "🇸🇦 دعم كامل للغة العربية والترجمة",
+                    "📥 إمكانية التحميل للمشاهدة دون اتصال",
+                    "👪 7 ملفات شخصية مختلفة للعائلة",
+                    "📱 مشاهدة على 4 أجهزة في نفس الوقت",
+                    "🎉 محتوى حصري وأصلي فقط"
+                ]
+            },
+            canva: {
+                name: "كانفا برو مدى الحياة",
+                icon: "fas fa-palette",
+                color: "#00c4cc",
+                price: 39,
+                features: [
+                    "🖌️ تفعيل مباشر على إيميلك الشخصي",
+                    "🎨 أدوات Pro كاملة بدون أي قيود",
+                    "📊 مكتبة صور ومقاطع وفيديوهات مميزة",
+                    "🔄 تحديثات مجانية مدى الحياة",
+                    "👥 إمكانية العمل التعاوني مع الفريق",
+                    "🚀 تصدير بجودة عالية بدون علامة مائية"
+                ]
+            },
+            fasel: {
+                name: "فاصل بلس (Fasel Plus)",
+                icon: "fas fa-play-circle",
+                color: "#ff6b00",
+                price: 98,
+                features: [
+                    "📺 بدون إعلانات نهائياً",
+                    "✅ جودة بث عالية تصل إلى 4K",
+                    "🎥 مكتبة أفلام ومسلسلات ضخمة",
+                    "📱 تطبيق على جميع المنصات",
+                    "⚡ سرعة تحميل عالية للغاية",
+                    "🌟 محتوى عربي وأجنبي حصري"
+                ]
+            }
+        };
+
+        let currentTheme = 'dark';
+        let currentProduct = 'netflix';
+        let orderInProgress = false;
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProductsGrid();
+            showProductDetails('netflix');
+            setupEventListeners();
+            
+            // إظهار رسالة ترحيب
+            setTimeout(() => {
+                showToast('مرحباً بك!', 'مرحباً بك في متجر NIKAI! 🎉');
+            }, 1000);
         });
-        
-        warrantyFeature.addEventListener('click', () => {
-            warrantyContent.classList.toggle('active');
-            supportContent.classList.remove('active');
-            updateChevrons();
-        });
-        
-        // تحديث اتجاه أيقونات السهم
-        function updateChevrons() {
-            const chevrons = document.querySelectorAll('.feature-header .fa-chevron-down');
-            chevrons.forEach(chevron => {
-                const content = chevron.closest('.feature-box').querySelector('.feature-content');
-                if (content.classList.contains('active')) {
-                    chevron.style.transform = 'rotate(180deg)';
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            // إظهار/إخفاء زر العودة للأعلى عند التمرير
+            window.addEventListener('scroll', function() {
+                const scrollToTopBtn = document.getElementById('scrollToTop');
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('show');
                 } else {
-                    chevron.style.transform = 'rotate(0deg)';
+                    scrollToTopBtn.classList.remove('show');
                 }
             });
         }
-        
-        // نسخ رقم الحساب عند النقر عليه
-        accountNumber.addEventListener('click', () => {
-            const textToCopy = accountNumber.textContent.trim();
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                // إظهار إشعار النسخ
-                copyNotification.classList.add('show');
-                setTimeout(() => {
-                    copyNotification.classList.remove('show');
-                }, 3000);
+
+        // عرض شبكة المنتجات
+        function renderProductsGrid() {
+            const grid = document.getElementById('productsGrid');
+            let html = '';
+            
+            Object.keys(products).forEach((key, index) => {
+                const product = products[key];
+                const isActive = key === currentProduct;
+                
+                html += `
+                    <div class="product-card ${isActive ? 'active' : ''}" onclick="selectProduct('${key}')">
+                        <div class="product-icon-container" style="border: 3px solid ${product.color}30;">
+                            <i class="${product.icon}" style="color: ${product.color};"></i>
+                        </div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price-tag">${product.price}<span>ريال</span></div>
+                        <ul class="product-features">
+                            ${product.features.slice(0, 3).map(feature => `
+                                <li><i class="fas fa-check"></i>${feature}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
             });
-        });
-        
-        // تأثيرات إضافية عند التمرير
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            document.querySelector('.secure-payment-box').style.transform = `translateY(${Math.min(rate, 10)}px)`;
-        });
-        
-        // تهيئة المحتوى المفتوح (الدعم مفتوح افتراضياً)
-        supportContent.classList.add('active');
-        updateChevrons();
+            
+            grid.innerHTML = html;
+        }
+
+        // اختيار منتج
+        function selectProduct(productId) {
+            currentProduct = productId;
+            renderProductsGrid();
+            showProductDetails(productId);
+            
+            // التمرير إلى قسم التفاصيل
+            document.getElementById('productDetails').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // عرض تفاصيل المنتج
+        function showProductDetails(productId) {
+            const product = products[productId];
+            
+            document.getElementById('currentProductTitle').textContent = product.name;
+            document.getElementById('currentProductPrice').innerHTML = `${product.price} <span>ريال</span>`;
+            
+            // إخفاء أقسام الضمان والدعم
+            document.getElementById('warrantySection').classList.remove('show');
+            document.getElementById('supportSection').classList.remove('show');
+        }
+
+        // تبديل الثيم
+        function toggleTheme() {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.classList.toggle('light-mode');
+            
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (currentTheme === 'light') {
+                themeIcon.className = 'fas fa-moon';
+                themeText.textContent = 'وضع الليل';
+                showToast('وضع النهار', 'تم تفعيل وضع النهار ☀️');
+            } else {
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = 'وضع النهار';
+                showToast('وضع الليل', 'تم تفعيل وضع الليل 🌙');
+            }
+        }
+
+        // عرض سياسة الضمان
+        function showWarranty() {
+            document.getElementById('warrantySection').classList.add('show');
+            document.getElementById('supportSection').classList.remove('show');
+            
+            // التمرير إلى قسم الضمان
+            document.getElementById('warrantySection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            showToast('سياسة الضمان', 'تم عرض سياسة الضمان الكاملة 🔒');
+        }
+
+        // عرض معلومات الدعم
+        function showSupport() {
+            document.getElementById('supportSection').classList.add('show');
+            document.getElementById('warrantySection').classList.remove('show');
+            
+            // التمرير إلى قسم الدعم
+            document.getElementById('supportSection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            showToast('الدعم الفني', 'تواصل معنا على مدار الساعة 📞');
+        }
+
+        // نسخ رقم الحساب
+        function copyAccount() {
+            const accountNumber = "SA0380020007";
+            const copyBtn = document.getElementById('copyBtn');
+            
+            navigator.clipboard.writeText(accountNumber).then(() => {
+                showToast('تم النسخ بنجاح!', 'تم نسخ رقم الحساب إلى الحافظة');
+                
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `<i class="fas fa-check"></i>تم النسخ بنجاح!`;
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = `<i class="fas fa-copy"></i>نسخ رقم الحساب`;
+                }, 2000);
+            }).catch(err => {
+                showToast('خطأ', 'حدث خطأ في النسخ', 'error');
+            });
+        }
+
+        // تأكيد الطلب
+        function placeOrder() {
+            const product = products[currentProduct];
+            const orderBtn = document.getElementById('orderBtn');
+            
+            // منع النقر المزدوج
+            if (orderInProgress) return;
+            orderInProgress = true;
+            
+            // عرض حالة التحميل
+            orderBtn.classList.add('loading');
+            orderBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>جاري المعالجة...`;
+            
+            // إظهار رسالة الانتقال
+            showToast('تأكيد الطلب', 'جاري توجيهك إلى واتساب...');
+            
+            // إنشاء رسالة الطلب
+            const message = `مرحباً سليمان 👋 أطلب اشتراك ${product.name} بسعر ${product.price} ريال`;
+            
+            // الانتقال إلى واتساب
+            setTimeout(() => {
+                window.open(`https://wa.me/966591388202?text=${encodeURIComponent(message)}`, '_blank');
+                
+                // إعادة تعيين الزر
+                setTimeout(() => {
+                    orderBtn.classList.remove('loading');
+                    orderBtn.innerHTML = `<i class="fab fa-whatsapp"></i>🚀 تأكيد الطلب السريع عبر واتساب`;
+                    orderInProgress = false;
+                }, 1500);
+            }, 2000);
+        }
+
+        // عرض رسالة التنبيه
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastIcon = toast.querySelector('i');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            
+            if (type === 'error') {
+                toastIcon.className = 'fas fa-exclamation-circle';
+                toastIcon.style.color = '#FF6584';
+            } else {
+                toastIcon.className = 'fas fa-check-circle';
+                toastIcon.style.color = '#36D399';
+            }
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // التمرير إلى الأعلى
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
