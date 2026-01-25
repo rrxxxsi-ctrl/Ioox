@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIKAI | فخامة التفعيل الرقمي</title>
+    <title>NIKAI | فخامة الاختيار الرقمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -16,13 +16,13 @@
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* الثيمات اللونية */
+        /* الثيمات اللونية الديناميكية */
+        body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); } /* لون أوفيس الرسمي */
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
         body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.2); }
         body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.2); }
         body.theme-chatgpt { --accent-color: #ffffff; --glow-color: rgba(255, 255, 255, 0.15); }
         body.theme-crunchy { --accent-color: #ff6400; --glow-color: rgba(255, 100, 0, 0.2); }
-        body.theme-fasel { --accent-color: #ffc107; --glow-color: rgba(255, 193, 7, 0.2); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: #fff; overflow-x: hidden; transition: var(--transition); }
@@ -33,7 +33,7 @@
             z-index: -1; transition: var(--transition);
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; text-align: center; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; text-align: center; }
 
         header { padding: 40px 0; }
         .logo { font-size: 42px; font-weight: 900; letter-spacing: 6px; color: var(--accent-color); transition: var(--transition); }
@@ -56,25 +56,20 @@
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        .badge-main { display: inline-block; background: var(--accent-color); color: #000; padding: 4px 15px; border-radius: 50px; font-size: 12px; font-weight: 800; margin-bottom: 15px; }
+
         /* الباقات */
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 20px 0; }
         .plan-btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 15px;
             border-radius: 15px; cursor: pointer; transition: 0.3s;
         }
-        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 700; border-color: var(--accent-color); }
+        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 700; }
 
-        /* حقول المدخلات الذكية */
-        .input-group { margin-top: 25px; text-align: right; }
-        .input-group label { display: block; font-size: 13px; margin-bottom: 8px; opacity: 0.8; }
-        .input-field {
-            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--glass-border);
-            background: rgba(255,255,255,0.05); color: #fff; font-family: 'Cairo'; margin-bottom: 15px;
-        }
-        .code-warning {
-            background: rgba(255, 0, 0, 0.1); border: 1px solid rgba(255,0,0,0.2);
-            padding: 12px; border-radius: 10px; font-size: 12px; color: #ff8080; margin-bottom: 15px; display: none;
-        }
+        /* الأقسام الإرشادية */
+        .info-panel { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
+        .info-panel strong { color: var(--accent-color); font-size: 15px; display: block; margin-bottom: 12px; }
+        .info-panel ul { padding-right: 18px; color: #ccc; line-height: 1.7; }
 
         /* وزنية البنك المصلحة */
         .bank-section {
@@ -104,10 +99,14 @@
     <div class="container">
         <header>
             <div class="logo">NIKAI</div>
-            <p style="opacity: 0.5;">فخامة المحتوى الرقمي</p>
+            <p style="opacity: 0.5;">الاشتراكات الأكثر أماناً وضماناً 2026</p>
         </header>
 
         <div class="grid">
+            <div class="card" onclick="openService('office')">
+                <i class="fas fa-file-word"></i>
+                <h3>أوفيس 365</h3>
+            </div>
             <div class="card" onclick="openService('youtube')">
                 <i class="fab fa-youtube"></i>
                 <h3>يوتيوب</h3>
@@ -128,26 +127,53 @@
                 <i class="fas fa-tv"></i>
                 <h3>كرانشي</h3>
             </div>
+            <div class="card" onclick="openService('disney')">
+                <i class="fas fa-crown"></i>
+                <h3>ديزني</h3>
+            </div>
             <div class="card" onclick="openService('fasel')">
                 <i class="fas fa-bolt"></i>
                 <h3>فاصل</h3>
             </div>
+            <div class="card" onclick="openService('canva')">
+                <i class="fas fa-palette"></i>
+                <h3>كانفا</h3>
+            </div>
         </div>
 
         <section id="checkout">
-            <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">الخدمة</h2>
+            <div class="service-head">
+                <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">الخدمة</h2>
+                <div id="shared-badge" class="badge-main">حساب مشترك - ملف خاص</div>
+            </div>
+
             <div class="plans-grid" id="s-plans"></div>
 
-            <div class="input-group" id="dynamic-inputs">
-                <div id="code-msg" class="code-warning">
-                    ⚠️ <strong>تنبيه الباقة الفردية:</strong> التفعيل يتطلب تسجيل الدخول لحسابك. سيصلك كود تحقق على جهازك، يرجى تزويدنا به فوراً عند تواصلنا معك لإكمال التفعيل.
+            <div class="info-panel" id="office-guide" style="display:none;">
+                <strong><i class="fas fa-rocket"></i> طريقة التفعيل:</strong>
+                <p style="margin-bottom: 10px; color: #ccc;">بعد الدفع، سيتم تزويدك بالإيميل والرقم السري مباشرة عبر واتساب.</p>
+                <ul style="font-size: 12px;">
+                    <li>1. توجه للموقع الرسمي: www.office.com</li>
+                    <li>2. سجل الدخول بالبيانات المرسلة لك.</li>
+                    <li>3. سيطلب منك النظام تعيين كلمة مرور جديدة خاصة بك.</li>
+                    <li>4. ابدأ تحميل برامجك الأصلية والآمنة فوراً.</li>
+                </ul>
+            </div>
+
+            <div class="info-panel">
+                <strong><i class="fas fa-check-double"></i> مميزات الاشتراك:</strong>
+                <ul id="s-info"></ul>
+            </div>
+
+            <div id="input-area" style="text-align: right; margin: 20px 0;">
+                <div id="code-msg" style="background: rgba(255,0,0,0.1); padding: 10px; border-radius: 10px; font-size: 12px; color: #ff8080; margin-bottom: 10px; display: none;">
+                    ⚠️ التفعيل يتطلب كود تحقق سيصل لجهازك، يرجى تزويدنا به فور تواصلنا معك.
                 </div>
-                <label>البريد الإلكتروني:</label>
-                <input type="email" id="u-email" class="input-field" placeholder="example@mail.com">
-                
+                <label style="font-size: 13px; opacity: 0.7;">البريد الإلكتروني:</label>
+                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff; margin-bottom: 15px;" placeholder="example@mail.com">
                 <div id="pass-field" style="display:none;">
-                    <label>كلمة المرور:</label>
-                    <input type="text" id="u-pass" class="input-field" placeholder="كلمة مرور الحساب">
+                    <label style="font-size: 13px; opacity: 0.7;">كلمة المرور:</label>
+                    <input type="text" id="u-pass" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff;" placeholder="كلمة المرور">
                 </div>
             </div>
 
@@ -169,38 +195,90 @@
 
     <script>
         const services = {
+            office: {
+                name: "مايكروسوفت أوفيس 365",
+                badge: "حساب خاص - تفعيل رسمي",
+                plans: [{l: "مدى الحياة (ضمان سنة)", p: "45 ريال"}],
+                info: [
+                    "نسخة أصلية 100%",
+                    "التفعيل على 5 أجهزة مختلفة",
+                    "يشمل 61 برنامج مفعل رسمياً",
+                    "متوافق مع ويندوز، ماك، أندرويد، آيفون",
+                    "يدعم اللغتين العربية والإنجليزية",
+                    "ضمان تعويض من المتجر لمدة سنة كاملة"
+                ],
+                email: false
+            },
             youtube: {
                 name: "يوتيوب بريميوم سنة",
-                plans: [
-                    {l:"دعوة عائلية", p:"200 ريال", type: "invite"},
-                    {l:"فردي خاص", p:"350 ريال", type: "individual"}
-                ]
+                badge: "تفعيل رسمي ومضمون",
+                plans: [{l:"دعوة عائلية", p:"200 ريال", t:"invite"}, {l:"فردي خاص", p:"350 ريال", t:"individual"}],
+                info: ["بدون إعلانات", "تشغيل في الخلفية", "تنزيل المحتوى"],
+                email: true
             },
-            netflix: { name: "نتفليكس بريميوم", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}] },
-            shahid: { name: "شاهد VIP الرياضية", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}] },
-            chatgpt: { name: "ChatGPT Plus", plans: [{l:"شهر", p:"10 ريال"}, {l:"سنة", p:"100 ريال"}] },
-            crunchy: { name: "كرانشي رول", plans: [{l:"سنة كاملة", p:"50 ريال"}] },
-            fasel: { name: "فاصل بلس", plans: [{l:"شهر", p:"13 ريال"}, {l:"سنة", p:"89 ريال"}] }
+            netflix: {
+                name: "نتفليكس بريميوم 4K",
+                badge: "حساب مشترك - ملف خاص",
+                plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}],
+                info: ["جودة 4K UHD", "ملف خاص بك", "ضمان كامل"],
+                email: false
+            },
+            shahid: {
+                name: "شاهد VIP الرياضية",
+                badge: "حساب مشترك - ملف خاص",
+                plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}],
+                info: ["بث المباريات (شامل كأس العالم)", "جودة 4K", "لا يشمل GOBX"],
+                email: false
+            },
+            chatgpt: {
+                name: "ChatGPT Plus",
+                badge: "حساب مشترك - ملف خاص",
+                plans: [{l:"شهر", p:"10 ريال"}, {l:"سنة", p:"100 ريال"}],
+                info: ["نموذج GPT-5 وسرعة فائقة", "ضمان 25 يومًا"],
+                email: false
+            },
+            crunchy: {
+                name: "كرانشي رول",
+                badge: "حساب مشترك - ملف خاص",
+                plans: [{l:"سنة كاملة", p:"50 ريال"}],
+                info: ["مشاهدة فورية للأنمي", "بدون إعلانات", "جودة 4K"],
+                email: false
+            },
+            canva: { name: "كانفا برو", badge: "تفعيل على بريدك", plans: [{l:"مدى الحياة", p:"39 ريال"}], info: ["تفعيل رسمي", "قوالب Pro"], email: true },
+            fasel: { name: "فاصل بلس", badge: "حساب مشترك - ملف خاص", plans: [{l:"شهر", p:"13 ريال"}, {l:"سنة", p:"89 ريال"}], info: ["بدون إعلانات", "تطبيق ذكي"], email: false },
+            disney: { name: "ديزني بلس", badge: "حساب مشترك - ملف خاص", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["مارفل وديزني", "ضمان ذهبي"], email: false }
         };
 
         let selectedPrice = "";
         let selectedLabel = "";
-        let currentType = "";
+        let selectedType = "";
 
         function openService(id) {
             document.body.className = 'theme-' + id;
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             event.currentTarget.classList.add('active');
+
             const s = services[id];
             document.getElementById('checkout').style.display = 'block';
             document.getElementById('s-title').innerText = s.name;
+            document.getElementById('shared-badge').innerText = s.badge;
             
+            // الباقات
             document.getElementById('s-plans').innerHTML = s.plans.map(p => `
-                <div class="plan-btn" onclick="selectPlan(this, '${p.p}', '${p.l}', '${p.type || ''}')">
+                <div class="plan-btn" onclick="selectPlan(this, '${p.p}', '${p.l}', '${p.t || ''}')">
                     <div>${p.l}</div>
                     <strong>${p.p}</strong>
                 </div>
             `).join('');
+
+            // المميزات
+            document.getElementById('s-info').innerHTML = s.info.map(i => `<li>${i}</li>`).join('');
+            
+            // إظهار دليل أوفيس
+            document.getElementById('office-guide').style.display = (id === 'office') ? 'block' : 'none';
+            
+            // الحقول
+            document.getElementById('input-area').style.display = s.email ? 'block' : 'none';
 
             const first = document.querySelector('.plan-btn');
             if(first) first.click();
@@ -212,18 +290,16 @@
             el.classList.add('selected');
             selectedPrice = price;
             selectedLabel = label;
-            currentType = type;
+            selectedType = type;
 
-            // إظهار/إخفاء الحقول بناءً على النوع
-            const passField = document.getElementById('pass-field');
-            const codeMsg = document.getElementById('code-msg');
-            
+            const passF = document.getElementById('pass-field');
+            const codeM = document.getElementById('code-msg');
             if(type === 'individual') {
-                passField.style.display = 'block';
-                codeMsg.style.display = 'block';
+                passF.style.display = 'block';
+                codeM.style.display = 'block';
             } else {
-                passField.style.display = 'none';
-                codeMsg.style.display = 'none';
+                passF.style.display = 'none';
+                codeM.style.display = 'none';
             }
         }
 
@@ -235,14 +311,17 @@
         }
 
         function placeOrder() {
+            const activeId = document.body.className.replace('theme-', '');
+            const s = services[activeId];
             const email = document.getElementById('u-email').value;
             const pass = document.getElementById('u-pass').value;
 
-            if(!email) { alert("يرجى كتابة البريد الإلكتروني"); return; }
-            if(currentType === 'individual' && !pass) { alert("يرجى كتابة كلمة المرور للباقة الفردية"); return; }
+            if(s.email && !email) { alert("يرجى كتابة الإيميل"); return; }
+            if(selectedType === 'individual' && !pass) { alert("يرجى كتابة كلمة المرور للفردي"); return; }
 
-            let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${services[document.body.className.replace('theme-','')].name}\nالباقة: ${selectedLabel}\nالسعر: ${selectedPrice}\nالبريد: ${email}`;
-            if(currentType === 'individual') msg += `\nكلمة المرور: ${pass}\n(مستعد لإرسال كود التحقق 🔐)`;
+            let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${s.name}\nالباقة: ${selectedLabel}\nالسعر: ${selectedPrice}`;
+            if(email) msg += `\nالبريد: ${email}`;
+            if(selectedType === 'individual') msg += `\nكلمة المرور: ${pass}\n(مستعد لإرسال الكود 🔐)`;
             msg += `\n\nتم التحويل البنكي، مرفق الإيصال:`;
 
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
