@@ -1,590 +1,220 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر NIKAI - كانفا برو مدى الحياة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0a2e1d 0%, #1a3c29 100%);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        /* الشعار العلوي مع NIKAI */
-        .top-logo-section {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: linear-gradient(90deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.2), rgba(46, 204, 113, 0.1));
-            border-radius: 15px;
-            border: 1px solid rgba(46, 204, 113, 0.3);
-        }
-        
-        .expertise-text {
-            font-size: 14px;
-            color: #a3e4c5;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        
-        .nikai-logo-top {
-            font-size: 42px;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            text-shadow: 
-                0 1px 0 #ccc,
-                0 2px 0 #c9c9c9,
-                0 3px 0 #bbb,
-                0 4px 0 #b9b9b9,
-                0 5px 0 #aaa,
-                0 6px 1px rgba(0,0,0,.1),
-                0 0 5px rgba(0,0,0,.1),
-                0 1px 3px rgba(0,0,0,.3),
-                0 3px 5px rgba(0,0,0,.2),
-                0 10px 10px rgba(0,0,0,.25),
-                0 0 20px rgba(46, 204, 113, 0.5);
-            background: linear-gradient(to bottom, #2ecc71 0%, #27ae60 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-            padding: 5px 0;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 
-                    0 1px 0 #ccc,
-                    0 2px 0 #c9c9c9,
-                    0 3px 0 #bbb,
-                    0 4px 0 #b9b9b9,
-                    0 5px 0 #aaa,
-                    0 6px 1px rgba(0,0,0,.1),
-                    0 0 5px rgba(0,0,0,.1),
-                    0 1px 3px rgba(0,0,0,.3),
-                    0 3px 5px rgba(0,0,0,.2),
-                    0 10px 10px rgba(0,0,0,.25),
-                    0 0 20px rgba(46, 204, 113, 0.5);
-            }
-            to {
-                text-shadow: 
-                    0 1px 0 #ccc,
-                    0 2px 0 #c9c9c9,
-                    0 3px 0 #bbb,
-                    0 4px 0 #b9b9b9,
-                    0 5px 0 #aaa,
-                    0 6px 1px rgba(0,0,0,.1),
-                    0 0 10px rgba(0,0,0,.1),
-                    0 1px 5px rgba(0,0,0,.3),
-                    0 3px 7px rgba(0,0,0,.2),
-                    0 12px 12px rgba(0,0,0,.25),
-                    0 0 30px rgba(46, 204, 113, 0.8),
-                    0 0 40px rgba(46, 204, 113, 0.6);
-            }
-        }
-        
-        .card {
-            background: linear-gradient(to bottom, #1a5c3a, #0f3b24);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-        
-        .card-header {
-            padding: 25px;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        
-        .discount-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 24px;
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .store-name {
-            font-size: 20px;
-            color: #a3e4c5;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-        
-        .product-title {
-            font-size: 26px;
-            margin-bottom: 5px;
-            font-weight: 700;
-            color: #2ecc71;
-        }
-        
-        .product-subtitle {
-            font-size: 18px;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-        
-        .card-body {
-            padding: 25px;
-        }
-        
-        /* قسم إدخال الإيميل */
-        .email-section {
-            margin-bottom: 25px;
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px solid rgba(46, 204, 113, 0.3);
-        }
-        
-        .email-label {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #2ecc71;
-            text-align: center;
-        }
-        
-        .email-label i {
-            margin-left: 10px;
-        }
-        
-        .email-input-container {
-            position: relative;
-        }
-        
-        .email-input {
-            width: 100%;
-            padding: 18px 50px 18px 20px;
-            border-radius: 12px;
-            border: 2px solid rgba(46, 204, 113, 0.5);
-            background-color: rgba(0, 0, 0, 0.4);
-            color: #fff;
-            font-size: 18px;
-            transition: all 0.3s;
-        }
-        
-        .email-input:focus {
-            outline: none;
-            border-color: #2ecc71;
-            box-shadow: 0 0 15px rgba(46, 204, 113, 0.7);
-        }
-        
-        .email-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #2ecc71;
-            font-size: 20px;
-        }
-        
-        .email-note {
-            font-size: 14px;
-            color: #a3e4c5;
-            margin-top: 10px;
-            text-align: center;
-        }
-        
-        /* قسم المزايا */
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(46, 204, 113, 0.5);
-            text-align: center;
-            color: #2ecc71;
-        }
-        
-        .section-title i {
-            margin-left: 10px;
-        }
-        
-        .features-list {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-        
-        .features-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-        }
-        
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .features-list li i {
-            color: #2ecc71;
-            margin-left: 15px;
-            font-size: 20px;
-        }
-        
-        .price-section {
-            text-align: center;
-            padding: 25px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            margin: 25px 0;
-            border: 2px solid rgba(46, 204, 113, 0.3);
-            position: relative;
-        }
-        
-        .lifetime-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #9b59b6, #8e44ad);
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
-        }
-        
-        .price {
-            font-size: 52px;
-            font-weight: 900;
-            color: #ffd700;
-            margin: 10px 0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .original-price {
-            font-size: 20px;
-            color: #e74c3c;
-            margin-bottom: 15px;
-        }
-        
-        .original-price s {
-            color: #a3e4c5;
-        }
-        
-        .best-price {
-            display: inline-block;
-            background-color: rgba(255, 215, 0, 0.2);
-            color: #ffd700;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 16px;
-            margin-top: 15px;
-            border: 1px solid #ffd700;
-        }
-        
-        /* قسم معلومات الدفع */
-        .payment-info {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            border-right: 4px solid #2ecc71;
-        }
-        
-        .payment-title {
-            font-size: 18px;
-            color: #2ecc71;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .payment-title i {
-            margin-left: 10px;
-        }
-        
-        .bank-details {
-            font-size: 16px;
-            line-height: 1.8;
-        }
-        
-        .account-number {
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-            font-family: monospace;
-            margin: 15px 0;
-            text-align: center;
-            font-size: 16px;
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            letter-spacing: 1px;
-        }
-        
-        .beneficiary-name {
-            color: #ffd700;
-            font-weight: bold;
-        }
-        
-        .quick-confirm {
-            color: #ffd700;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 16px;
-            background-color: rgba(255, 215, 0, 0.1);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        
-        .cta-button {
-            display: block;
-            width: 100%;
-            background: linear-gradient(45deg, #2ecc71, #27ae60);
-            color: #fff;
-            border: none;
-            padding: 22px;
-            font-size: 22px;
-            font-weight: bold;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 25px;
-            box-shadow: 0 5px 20px rgba(46, 204, 113, 0.5);
-        }
-        
-        .cta-button:hover {
-            background: linear-gradient(45deg, #27ae60, #219653);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.7);
-        }
-        
-        .delivery-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
-            font-size: 16px;
-            color: #a3e4c5;
-        }
-        
-        .delivery-info i {
-            color: #2ecc71;
-            margin-left: 10px;
-            font-size: 22px;
-        }
-        
-        .footer-note {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 14px;
-            padding: 0 10px;
-            color: #a3e4c5;
-        }
-        
-        @media (max-width: 480px) {
-            .card-header, .card-body {
-                padding: 20px;
-            }
-            
-            .nikai-logo-top {
-                font-size: 36px;
-                letter-spacing: 3px;
-            }
-            
-            .price {
-                font-size: 46px;
-            }
-            
-            .discount-badge {
-                font-size: 20px;
-                padding: 8px 20px;
-            }
-            
-            .product-title {
-                font-size: 24px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر NIKAI - كانفا برو مدى الحياة</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
+
+/* ===== الشريط العلوي ===== */
+.top-bar{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:60px;
+    background:linear-gradient(180deg,#0b2a1c,#06160f);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    box-shadow:0 4px 20px rgba(0,0,0,.7)
+}
+.top-logo{
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:4px;
+    background:linear-gradient(90deg,#2ecc71,#f1c40f,#2ecc71);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 25px rgba(46,204,113,.7);
+    animation:glow 3s infinite alternate
+}
+@keyframes glow{
+    from{filter:drop-shadow(0 0 5px #2ecc71)}
+    to{filter:drop-shadow(0 0 20px #2ecc71)}
+}
+
+body{
+    background:linear-gradient(135deg,#081f14,#0f3b24);
+    min-height:100vh;
+    color:#fff;
+    padding-top:80px;
+    display:flex;
+    justify-content:center;
+    align-items:center
+}
+
+.container{width:100%;max-width:400px}
+
+.card{
+    background:linear-gradient(180deg,#0f3b24,#081f14);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.6)
+}
+.card-header{
+    padding:25px;
+    text-align:center;
+    position:relative
+}
+.discount-badge{
+    position:absolute;
+    top:15px;left:15px;
+    background:linear-gradient(45deg,#e74c3c,#c0392b);
+    padding:8px 20px;
+    border-radius:30px;
+    font-weight:bold;
+    animation:pulse 2s infinite
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+    100%{transform:scale(1)}
+}
+.product-title{font-size:26px;color:#2ecc71;margin-top:20px}
+.product-subtitle{opacity:.9;margin-top:5px}
+
+.card-body{padding:25px}
+
+.features-list{list-style:none;margin:20px 0}
+.features-list li{
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.1)
+}
+.features-list i{color:#2ecc71;margin-left:10px}
+
+.price-section{
+    background:rgba(0,0,0,.3);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    margin:20px 0
+}
+.price{
+    font-size:48px;
+    font-weight:900;
+    color:#ffd700
+}
+.old-price{text-decoration:line-through;color:#aaa}
+
+.cta-button{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#2ecc71,#27ae60);
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(46,204,113,.6)
+}
+
+/* ===== نافذة الإيميل ===== */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,.85);
+    z-index:10000;
+    justify-content:center;
+    align-items:center
+}
+.modal-content{
+    background:linear-gradient(180deg,#0f3b24,#081f14);
+    padding:25px;
+    border-radius:15px;
+    width:90%;
+    max-width:350px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.8)
+}
+.modal-content h3{color:#2ecc71;margin-bottom:15px}
+.modal-content input{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:2px solid #2ecc71;
+    background:#000;
+    color:#fff;
+    margin-bottom:15px
+}
+.modal-content button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#2ecc71,#27ae60);
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- الشعار العلوي مع NIKAI في المكان المطلوب -->
-        <div class="top-logo-section">
-            <div class="expertise-text">متميزون منذ عام 2020</div>
-            <div class="nikai-logo-top">NIKAI</div>
+
+<!-- الشعار -->
+<div class="top-bar">
+    <div class="top-logo">NIKAI</div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="discount-badge">وفر 60%</div>
+            <h1 class="product-title">كانفا برو مدى الحياة</h1>
+            <p class="product-subtitle">تفعيل رسمي – بدون قيود</p>
         </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <div class="discount-badge">%60 وفر</div>
-                <div class="store-name">متجر NIKAI - اشتراكات رقمية متميزة</div>
-                <h1 class="product-title">كانفا برو مدى الحياة</h1>
-                <p class="product-subtitle">أدوات تصميم احترافية لمدى الحياة</p>
+
+        <div class="card-body">
+            <ul class="features-list">
+                <li><i class="fa fa-check-circle"></i> تفعيل على إيميلك الشخصي</li>
+                <li><i class="fa fa-check-circle"></i> أدوات Pro كاملة</li>
+                <li><i class="fa fa-check-circle"></i> تصدير بدون علامة مائية</li>
+                <li><i class="fa fa-check-circle"></i> تحديثات مدى الحياة</li>
+            </ul>
+
+            <div class="price-section">
+                <div class="price">39 ريال</div>
+                <div class="old-price">بدلاً من 100 ريال</div>
             </div>
-            
-            <div class="card-body">
-                <!-- قسم إدخال الإيميل - فقط لمنتج Canva -->
-                <div class="email-section">
-                    <label class="email-label">
-                        <i class="fas fa-envelope"></i> أدخل بريدك الإلكتروني للتسليم
-                    </label>
-                    <div class="email-input-container">
-                        <input type="email" id="userEmail" class="email-input" placeholder="example@email.com" required>
-                        <div class="email-icon">
-                            <i class="fas fa-at"></i>
-                        </div>
-                    </div>
-                    <p class="email-note">
-                        <i class="fas fa-info-circle"></i> التفعيل يرسل مباشرة إلى إيميلك الشخصي
-                    </p>
-                </div>
-                
-                <!-- قسم المزايا -->
-                <div class="section-title">
-                    <i class="fas fa-gem"></i> مزايا كانفا برو
-                </div>
-                
-                <ul class="features-list">
-                    <li><i class="fas fa-check-circle"></i> تفعيل مباشر على إيميلك الشخصي</li>
-                    <li><i class="fas fa-check-circle"></i> أدوات Pro كاملة بدون أي قيود</li>
-                    <li><i class="fas fa-check-circle"></i> مكتبة صور ومقاطع وفيديوهات مميزة</li>
-                    <li><i class="fas fa-check-circle"></i> تحديثات مجانية مدى الحياة</li>
-                    <li><i class="fas fa-check-circle"></i> إمكانية العمل التعاوني مع الفريق</li>
-                    <li><i class="fas fa-check-circle"></i> تصدير بجودة عالية بدون علامة مائية</li>
-                </ul>
-                
-                <!-- قسم السعر -->
-                <div class="price-section">
-                    <div class="lifetime-badge">مدى الحياة</div>
-                    <div class="price">39 ريال</div>
-                    <p class="original-price">بدلاً من <s>100 ريال</s></p>
-                    <div class="best-price">أفضل سعر في السوق</div>
-                    
-                    <div class="delivery-info">
-                        <i class="fas fa-bolt"></i>
-                        <span>تسليم فوري خلال دقائق</span>
-                    </div>
-                </div>
-                
-                <!-- قسم معلومات الدفع -->
-                <div class="payment-info">
-                    <div class="payment-title">
-                        <i class="fas fa-credit-card"></i> معلومات الدفع
-                    </div>
-                    <div class="bank-details">
-                        <p><strong class="beneficiary-name">اسم المستفيد:</strong> سليمان فاسه</p>
-                        <p><strong>رقم الحساب:</strong></p>
-                        <div class="account-number">SA0315000900133520020007</div>
-                        <p class="quick-confirm">بعد التحويل، أرسل إيصال الدفع لتأكيد طلبك السريع</p>
-                    </div>
-                </div>
-                
-                <!-- زر الطلب -->
-                <button class="cta-button" id="orderButton">
-                    <i class="fas fa-shopping-cart"></i> اطلب كانفا برو الآن
-                </button>
-                
-                <p class="footer-note">
-                    اشتراكات رقمية أصلية مع ضمان استرجاع كامل في حالة وجود أي مشكلة.
-                </p>
-            </div>
+
+            <button class="cta-button" id="orderBtn">
+                <i class="fa fa-shopping-cart"></i> اطلب الآن
+            </button>
         </div>
     </div>
+</div>
 
-    <script>
-        // التحقق من صحة الإيميل وإتمام الطلب
-        document.getElementById('orderButton').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const emailInput = document.getElementById('userEmail');
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                alert('الرجاء إدخال بريدك الإلكتروني لتلقي تفعيل Canva Pro');
-                emailInput.focus();
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                alert('الرجاء إدخال بريد إلكتروني صحيح');
-                emailInput.focus();
-                return;
-            }
-            
-            // تأكيد الطلب
-            const confirmMessage = `شكراً لطلبك كانفا برو مدى الحياة!
-            
-سيتم إرسال تفعيل Canva Pro إلى:
-${email}
+<!-- نافذة الإيميل -->
+<div class="modal" id="emailModal">
+    <div class="modal-content">
+        <h3>📧 أدخل بريدك الإلكتروني</h3>
+        <input type="email" id="userEmail" placeholder="example@email.com">
+        <button id="confirmBtn">تأكيد والمتابعة</button>
+    </div>
+</div>
 
-بعد تأكيد الدفع على الحساب:
-SA0315000900133520020007
+<script>
+document.getElementById("orderBtn").onclick = () => {
+    document.getElementById("emailModal").style.display = "flex";
+};
 
-اسم المستفيد: سليمان فاسه
+document.getElementById("confirmBtn").onclick = () => {
+    const email = document.getElementById("userEmail").value.trim();
+    if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+        alert("يرجى إدخال بريد إلكتروني صحيح");
+        return;
+    }
+    alert("تم تسجيل الإيميل:\n"+email+"\n\nيرجى إتمام التحويل وإرسال الإيصال");
+    document.getElementById("emailModal").style.display = "none";
+    console.log("EMAIL:",email);
+};
+</script>
 
-يرجى إرسال إيصال الدفع لتأكيد طلبك السريع.`;
-            
-            alert(confirmMessage);
-            
-            // هنا يمكن إضافة إرسال البيانات إلى الخادم
-            console.log('تم طلب كانفا برو للإيميل:', email);
-        });
-        
-        // دالة التحقق من صحة الإيميل
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-        
-        // تأثيرات للشعار العلوي
-        const nikaiLogo = document.querySelector('.nikai-logo-top');
-        nikaiLogo.addEventListener('mouseenter', function() {
-            this.style.animation = 'glow 0.5s ease-in-out infinite alternate';
-        });
-        
-        nikaiLogo.addEventListener('mouseleave', function() {
-            this.style.animation = 'glow 2s ease-in-out infinite alternate';
-        });
-        
-        // تأثير لحقل الإيميل عند التركيز
-        const emailField = document.getElementById('userEmail');
-        emailField.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'scale(1.02)';
-        });
-        
-        emailField.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'scale(1)';
-        });
-    </script>
 </body>
 </html>
