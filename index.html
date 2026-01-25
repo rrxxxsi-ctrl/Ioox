@@ -17,10 +17,8 @@
         }
 
         /* الثيمات اللونية الديناميكية */
-        body.theme-fasel { --accent-color: #ffc107; --glow-color: rgba(255, 193, 7, 0.25); } /* لون فاصل */
+        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.25); } /* لون أوتوديسك */
         body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.25); } 
-        body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.2); }
-        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.25); }
         body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
         body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
@@ -41,7 +39,7 @@
         .logo { font-size: 42px; font-weight: 900; letter-spacing: 6px; color: var(--accent-color); transition: var(--transition); }
 
         /* شبكة المنتجات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); gap: 8px; margin-bottom: 40px; }
         .card {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px;
             padding: 15px 5px; cursor: pointer; transition: var(--transition);
@@ -49,7 +47,7 @@
         .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
         .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.1); box-shadow: 0 10px 25px var(--glow-color); }
         .card i { font-size: 22px; margin-bottom: 6px; color: var(--accent-color); }
-        .card h3 { font-size: 9px; font-weight: 700; }
+        .card h3 { font-size: 8px; font-weight: 700; }
 
         /* لوحة التفاصيل */
         #checkout {
@@ -61,7 +59,7 @@
         .badge-main { display: inline-block; background: var(--accent-color); color: #fff; padding: 4px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 15px; }
 
         /* الباقات */
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 20px 0; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 10px; margin: 20px 0; }
         .plan-btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 12px;
             border-radius: 15px; cursor: pointer; transition: 0.3s;
@@ -70,7 +68,6 @@
         .plan-btn div { font-size: 10px; opacity: 0.8; margin-bottom: 4px; }
         .plan-btn strong { font-size: 16px; display: block; }
 
-        /* الأقسام الإرشادية */
         .info-panel { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
         .info-panel strong { color: var(--accent-color); font-size: 15px; display: block; margin-bottom: 12px; }
         .info-panel ul { padding-right: 18px; color: #ccc; line-height: 1.7; }
@@ -105,13 +102,13 @@
     <div class="container">
         <header>
             <div class="logo">NIKAI</div>
-            <p style="opacity: 0.5;">اشتراكات رقمية بضمان كامل 2026</p>
+            <p style="opacity: 0.5;">فخامة الاشتراكات الرقمية 2026</p>
         </header>
 
         <div class="grid">
-            <div class="card" onclick="openService('fasel')">
-                <i class="fas fa-bolt"></i>
-                <h3>فاصل</h3>
+            <div class="card" onclick="openService('autodesk')">
+                <i class="fas fa-drafting-compass"></i>
+                <h3>أوتوديسك</h3>
             </div>
             <div class="card" onclick="openService('windows')">
                 <i class="fab fa-windows"></i>
@@ -149,6 +146,10 @@
                 <i class="fas fa-robot"></i>
                 <h3>GPT</h3>
             </div>
+            <div class="card" onclick="openService('fasel')">
+                <i class="fas fa-bolt"></i>
+                <h3>فاصل</h3>
+            </div>
             <div class="card" onclick="openService('crunchy')">
                 <i class="fas fa-tv"></i>
                 <h3>كرانشي</h3>
@@ -158,13 +159,13 @@
         <section id="checkout">
             <div class="service-head">
                 <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">الخدمة</h2>
-                <div id="shared-badge" class="badge-main">حساب مشترك - ملف خاص</div>
+                <div id="shared-badge" class="badge-main">تفعيل رسمي - حسابك الشخصي</div>
             </div>
 
             <div class="plans-grid" id="s-plans"></div>
 
             <div class="info-panel">
-                <strong><i class="fas fa-check-double"></i> مميزات الاشتراك:</strong>
+                <strong><i class="fas fa-star"></i> مميزات الاشتراك:</strong>
                 <ul id="s-info"></ul>
             </div>
 
@@ -191,25 +192,23 @@
 
     <script>
         const services = {
-            fasel: {
-                name: "فاصل بلس (ملف خاص)",
-                badge: "أضخم مكتبة أفلام",
+            autodesk: {
+                name: "أوتوديسك (Autodesk) - جميع البرامج",
+                badge: "النسخة الأصلية 100%",
                 plans: [
-                    {l: "شهر واحد", p: "13 ريال"},
-                    {l: "3 أشهر", p: "29 ريال"},
-                    {l: "6 أشهر", p: "49 ريال"},
-                    {l: "سنة كاملة", p: "89 ريال"}
+                    {l: "باقة لمدة 6 أشهر", p: "150 ريال"},
+                    {l: "باقة لمدة 12 شهر", p: "250 ريال"}
                 ],
-                info: ["مشاهدة بدون إعلانات مزعجة", "جودة FHD كاملة", "تطبيق ذكي لجميع الأجهزة", "تحديث يومي للمحتوى"],
-                email: false
+                info: [
+                    "وصول شامل لجميع برامج Autodesk (AutoCAD, Revit, Maya, Fusion 360, etc.)",
+                    "تحديثات رسمية مستمرة لضمان أحدث الإصدارات",
+                    "تفعيل آمن ونظامي مرتبط بحسابك الشخصي",
+                    "ضمان كامل طوال فترة الاشتراك",
+                    "دعم فني متميز من الشركة مباشرة"
+                ],
+                email: true
             },
-            windows: {
-                name: "ويندوز الأصلي",
-                badge: "ترخيص مدى الحياة",
-                plans: [{l: "Windows 10 Pro", p: "24.99 ريال"}, {l: "Windows 11 Pro", p: "28.99 ريال"}],
-                info: ["مفتاح أصلي 100%", "تنشيط مدى الحياة"],
-                email: false
-            },
+            windows: { name: "ويندوز الأصلي", badge: "ترخيص مدى الحياة", plans: [{l: "Windows 10 Pro", p: "24.99 ريال"}, {l: "Windows 11 Pro", p: "28.99 ريال"}], info: ["مفتاح أصلي 100%"], email: false },
             osn: { name: "OSN+ بريميوم", badge: "ضمان ذهبي", plans: [{l: "12 شهر", p: "110 ريال"}], info: ["جودة 4K", "بدون إعلانات"], email: false },
             linkedin: { name: "لينكد إن بريميوم", badge: "Business", plans: [{l: "شهر", p: "80 ريال"}, {l: "سنة", p: "600 ريال"}], info: ["رسائل InMail"], email: true },
             adobe: { name: "أدوبي كرييتف كلاود", badge: "أصلي 100%", plans: [{l: "شهر", p: "99 ريال"}, {l: "سنة", p: "999 ريال"}], info: ["فوتوشوب وإلستريتور"], email: true },
@@ -218,7 +217,8 @@
             netflix: { name: "نتفليكس بريميوم 4K", badge: "ملف خاص", plans: [{l: "شهر", p: "20 ريال"}, {l: "سنة", p: "200 ريال"}], info: ["جودة 4K UHD"], email: false },
             shahid: { name: "شاهد VIP الرياضية", badge: "بث المباريات", plans: [{l: "شهر", p: "20 ريال"}, {l: "سنة", p: "200 ريال"}], info: ["جودة 4K"], email: false },
             chatgpt: { name: "ChatGPT Plus", badge: "GPT-5", plans: [{l: "شهر", p: "10 ريال"}, {l: "سنة", p: "100 ريال"}], info: ["سرعة فائقة"], email: false },
-            crunchy: { name: "كرانشي رول", badge: "أنمي 4K", plans: [{l: "سنة", p: "50 ريال"}], info: ["بدون إعلانات"], email: false }
+            fasel: { name: "فاصل بلس", plans: [{l: "شهر", p: "13 ريال"}, {l: "سنة", p: "89 ريال"}], info: ["بدون إعلانات"], email: false },
+            crunchy: { name: "كرانشي رول", plans: [{l: "سنة", p: "50 ريال"}], info: ["أنمي 4K"], email: false }
         };
 
         let currentPrice = "";
@@ -267,9 +267,9 @@
             const activeId = document.body.className.replace('theme-', '');
             const s = services[activeId];
             const email = document.getElementById('u-email').value;
-            if(s.email && !email) { alert("يرجى كتابة الإيميل"); return; }
+            if(s.email && !email) { alert("يرجى كتابة الإيميل لربط الاشتراك بحسابك الشخصي"); return; }
             let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${s.name}\nالباقة: ${currentLabel}\nالسعر: ${currentPrice}`;
-            if(email) msg += `\nالبريد: ${email}`;
+            if(email) msg += `\nالبريد للتفعيل: ${email}`;
             msg += `\n\nتم التحويل البنكي لـ (سليمان فلاته)، مرفق الإيصال:`;
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
