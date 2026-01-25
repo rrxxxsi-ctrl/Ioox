@@ -24,35 +24,35 @@
             --radius-sm: 18px;
             --radius-xs: 12px;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            
+
             /* ألوان Netflix - أحمر وأسود */
             --primary-netflix: #E50914;
             --primary-dark-netflix: #B20710;
             --primary-light-netflix: rgba(229, 9, 20, 0.15);
             --gradient-netflix: linear-gradient(135deg, #E50914 0%, #000000 100%);
             --gradient-hover-netflix: linear-gradient(135deg, #000000 0%, #E50914 100%);
-            
+
             /* ألوان Disney - أزرق ورمادي وأبيض */
             --primary-disney: #113CCF;
             --primary-dark-disney: #0A2DA6;
             --primary-light-disney: rgba(17, 60, 207, 0.15);
             --gradient-disney: linear-gradient(135deg, #113CCF 0%, #00C3E3 50%, #FFFFFF 100%);
             --gradient-hover-disney: linear-gradient(135deg, #00C3E3 0%, #113CCF 100%);
-            
+
             /* ألوان Canva - أزرق فيروزي وأبيض */
             --primary-canva: #00C4CC;
             --primary-dark-canva: #00A8AF;
             --primary-light-canva: rgba(0, 196, 204, 0.15);
             --gradient-canva: linear-gradient(135deg, #00C4CC 0%, #0080FF 50%, #FFFFFF 100%);
             --gradient-hover-canva: linear-gradient(135deg, #0080FF 0%, #00C4CC 100%);
-            
+
             /* ألوان Fasel - أصفر وأسود */
             --primary-fasel: #FFD700;
             --primary-dark-fasel: #D4B000;
             --primary-light-fasel: rgba(255, 215, 0, 0.15);
             --gradient-fasel: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #000000 100%);
             --gradient-hover-fasel: linear-gradient(135deg, #000000 0%, #FFD700 100%);
-            
+
             /* ألوان افتراضية (Netflix) */
             --primary: var(--primary-netflix);
             --primary-dark: var(--primary-dark-netflix);
@@ -123,11 +123,6 @@
             50% {
                 box-shadow: 0 0 40px var(--primary-light);
             }
-        }
-
-        @keyframes brandColorShift {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
         }
 
         * {
@@ -481,14 +476,14 @@
         .product-icon-container {
             width: 90px;
             height: 90px;
-            background: var(--product-light, var(--primary-light));
+            background: var(--product-light, var(--primary-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 30px;
             font-size: 2.2rem;
-            color: var(--product-color, var(--primary));
+            color: var(--product-color, var(--primary);
             transition: var(--transition);
             position: relative;
             border: 2px solid var(--border);
@@ -667,7 +662,7 @@
             font-size: 1.2rem;
         }
 
-        /* ========== تحسينات كرت التحويل البنكي فقط ========== */
+        /* قسم التحويل البنكي المصغرة */
         .bank-transfer-section {
             background: linear-gradient(135deg, var(--accent-light), var(--primary-light));
             border: 1px solid var(--primary);
@@ -678,15 +673,11 @@
             position: relative;
             z-index: 1;
             animation: fadeInUp 0.5s ease-out;
-            max-width: 420px !important;
-            margin: 25px auto !important;
-            height: auto !important;
-            min-height: unset !important;
-            transform-origin: top center;
+            max-width: 420px;
+            margin: 25px auto;
             display: flex;
             flex-direction: column;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .bank-transfer-section.show {
@@ -706,7 +697,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            text-shadow: 0 2px 5px rgba(0, 210, 184, 0.3);
         }
 
         .transfer-minimize {
@@ -734,21 +724,16 @@
         .mini-account-card {
             background: var(--card);
             border-radius: var(--radius-sm);
-            padding: 20px !important;
+            padding: 20px;
             border: 1px solid var(--border);
-            margin-bottom: 0 !important;
+            margin-bottom: 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
-            width: 100% !important;
-            max-width: 100% !important;
-            height: auto !important;
-            min-height: unset !important;
-            margin: 0 !important;
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            box-sizing: border-box;
         }
 
         .mini-account-card::before {
@@ -766,12 +751,9 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 0 !important;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: unset !important;
-            height: auto !important;
             gap: 10px;
-            flex-wrap: nowrap;
         }
 
         .light-mode .mini-account-row {
@@ -809,14 +791,12 @@
             background: rgba(0, 0, 0, 0.2);
             border: 2px solid var(--primary);
             border-radius: var(--radius-xs);
-            padding: 15px !important;
-            margin: 15px 0 !important;
+            padding: 15px;
+            margin: 15px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box;
+            width: 100%;
         }
 
         .light-mode .mini-account-number {
@@ -840,7 +820,7 @@
 
         .mini-account-number code {
             font-family: 'Courier New', monospace;
-            font-size: 1.1rem !important;
+            font-size: 1.1rem;
             font-weight: 900;
             color: var(--primary);
             letter-spacing: 1px;
@@ -858,19 +838,19 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
-            flex-direction: row !important;
+            flex-direction: row;
             gap: 10px;
             width: 100%;
         }
 
         .mini-copy-btn, .mini-whatsapp-btn {
             flex: 1;
-            padding: 12px 15px !important;
+            padding: 12px 15px;
             border: none;
             border-radius: var(--radius-sm);
             font-family: 'Cairo';
             font-weight: 700;
-            font-size: 0.9rem !important;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
@@ -879,8 +859,6 @@
             gap: 10px;
             position: relative;
             overflow: hidden;
-            height: auto !important;
-            min-height: unset !important;
         }
 
         .mini-copy-btn {
@@ -944,7 +922,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .features-toggle {
@@ -1125,7 +1102,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .footer-contact {
@@ -1300,28 +1276,26 @@
             
             /* تحسينات كرت التحويل للجوال */
             .bank-transfer-section {
-                transform: scale(0.95);
-                transform-origin: top center;
-                margin: 15px auto !important;
-                padding: 15px !important;
-                max-width: 380px !important;
+                margin: 15px auto;
+                padding: 15px;
+                max-width: 380px;
             }
             
             .mini-account-card {
-                padding: 15px !important;
+                padding: 15px;
             }
             
             .mini-account-row {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 5px;
-                padding: 8px 0 !important;
+                padding: 8px 0;
             }
             
             .mini-label, .mini-value {
                 width: 100%;
                 max-width: 100%;
-                font-size: 0.85rem !important;
+                font-size: 0.85rem;
                 text-align: right;
             }
             
@@ -1335,12 +1309,12 @@
             }
             
             .mini-account-number {
-                padding: 12px !important;
-                margin: 10px 0 !important;
+                padding: 12px;
+                margin: 10px 0;
             }
             
             .mini-account-number code {
-                font-size: 1rem !important;
+                font-size: 1rem;
                 letter-spacing: 0.5px;
                 line-height: 1.3;
             }
@@ -1351,9 +1325,9 @@
             }
             
             .mini-copy-btn, .mini-whatsapp-btn {
-                width: 100% !important;
-                padding: 10px !important;
-                font-size: 0.85rem !important;
+                width: 100%;
+                padding: 10px;
+                font-size: 0.85rem;
             }
         }
 
@@ -1411,35 +1385,34 @@
             
             /* تحسينات إضافية للشاشات الصغيرة جداً */
             .bank-transfer-section {
-                transform: scale(0.9);
-                padding: 12px !important;
-                max-width: 350px !important;
+                padding: 12px;
+                max-width: 350px;
             }
             
             .mini-account-card {
-                padding: 12px !important;
+                padding: 12px;
             }
             
             .mini-account-row {
-                padding: 6px 0 !important;
+                padding: 6px 0;
             }
             
             .mini-label, .mini-value {
-                font-size: 0.8rem !important;
+                font-size: 0.8rem;
             }
             
             .mini-account-number {
-                padding: 10px !important;
+                padding: 10px;
             }
             
             .mini-account-number code {
-                font-size: 0.9rem !important;
+                font-size: 0.9rem;
                 letter-spacing: 0;
             }
             
             .mini-copy-btn, .mini-whatsapp-btn {
-                padding: 8px !important;
-                font-size: 0.8rem !important;
+                padding: 8px;
+                font-size: 0.8rem;
             }
         }
 
@@ -1915,7 +1888,7 @@
         // إنشاء جزيئات الخلفية
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const colors = [var(--primary), '#FF6B8B', '#00D2B8', '#FFD700'];
+            const colors = ['#E50914', '#FF6B8B', '#00D2B8', '#FFD700'];
             
             for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
