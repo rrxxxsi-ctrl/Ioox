@@ -3,154 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجر NIKAI - كانفا برو مدى الحياة</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>NIKAI | كانفا برو</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma}
 
-/* ===== الشريط العلوي ===== */
+body{
+    background:#0b1f15;
+    color:#fff;
+    padding-top:70px;
+}
+
+/* الشريط العلوي */
 .top-bar{
     position:fixed;
     top:0;left:0;
-    width:100%;height:60px;
-    background:linear-gradient(180deg,#0b2a1c,#06160f);
+    width:100%;
+    height:60px;
+    background:#06140d;
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:9999;
-    box-shadow:0 4px 20px rgba(0,0,0,.7)
+    box-shadow:0 4px 15px rgba(0,0,0,.7);
 }
 .top-logo{
     font-size:28px;
     font-weight:900;
     letter-spacing:4px;
-    background:linear-gradient(90deg,#2ecc71,#f1c40f,#2ecc71);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    text-shadow:0 0 25px rgba(46,204,113,.7);
-    animation:glow 3s infinite alternate
-}
-@keyframes glow{
-    from{filter:drop-shadow(0 0 5px #2ecc71)}
-    to{filter:drop-shadow(0 0 20px #2ecc71)}
+    color:#2ecc71;
+    text-shadow:0 0 15px #2ecc71;
 }
 
-body{
-    background:linear-gradient(135deg,#081f14,#0f3b24);
-    min-height:100vh;
-    color:#fff;
-    padding-top:80px;
-    display:flex;
-    justify-content:center;
-    align-items:center
+/* المحتوى */
+.container{
+    max-width:380px;
+    margin:auto;
+    padding:20px;
 }
-
-.container{width:100%;max-width:400px}
-
 .card{
-    background:linear-gradient(180deg,#0f3b24,#081f14);
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 20px 40px rgba(0,0,0,.6)
+    background:#102c1f;
+    border-radius:15px;
+    padding:20px;
 }
-.card-header{
-    padding:25px;
+h1{
+    color:#2ecc71;
     text-align:center;
-    position:relative
+    margin-bottom:10px;
 }
-.discount-badge{
-    position:absolute;
-    top:15px;left:15px;
-    background:linear-gradient(45deg,#e74c3c,#c0392b);
-    padding:8px 20px;
-    border-radius:30px;
-    font-weight:bold;
-    animation:pulse 2s infinite
-}
-@keyframes pulse{
-    0%{transform:scale(1)}
-    50%{transform:scale(1.05)}
-    100%{transform:scale(1)}
-}
-.product-title{font-size:26px;color:#2ecc71;margin-top:20px}
-.product-subtitle{opacity:.9;margin-top:5px}
+p{text-align:center;margin-bottom:20px}
 
-.card-body{padding:25px}
-
-.features-list{list-style:none;margin:20px 0}
-.features-list li{
-    padding:12px 0;
+ul{list-style:none}
+li{
+    padding:10px 0;
     border-bottom:1px solid rgba(255,255,255,.1)
 }
-.features-list i{color:#2ecc71;margin-left:10px}
 
-.price-section{
-    background:rgba(0,0,0,.3);
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    margin:20px 0
-}
 .price{
-    font-size:48px;
-    font-weight:900;
-    color:#ffd700
+    text-align:center;
+    font-size:36px;
+    color:#f1c40f;
+    margin:20px 0;
 }
-.old-price{text-decoration:line-through;color:#aaa}
 
-.cta-button{
+button{
     width:100%;
-    padding:18px;
+    padding:15px;
     border:none;
-    border-radius:15px;
-    background:linear-gradient(45deg,#2ecc71,#27ae60);
-    color:#fff;
-    font-size:20px;
+    border-radius:10px;
+    background:#2ecc71;
+    color:#000;
+    font-size:18px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(46,204,113,.6)
 }
 
-/* ===== نافذة الإيميل ===== */
+/* نافذة الإيميل */
 .modal{
     display:none;
     position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
+    inset:0;
     background:rgba(0,0,0,.85);
     z-index:10000;
+    display:flex;
     justify-content:center;
-    align-items:center
+    align-items:center;
 }
-.modal-content{
-    background:linear-gradient(180deg,#0f3b24,#081f14);
-    padding:25px;
-    border-radius:15px;
+.modal-box{
+    background:#0f3b24;
+    padding:20px;
+    border-radius:12px;
     width:90%;
-    max-width:350px;
+    max-width:320px;
     text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.8)
 }
-.modal-content h3{color:#2ecc71;margin-bottom:15px}
-.modal-content input{
+.modal-box h3{
+    color:#2ecc71;
+    margin-bottom:15px;
+}
+.modal-box input{
     width:100%;
-    padding:14px;
-    border-radius:10px;
-    border:2px solid #2ecc71;
-    background:#000;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #2ecc71;
+    margin-bottom:15px;
+}
+.modal-box button{
+    background:#27ae60;
     color:#fff;
-    margin-bottom:15px
-}
-.modal-content button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(45deg,#2ecc71,#27ae60);
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer
 }
 </style>
 </head>
@@ -164,55 +124,47 @@ body{
 
 <div class="container">
     <div class="card">
-        <div class="card-header">
-            <div class="discount-badge">وفر 60%</div>
-            <h1 class="product-title">كانفا برو مدى الحياة</h1>
-            <p class="product-subtitle">تفعيل رسمي – بدون قيود</p>
-        </div>
+        <h1>كانفا برو مدى الحياة</h1>
+        <p>تفعيل رسمي على إيميلك</p>
 
-        <div class="card-body">
-            <ul class="features-list">
-                <li><i class="fa fa-check-circle"></i> تفعيل على إيميلك الشخصي</li>
-                <li><i class="fa fa-check-circle"></i> أدوات Pro كاملة</li>
-                <li><i class="fa fa-check-circle"></i> تصدير بدون علامة مائية</li>
-                <li><i class="fa fa-check-circle"></i> تحديثات مدى الحياة</li>
-            </ul>
+        <ul>
+            <li>✔ أدوات Pro كاملة</li>
+            <li>✔ بدون علامة مائية</li>
+            <li>✔ تحديثات مدى الحياة</li>
+        </ul>
 
-            <div class="price-section">
-                <div class="price">39 ريال</div>
-                <div class="old-price">بدلاً من 100 ريال</div>
-            </div>
+        <div class="price">39 ريال</div>
 
-            <button class="cta-button" id="orderBtn">
-                <i class="fa fa-shopping-cart"></i> اطلب الآن
-            </button>
-        </div>
+        <button id="orderBtn">اطلب الآن</button>
     </div>
 </div>
 
 <!-- نافذة الإيميل -->
 <div class="modal" id="emailModal">
-    <div class="modal-content">
-        <h3>📧 أدخل بريدك الإلكتروني</h3>
-        <input type="email" id="userEmail" placeholder="example@email.com">
-        <button id="confirmBtn">تأكيد والمتابعة</button>
+    <div class="modal-box">
+        <h3>أدخل بريدك الإلكتروني</h3>
+        <input type="email" id="emailInput" placeholder="example@email.com">
+        <button id="confirmBtn">تأكيد</button>
     </div>
 </div>
 
 <script>
-document.getElementById("orderBtn").onclick = () => {
-    document.getElementById("emailModal").style.display = "flex";
+const orderBtn = document.getElementById("orderBtn");
+const modal = document.getElementById("emailModal");
+const confirmBtn = document.getElementById("confirmBtn");
+
+orderBtn.onclick = () => {
+    modal.style.display = "flex";
 };
 
-document.getElementById("confirmBtn").onclick = () => {
-    const email = document.getElementById("userEmail").value.trim();
-    if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-        alert("يرجى إدخال بريد إلكتروني صحيح");
+confirmBtn.onclick = () => {
+    const email = document.getElementById("emailInput").value.trim();
+    if(!email || !email.includes("@")){
+        alert("أدخل بريد إلكتروني صحيح");
         return;
     }
-    alert("تم تسجيل الإيميل:\n"+email+"\n\nيرجى إتمام التحويل وإرسال الإيصال");
-    document.getElementById("emailModal").style.display = "none";
-    console.log("EMAIL:",email);
+    alert("تم استلام الإيميل:\n" + email);
+    modal.style.display = "none";
 };
 </script>
 
