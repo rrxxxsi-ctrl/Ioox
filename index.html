@@ -17,13 +17,15 @@
         }
 
         /* الثيمات اللونية الديناميكية */
-        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.25); } /* لون ويندوز الأخضر */
+        body.theme-fasel { --accent-color: #ffc107; --glow-color: rgba(255, 193, 7, 0.25); } /* لون فاصل */
+        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.25); } 
         body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.2); }
         body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.25); }
         body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
         body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
         body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.2); }
+        body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.2); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: #fff; overflow-x: hidden; transition: var(--transition); }
@@ -34,20 +36,20 @@
             z-index: -1; transition: var(--transition);
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; text-align: center; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; text-align: center; }
         header { padding: 40px 0; }
         .logo { font-size: 42px; font-weight: 900; letter-spacing: 6px; color: var(--accent-color); transition: var(--transition); }
 
         /* شبكة المنتجات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 10px; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 40px; }
         .card {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px;
-            padding: 20px 5px; cursor: pointer; transition: var(--transition);
+            padding: 15px 5px; cursor: pointer; transition: var(--transition);
         }
         .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
         .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.1); box-shadow: 0 10px 25px var(--glow-color); }
-        .card i { font-size: 24px; margin-bottom: 8px; color: var(--accent-color); }
-        .card h3 { font-size: 10px; font-weight: 700; }
+        .card i { font-size: 22px; margin-bottom: 6px; color: var(--accent-color); }
+        .card h3 { font-size: 9px; font-weight: 700; }
 
         /* لوحة التفاصيل */
         #checkout {
@@ -59,9 +61,9 @@
         .badge-main { display: inline-block; background: var(--accent-color); color: #fff; padding: 4px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 15px; }
 
         /* الباقات */
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 20px 0; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 20px 0; }
         .plan-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 15px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 12px;
             border-radius: 15px; cursor: pointer; transition: 0.3s;
         }
         .plan-btn.selected { background: var(--accent-color); color: #fff; font-weight: 700; border-color: var(--accent-color); }
@@ -82,15 +84,15 @@
         .bank-row { display: flex; justify-content: space-between; width: 100%; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
         
         .iban-container {
-            width: 100%; background: rgba(255,255,255,0.02); border: 1px dashed #e50914; /* المربع الأحمر المتقطع */
+            width: 100%; background: rgba(255,255,255,0.02); border: 1px dashed #ff0000; /* المربع المتقطع */
             padding: 15px 5px; border-radius: 12px; margin: 15px 0; cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 8px;
             overflow: hidden; 
         }
-        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(10px, 3.8vw, 15px); color: #e50914; white-space: nowrap; font-weight: bold; }
+        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(10px, 3.8vw, 15px); color: #ff0000; white-space: nowrap; font-weight: bold; }
 
-        .btn-order { width: 100%; background: #e50914; color: #fff; border: none; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #00a884; color: #fff; padding: 10px 25px; border-radius: 50px; display: none; z-index: 2000; font-weight: 700; }
+        .btn-order { width: 100%; background: #ff0000; color: #fff; border: none; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #fff; padding: 10px 25px; border-radius: 50px; display: none; z-index: 2000; font-weight: 700; }
         
         @media (max-width: 500px) { .grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
     </style>
@@ -103,10 +105,14 @@
     <div class="container">
         <header>
             <div class="logo">NIKAI</div>
-            <p style="opacity: 0.5;">فخامة التفعيل الرقمي 2026</p>
+            <p style="opacity: 0.5;">اشتراكات رقمية بضمان كامل 2026</p>
         </header>
 
         <div class="grid">
+            <div class="card" onclick="openService('fasel')">
+                <i class="fas fa-bolt"></i>
+                <h3>فاصل</h3>
+            </div>
             <div class="card" onclick="openService('windows')">
                 <i class="fab fa-windows"></i>
                 <h3>ويندوز</h3>
@@ -137,25 +143,34 @@
             </div>
             <div class="card" onclick="openService('shahid')">
                 <i class="fas fa-play-circle"></i>
-                <h3>شاهد VIP</h3>
+                <h3>شاهد</h3>
             </div>
             <div class="card" onclick="openService('chatgpt')">
                 <i class="fas fa-robot"></i>
-                <h3>ChatGPT</h3>
+                <h3>GPT</h3>
+            </div>
+            <div class="card" onclick="openService('crunchy')">
+                <i class="fas fa-tv"></i>
+                <h3>كرانشي</h3>
             </div>
         </div>
 
         <section id="checkout">
             <div class="service-head">
                 <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">الخدمة</h2>
-                <div id="shared-badge" class="badge-main">أصلي - مدى الحياة</div>
+                <div id="shared-badge" class="badge-main">حساب مشترك - ملف خاص</div>
             </div>
 
             <div class="plans-grid" id="s-plans"></div>
 
             <div class="info-panel">
-                <strong><i class="fas fa-shield-alt"></i> مميزات تنشيط الويندوز:</strong>
+                <strong><i class="fas fa-check-double"></i> مميزات الاشتراك:</strong>
                 <ul id="s-info"></ul>
+            </div>
+
+            <div id="email-field" style="display:none; text-align: right; margin: 20px 0;">
+                <label style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني للتفعيل:</label>
+                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff;" placeholder="example@mail.com">
             </div>
 
             <div class="bank-section">
@@ -176,32 +191,34 @@
 
     <script>
         const services = {
-            windows: {
-                name: "مفاتيح تفعيل ويندوز الأصلية",
-                badge: "ترخيص مدى الحياة - Global",
+            fasel: {
+                name: "فاصل بلس (ملف خاص)",
+                badge: "أضخم مكتبة أفلام",
                 plans: [
-                    {l: "Windows 10 Pro", p: "24.99 ريال"},
-                    {l: "Windows 11 Pro", p: "28.99 ريال"},
-                    {l: "Windows 11 Home", p: "28.99 ريال"},
-                    {l: "Windows 10 Home", p: "33.99 ريال"}
+                    {l: "شهر واحد", p: "13 ريال"},
+                    {l: "3 أشهر", p: "29 ريال"},
+                    {l: "6 أشهر", p: "49 ريال"},
+                    {l: "سنة كاملة", p: "89 ريال"}
                 ],
-                info: [
-                    "مفتاح أصلي 100% يضمن دعم مايكروسوفت الكامل",
-                    "تنشيط مدى الحياة - لا حاجة للتجديد أو الاشتراكات",
-                    "تسليم فوري رقمي فور الدفع عبر الواتساب",
-                    "يدعم جميع ميزات الويندوز والتحديثات الأمنية",
-                    "يدعم جميع اللغات (العربية والإنجليزية وغيرها)",
-                    "إمكانية نقل المفتاح وإعادة استخدامه بعد الفورمات"
-                ]
+                info: ["مشاهدة بدون إعلانات مزعجة", "جودة FHD كاملة", "تطبيق ذكي لجميع الأجهزة", "تحديث يومي للمحتوى"],
+                email: false
             },
-            osn: { name: "OSN+ بريميوم", plans: [{l: "12 شهر", p: "110 ريال"}], info: ["جودة 4K", "بدون إعلانات"], badge: "ضمان ذهبي" },
-            linkedin: { name: "لينكد إن بريميوم", plans: [{l: "سنة", p: "600 ريال"}], info: ["باقة Business"], badge: "تفعيل رسمي" },
-            adobe: { name: "أدوبي كرييتف كلاود", plans: [{l: "سنة", p: "999 ريال"}], info: ["جميع البرامج"], badge: "أصلي" },
-            office: { name: "أوفيس 365", plans: [{l: "مدى الحياة", p: "45 ريال"}], info: ["نسخة أصلية"], badge: "5 أجهزة" },
-            youtube: { name: "يوتيوب بريميوم", plans: [{l: "سنة", p: "200 ريال"}], info: ["بدون إعلانات"], badge: "رسمي" },
-            netflix: { name: "نتفليكس بريميوم 4K", plans: [{l: "شهر", p: "20 ريال"}], info: ["جودة 4K UHD"], badge: "ملف خاص" },
-            shahid: { name: "شاهد VIP الرياضية", plans: [{l: "شهر", p: "20 ريال"}], info: ["بث مباريات"], badge: "جودة 4K" },
-            chatgpt: { name: "ChatGPT Plus", plans: [{l: "شهر", p: "10 ريال"}], info: ["GPT-5"], badge: "سرعة فائقة" }
+            windows: {
+                name: "ويندوز الأصلي",
+                badge: "ترخيص مدى الحياة",
+                plans: [{l: "Windows 10 Pro", p: "24.99 ريال"}, {l: "Windows 11 Pro", p: "28.99 ريال"}],
+                info: ["مفتاح أصلي 100%", "تنشيط مدى الحياة"],
+                email: false
+            },
+            osn: { name: "OSN+ بريميوم", badge: "ضمان ذهبي", plans: [{l: "12 شهر", p: "110 ريال"}], info: ["جودة 4K", "بدون إعلانات"], email: false },
+            linkedin: { name: "لينكد إن بريميوم", badge: "Business", plans: [{l: "شهر", p: "80 ريال"}, {l: "سنة", p: "600 ريال"}], info: ["رسائل InMail"], email: true },
+            adobe: { name: "أدوبي كرييتف كلاود", badge: "أصلي 100%", plans: [{l: "شهر", p: "99 ريال"}, {l: "سنة", p: "999 ريال"}], info: ["فوتوشوب وإلستريتور"], email: true },
+            office: { name: "أوفيس 365", badge: "5 أجهزة", plans: [{l: "مدى الحياة", p: "45 ريال"}], info: ["نسخة أصلية"], email: false },
+            youtube: { name: "يوتيوب بريميوم", badge: "رسمي", plans: [{l: "سنة", p: "200 ريال"}], info: ["بدون إعلانات"], email: true },
+            netflix: { name: "نتفليكس بريميوم 4K", badge: "ملف خاص", plans: [{l: "شهر", p: "20 ريال"}, {l: "سنة", p: "200 ريال"}], info: ["جودة 4K UHD"], email: false },
+            shahid: { name: "شاهد VIP الرياضية", badge: "بث المباريات", plans: [{l: "شهر", p: "20 ريال"}, {l: "سنة", p: "200 ريال"}], info: ["جودة 4K"], email: false },
+            chatgpt: { name: "ChatGPT Plus", badge: "GPT-5", plans: [{l: "شهر", p: "10 ريال"}, {l: "سنة", p: "100 ريال"}], info: ["سرعة فائقة"], email: false },
+            crunchy: { name: "كرانشي رول", badge: "أنمي 4K", plans: [{l: "سنة", p: "50 ريال"}], info: ["بدون إعلانات"], email: false }
         };
 
         let currentPrice = "";
@@ -225,7 +242,8 @@
             `).join('');
 
             document.getElementById('s-info').innerHTML = s.info.map(i => `<li>${i}</li>`).join('');
-            
+            document.getElementById('email-field').style.display = s.email ? 'block' : 'none';
+
             const first = document.querySelector('.plan-btn');
             if(first) first.click();
             window.scrollTo({ top: document.getElementById('checkout').offsetTop - 20, behavior: 'smooth' });
@@ -248,7 +266,10 @@
         function placeOrder() {
             const activeId = document.body.className.replace('theme-', '');
             const s = services[activeId];
-            let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${s.name}\nالإصدار: ${currentLabel}\nالسعر: ${currentPrice}`;
+            const email = document.getElementById('u-email').value;
+            if(s.email && !email) { alert("يرجى كتابة الإيميل"); return; }
+            let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${s.name}\nالباقة: ${currentLabel}\nالسعر: ${currentPrice}`;
+            if(email) msg += `\nالبريد: ${email}`;
             msg += `\n\nتم التحويل البنكي لـ (سليمان فلاته)، مرفق الإيصال:`;
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
