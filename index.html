@@ -29,6 +29,7 @@
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             --gradient: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
             --gradient-hover: linear-gradient(135deg, #FF6584 0%, #6C63FF 100%);
+            --gradient-payment: linear-gradient(135deg, #6C63FF 0%, #36D399 100%);
         }
 
         .light-mode {
@@ -191,7 +192,6 @@
             background-clip: text;
             color: transparent;
             line-height: 1.2;
-            animation: fadeInDown 0.8s ease-out;
         }
 
         .hero-subtitle {
@@ -200,7 +200,6 @@
             max-width: 700px;
             margin: 0 auto 30px;
             line-height: 1.6;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         /* شبكة المنتجات */
@@ -219,7 +218,6 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeIn 0.8s ease-out 0.4s both;
         }
 
         .section-title::after {
@@ -256,12 +254,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            animation: fadeInUp 0.6s ease-out;
         }
-
-        .product-card:nth-child(2) { animation-delay: 0.1s; }
-        .product-card:nth-child(3) { animation-delay: 0.2s; }
-        .product-card:nth-child(4) { animation-delay: 0.3s; }
 
         .product-card::before {
             content: '';
@@ -297,12 +290,6 @@
             font-size: 2rem;
             color: var(--primary);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card.active .product-icon-container::before {
-            opacity: 0.1;
         }
 
         .product-card:hover .product-icon-container {
@@ -337,13 +324,7 @@
             white-space: nowrap;
         }
 
-        .product-price-tag span {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-right: 5px;
-        }
-
-        /* قسم التفاصيل */
+        /* قسم تفاصيل المنتج */
         .product-details-section {
             max-width: 900px;
             margin: 0 auto 70px;
@@ -358,7 +339,6 @@
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-            animation: fadeIn 0.8s ease-out;
         }
 
         .details-header {
@@ -386,12 +366,7 @@
             color: var(--primary);
         }
 
-        .current-product-price span {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        /* قسم إدخال الإيميل */
+        /* قسم الإيميل - كما هو */
         .email-section {
             background: rgba(0, 196, 204, 0.05);
             border: 1px solid rgba(0, 196, 204, 0.3);
@@ -399,30 +374,10 @@
             padding: 30px;
             margin: 30px 0;
             display: none;
-            animation: slideInUp 0.6s ease;
         }
 
         .email-section.show {
             display: block;
-        }
-
-        .email-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .email-header i {
-            font-size: 2rem;
-            color: #00c4cc;
-        }
-
-        .email-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text);
         }
 
         .email-input-container {
@@ -443,111 +398,210 @@
             text-align: right;
         }
 
-        .email-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .email-note {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 15px;
-            line-height: 1.6;
-        }
-
-        /* قسم الدفع */
+        /* ====== تصميم جديد لقسم الدفع ====== */
         .payment-section {
-            background: var(--accent-light);
-            border: 1px solid var(--accent);
+            background: var(--primary-light);
             border-radius: var(--radius);
-            padding: 30px;
+            padding: 0;
             margin: 30px 0;
             position: relative;
-            animation: slideInUp 0.6s ease-out;
+            overflow: hidden;
             display: none;
+            border: 1px solid var(--border);
         }
 
         .payment-section.show {
             display: block;
         }
 
-        .payment-title {
-            font-size: 1.3rem;
+        .payment-header {
+            background: var(--gradient-payment);
+            padding: 25px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .payment-header h3 {
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--accent);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .payment-header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .payment-body {
+            padding: 30px;
+        }
+
+        .payment-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .payment-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .payment-step:hover {
+            border-color: var(--primary);
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(108, 99, 255, 0.1);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
             justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
-        .payment-title i {
-            font-size: 1.5rem;
+        .step-content {
+            flex: 1;
         }
 
-        .account-info {
+        .step-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* معلومات الحساب - تصميم جديد */
+        .account-details {
             background: var(--card);
             border-radius: var(--radius-sm);
             padding: 25px;
-            margin: 20px 0;
-            text-align: center;
+            margin-top: 20px;
             border: 1px solid var(--border);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .account-name {
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--text);
+        .account-detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .account-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .detail-label i {
+            color: var(--primary);
             font-size: 1.1rem;
         }
 
-        .account-number-container {
-            text-align: center;
-            margin: 20px 0;
-            padding: 20px 15px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: var(--radius-sm);
-            border: 2px dashed var(--accent);
-            position: relative;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .account-number {
-            font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            letter-spacing: 2px;
-            display: block;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 10px;
-            margin: 0 auto;
-            text-align: center;
-            line-height: 1.4;
-            max-width: 100%;
-            overflow-wrap: break-word;
+        .detail-value {
+            font-weight: 700;
+            color: var(--text);
+            font-size: 1.1rem;
+            text-align: left;
             direction: ltr;
         }
 
-        .account-number-label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 10px;
+        .account-number-highlight {
+            background: rgba(54, 211, 153, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin: 20px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-number-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(54, 211, 153, 0.05) 50%, transparent 70%);
+            animation: shine 3s infinite linear;
+        }
+
+        .account-number-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: 2px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            direction: ltr;
+            position: relative;
+            z-index: 1;
+        }
+
+        .copy-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .copy-btn {
-            width: 100%;
-            max-width: 300px;
+            flex: 1;
             padding: 18px;
             background: var(--gradient);
             color: white;
@@ -562,9 +616,23 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            margin: 20px auto 0;
             position: relative;
             overflow: hidden;
+        }
+
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .copy-btn:hover::before {
+            left: 100%;
         }
 
         .copy-btn:hover {
@@ -575,6 +643,44 @@
 
         .copy-btn.copied {
             background: var(--accent);
+        }
+
+        .whatsapp-btn {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Cairo';
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .payment-note {
+            background: var(--accent-light);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .payment-note i {
+            color: var(--accent);
+            margin-left: 8px;
         }
 
         /* زر الطلب */
@@ -601,14 +707,27 @@
             box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
             position: relative;
             overflow: hidden;
-            animation: pulse 2s infinite;
+        }
+
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .order-btn:hover::before {
+            left: 100%;
         }
 
         .order-btn:hover {
             background: var(--gradient-hover);
             transform: translateY(-5px);
             box-shadow: 0 20px 50px rgba(108, 99, 255, 0.5);
-            animation: none;
         }
 
         .order-btn.loading {
@@ -620,7 +739,12 @@
             animation: spin 1s linear infinite;
         }
 
-        /* التذييل المبسط */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* التذييل */
         .footer {
             background: var(--bg-light);
             border-top: 1px solid var(--border);
@@ -661,26 +785,17 @@
             color: transparent;
         }
 
-        .footer-brand p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .footer-contact {
-            color: var(--text-secondary);
-        }
-
-        .footer-contact h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
         .footer-contact div {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: var(--transition);
+        }
+
+        .footer-contact div:hover {
+            transform: translateX(-5px);
+            color: var(--primary);
         }
 
         .footer-bottom {
@@ -750,92 +865,10 @@
             visibility: visible;
         }
 
-        /* أنيميشنات */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4); }
-            50% { box-shadow: 0 15px 40px rgba(108, 99, 255, 0.6); }
-            100% { box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4); }
-        }
-
-        /* تصميم متجاوب */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 2.4rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            }
-        }
-
+        /* تحسينات التجاوب */
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
             .hero-title {
                 font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.7rem;
-            }
-            
-            .product-card {
-                min-height: 360px;
-                padding: 25px 20px;
-            }
-            
-            .details-container {
-                padding: 30px 25px;
             }
             
             .current-product-title {
@@ -846,8 +879,9 @@
                 font-size: 2.3rem;
             }
             
-            .account-number {
-                font-size: 1.3rem;
+            .product-card {
+                min-height: 360px;
+                padding: 25px 20px;
             }
             
             .order-btn {
@@ -855,59 +889,35 @@
                 font-size: 1.3rem;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem;
+            .payment-steps {
+                gap: 15px;
             }
             
-            .section-title {
-                font-size: 1.5rem;
+            .payment-step {
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
             }
             
-            .product-card {
-                min-height: 340px;
+            .copy-actions {
+                flex-direction: column;
             }
             
-            .product-name {
-                font-size: 1.3rem;
+            .account-number-display {
+                font-size: 1.4rem;
+                padding: 12px;
             }
             
-            .product-price-tag {
-                font-size: 2.2rem;
+            .account-detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
             
-            .control-btn {
-                padding: 8px 15px;
-                font-size: 0.85rem;
-            }
-            
-            .account-number {
-                font-size: 1.2rem;
-            }
-            
-            .account-number-container {
-                padding: 15px 10px;
-            }
-            
-            .toast {
-                bottom: 15px;
-                right: 15px;
-                left: 15px;
-                max-width: calc(100% - 30px);
-            }
-            
-            .scroll-to-top {
-                bottom: 15px;
-                left: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
+            .detail-value {
+                text-align: right;
+                width: 100%;
+                direction: rtl;
             }
         }
     </style>
@@ -960,12 +970,8 @@
                 <div class="current-product-price" id="currentProductPrice">200 <span>ريال</span></div>
             </div>
             
-            <!-- قسم إدخال الإيميل -->
+            <!-- قسم الإيميل -->
             <div class="email-section" id="emailSection">
-                <div class="email-header">
-                    <i class="fas fa-envelope-circle-check"></i>
-                    <h3 id="emailTitle">تفعيل حساب كانفا برو</h3>
-                </div>
                 <div class="email-input-container">
                     <i class="fas fa-envelope email-icon"></i>
                     <input type="email" class="email-input" id="canvaEmail" 
@@ -977,22 +983,100 @@
                 </p>
             </div>
             
-            <!-- قسم الدفع -->
+            <!-- قسم الدفع الجديد -->
             <div class="payment-section" id="paymentSection">
-                <h3 class="payment-title">
-                    <i class="fas fa-credit-card"></i>
-                    <span id="paymentTitle">الدفع الآمن</span>
-                </h3>
-                <div class="account-info">
-                    <div class="account-name">سليمان ابراهيم عبدالله فلاته</div>
-                    <div class="account-number-container">
-                        <span class="account-number">SA0380020007</span>
-                        <span class="account-number-label">رقم الحساب البنكي</span>
+                <div class="payment-header">
+                    <h3 id="paymentTitle">الدفع الآمن والمضمون</h3>
+                    <p>اختر خدمتك المفضلة واتبع خطوات الدفع البسيطة</p>
+                </div>
+                
+                <div class="payment-body">
+                    <div class="payment-steps">
+                        <div class="payment-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>اختر خدمتك المفضلة</h4>
+                                <p>اختر من بين خدماتنا الرقمية المتميزة: نتفلكس، ديزني بلس، كانفا برو، فاصل بلس</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>انسخ رقم الحساب البنكي</h4>
+                                <p>انسخ رقم الحساب المخصص للدفع الآمن من خلال الزر أدناه</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>قم بالتحويل البنكي</h4>
+                                <p>استخدم تطبيق البنك الخاص بك لتحويل المبلغ إلى الحساب المذكور</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>أرسل إشعار الدفع عبر واتساب</h4>
+                                <p>بعد التحويل، أرسل إشعار الدفع عبر واتساب للتفعيل الفوري</p>
+                            </div>
+                        </div>
                     </div>
-                    <button class="copy-btn" onclick="copyAccount()" id="copyBtn">
-                        <i class="fas fa-copy"></i>
-                        <span id="copyText">نسخ رقم الحساب</span>
-                    </button>
+                    
+                    <div class="account-details">
+                        <h4 style="text-align: center; margin-bottom: 20px; color: var(--primary);">
+                            <i class="fas fa-university"></i> معلومات الحساب البنكي
+                        </h4>
+                        
+                        <div class="account-detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-user"></i>
+                                <span>اسم المستفيد</span>
+                            </div>
+                            <div class="detail-value">سليمان ابراهيم عبدالله فلاته</div>
+                        </div>
+                        
+                        <div class="account-detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-bank"></i>
+                                <span>اسم البنك</span>
+                            </div>
+                            <div class="detail-value">بنك البلاد</div>
+                        </div>
+                        
+                        <div class="account-detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-credit-card"></i>
+                                <span>رقم الحساب</span>
+                            </div>
+                            <div class="detail-value">SA0380020007</div>
+                        </div>
+                        
+                        <div class="account-number-highlight">
+                            <div class="account-number-display" id="accountNumberDisplay">SA0380020007</div>
+                            <small style="color: var(--text-secondary); display: block; margin-top: 10px;">
+                                انسخ الرقم أعلاه للتحويل البنكي
+                            </small>
+                        </div>
+                        
+                        <div class="copy-actions">
+                            <button class="copy-btn" onclick="copyAccount()" id="copyBtn">
+                                <i class="fas fa-copy"></i>
+                                <span id="copyText">نسخ رقم الحساب</span>
+                            </button>
+                            <button class="whatsapp-btn" onclick="openWhatsApp()">
+                                <i class="fab fa-whatsapp"></i>
+                                <span id="whatsappText">إرسال إشعار الدفع</span>
+                            </button>
+                        </div>
+                        
+                        <div class="payment-note">
+                            <i class="fas fa-shield-alt"></i>
+                            <span id="paymentNote">جميع المدفوعات مؤمنة ومضمونة بنسبة 100% مع ضمان استرجاع 7 أيام</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -1006,7 +1090,7 @@
         </div>
     </section>
 
-    <!-- التذييل المبسط -->
+    <!-- التذييل -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
@@ -1032,7 +1116,7 @@
         </div>
     </footer>
 
-    <!-- إشعار -->
+    <!-- إشعارات -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
         <div class="toast-content">
@@ -1061,8 +1145,9 @@
                 emailTitle: "تفعيل حساب كانفا برو",
                 emailPlaceholder: "أدخل بريدك الإلكتروني هنا للتفعيل",
                 emailNote: "سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني وتستلم بيانات الدخول عليه خلال 24 ساعة.",
-                paymentTitle: "الدفع الآمن",
+                paymentTitle: "الدفع الآمن والمضمون",
                 copyText: "نسخ رقم الحساب",
+                whatsappText: "إرسال إشعار الدفع",
                 orderText: "🚀 تأكيد الطلب السريع عبر واتساب",
                 langText: "English",
                 themeText: "وضع النهار",
@@ -1070,6 +1155,7 @@
                 warrantyText: "ضمان استرجاع 7 أيام",
                 footerDescription: "متجر متخصص في الخدمات الرقمية والاشتراكات منذ 2020. نقدم أفضل الخدمات بأفضل الأسعار مع ضمان الجودة والدعم الفني المستمر.",
                 footerTagline: "تسوق بأمان | دعم فني 24/7",
+                paymentNote: "جميع المدفوعات مؤمنة ومضمونة بنسبة 100% مع ضمان استرجاع 7 أيام",
                 toastSuccess: "تم بنجاح!",
                 toastCopied: "تم نسخ رقم الحساب إلى الحافظة",
                 toastEmailRequired: "الرجاء إدخال البريد الإلكتروني أولاً!",
@@ -1084,8 +1170,9 @@
                 emailTitle: "Canva Pro Account Activation",
                 emailPlaceholder: "Enter your email address here for activation",
                 emailNote: "Canva Pro account will be activated on this email and you'll receive login details within 24 hours.",
-                paymentTitle: "Secure Payment",
+                paymentTitle: "Secure & Guaranteed Payment",
                 copyText: "Copy Account Number",
+                whatsappText: "Send Payment Receipt",
                 orderText: "🚀 Quick Order via WhatsApp",
                 langText: "العربية",
                 themeText: "Light Mode",
@@ -1093,6 +1180,7 @@
                 warrantyText: "7-day Refund Guarantee",
                 footerDescription: "A store specialized in digital services and subscriptions since 2020. We provide the best services at the best prices with quality guarantee and continuous technical support.",
                 footerTagline: "Shop Safely | 24/7 Support",
+                paymentNote: "All payments are 100% secured and guaranteed with 7-day money back guarantee",
                 toastSuccess: "Success!",
                 toastCopied: "Account number copied to clipboard",
                 toastEmailRequired: "Please enter your email first!",
@@ -1170,6 +1258,9 @@
                         </div>
                         <h3 class="product-name">${product.name[currentLang]}</h3>
                         <div class="product-price-tag">${product.price}<span>${currentLang === 'ar' ? 'ريال' : 'SAR'}</span></div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">
+                            <i class="fas fa-bolt"></i> انقر للتفاصيل
+                        </div>
                     </div>
                 `;
             });
@@ -1205,6 +1296,7 @@
             if (product.requiresEmail) {
                 emailSection.classList.add('show');
                 emailInput.placeholder = translations[currentLang].emailPlaceholder;
+                emailInput.value = '';
             } else {
                 emailSection.classList.remove('show');
             }
@@ -1242,9 +1334,11 @@
             if (currentTheme === 'light') {
                 themeIcon.className = 'fas fa-moon';
                 themeText.textContent = translations[currentLang].themeText;
+                showToast('وضع النهار', 'تم تفعيل وضع النهار ☀️');
             } else {
                 themeIcon.className = 'fas fa-sun';
                 themeText.textContent = translations[currentLang].themeText;
+                showToast('وضع الليل', 'تم تفعيل وضع الليل 🌙');
             }
         }
 
@@ -1260,6 +1354,7 @@
             document.getElementById('emailNote').textContent = langData.emailNote;
             document.getElementById('paymentTitle').textContent = langData.paymentTitle;
             document.getElementById('copyText').textContent = langData.copyText;
+            document.getElementById('whatsappText').textContent = langData.whatsappText;
             document.getElementById('orderText').textContent = langData.orderText;
             document.getElementById('langText').textContent = langData.langText;
             document.getElementById('themeText').textContent = langData.themeText;
@@ -1267,6 +1362,7 @@
             document.getElementById('warrantyText').textContent = langData.warrantyText;
             document.getElementById('footerDescription').textContent = langData.footerDescription;
             document.getElementById('footerTagline').textContent = langData.footerTagline;
+            document.getElementById('paymentNote').textContent = langData.paymentNote;
             
             // تحديث حقل الإيميل
             document.getElementById('canvaEmail').placeholder = langData.emailPlaceholder;
@@ -1290,6 +1386,24 @@
             }).catch(err => {
                 showToast('خطأ', 'حدث خطأ في النسخ', 'error');
             });
+        }
+
+        // فتح واتساب لإرسال إشعار الدفع
+        function openWhatsApp() {
+            const product = products[currentProduct];
+            const email = document.getElementById('canvaEmail').value;
+            
+            let message = currentLang === 'ar' 
+                ? `مرحباً، أرسل إشعار الدفع لطلب ${product.name.ar} بسعر ${product.price} ريال` 
+                : `Hello, I'm sending payment receipt for ${product.name.en} order for ${product.price} SAR`;
+            
+            if (product.requiresEmail && email) {
+                message += currentLang === 'ar' 
+                    ? ` - البريد الإلكتروني: ${email}`
+                    : ` - Email: ${email}`;
+            }
+            
+            window.open(`https://wa.me/966591388202?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // تأكيد الطلب
