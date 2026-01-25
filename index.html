@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIKAI | متجر الاشتراكات الرقمية</title>
+    <title>NIKAI | فخامة الاختيار الرقمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -17,7 +17,8 @@
         }
 
         /* الثيمات اللونية الديناميكية */
-        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.25); } /* لون لينكد إن */
+        body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.2); } /* لون OSN الوردي الجديد */
+        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.25); }
         body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
         body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
@@ -38,15 +39,15 @@
         .logo { font-size: 42px; font-weight: 900; letter-spacing: 6px; color: var(--accent-color); transition: var(--transition); }
 
         /* شبكة المنتجات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; margin-bottom: 40px; }
         .card {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px;
             padding: 20px 5px; cursor: pointer; transition: var(--transition);
         }
         .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
         .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.1); box-shadow: 0 10px 25px var(--glow-color); }
-        .card i { font-size: 26px; margin-bottom: 8px; color: var(--accent-color); }
-        .card h3 { font-size: 11px; font-weight: 700; }
+        .card i { font-size: 24px; margin-bottom: 8px; color: var(--accent-color); }
+        .card h3 { font-size: 10px; font-weight: 700; }
 
         /* لوحة التفاصيل */
         #checkout {
@@ -55,7 +56,7 @@
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .badge-main { display: inline-block; background: var(--accent-color); color: #fff; padding: 4px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 15px; }
+        .badge-shared { display: inline-block; background: var(--accent-color); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 15px; }
 
         /* الباقات */
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 20px 0; }
@@ -65,12 +66,12 @@
         }
         .plan-btn.selected { background: var(--accent-color); color: #fff; font-weight: 700; border-color: var(--accent-color); }
         .plan-btn div { font-size: 10px; opacity: 0.8; margin-bottom: 4px; }
+        .plan-btn strong { font-size: 16px; display: block; }
 
         /* الأقسام الإرشادية */
         .info-panel { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
         .info-panel strong { color: var(--accent-color); font-size: 15px; display: block; margin-bottom: 12px; }
         .info-panel ul { padding-right: 18px; color: #ccc; line-height: 1.7; }
-        .gold-text { color: #d4af37; font-weight: 700; }
 
         /* وزنية البنك المصلحة */
         .bank-section {
@@ -78,6 +79,8 @@
             padding: 25px; max-width: 480px; margin: 30px auto 0;
             display: flex; flex-direction: column; align-items: center;
         }
+        .bank-row { display: flex; justify-content: space-between; width: 100%; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        
         .iban-container {
             width: 100%; background: rgba(255,255,255,0.02); border: 1px dashed var(--accent-color);
             padding: 15px 5px; border-radius: 12px; margin: 15px 0; cursor: pointer;
@@ -104,6 +107,10 @@
         </header>
 
         <div class="grid">
+            <div class="card" onclick="openService('osn')">
+                <i class="fas fa-plus-circle"></i>
+                <h3>OSN+</h3>
+            </div>
             <div class="card" onclick="openService('linkedin')">
                 <i class="fab fa-linkedin"></i>
                 <h3>لينكد إن</h3>
@@ -114,7 +121,7 @@
             </div>
             <div class="card" onclick="openService('office')">
                 <i class="fas fa-file-word"></i>
-                <h3>أوفيس 365</h3>
+                <h3>أوفيس</h3>
             </div>
             <div class="card" onclick="openService('youtube')">
                 <i class="fab fa-youtube"></i>
@@ -136,36 +143,23 @@
                 <i class="fas fa-tv"></i>
                 <h3>كرانشي</h3>
             </div>
-            <div class="card" onclick="openService('canva')">
-                <i class="fas fa-pen-nib"></i>
-                <h3>كانفا</h3>
-            </div>
         </div>
 
         <section id="checkout">
             <div class="service-head">
                 <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">الخدمة</h2>
-                <div id="shared-badge" class="badge-main">أصلي ومضمون</div>
+                <div id="shared-badge" class="badge-shared">حساب مشترك - ملف خاص</div>
             </div>
 
             <div class="plans-grid" id="s-plans"></div>
 
-            <div class="info-panel" id="linkedin-compare" style="display:none; background: rgba(0, 119, 181, 0.05);">
-                <strong><i class="fas fa-exchange-alt"></i> الفرق بين الباقات:</strong>
-                <ul style="font-size: 12px; margin-bottom: 10px;">
-                    <li><span class="gold-text">باقة بزنس (الأفضل):</span> زيادة ظهور 4 أضعاف، 15 رسالة InMail شهرياً، بيانات موسعة.</li>
-                    <li><span>باقة كرير (Career):</span> ظهور أقل 2.5 ضعف، و5 رسائل InMail شهرياً.</li>
-                </ul>
-                <p style="font-size: 11px; opacity: 0.7;">* نوفر لك باقة البزنس بسعر الكرير لفترة محدودة!</p>
-            </div>
-
             <div class="info-panel">
-                <strong><i class="fas fa-star"></i> مميزات الاشتراك:</strong>
+                <strong><i class="fas fa-check-circle"></i> مميزات باقة OSN+ بريميوم:</strong>
                 <ul id="s-info"></ul>
             </div>
 
             <div id="email-field" style="display:none; text-align: right; margin: 20px 0;">
-                <label style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني (لاستلام رابط التفعيل):</label>
+                <label style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني (لاستلام التفعيل):</label>
                 <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff;" placeholder="example@mail.com">
             </div>
 
@@ -187,56 +181,44 @@
 
     <script>
         const services = {
-            linkedin: {
-                name: "لينكد إن بريميوم (LinkedIn Business)",
-                badge: "تفعيل رسمي برابط مباشر",
+            osn: {
+                name: "OSN+ بريميوم",
+                badge: "ضمان ذهبي 100%",
                 plans: [
-                    {l: "شهر واحد (بزنس)", p: "80 ريال"},
-                    {l: "3 أشهر (بزنس)", p: "300 ريال"},
-                    {l: "6 أشهر (بزنس)", p: "400 ريال"},
-                    {l: "سنة كاملة (بزنس)", p: "600 ريال"}
+                    {l: "شهر واحد", p: "15.99 ريال"},
+                    {l: "3 أشهر", p: "33.99 ريال"},
+                    {l: "6 أشهر", p: "60.99 ريال"},
+                    {l: "12 شهر (مشترك)", p: "110 ريال"},
+                    {l: "12 شهر (خاص)", p: "239.99 ريال"}
                 ],
                 info: [
-                    "تفعيل آمن 100% برابط رسمي من شركة LinkedIn",
-                    "رسائل InMail للتواصل المباشر مع مسؤولي التوظيف",
-                    "وصول لـ 16 ألف كورس في LinkedIn Learning",
-                    "رؤية من شاهد ملفك الشخصي بالكامل",
-                    "علامة ذهبية مميزة بجانب اسمك تزيد من ثقة الشركات",
-                    "خصوصية كاملة وبدون مشاركة معلومات حسابك"
+                    "مشاهدة الأفلام والمسلسلات بجودة 4K وبدون إعلانات",
+                    "ترجمة احترافية ومتعددة اللغات (عربي/إنجليزي)",
+                    "إمكانية التحميل والمشاهدة دون اتصال بالإنترنت",
+                    "متاح على الجوال، التابلت، الكمبيوتر، والشاشات الذكية",
+                    "وصول كامل لأحدث الإصدارات الحصرية فور توفرها",
+                    "دعم فني متوفر 24/7 لحل أي مشكلة"
                 ],
-                email: true
-            },
-            adobe: {
-                name: "أدوبي كرييتف كلاود الأصلي",
-                badge: "تفعيل رسمي 100%",
-                plans: [{l: "حساب شخصي (شهر)", p: "99 ريال", t: "personal"}, {l: "حساب شخصي (سنة)", p: "999 ريال", t: "personal"}],
-                info: ["يشمل فوتوشوب وإلستريتور وأكثر من 20 برنامج", "يدعم التحديثات الرسمية"],
-                email: true
-            },
-            office: {
-                name: "أوفيس 365 مدى الحياة",
-                badge: "ضمان تعويض سنة كاملة",
-                plans: [{l: "تفعيل 5 أجهزة", p: "45 ريال"}],
-                info: ["نسخة أصلية 100%", "يشمل 61 برنامج"],
                 email: false
             },
-            youtube: {
-                name: "يوتيوب بريميوم سنة",
-                badge: "تفعيل رسمي ومضمون",
-                plans: [{l:"دعوة عائلية", p:"200 ريال", t:"invite"}, {l:"فردي خاص", p:"350 ريال", t:"individual"}],
-                info: ["بدون إعلانات", "تشغيل في الخلفية"],
+            linkedin: {
+                name: "لينكد إن بريميوم (Business)",
+                badge: "تفعيل رسمي برابط مباشر",
+                plans: [{l: "شهر", p: "80 ريال"}, {l: "سنة", p: "600 ريال"}],
+                info: ["رسائل InMail", "LinkedIn Learning", "علامة ذهبية"],
                 email: true
             },
-            netflix: { name: "نتفليكس بريميوم 4K", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["جودة 4K UHD"], email: false },
-            shahid: { name: "شاهد VIP الرياضية", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["بث المباريات جودة 4K"], email: false },
-            chatgpt: { name: "ChatGPT Plus", plans: [{l:"شهر", p:"10 ريال"}, {l:"سنة", p:"100 ريال"}], info: ["نموذج GPT-5 وسرعة فائقة"], email: false },
-            crunchy: { name: "كرانشي رول", plans: [{l:"سنة كاملة", p:"50 ريال"}], info: ["بدون إعلانات جودة 4K"], email: false },
-            canva: { name: "كانفا برو", plans: [{l:"مدى الحياة", p:"39 ريال"}], info: ["تفعيل رسمي"], email: true }
+            adobe: { name: "أدوبي كرييتف كلاود", badge: "تفعيل رسمي 100%", plans: [{l: "شهر", p: "99 ريال"}], info: ["فوتوشوب وإلستريتور وأكثر"], email: true },
+            office: { name: "أوفيس 365", badge: "ضمان سنة كاملة", plans: [{l: "مدى الحياة", p: "45 ريال"}], info: ["نسخة أصلية 100%"], email: false },
+            youtube: { name: "يوتيوب بريميوم", badge: "تفعيل رسمي ومضمون", plans: [{l:"سنة", p:"200 ريال"}], info: ["بدون إعلانات"], email: true },
+            netflix: { name: "نتفليكس بريميوم 4K", plans: [{l:"شهر", p:"20 ريال"}], info: ["جودة 4K UHD"], email: false },
+            shahid: { name: "شاهد VIP الرياضية", plans: [{l:"شهر", p:"20 ريال"}], info: ["بث المباريات جودة 4K"], email: false },
+            chatgpt: { name: "ChatGPT Plus", plans: [{l:"شهر", p:"10 ريال"}], info: ["نموذج GPT-5 وسرعة فائقة"], email: false },
+            crunchy: { name: "كرانشي رول", plans: [{l:"سنة", p:"50 ريال"}], info: ["بدون إعلانات جودة 4K"], email: false }
         };
 
         let currentPrice = "";
         let currentLabel = "";
-        let currentType = "";
 
         function openService(id) {
             document.body.className = 'theme-' + id;
@@ -250,15 +232,14 @@
             
             // الباقات
             document.getElementById('s-plans').innerHTML = s.plans.map(p => `
-                <div class="plan-btn" onclick="selectPlan(this, '${p.p}', '${p.l}', '${p.t || ''}')">
+                <div class="plan-btn" onclick="selectPlan(this, '${p.p}', '${p.l}')">
                     <div>${p.l}</div>
                     <strong>${p.p}</strong>
                 </div>
             `).join('');
 
-            // المميزات والمقارنة
+            // المميزات
             document.getElementById('s-info').innerHTML = s.info.map(i => `<li>${i}</li>`).join('');
-            document.getElementById('linkedin-compare').style.display = (id === 'linkedin') ? 'block' : 'none';
             
             // الحقول
             document.getElementById('email-field').style.display = s.email ? 'block' : 'none';
@@ -268,12 +249,11 @@
             window.scrollTo({ top: document.getElementById('checkout').offsetTop - 20, behavior: 'smooth' });
         }
 
-        function selectPlan(el, price, label, type) {
+        function selectPlan(el, price, label) {
             document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected'));
             el.classList.add('selected');
             currentPrice = price;
             currentLabel = label;
-            currentType = type;
         }
 
         function copyIBAN() {
@@ -292,7 +272,7 @@
 
             let msg = `مرحباً متجر نيكاي 👋\nأرغب في اشتراك: ${s.name}\nالباقة: ${currentLabel}\nالسعر: ${currentPrice}`;
             if(email) msg += `\nالبريد للتفعيل: ${email}`;
-            msg += `\n\nتم التحويل البنكي، مرفق لك صورة الإيصال:`;
+            msg += `\n\nتم التحويل البنكي لـ (سليمان فلاته)، مرفق الإيصال:`;
 
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
