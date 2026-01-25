@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر NIKAI - اشتراكات رقمية متميزة</title>
+    <title>متجر NIKAI - كانفا برو مدى الحياة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -24,40 +24,32 @@
         }
         
         .container {
-            max-width: 400px;
             width: 100%;
+            max-width: 400px;
         }
         
-        .card {
-            background: linear-gradient(to bottom, #1a5c3a, #0f3b24);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-        
-        /* القسم العلوي مع الشعار المطلوب */
-        .premium-header {
-            padding: 15px 25px;
+        /* الشعار العلوي مع NIKAI */
+        .top-logo-section {
             text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
             background: linear-gradient(90deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.2), rgba(46, 204, 113, 0.1));
-            border-bottom: 1px solid rgba(46, 204, 113, 0.3);
-            position: relative;
+            border-radius: 15px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
         }
         
-        .premium-text {
+        .expertise-text {
             font-size: 14px;
             color: #a3e4c5;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             letter-spacing: 1px;
         }
         
-        /* شعار NIKAI الفخم في المكان المحدد */
-        .nikai-premium-logo {
-            font-size: 36px;
+        .nikai-logo-top {
+            font-size: 42px;
             font-weight: 900;
             color: #fff;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             text-shadow: 
                 0 1px 0 #ccc,
@@ -71,14 +63,12 @@
                 0 3px 5px rgba(0,0,0,.2),
                 0 10px 10px rgba(0,0,0,.25),
                 0 0 20px rgba(46, 204, 113, 0.5);
-            position: relative;
-            display: inline-block;
-            padding: 5px 15px;
             background: linear-gradient(to bottom, #2ecc71 0%, #27ae60 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: glow 2s ease-in-out infinite alternate;
+            padding: 5px 0;
         }
         
         @keyframes glow {
@@ -113,6 +103,14 @@
             }
         }
         
+        .card {
+            background: linear-gradient(to bottom, #1a5c3a, #0f3b24);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
         .card-header {
             padding: 25px;
             text-align: center;
@@ -124,10 +122,10 @@
             display: inline-block;
             background: linear-gradient(45deg, #e74c3c, #c0392b);
             color: #fff;
-            padding: 8px 20px;
+            padding: 10px 25px;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 22px;
+            font-size: 24px;
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
             position: absolute;
             top: 20px;
@@ -142,122 +140,99 @@
         }
         
         .store-name {
-            font-size: 18px;
+            font-size: 20px;
             color: #a3e4c5;
             margin-bottom: 5px;
             letter-spacing: 1px;
         }
         
-        /* قسم اختيار المنتج */
-        .product-selector {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-            gap: 10px;
-        }
-        
-        .product-tab {
-            padding: 12px 20px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            flex: 1;
-            border: 2px solid transparent;
-        }
-        
-        .product-tab.active {
-            background-color: rgba(46, 204, 113, 0.3);
-            border-color: #2ecc71;
-            transform: translateY(-3px);
-        }
-        
-        .product-tab i {
-            margin-left: 5px;
-        }
-        
-        .card-title {
-            font-size: 24px;
+        .product-title {
+            font-size: 26px;
             margin-bottom: 5px;
             font-weight: 700;
+            color: #2ecc71;
         }
         
         .product-subtitle {
             font-size: 18px;
-            color: #2ecc71;
+            color: #fff;
             margin-bottom: 15px;
-            font-weight: bold;
         }
         
         .card-body {
             padding: 25px;
         }
         
-        /* قسم إدخال الإيميل - يظهر فقط لـ Canva */
+        /* قسم إدخال الإيميل */
         .email-section {
             margin-bottom: 25px;
-            display: none; /* مخفي افتراضيًا */
-        }
-        
-        .email-section.active {
-            display: block;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(46, 204, 113, 0.3);
         }
         
         .email-label {
             display: block;
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #a3e4c5;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #2ecc71;
+            text-align: center;
+        }
+        
+        .email-label i {
+            margin-left: 10px;
+        }
+        
+        .email-input-container {
+            position: relative;
         }
         
         .email-input {
             width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid rgba(46, 204, 113, 0.3);
-            background-color: rgba(0, 0, 0, 0.3);
+            padding: 18px 50px 18px 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(46, 204, 113, 0.5);
+            background-color: rgba(0, 0, 0, 0.4);
             color: #fff;
-            font-size: 16px;
+            font-size: 18px;
             transition: all 0.3s;
         }
         
         .email-input:focus {
             outline: none;
             border-color: #2ecc71;
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.7);
+        }
+        
+        .email-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2ecc71;
+            font-size: 20px;
         }
         
         .email-note {
             font-size: 14px;
             color: #a3e4c5;
-            margin-top: 8px;
+            margin-top: 10px;
             text-align: center;
         }
         
-        /* قسم المحتوى الديناميكي للمنتجات */
-        .product-content {
-            display: none;
-        }
-        
-        .product-content.active {
-            display: block;
-        }
-        
+        /* قسم المزايا */
         .section-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(46, 204, 113, 0.5);
             text-align: center;
+            color: #2ecc71;
         }
         
         .section-title i {
             margin-left: 10px;
-            color: #2ecc71;
         }
         
         .features-list {
@@ -266,50 +241,57 @@
         }
         
         .features-list li {
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
+            font-size: 16px;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
         }
         
         .features-list li i {
             color: #2ecc71;
-            margin-left: 10px;
-            font-size: 18px;
+            margin-left: 15px;
+            font-size: 20px;
         }
         
         .price-section {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             background-color: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
-            margin-top: 20px;
+            margin: 25px 0;
             border: 2px solid rgba(46, 204, 113, 0.3);
+            position: relative;
         }
         
         .lifetime-badge {
             display: inline-block;
             background: linear-gradient(45deg, #9b59b6, #8e44ad);
             color: #fff;
-            padding: 8px 20px;
+            padding: 10px 25px;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
         }
         
         .price {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 900;
-            color: #2ecc71;
+            color: #ffd700;
             margin: 10px 0;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         
         .original-price {
-            font-size: 18px;
+            font-size: 20px;
             color: #e74c3c;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .original-price s {
@@ -318,73 +300,68 @@
         
         .best-price {
             display: inline-block;
-            background-color: rgba(231, 76, 60, 0.2);
+            background-color: rgba(255, 215, 0, 0.2);
             color: #ffd700;
-            padding: 5px 15px;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 16px;
+            margin-top: 15px;
             border: 1px solid #ffd700;
         }
         
         /* قسم معلومات الدفع */
         .payment-info {
             background-color: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
             margin-top: 20px;
-            border-right: 3px solid #2ecc71;
+            border-right: 4px solid #2ecc71;
         }
         
         .payment-title {
-            font-size: 16px;
+            font-size: 18px;
             color: #2ecc71;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
         
         .payment-title i {
-            margin-left: 8px;
+            margin-left: 10px;
         }
         
         .bank-details {
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 16px;
+            line-height: 1.8;
         }
         
         .account-number {
             background-color: rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
             font-family: monospace;
-            margin: 10px 0;
+            margin: 15px 0;
             text-align: center;
-            font-size: 15px;
+            font-size: 16px;
             border: 1px solid rgba(46, 204, 113, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .beneficiary-name {
+            color: #ffd700;
+            font-weight: bold;
         }
         
         .quick-confirm {
             color: #ffd700;
             font-weight: bold;
             text-align: center;
-            margin-top: 10px;
-        }
-        
-        .device-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            font-size: 28px;
-        }
-        
-        .device-icons i {
-            background-color: rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+            font-size: 16px;
+            background-color: rgba(255, 215, 0, 0.1);
             padding: 10px;
             border-radius: 10px;
-            color: #a3e4c5;
-            transition: all 0.3s;
         }
         
         .cta-button {
@@ -393,22 +370,22 @@
             background: linear-gradient(45deg, #2ecc71, #27ae60);
             color: #fff;
             border: none;
-            padding: 18px;
-            font-size: 20px;
+            padding: 22px;
+            font-size: 22px;
             font-weight: bold;
-            border-radius: 12px;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             text-decoration: none;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(46, 204, 113, 0.5);
         }
         
         .cta-button:hover {
             background: linear-gradient(45deg, #27ae60, #219653);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.7);
         }
         
         .delivery-info {
@@ -422,15 +399,14 @@
         
         .delivery-info i {
             color: #2ecc71;
-            margin-left: 8px;
-            font-size: 20px;
+            margin-left: 10px;
+            font-size: 22px;
         }
         
         .footer-note {
             text-align: center;
             margin-top: 25px;
             font-size: 14px;
-            opacity: 0.7;
             padding: 0 10px;
             color: #a3e4c5;
         }
@@ -440,124 +416,83 @@
                 padding: 20px;
             }
             
-            .nikai-premium-logo {
-                font-size: 30px;
-                letter-spacing: 2px;
+            .nikai-logo-top {
+                font-size: 36px;
+                letter-spacing: 3px;
             }
             
             .price {
-                font-size: 42px;
+                font-size: 46px;
             }
             
             .discount-badge {
-                font-size: 18px;
-                padding: 6px 15px;
+                font-size: 20px;
+                padding: 8px 20px;
             }
             
-            .product-tab {
-                padding: 10px 15px;
-                font-size: 14px;
+            .product-title {
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- الشعار العلوي مع NIKAI في المكان المطلوب -->
+        <div class="top-logo-section">
+            <div class="expertise-text">متميزون منذ عام 2020</div>
+            <div class="nikai-logo-top">NIKAI</div>
+        </div>
+        
         <div class="card">
-            <!-- القسم العلوي مع الشعار الفخم -->
-            <div class="premium-header">
-                <div class="premium-text">متميزون منذ عام 2020</div>
-                <div class="nikai-premium-logo">NIKAI</div>
-            </div>
-            
             <div class="card-header">
-                <div class="discount-badge" id="discountBadge">%60 وفر</div>
+                <div class="discount-badge">%60 وفر</div>
                 <div class="store-name">متجر NIKAI - اشتراكات رقمية متميزة</div>
-                
-                <!-- قسم اختيار المنتج -->
-                <div class="product-selector">
-                    <div class="product-tab active" data-product="canva">
-                        <i class="fas fa-palette"></i> كانفا برو
-                    </div>
-                    <div class="product-tab" data-product="netflix">
-                        <i class="fas fa-play-circle"></i> نتفلكس بريميوم
-                    </div>
-                </div>
-                
-                <h1 class="card-title" id="productTitle">كانفا برو مدى الحياة</h1>
-                <p class="product-subtitle" id="productSubtitle">أدوات تصميم احترافية مدى الحياة</p>
+                <h1 class="product-title">كانفا برو مدى الحياة</h1>
+                <p class="product-subtitle">أدوات تصميم احترافية لمدى الحياة</p>
             </div>
             
             <div class="card-body">
-                <!-- قسم إدخال الإيميل - يظهر فقط لـ Canva -->
-                <div class="email-section active" id="emailSection">
-                    <label class="email-label" for="userEmail">
-                        <i class="fas fa-envelope"></i> أدخل بريدك الإلكتروني للتسليم:
+                <!-- قسم إدخال الإيميل - فقط لمنتج Canva -->
+                <div class="email-section">
+                    <label class="email-label">
+                        <i class="fas fa-envelope"></i> أدخل بريدك الإلكتروني للتسليم
                     </label>
-                    <input type="email" id="userEmail" class="email-input" placeholder="example@email.com" required>
+                    <div class="email-input-container">
+                        <input type="email" id="userEmail" class="email-input" placeholder="example@email.com" required>
+                        <div class="email-icon">
+                            <i class="fas fa-at"></i>
+                        </div>
+                    </div>
                     <p class="email-note">
-                        <i class="fas fa-info-circle"></i> سيرسل التفعيل مباشرة إلى إيميلك الشخصي
+                        <i class="fas fa-info-circle"></i> التفعيل يرسل مباشرة إلى إيميلك الشخصي
                     </p>
                 </div>
                 
-                <!-- محتوى Canva Pro -->
-                <div class="product-content active" id="canvaContent">
-                    <div class="section-title">
-                        <i class="fas fa-gem"></i> مزايا كانفا برو
-                    </div>
-                    
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> تفعيل مباشر على إيميلك الشخصي</li>
-                        <li><i class="fas fa-check-circle"></i> أدوات Pro كاملة بدون أي قيود</li>
-                        <li><i class="fas fa-check-circle"></i> مكتبة صور ومقاطع وفيديوهات مميزة</li>
-                        <li><i class="fas fa-check-circle"></i> تحديثات مجانية مدى الحياة</li>
-                        <li><i class="fas fa-check-circle"></i> إمكانية العمل التعاوني مع الفريق</li>
-                        <li><i class="fas fa-check-circle"></i> تصدير بجودة عالية بدون علامة مائية</li>
-                    </ul>
-                    
-                    <div class="price-section">
-                        <div class="lifetime-badge">مدى الحياة</div>
-                        <div class="price">39 ريال</div>
-                        <p class="original-price">بدلاً من <s>100 ريال</s></p>
-                        <div class="best-price">أفضل سعر في السوق</div>
-                        
-                        <div class="delivery-info">
-                            <i class="fas fa-bolt"></i>
-                            <span>تسليم فوري خلال دقائق</span>
-                        </div>
-                    </div>
+                <!-- قسم المزايا -->
+                <div class="section-title">
+                    <i class="fas fa-gem"></i> مزايا كانفا برو
                 </div>
                 
-                <!-- محتوى Netflix -->
-                <div class="product-content" id="netflixContent">
-                    <div class="section-title">
-                        <i class="fas fa-film"></i> مزايا نتفلكس بريميوم
-                    </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> تفعيل مباشر على إيميلك الشخصي</li>
+                    <li><i class="fas fa-check-circle"></i> أدوات Pro كاملة بدون أي قيود</li>
+                    <li><i class="fas fa-check-circle"></i> مكتبة صور ومقاطع وفيديوهات مميزة</li>
+                    <li><i class="fas fa-check-circle"></i> تحديثات مجانية مدى الحياة</li>
+                    <li><i class="fas fa-check-circle"></i> إمكانية العمل التعاوني مع الفريق</li>
+                    <li><i class="fas fa-check-circle"></i> تصدير بجودة عالية بدون علامة مائية</li>
+                </ul>
+                
+                <!-- قسم السعر -->
+                <div class="price-section">
+                    <div class="lifetime-badge">مدى الحياة</div>
+                    <div class="price">39 ريال</div>
+                    <p class="original-price">بدلاً من <s>100 ريال</s></p>
+                    <div class="best-price">أفضل سعر في السوق</div>
                     
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> سنة كاملة من المشاهدة غير المحدودة</li>
-                        <li><i class="fas fa-check-circle"></i> جودة 4K فائقة الوضوح مع دعم HDR</li>
-                        <li><i class="fas fa-check-circle"></i> دعم اللغة العربية وكل المحتوى</li>
-                        <li><i class="fas fa-check-circle"></i> يعمل على جميع الأجهزة</li>
-                        <li><i class="fas fa-check-circle"></i> حساب خاص وآمن بخصوصية تامة</li>
-                        <li><i class="fas fa-check-circle"></i> مشاهدة على 4 أجهزة في نفس الوقت</li>
-                    </ul>
-                    
-                    <div class="device-icons">
-                        <i class="fas fa-mobile-alt" title="هواتف محمولة"></i>
-                        <i class="fas fa-tablet-alt" title="أجهزة لوحية"></i>
-                        <i class="fas fa-tv" title="تلفزيون"></i>
-                        <i class="fas fa-laptop" title="كمبيوتر"></i>
-                    </div>
-                    
-                    <div class="price-section">
-                        <div class="price">200 ريال</div>
-                        <p class="original-price">بدلاً من <s>720 ريال سنوياً</s></p>
-                        
-                        <div class="delivery-info">
-                            <i class="fas fa-bolt"></i>
-                            <span>تسليم فوري وضمان لمدة 30 يوم</span>
-                        </div>
+                    <div class="delivery-info">
+                        <i class="fas fa-bolt"></i>
+                        <span>تسليم فوري خلال دقائق</span>
                     </div>
                 </div>
                 
@@ -567,15 +502,16 @@
                         <i class="fas fa-credit-card"></i> معلومات الدفع
                     </div>
                     <div class="bank-details">
-                        <p><strong>اسم المستفيد:</strong> سليمان فاسه</p>
+                        <p><strong class="beneficiary-name">اسم المستفيد:</strong> سليمان فاسه</p>
                         <p><strong>رقم الحساب:</strong></p>
                         <div class="account-number">SA0315000900133520020007</div>
                         <p class="quick-confirm">بعد التحويل، أرسل إيصال الدفع لتأكيد طلبك السريع</p>
                     </div>
                 </div>
                 
+                <!-- زر الطلب -->
                 <button class="cta-button" id="orderButton">
-                    <i class="fas fa-shopping-cart"></i> اطلب الآن - <span id="orderText">كانفا برو</span>
+                    <i class="fas fa-shopping-cart"></i> اطلب كانفا برو الآن
                 </button>
                 
                 <p class="footer-note">
@@ -586,99 +522,42 @@
     </div>
 
     <script>
-        // عناصر التبويبات
-        const productTabs = document.querySelectorAll('.product-tab');
-        const productContents = document.querySelectorAll('.product-content');
-        const emailSection = document.getElementById('emailSection');
-        const productTitle = document.getElementById('productTitle');
-        const productSubtitle = document.getElementById('productSubtitle');
-        const discountBadge = document.getElementById('discountBadge');
-        const orderButton = document.getElementById('orderButton');
-        const orderText = document.getElementById('orderText');
-        
-        // بيانات المنتجات
-        const products = {
-            canva: {
-                title: "كانفا برو مدى الحياة",
-                subtitle: "أدوات تصميم احترافية مدى الحياة",
-                discount: "%60 وفر",
-                orderText: "كانفا برو",
-                showEmail: true
-            },
-            netflix: {
-                title: "نتفلكس بريميوم",
-                subtitle: "Netflix بجودة 4K لمدة سنة كاملة",
-                discount: "%40 وفر",
-                orderText: "نتفلكس بريميوم",
-                showEmail: false
-            }
-        };
-        
-        // وظيفة تبديل المنتج
-        function switchProduct(productId) {
-            // إزالة النشاط من جميع التبويبات والمحتوى
-            productTabs.forEach(tab => tab.classList.remove('active'));
-            productContents.forEach(content => content.classList.remove('active'));
-            
-            // إضافة النشاط للتبويب والمحتوى المحدد
-            document.querySelector(`[data-product="${productId}"]`).classList.add('active');
-            document.getElementById(`${productId}Content`).classList.add('active');
-            
-            // تحديث بيانات المنتج
-            const product = products[productId];
-            productTitle.textContent = product.title;
-            productSubtitle.textContent = product.subtitle;
-            discountBadge.textContent = product.discount;
-            orderText.textContent = product.orderText;
-            
-            // عرض أو إخفاء قسم الإيميل
-            if (product.showEmail) {
-                emailSection.classList.add('active');
-            } else {
-                emailSection.classList.remove('active');
-            }
-        }
-        
-        // إضافة حدث النقر لكل تبويب
-        productTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const productId = tab.getAttribute('data-product');
-                switchProduct(productId);
-            });
-        });
-        
-        // إضافة حدث لزر الطلب
-        orderButton.addEventListener('click', function(e) {
+        // التحقق من صحة الإيميل وإتمام الطلب
+        document.getElementById('orderButton').addEventListener('click', function(e) {
             e.preventDefault();
             
-            // الحصول على المنتج الحالي النشط
-            const activeTab = document.querySelector('.product-tab.active');
-            const activeProduct = activeTab.getAttribute('data-product');
+            const emailInput = document.getElementById('userEmail');
+            const email = emailInput.value.trim();
             
-            // التحقق من صحة الإيميل لمنتج Canva
-            if (activeProduct === 'canva') {
-                const emailInput = document.getElementById('userEmail');
-                const email = emailInput.value.trim();
-                
-                if (!email) {
-                    alert('الرجاء إدخال بريدك الإلكتروني لتلقي تفعيل Canva Pro');
-                    emailInput.focus();
-                    return;
-                }
-                
-                if (!isValidEmail(email)) {
-                    alert('الرجاء إدخال بريد إلكتروني صحيح');
-                    emailInput.focus();
-                    return;
-                }
-                
-                alert(`شكراً لطلبك! سيتم إرسال تفعيل Canva Pro إلى ${email} بعد تأكيد الدفع.`);
-            } else {
-                alert('شكراً لطلبك Netflix! بعد تأكيد الدفع، ستتلقى بيانات الحساب.');
+            if (!email) {
+                alert('الرجاء إدخال بريدك الإلكتروني لتلقي تفعيل Canva Pro');
+                emailInput.focus();
+                return;
             }
             
+            if (!isValidEmail(email)) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                emailInput.focus();
+                return;
+            }
+            
+            // تأكيد الطلب
+            const confirmMessage = `شكراً لطلبك كانفا برو مدى الحياة!
+            
+سيتم إرسال تفعيل Canva Pro إلى:
+${email}
+
+بعد تأكيد الدفع على الحساب:
+SA0315000900133520020007
+
+اسم المستفيد: سليمان فاسه
+
+يرجى إرسال إيصال الدفع لتأكيد طلبك السريع.`;
+            
+            alert(confirmMessage);
+            
             // هنا يمكن إضافة إرسال البيانات إلى الخادم
-            console.log('تم طلب المنتج:', activeProduct);
+            console.log('تم طلب كانفا برو للإيميل:', email);
         });
         
         // دالة التحقق من صحة الإيميل
@@ -687,17 +566,24 @@
             return emailRegex.test(email);
         }
         
-        // تهيئة المنتج الافتراضي (Canva)
-        switchProduct('canva');
-        
-        // تأثيرات تفاعلية للشعار
-        const premiumLogo = document.querySelector('.nikai-premium-logo');
-        premiumLogo.addEventListener('mouseenter', function() {
+        // تأثيرات للشعار العلوي
+        const nikaiLogo = document.querySelector('.nikai-logo-top');
+        nikaiLogo.addEventListener('mouseenter', function() {
             this.style.animation = 'glow 0.5s ease-in-out infinite alternate';
         });
         
-        premiumLogo.addEventListener('mouseleave', function() {
+        nikaiLogo.addEventListener('mouseleave', function() {
             this.style.animation = 'glow 2s ease-in-out infinite alternate';
+        });
+        
+        // تأثير لحقل الإيميل عند التركيز
+        const emailField = document.getElementById('userEmail');
+        emailField.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+        
+        emailField.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
         });
     </script>
 </body>
