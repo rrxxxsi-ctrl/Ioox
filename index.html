@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NIKAI | متجر متخصص اشتراكات الرقميه</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -24,65 +24,66 @@
             --glass-border: rgba(0, 0, 0, 0.05);
         }
 
-        /* الثيمات اللونية الديناميكية للمنتجات */
-        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); } 
-        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.3); } 
+        /* أنظمة الألوان الديناميكية */
+        body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.3); }
+        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); }
+        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.3); }
         body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.3); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.3); }
         body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.3); }
-        body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.3); }
-        body.theme-chatgpt { --accent-color: #74aa9c; --glow-color: rgba(116, 170, 156, 0.3); }
-        body.theme-crunchy { --accent-color: #ff6400; --glow-color: rgba(255, 100, 0, 0.3); }
-        body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.3); }
-        body.theme-fasel { --accent-color: #ffc107; --glow-color: rgba(255, 193, 7, 0.3); }
-        body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.3); }
-        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.3); }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; transition: background 0.8s ease; }
 
-        /* إضاءة تفاعلية تتبع الحركة */
         .ambient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), var(--glow-color) 0%, transparent 60%); z-index: -1; pointer-events: none; transition: 0.6s ease; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; width: 100%; flex: 1; }
 
-        /* شريط التحكم العلوي */
+        /* التحكم العلوي الزجاجي */
         .top-nav { position: fixed; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
         .nav-pill { display: flex; gap: 8px; background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 6px; border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
-        .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .icon-btn:hover { background: var(--accent-color); color: #000; transform: scale(1.15) rotate(5deg); }
+        .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: 0.4s; }
+        .icon-btn:hover { background: var(--accent-color); color: #000; transform: scale(1.1); }
 
-        /* القائمة الجانبية المطورة */
+        /* القائمة الجانبية */
         .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s; }
-        .menu-drawer { position: fixed; top: 0; right: -100%; width: 85%; max-width: 420px; height: 100%; background: var(--bg-base); z-index: 2001; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); padding: 60px 30px; overflow-y: auto; text-align: right; box-shadow: -10px 0 50px rgba(0,0,0,0.5); }
+        .menu-drawer { position: fixed; top: 0; right: -100%; width: 85%; max-width: 400px; height: 100%; background: var(--bg-base); z-index: 2001; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); padding: 60px 30px; text-align: right; }
         .menu-overlay.active { visibility: visible; opacity: 1; }
         .menu-drawer.active { right: 0; }
-        .menu-item h4 { color: var(--accent-color); margin-bottom: 15px; font-weight: 900; border-right: 4px solid var(--accent-color); padding-right: 15px; }
+        .menu-item h4 { color: var(--accent-color); margin-bottom: 12px; font-weight: 900; border-right: 4px solid var(--accent-color); padding-right: 15px; }
 
         header { padding: 100px 0 30px; text-align: center; }
-        .logo { font-size: 52px; font-weight: 900; letter-spacing: 12px; color: #fff; text-shadow: 0 0 20px var(--glow-color); animation: fadeInDown 0.8s ease; }
-        .sub-logo { opacity: 0.8; font-size: 17px; margin-bottom: 40px; letter-spacing: 1px; }
+        .logo { font-size: 52px; font-weight: 900; letter-spacing: 12px; color: #fff; text-shadow: 0 0 20px var(--glow-color); }
+        .sub-logo { opacity: 0.8; font-size: 16px; margin-bottom: 40px; }
 
-        /* شبكة المنتجات */
+        /* شبكة المنتجات (3 أعمدة ثابتة) */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 50px; }
-        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 15px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; }
-        .card:hover { transform: translateY(-12px) scale(1.05); border-color: var(--accent-color); box-shadow: 0 25px 50px var(--glow-color); }
+        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 10px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; }
+        .card:hover { transform: translateY(-12px); border-color: var(--accent-color); box-shadow: 0 25px 50px var(--glow-color); }
         .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.06); transform: scale(1.05); }
         .card i { font-size: 32px; margin-bottom: 15px; color: var(--accent-color); transition: 0.5s; }
-        .card h3 { font-size: 12px; font-weight: 700; text-align: center; }
+        .card h3 { font-size: 11px; font-weight: 700; text-align: center; }
 
-        /* وزنية الحساب البنكي المثالية */
-        .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 40px; max-width: 480px; margin: 40px auto 0; text-align: center; color: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+        /* لوحة التفاصيل */
+        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUp 0.7s ease; backdrop-filter: blur(30px); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        .plan-btn { background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 18px; border-radius: 22px; cursor: pointer; transition: 0.3s; color: var(--text-main); text-align: center; }
+        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 900; border-color: var(--accent-color); }
+        .plan-btn div { font-size: 11px; opacity: 0.7; margin-bottom: 5px; }
+
+        /* البنك */
+        .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 40px; max-width: 480px; margin: 40px auto 0; text-align: center; color: #fff; }
         .bank-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
-        .iban-container { width: 100%; background: rgba(255,255,255,0.02); border: 2px dashed #ff0000; padding: 20px; border-radius: 18px; margin: 25px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; overflow: hidden; }
-        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 4vw, 17px); color: #ff0000; font-weight: 900; white-space: nowrap; }
+        .iban-container { width: 100%; background: rgba(255,255,255,0.02); border: 2px dashed #ff0000; padding: 20px; border-radius: 18px; margin: 25px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; overflow: hidden; }
+        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(11px, 3.8vw, 16px); color: #ff0000; font-weight: 900; }
 
-        .btn-order { width: 100%; background: #ff0000; color: #fff !important; border: none; padding: 22px; border-radius: 20px; font-weight: 900; font-size: 19px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 15px 40px rgba(255,0,0,0.3); transition: 0.4s; animation: pulseOrder 2s infinite; }
-        @keyframes pulseOrder { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        .btn-order { width: 100%; background: #ff0000; color: #fff !important; border: none; padding: 22px; border-radius: 20px; font-weight: 900; font-size: 19px; cursor: pointer; box-shadow: 0 15px 40px rgba(255,0,0,0.3); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
         footer { padding: 60px 0; text-align: center; font-size: 14px; opacity: 0.6; margin-top: auto; border-top: 1px solid var(--glass-border); font-weight: 600; }
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 15px 40px; border-radius: 50px; display: none; z-index: 3000; font-weight: 900; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 15px 40px; border-radius: 50px; display: none; z-index: 3000; font-weight: 900; }
 
-        @media (max-width: 600px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .card h3 { font-size: 9px; } .logo { font-size: 40px; letter-spacing: 6px; } }
+        @media (max-width: 600px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .card h3 { font-size: 9px; } .logo { font-size: 40px; } }
     </style>
 </head>
 <body>
@@ -101,11 +102,11 @@
     <div class="menu-drawer" id="drawer">
         <button class="icon-btn" onclick="toggleMenu()" style="margin-bottom: 40px;"><i class="fas fa-times"></i></button>
         <div class="menu-item">
-            <h4 id="m-why-h">لماذا تختار إشتراكاتي ؟</h4>
-            <p id="m-why-t" style="font-size:13px; line-height:2.2; opacity:0.8;">🚀 تفعيل سريييع أسرع مما تتوقع.<br>📞 دعم فني 24/7 جاهزين لمساعدتك.<br>💳 دفع آمن ومتعدد.<br>✨ منتجات اصلية 100% وبسعر خرافي.</p>
+            <h4>لماذا تختار إشتراكاتي ؟</h4>
+            <p style="font-size:13px; line-height:2.2; opacity:0.8;">🚀 تفعيل سريييع أسرع مما تتوقع.<br>📞 دعم فني 24/7 جاهزين لمساعدتك.<br>💳 دفع آمن ومتعدد.<br>✨ منتجات اصلية 100% وبسعر خرافي.</p>
         </div>
         <div class="menu-item">
-            <h4 id="m-contact-h">تواصل معنا</h4>
+            <h4>تواصل معنا</h4>
             <p style="font-size:14px; font-weight:900;">📧 iioe@outlook.sa<br>📱 0591388202</p>
         </div>
     </div>
@@ -118,25 +119,25 @@
 
         <div class="grid" id="mainGrid"></div>
 
-        <section id="checkout" style="display:none; padding:45px 25px; background:var(--glass); border-radius:45px; margin-bottom:60px; backdrop-filter:blur(30px);">
-            <h2 id="s-title" style="font-size:32px; font-weight:900; margin-bottom:25px; text-align:center;"></h2>
+        <section id="checkout">
+            <h2 id="s-title" style="text-align: center; margin-bottom: 25px;"></h2>
             <div id="s-plans" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin:25px 0;"></div>
             
             <div id="dynamic-inputs" style="text-align:right; margin:35px 0; display:none;">
                 <label id="l-email" style="font-size:14px; opacity:0.8; display:block; margin-bottom:12px;"></label>
                 <input type="email" id="u-email" style="width:100%; padding:20px; border-radius:20px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="mail@example.com">
-                <div id="pass-area" style="display:none; margin-top:20px;">
+                <div id="pass-area" style="display:none; margin-top: 20px;">
                     <label id="l-pass" style="font-size:14px; opacity:0.8; display:block; margin-bottom:12px;"></label>
-                    <input type="text" id="u-pass" style="width:100%; padding:20px; border-radius:20px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="Password">
+                    <input type="text" id="u-pass" style="width:100%; padding:18px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="Password">
                 </div>
             </div>
 
             <div class="bank-box">
-                <div class="bank-row"><span>البنك:</span><strong>بنك البلاد</strong></div>
-                <div class="bank-row"><span>المستفيد:</span><strong>سليمان فلاته</strong></div>
+                <div class="bank-row"><span id="l-bank">البنك:</span><strong>بنك البلاد</strong></div>
+                <div class="bank-row"><span id="l-user">المستفيد:</span><strong>سليمان فلاته</strong></div>
                 <div class="iban-container" onclick="copyIBAN()">
                     <span class="iban-text">SA0315000900133520020007</span>
-                    <i class="fas fa-copy" style="font-size:14px; opacity:0.5;"></i>
+                    <i class="fas fa-copy" style="font-size: 14px; opacity: 0.5;"></i>
                 </div>
                 <button class="btn-order" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i> <span id="l-confirm">تأكيد الطلب عبر واتساب</span>
@@ -155,18 +156,18 @@
 
         let lang = 'ar';
         const products = {
+            osn: { icon: 'fas fa-plus-circle', name: {ar:"+OSN", en:"+OSN"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"15.99 ريال"}, {l:{ar:"3 أشهر", en:"3 Months"}, p:"33.99 ريال"}, {l:{ar:"6 أشهر", en:"6 Months"}, p:"60.99 ريال"}, {l:{ar:"سنة مشترك", en:"Year Shared"}, p:"110 ريال"}, {l:{ar:"سنة خاص", en:"Year Private"}, p:"239.99 ريال"}] },
             autodesk: { icon: 'fas fa-drafting-compass', name: {ar:"أوتوديسك", en:"Autodesk"}, plans: [{l:{ar:"6 أشهر", en:"6 Months"}, p:"150 ريال"}, {l:{ar:"12 شهر", en:"12 Months"}, p:"250 ريال"}], email: true },
-            windows: { icon: 'fab fa-windows', name: {ar:"ويندوز", en:"Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}, {l:{ar:"11 Pro", en:"11 Pro"}, p:"28.99 ريال"}], email: false },
-            osn: { icon: 'fas fa-plus-circle', name: {ar:"+OSN", en:"+OSN"}, plans: [{l:{ar:"سنة", en:"12 Months"}, p:"110 ريال"}], email: false },
-            youtube: { icon: 'fab fa-youtube', name: {ar:"يوتيوب بريميوم", en:"YouTube"}, plans: [{l:{ar:"دعوة سنة", en:"Invite"}, p:"200 ريال"}, {l:{ar:"فردي سنة", en:"Indiv"}, p:"350 ريال", t:"ind"}], email: true },
-            netflix: { icon: 'fas fa-film', name: {ar:"نتفليكس", en:"Netflix"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"20 ريال"}, {l:{ar:"سنة", en:"1 Year"}, p:"200 ريال"}], email: false },
-            shahid: { icon: 'fas fa-play-circle', name: {ar:"شاهد VIP", en:"Shahid VIP"}, plans: [{l:{ar:"سنة", en:"1 Year"}, p:"200 ريال"}], email: false },
-            chatgpt: { icon: 'fas fa-robot', name: {ar:"ChatGPT Plus", en:"ChatGPT Plus"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"10 ريال"}, {l:{ar:"سنة", en:"1 Year"}, p:"100 ريال"}], email: false },
-            adobe: { icon: 'fas fa-palette', name: {ar:"أدوبي CC", en:"Adobe CC"}, plans: [{l:{ar:"سنة", en:"1 Year"}, p:"999 ريال"}], email: true },
-            office: { icon: 'fas fa-file-word', name: {ar:"أوفيس 365", en:"Office 365"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"45 ريال"}], email: false },
-            crunchy: { icon: 'fas fa-tv', name: {ar:"كرانشي رول", en:"Crunchyroll"}, plans: [{l:{ar:"سنة", en:"1 Year"}, p:"50 ريال"}], email: false },
-            fasel: { icon: 'fas fa-bolt', name: {ar:"فاصل بلس", en:"Fasel Plus"}, plans: [{l:{ar:"سنة", en:"1 Year"}, p:"89 ريال"}], email: false },
-            linkedin: { icon: 'fab fa-linkedin', name: {ar:"لينكد إن", en:"LinkedIn"}, plans: [{l:{ar:"سنة", en:"1 Year"}, p:"600 ريال"}], email: true }
+            windows: { icon: 'fab fa-windows', name: {ar:"ويندوز", en:"Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}, {l:{ar:"11 Pro", en:"11 Pro"}, p:"28.99 ريال"}, {l:{ar:"11 Home", en:"11 Home"}, p:"28.99 ريال"}, {l:{ar:"10 Home", en:"10 Home"}, p:"33.99 ريال"}] },
+            netflix: { icon: 'fas fa-film', name: {ar:"نتفليكس", en:"Netflix"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"20 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"200 ريال"}] },
+            shahid: { icon: 'fas fa-play-circle', name: {ar:"شاهد VIP", en:"Shahid VIP"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"200 ريال"}] },
+            youtube: { icon: 'fab fa-youtube', name: {ar:"يوتيوب", en:"YouTube"}, plans: [{l:{ar:"دعوة سنة", en:"Invite"}, p:"200 ريال"}, {l:{ar:"فردي سنة", en:"Indiv"}, p:"350 ريال", t:"ind"}], email: true },
+            adobe: { icon: 'fas fa-palette', name: {ar:"أدوبي CC", en:"Adobe CC"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"999 ريال"}], email: true },
+            office: { icon: 'fas fa-file-word', name: {ar:"أوفيس 365", en:"Office 365"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"45 ريال"}] },
+            chatgpt: { icon: 'fas fa-robot', name: {ar:"ChatGPT Plus", en:"ChatGPT Plus"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"10 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"100 ريال"}] },
+            linkedin: { icon: 'fab fa-linkedin', name: {ar:"لينكد إن", en:"LinkedIn"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"600 ريال"}], email: true },
+            fasel: { icon: 'fas fa-bolt', name: {ar:"فاصل بلس", en:"Fasel Plus"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"89 ريال"}] },
+            crunchy: { icon: 'fas fa-tv', name: {ar:"كرانشي رول", en:"Crunchyroll"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"50 ريال"}] }
         };
 
         const ui = {
@@ -185,7 +186,7 @@
 
         function toggleMenu() { document.getElementById('overlay').classList.toggle('active'); document.getElementById('drawer').classList.toggle('active'); }
         function toggleTheme() { document.body.classList.toggle('light-mode'); document.getElementById('theme-icon').className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon'; }
-        function toggleLang() { lang = lang === 'ar' ? 'en' : 'ar'; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; renderGrid(); }
+        function toggleLang() { lang = lang === 'ar' ? 'en' : 'ar'; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.getElementById('sub-title').innerText = ui[lang].sub; renderGrid(); document.getElementById('checkout').style.display='none'; }
 
         let selP = "", selL = "", selT = "";
         function selectService(id) {
@@ -205,14 +206,29 @@
             document.getElementById('dynamic-inputs').style.display = s.email ? 'block' : 'none';
             document.getElementById('l-email').innerText = ui[lang].email;
             document.getElementById('l-pass').innerText = ui[lang].pass;
+            document.getElementById('l-bank').innerText = ui[lang].bank;
+            document.getElementById('l-user').innerText = ui[lang].user;
             document.getElementById('l-confirm').innerText = ui[lang].confirm;
             document.querySelector('.plan-btn').click();
             window.scrollTo({ top: pnl.offsetTop - 50, behavior: 'smooth' });
         }
 
-        function setPlan(el, p, l, t) { document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected')); el.classList.add('selected'); selP = p; selL = l; selT = t; document.getElementById('pass-area').style.display = (t === 'ind') ? 'block' : 'none'; }
-        function copyIBAN() { navigator.clipboard.writeText("SA0315000900133520020007"); const t = document.getElementById('toast'); t.innerText = ui[lang].copy; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2000); }
-        function placeOrder() { const e = document.getElementById('u-email').value; window.open(`https://wa.me/966591388202?text=Order: ${document.getElementById('s-title').innerText} - Plan: ${selL} - Email: ${e}`, '_blank'); }
+        function setPlan(el, p, l, t) {
+            document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected'));
+            el.classList.add('selected'); selP = p; selL = l; selT = t;
+            document.getElementById('pass-area').style.display = (t === 'ind') ? 'block' : 'none';
+        }
+
+        function copyIBAN() {
+            navigator.clipboard.writeText("SA0315000900133520020007");
+            const t = document.getElementById('toast'); t.innerText = ui[lang].copy; t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 2000);
+        }
+
+        function placeOrder() {
+            const e = document.getElementById('u-email').value;
+            window.open(`https://wa.me/966591388202?text=Order: ${document.getElementById('s-title').innerText} - Plan: ${selL} - Price: ${selP} - Email: ${e}`, '_blank');
+        }
 
         renderGrid();
     </script>
