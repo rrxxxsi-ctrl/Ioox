@@ -41,16 +41,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; transition: background 0.8s ease; }
 
+        /* إضاءة تفاعلية تتبع الحركة */
         .ambient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), var(--glow-color) 0%, transparent 60%); z-index: -1; pointer-events: none; transition: 0.6s ease; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; width: 100%; flex: 1; }
 
-        /* Floating Menu */
+        /* شريط التحكم العلوي */
         .top-nav { position: fixed; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
         .nav-pill { display: flex; gap: 8px; background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 6px; border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
         .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .icon-btn:hover { background: var(--accent-color); color: #000; transform: scale(1.15) rotate(5deg); }
 
-        /* Drawer */
+        /* القائمة الجانبية المطورة */
         .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s; }
         .menu-drawer { position: fixed; top: 0; right: -100%; width: 85%; max-width: 420px; height: 100%; background: var(--bg-base); z-index: 2001; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); padding: 60px 30px; overflow-y: auto; text-align: right; box-shadow: -10px 0 50px rgba(0,0,0,0.5); }
         .menu-overlay.active { visibility: visible; opacity: 1; }
@@ -60,9 +61,8 @@
         header { padding: 100px 0 30px; text-align: center; }
         .logo { font-size: 52px; font-weight: 900; letter-spacing: 12px; color: #fff; text-shadow: 0 0 20px var(--glow-color); animation: fadeInDown 0.8s ease; }
         .sub-logo { opacity: 0.8; font-size: 17px; margin-bottom: 40px; letter-spacing: 1px; }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Staggered Grid */
+        /* شبكة المنتجات */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 50px; }
         .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 15px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; }
         .card:hover { transform: translateY(-12px) scale(1.05); border-color: var(--accent-color); box-shadow: 0 25px 50px var(--glow-color); }
@@ -70,18 +70,10 @@
         .card i { font-size: 32px; margin-bottom: 15px; color: var(--accent-color); transition: 0.5s; }
         .card h3 { font-size: 12px; font-weight: 700; text-align: center; }
 
-        /* Checkout Panel */
-        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-
-        .plan-btn { background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 20px; border-radius: 22px; cursor: pointer; transition: 0.3s; color: var(--text-main); text-align: center; }
-        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 900; border-color: var(--accent-color); box-shadow: 0 15px 35px var(--glow-color); }
-
-        /* Bank UI Masterpiece */
+        /* وزنية الحساب البنكي المثالية */
         .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 40px; max-width: 480px; margin: 40px auto 0; text-align: center; color: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
         .bank-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
         .iban-container { width: 100%; background: rgba(255,255,255,0.02); border: 2px dashed #ff0000; padding: 20px; border-radius: 18px; margin: 25px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; overflow: hidden; }
-        .iban-container:hover { background: rgba(255,0,0,0.05); transform: scale(1.02); }
         .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 4vw, 17px); color: #ff0000; font-weight: 900; white-space: nowrap; }
 
         .btn-order { width: 100%; background: #ff0000; color: #fff !important; border: none; padding: 22px; border-radius: 20px; font-weight: 900; font-size: 19px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 15px 40px rgba(255,0,0,0.3); transition: 0.4s; animation: pulseOrder 2s infinite; }
@@ -95,7 +87,7 @@
 </head>
 <body>
     <div class="ambient-bg"></div>
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast">تم النسخ ✅</div>
 
     <nav class="top-nav">
         <div class="nav-pill"><button class="icon-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button></div>
@@ -113,10 +105,6 @@
             <p id="m-why-t" style="font-size:13px; line-height:2.2; opacity:0.8;">🚀 تفعيل سريييع أسرع مما تتوقع.<br>📞 دعم فني 24/7 جاهزين لمساعدتك.<br>💳 دفع آمن ومتعدد.<br>✨ منتجات اصلية 100% وبسعر خرافي.</p>
         </div>
         <div class="menu-item">
-            <h4 id="m-policy-h">سياسة الاستبدال والتعويض</h4>
-            <p id="m-policy-t" style="font-size:12px; line-height:1.8; opacity:0.7;">لا يحق للعميل طلب الإلغاء بعد الدفع إلا في حالة عجز المتجر عن التوفير. يتم التعويض المالي ككوبون شرائي وفق المعادلة الرياضية لضمان حقوق الطرفين.</p>
-        </div>
-        <div class="menu-item">
             <h4 id="m-contact-h">تواصل معنا</h4>
             <p style="font-size:14px; font-weight:900;">📧 iioe@outlook.sa<br>📱 0591388202</p>
         </div>
@@ -130,25 +118,25 @@
 
         <div class="grid" id="mainGrid"></div>
 
-        <section id="checkout">
-            <h2 id="s-title" style="font-size: 32px; font-weight: 900; margin-bottom: 25px; text-align: center;"></h2>
-            <div class="plans-grid" id="s-plans"></div>
+        <section id="checkout" style="display:none; padding:45px 25px; background:var(--glass); border-radius:45px; margin-bottom:60px; backdrop-filter:blur(30px);">
+            <h2 id="s-title" style="font-size:32px; font-weight:900; margin-bottom:25px; text-align:center;"></h2>
+            <div id="s-plans" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin:25px 0;"></div>
             
-            <div id="dynamic-inputs" style="text-align: right; margin: 35px 0; display: none;">
+            <div id="dynamic-inputs" style="text-align:right; margin:35px 0; display:none;">
                 <label id="l-email" style="font-size:14px; opacity:0.8; display:block; margin-bottom:12px;"></label>
                 <input type="email" id="u-email" style="width:100%; padding:20px; border-radius:20px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="mail@example.com">
-                <div id="pass-area" style="display:none; margin-top: 20px;">
+                <div id="pass-area" style="display:none; margin-top:20px;">
                     <label id="l-pass" style="font-size:14px; opacity:0.8; display:block; margin-bottom:12px;"></label>
                     <input type="text" id="u-pass" style="width:100%; padding:20px; border-radius:20px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="Password">
                 </div>
             </div>
 
             <div class="bank-box">
-                <div class="bank-row"><span id="l-bank">البنك:</span><strong>بنك البلاد</strong></div>
-                <div class="bank-row"><span id="l-user">المستفيد:</span><strong>سليمان فلاته</strong></div>
+                <div class="bank-row"><span>البنك:</span><strong>بنك البلاد</strong></div>
+                <div class="bank-row"><span>المستفيد:</span><strong>سليمان فلاته</strong></div>
                 <div class="iban-container" onclick="copyIBAN()">
                     <span class="iban-text">SA0315000900133520020007</span>
-                    <i class="fas fa-copy" style="font-size: 14px; opacity: 0.5;"></i>
+                    <i class="fas fa-copy" style="font-size:14px; opacity:0.5;"></i>
                 </div>
                 <button class="btn-order" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i> <span id="l-confirm">تأكيد الطلب عبر واتساب</span>
@@ -160,7 +148,6 @@
     <footer>جميع الحقوق محفوظه للمتجر NIKAI</footer>
 
     <script>
-        // إضاءة نابضة تتبع الماوس/اللمس
         window.addEventListener('mousemove', e => {
             document.body.style.setProperty('--mouse-x', (e.clientX / window.innerWidth) * 100 + '%');
             document.body.style.setProperty('--mouse-y', (e.clientY / window.innerHeight) * 100 + '%');
@@ -196,30 +183,15 @@
             `).join('');
         }
 
-        function toggleMenu() {
-            document.getElementById('overlay').classList.toggle('active');
-            document.getElementById('drawer').classList.toggle('active');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            document.getElementById('theme-icon').className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        function toggleLang() {
-            lang = lang === 'ar' ? 'en' : 'ar';
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('sub-title').innerText = ui[lang].sub;
-            renderGrid();
-            document.getElementById('checkout').style.display = 'none';
-        }
+        function toggleMenu() { document.getElementById('overlay').classList.toggle('active'); document.getElementById('drawer').classList.toggle('active'); }
+        function toggleTheme() { document.body.classList.toggle('light-mode'); document.getElementById('theme-icon').className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon'; }
+        function toggleLang() { lang = lang === 'ar' ? 'en' : 'ar'; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; renderGrid(); }
 
         let selP = "", selL = "", selT = "";
         function selectService(id) {
             document.body.className = (document.body.classList.contains('light-mode') ? 'light-mode ' : '') + 'theme-' + id;
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             document.getElementById('card-' + id).classList.add('active');
-            
             const s = products[id];
             const pnl = document.getElementById('checkout');
             pnl.style.display = 'block';
@@ -230,39 +202,17 @@
                     <strong>${p.p}</strong>
                 </div>
             `).join('');
-            
+            document.getElementById('dynamic-inputs').style.display = s.email ? 'block' : 'none';
             document.getElementById('l-email').innerText = ui[lang].email;
             document.getElementById('l-pass').innerText = ui[lang].pass;
-            document.getElementById('l-bank').innerText = ui[lang].bank;
-            document.getElementById('l-user').innerText = ui[lang].user;
             document.getElementById('l-confirm').innerText = ui[lang].confirm;
-            document.getElementById('dynamic-inputs').style.display = s.email ? 'block' : 'none';
-
             document.querySelector('.plan-btn').click();
             window.scrollTo({ top: pnl.offsetTop - 50, behavior: 'smooth' });
         }
 
-        function setPlan(el, p, l, t) {
-            document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected'));
-            el.classList.add('selected'); selP = p; selL = l; selT = t;
-            document.getElementById('pass-area').style.display = (t === 'ind') ? 'block' : 'none';
-        }
-
-        function copyIBAN() {
-            navigator.clipboard.writeText("SA0315000900133520020007");
-            const t = document.getElementById('toast');
-            t.innerText = ui[lang].copy; t.style.display = 'block';
-            setTimeout(() => t.style.display = 'none', 2000);
-        }
-
-        function placeOrder() {
-            const email = document.getElementById('u-email').value;
-            const pass = document.getElementById('u-pass').value;
-            let msg = `NIKAI Store 👋\nOrder: ${document.getElementById('s-title').innerText}\nPlan: ${selL}\nPrice: ${selP}`;
-            if(email) msg += `\nEmail: ${email}`;
-            if(selT === 'ind' && pass) msg += `\nPass: ${pass}`;
-            window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
-        }
+        function setPlan(el, p, l, t) { document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected')); el.classList.add('selected'); selP = p; selL = l; selT = t; document.getElementById('pass-area').style.display = (t === 'ind') ? 'block' : 'none'; }
+        function copyIBAN() { navigator.clipboard.writeText("SA0315000900133520020007"); const t = document.getElementById('toast'); t.innerText = ui[lang].copy; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2000); }
+        function placeOrder() { const e = document.getElementById('u-email').value; window.open(`https://wa.me/966591388202?text=Order: ${document.getElementById('s-title').innerText} - Plan: ${selL} - Email: ${e}`, '_blank'); }
 
         renderGrid();
     </script>
