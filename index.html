@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="متجر NIKAI - اشتراكات رقمية بأفضل الأسعار">
     <meta name="keywords" content="نتفلكس, ديزني, كانفا, فاصل بلس, اشتراكات, رقمية">
-    <title>متجر NIKAI | للخدمات الرقمية</title>
+    <title>متجر NIKAI | طريقك المميز للخدمات الرقمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,7 +14,7 @@
             --primary-dark: #554fd8;
             --primary-light: rgba(108, 99, 255, 0.1);
             --secondary: #FF6584;
-            --success: #36D399;
+            --accent: #36D399;
             --bg: #0F0F1E;
             --bg-light: #1A1A2E;
             --bg-lighter: #252542;
@@ -23,13 +23,14 @@
             --card: #16162E;
             --card-hover: #1E1E3A;
             --border: rgba(108, 99, 255, 0.2);
-            --nav: rgba(15, 15, 30, 0.95);
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --nav: rgba(15, 15, 30, 0.98);
+            --shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
             --radius: 24px;
             --radius-sm: 16px;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             --gradient: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
             --gradient-hover: linear-gradient(135deg, #FF6584 0%, #6C63FF 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
 
         .light-mode {
@@ -40,9 +41,9 @@
             --text-secondary: #4A4A6A;
             --card: #FFFFFF;
             --card-hover: #F8F9FF;
-            --border: rgba(108, 99, 255, 0.1);
+            --border: rgba(108, 99, 255, 0.15);
             --nav: rgba(255, 255, 255, 0.98);
-            --shadow: 0 10px 40px rgba(108, 99, 255, 0.08);
+            --shadow: 0 15px 50px rgba(108, 99, 255, 0.12);
         }
 
         * {
@@ -74,22 +75,23 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 0% 0%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 100% 0%, rgba(255, 101, 132, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(54, 211, 153, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 101, 132, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(54, 211, 153, 0.04) 0%, transparent 60%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Header متطور */
+        /* Header مميز */
         .header {
             padding: 20px 0;
             background: var(--nav);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
@@ -104,29 +106,44 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
         .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .logo-main {
             font-weight: 900;
-            font-size: 2rem;
+            font-size: 2.2rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.5px;
             position: relative;
         }
 
-        .logo-badge {
+        .logo-main::after {
+            content: '';
             position: absolute;
-            top: -8px;
-            right: -10px;
-            background: var(--secondary);
-            color: white;
-            font-size: 0.6rem;
-            padding: 2px 8px;
-            border-radius: 12px;
+            bottom: -5px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--secondary);
             font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         .header-controls {
@@ -139,56 +156,86 @@
             background: var(--card);
             border: 1px solid var(--border);
             color: var(--text);
-            padding: 12px 20px;
+            padding: 12px 22px;
             border-radius: var(--radius-sm);
             cursor: pointer;
             font-family: 'Cairo';
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: var(--transition);
         }
 
         .control-btn:hover {
             background: var(--card-hover);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(108, 99, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.2);
+            border-color: var(--primary);
         }
 
-        /* Product Showcase - تصميم جديد */
-        .product-showcase {
+        /* Hero Section */
+        .hero-section {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 40px auto 60px;
             padding: 0 20px;
-        }
-
-        .section-header {
             text-align: center;
-            margin-bottom: 50px;
         }
 
-        .section-title {
-            font-size: 2.5rem;
+        .hero-title {
+            font-size: 3.2rem;
             font-weight: 900;
-            margin-bottom: 15px;
-            background: var(--gradient);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 50%, #36D399 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            line-height: 1.2;
         }
 
-        .section-subtitle {
+        .hero-subtitle {
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Products Grid - تصميم مميز */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -196,14 +243,14 @@
         .product-card {
             background: var(--card);
             border-radius: var(--radius);
-            padding: 30px;
+            padding: 35px 30px;
             text-align: center;
             transition: var(--transition);
             border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            min-height: 380px;
+            min-height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -215,119 +262,176 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 6px;
             background: var(--gradient);
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
             border-color: var(--primary);
         }
 
         .product-card.active {
             border-color: var(--primary);
-            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.25);
             transform: translateY(-5px);
         }
 
-        .product-icon {
-            width: 80px;
-            height: 80px;
+        .product-icon-container {
+            width: 90px;
+            height: 90px;
             background: var(--primary-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
+            margin: 0 auto 30px;
+            font-size: 2.2rem;
             color: var(--primary);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-card.active .product-icon {
+        .product-icon-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: var(--gradient);
-            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card.active .product-icon-container::before {
+            opacity: 0.1;
+        }
+
+        .product-card:hover .product-icon-container {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .product-name {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: var(--text);
         }
 
-        .product-price {
-            font-size: 2rem;
+        .product-price-tag {
+            font-size: 2.8rem;
             font-weight: 900;
             color: var(--primary);
-            margin: 15px 0;
+            margin: 20px 0;
+            position: relative;
+            display: inline-block;
         }
 
-        .product-price span {
-            font-size: 0.9rem;
+        .product-price-tag::after {
+            content: 'أفضل سعر';
+            position: absolute;
+            bottom: -25px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .product-price-tag span {
+            font-size: 1rem;
             color: var(--text-secondary);
+            margin-right: 5px;
         }
 
         .product-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 25px;
+            right: 25px;
             background: var(--secondary);
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
             font-weight: 800;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(255, 101, 132, 0.3);
         }
 
         .product-features {
             list-style: none;
             text-align: right;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .product-features li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(108, 99, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .product-features li:hover {
+            color: var(--text);
+            transform: translateX(-5px);
+        }
+
+        .product-features li:last-child {
+            border-bottom: none;
         }
 
         .product-features li i {
-            color: var(--success);
-            margin-left: 8px;
+            color: var(--accent);
+            margin-left: 10px;
+            font-size: 1.1rem;
         }
 
-        /* Product Details Section - تصميم متطور */
-        .product-details {
-            max-width: 800px;
-            margin: 40px auto;
+        /* Product Details - تصميم محسّن */
+        .product-details-section {
+            max-width: 900px;
+            margin: 0 auto 80px;
             padding: 0 20px;
         }
 
         .details-container {
             background: var(--card);
             border-radius: var(--radius);
-            padding: 40px;
+            padding: 45px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .details-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
         }
 
         .details-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+            z-index: 1;
         }
 
         .current-product-title {
-            font-size: 2rem;
-            font-weight: 900;
-        }
-
-        .current-product-price {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -335,109 +439,85 @@
             color: transparent;
         }
 
-        .details-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .details-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .features-section, .terms-section {
-            text-align: right;
-        }
-
-        .section-label {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+        .current-product-price {
+            font-size: 3rem;
+            font-weight: 900;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .features-list, .terms-list {
-            list-style: none;
+        .current-product-price span {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
         }
 
-        .features-list li, .terms-list li {
-            margin-bottom: 15px;
-            padding: 12px;
-            background: var(--primary-light);
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-        }
-
-        .features-list li:hover, .terms-list li:hover {
-            background: var(--card-hover);
-            transform: translateX(-5px);
-        }
-
-        .features-list li i {
-            color: var(--success);
-            margin-left: 10px;
-        }
-
-        .terms-list li i {
-            color: var(--secondary);
-            margin-left: 10px;
-        }
-
-        /* Plans Section */
+        /* Plans Section - محسّن */
         .plans-section {
             margin: 40px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .plans-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: center;
+            color: var(--text);
         }
 
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
 
         .plan-card {
             background: var(--card);
             border: 2px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 25px;
+            padding: 28px 25px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
             position: relative;
+            overflow: hidden;
         }
 
         .plan-card:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(108, 99, 255, 0.2);
         }
 
         .plan-card.selected {
             border-color: var(--primary);
             background: var(--primary-light);
-            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .plan-card.selected::before {
+            content: '✓ المختارة';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
         .plan-period {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: var(--text);
         }
 
         .plan-price {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--primary);
             margin-bottom: 10px;
@@ -446,311 +526,33 @@
         .plan-save {
             position: absolute;
             top: 15px;
-            left: 15px;
-            background: var(--success);
+            right: 15px;
+            background: var(--secondary);
             color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 101, 132, 0.3);
         }
 
-        /* Canva Email Section - تصميم خاص */
-        .canva-email-container {
-            background: rgba(108, 99, 255, 0.05);
+        /* Canva Email Section - محسّن */
+        .canva-email-section {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.08) 0%, rgba(0, 196, 204, 0.08) 100%);
             border: 2px dashed var(--primary);
             border-radius: var(--radius);
-            padding: 30px;
-            margin: 30px 0;
+            padding: 35px;
+            margin: 40px 0;
             display: none;
             animation: slideUp 0.6s ease;
+            position: relative;
+            z-index: 1;
         }
 
-        .canva-email-container.show {
+        .canva-email-section.show {
             display: block;
         }
 
-        .email-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .email-header i {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        .email-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .email-input-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .email-input {
-            width: 100%;
-            padding: 20px 50px 20px 20px;
-            background: var(--bg-light);
-            border: 2px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text);
-            font-family: 'Cairo';
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
-        .email-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-        }
-
-        .email-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .email-note {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        /* Payment Section */
-        .payment-section {
-            background: rgba(54, 211, 153, 0.05);
-            border: 1px solid var(--success);
-            border-radius: var(--radius);
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .payment-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--success);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .account-info {
-            background: var(--bg-light);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .account-name {
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-
-        .account-number {
-            font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            color: var(--success);
-            letter-spacing: 2px;
-            background: rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            border-radius: var(--radius-sm);
-            margin: 15px 0;
-            direction: ltr;
-        }
-
-        .light-mode .account-number {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .copy-btn {
-            width: 100%;
-            padding: 18px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-family: 'Cairo';
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .copy-btn:hover {
-            background: var(--gradient-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
-        }
-
-        .copy-btn.copied {
-            background: var(--success);
-        }
-
-        /* Order Button */
-        .order-section {
-            margin: 40px 0;
-        }
-
-        .order-btn {
-            width: 100%;
-            padding: 25px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-family: 'Cairo';
-            font-weight: 900;
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            box-shadow: 0 15px 35px rgba(108, 99, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .order-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
-        }
-
-        .order-btn:hover::before {
-            left: 100%;
-        }
-
-        .order-btn:hover {
-            background: var(--gradient-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.4);
-        }
-
-        .order-btn.loading {
-            pointer-events: none;
-            opacity: 0.8;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-light);
-            border-top: 1px solid var(--border);
-            padding: 50px 0 30px;
-            margin-top: 80px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .footer-links h4 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            padding-right: 10px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transform: translateX(150%);
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 10000;
-            max-width: 350px;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
-
-        .toast i {
-            font-size: 1.5rem;
-            color: var(--success);
-        }
-
-        .toast.error i {
-            color: var(--secondary);
-        }
-
-        /* Animations */
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -762,36 +564,535 @@
             }
         }
 
+        .email-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .email-header i {
+            font-size: 2.2rem;
+            color: #00c4cc;
+            background: rgba(0, 196, 204, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-header h3 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .email-input-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 22px 60px 22px 25px;
+            background: var(--bg-light);
+            border: 2px solid #00c4cc;
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-family: 'Cairo';
+            font-size: 1.15rem;
+            transition: var(--transition);
+            text-align: right;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .email-input.valid {
+            border-color: var(--accent);
+        }
+
+        .email-input.invalid {
+            border-color: var(--secondary);
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .email-icon {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00c4cc;
+            font-size: 1.3rem;
+        }
+
+        .email-note {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1.6;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: var(--radius-sm);
+        }
+
+        /* Payment Section - محسّن للغاية */
+        .payment-section {
+            background: linear-gradient(135deg, rgba(54, 211, 153, 0.08) 0%, rgba(108, 99, 255, 0.08) 100%);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 35px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .payment-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .payment-title i {
+            font-size: 1.8rem;
+        }
+
+        .account-info {
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-name {
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+
+        .account-number-container {
+            direction: ltr;
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-sm);
+            border: 2px dashed var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-mode .account-number-container {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .account-number {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 3px;
+            display: block;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            margin: 0 auto;
+            max-width: 600px;
+            word-break: break-all;
+            text-align: center;
+        }
+
+        .light-mode .account-number {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .account-number-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .copy-btn {
+            width: 100%;
+            padding: 22px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Cairo';
+            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .copy-btn:hover::before {
+            left: 100%;
+        }
+
+        .copy-btn:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(108, 99, 255, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: var(--accent);
+        }
+
+        /* Order Button - محسّن */
+        .order-section {
+            margin: 50px 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 28px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Cairo';
+            font-weight: 900;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .order-btn:hover::before {
+            left: 100%;
+        }
+
+        .order-btn:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(108, 99, 255, 0.5);
+        }
+
+        .order-btn:active {
+            transform: translateY(-4px);
+        }
+
+        .order-btn.loading {
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .order-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer - محسّن */
+        .footer {
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 30px;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Toast Notification - محسّن */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 22px 28px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transform: translateX(150%);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10000;
+            max-width: 400px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast i {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .toast.error i {
+            color: var(--secondary);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .toast-message {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Animations */
         .fade-in {
             animation: slideUp 0.8s ease forwards;
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 gap: 20px;
             }
             
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
             .section-title {
-                font-size: 2rem;
+                font-size: 1.9rem;
+            }
+            
+            .product-card {
+                min-height: 380px;
+                padding: 25px 20px;
             }
             
             .details-container {
-                padding: 25px;
+                padding: 30px 25px;
             }
             
             .current-product-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .current-product-price {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .account-number {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
             }
             
             .order-btn {
-                padding: 20px;
-                font-size: 1.2rem;
+                padding: 24px;
+                font-size: 1.3rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .product-card {
+                min-height: 350px;
+            }
+            
+            .product-name {
+                font-size: 1.4rem;
+            }
+            
+            .product-price-tag {
+                font-size: 2.3rem;
+            }
+            
+            .control-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
+            .account-number {
+                font-size: 1rem;
+                letter-spacing: 1px;
+                padding: 12px;
             }
             
             .toast {
@@ -802,53 +1103,67 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .products-grid {
+        /* Features & Terms Sections في التفاصيل */
+        .features-terms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .features-terms-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .plans-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-card {
-                min-height: 350px;
-                padding: 20px;
-            }
-            
-            .control-btn {
-                padding: 10px 15px;
-                font-size: 0.8rem;
+                gap: 30px;
             }
         }
 
-        /* Quick Stats */
-        .quick-stats {
+        .features-section, .terms-section {
+            text-align: right;
+        }
+
+        .section-label {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--primary);
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
         }
 
-        .stat-item {
-            text-align: center;
+        .features-list, .terms-list {
+            list-style: none;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: block;
+        .features-list li, .terms-list li {
+            margin-bottom: 18px;
+            padding: 15px;
+            background: var(--primary-light);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border-right: 3px solid var(--primary);
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 5px;
+        .features-list li:hover, .terms-list li:hover {
+            background: var(--card-hover);
+            transform: translateX(-8px);
+        }
+
+        .features-list li i {
+            color: var(--accent);
+            margin-left: 12px;
+            font-size: 1.2rem;
+        }
+
+        .terms-list li i {
+            color: var(--secondary);
+            margin-left: 12px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -858,8 +1173,8 @@
         <div class="header-container">
             <div class="logo-container">
                 <div class="logo">
-                    NIKAI
-                    <span class="logo-badge">PRO</span>
+                    <div class="logo-main">NIKAI</div>
+                    <div class="logo-subtitle">طريقك المميز للخدمات الرقمية</div>
                 </div>
             </div>
             
@@ -876,47 +1191,31 @@
         </div>
     </header>
 
-    <!-- Quick Stats -->
-    <div class="quick-stats fade-in">
-        <div class="stat-item">
-            <span class="stat-number" id="happyCustomers">2,847+</span>
-            <span class="stat-label">عميل سعيد</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">4.9</span>
-            <span class="stat-label">تقييم</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">24/7</span>
-            <span class="stat-label">دعم فني</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">7</span>
-            <span class="stat-label">أيام ضمان</span>
-        </div>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title fade-in">خدمات رقمية متميزة</h1>
+        <p class="hero-subtitle fade-in" style="animation-delay: 0.1s;">
+            اكتشف عالمًا من المحتوى الرقمي المتميز مع اشتراكاتنا الحصرية. نتفلكس، ديزني بلس، كانفا برو، فاصل بلس وأكثر. كل ما تحتاجه في مكان واحد.
+        </p>
+    </section>
 
-    <!-- Product Showcase -->
-    <section class="product-showcase">
-        <div class="section-header">
-            <h1 class="section-title">اختر خدمتك المفضلة</h1>
-            <p class="section-subtitle">اشتراكات رقمية متميزة بأسعار تنافسية وجودة عالية</p>
-        </div>
-        
+    <!-- Products Grid -->
+    <section class="products-section">
+        <h2 class="section-title fade-in">اختر خدمتك المفضلة</h2>
         <div class="products-grid" id="productsGrid">
             <!-- سيتم تعبئتها بالجافاسكريبت -->
         </div>
     </section>
 
     <!-- Product Details -->
-    <section class="product-details" id="productDetails">
+    <section class="product-details-section" id="productDetails">
         <div class="details-container fade-in">
             <div class="details-header">
                 <h2 class="current-product-title" id="currentProductTitle">نتفلكس بريميوم 4K</h2>
                 <div class="current-product-price" id="currentProductPrice">200 <span>ريال</span></div>
             </div>
             
-            <div class="details-content">
+            <div class="features-terms-grid">
                 <div class="features-section">
                     <h3 class="section-label">
                         <i class="fas fa-star"></i>
@@ -947,18 +1246,19 @@
             </div>
             
             <!-- Canva Email Section -->
-            <div class="canva-email-container" id="canvaEmailContainer">
+            <div class="canva-email-section" id="canvaEmailSection">
                 <div class="email-header">
                     <i class="fas fa-envelope-circle-check"></i>
                     <h3 id="emailTitle">تفعيل حساب كانفا برو</h3>
                 </div>
-                <div class="email-input-group">
+                <div class="email-input-container">
                     <i class="fas fa-envelope email-icon"></i>
                     <input type="email" class="email-input" id="canvaEmail" 
-                           placeholder="أدخل بريدك الإلكتروني للتفعيل">
+                           placeholder="أدخل بريدك الإلكتروني هنا للتفعيل">
                 </div>
                 <p class="email-note" id="emailNote">
-                    سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني خلال 24 ساعة
+                    <i class="fas fa-info-circle"></i>
+                    سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني وتستلم بيانات الدخول عليه خلال 24 ساعة. نضمن خصوصية بريدك الإلكتروني ولا نشاركه مع أي طرف ثالث.
                 </p>
             </div>
             
@@ -970,7 +1270,10 @@
                 </h3>
                 <div class="account-info">
                     <div class="account-name" id="accountName">المستفيد: سليمان فلاته</div>
-                    <div class="account-number">SA0315000900133520020007</div>
+                    <div class="account-number-container">
+                        <span class="account-number">SA03 1500 0900 1335 2002 0007</span>
+                        <span class="account-number-label">رقم الحساب البنكي</span>
+                    </div>
                     <button class="copy-btn" onclick="copyAccount()" id="copyBtn">
                         <i class="fas fa-copy"></i>
                         <span id="copyText">نسخ رقم الحساب</span>
@@ -982,7 +1285,7 @@
             <div class="order-section">
                 <button class="order-btn" id="orderBtn" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i>
-                    <span id="orderText">🚀 تأكيد الطلب عبر واتساب</span>
+                    <span id="orderText">🚀 تأكيد الطلب السريع عبر واتساب</span>
                 </button>
             </div>
         </div>
@@ -993,33 +1296,35 @@
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>NIKAI Store</h3>
-                    <p>متجر متخصص في الخدمات الرقمية والاشتراكات منذ 2020</p>
+                    <h3>متجر NIKAI</h3>
+                    <p>
+                        متجر متخصص في الخدمات الرقمية والاشتراكات منذ 2020. نقدم أفضل الخدمات بأفضل الأسعار مع ضمان الجودة والدعم الفني المستمر.
+                    </p>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>روابط سريعة</h4>
+                    <h4>خدماتنا</h4>
                     <ul>
-                        <li><a href="#" onclick="showToast('قريباً: الأسئلة الشائعة')">الأسئلة الشائعة</a></li>
-                        <li><a href="#" onclick="showToast('قريباً: من نحن')">من نحن</a></li>
-                        <li><a href="#" onclick="showToast('قريباً: سياسة الخصوصية')">سياسة الخصوصية</a></li>
-                        <li><a href="#" onclick="showToast('قريباً: الشروط والأحكام')">الشروط والأحكام</a></li>
+                        <li><a href="#" onclick="loadProduct('netflix')"><i class="fas fa-film"></i> نتفلكس بريميوم</a></li>
+                        <li><a href="#" onclick="loadProduct('disney')"><i class="fas fa-crown"></i> ديزني بلس</a></li>
+                        <li><a href="#" onclick="loadProduct('canva')"><i class="fas fa-palette"></i> كانفا برو</a></li>
+                        <li><a href="#" onclick="loadProduct('fasel')"><i class="fas fa-play-circle"></i> فاصل بلس</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>تواصل معنا</h4>
+                    <h4>روابط مهمة</h4>
                     <ul>
-                        <li><i class="fas fa-phone"></i> 966591388202</li>
-                        <li><i class="fab fa-whatsapp"></i> واتساب</li>
-                        <li><i class="fas fa-clock"></i> 24/7 دعم فني</li>
+                        <li><a href="#" onclick="scrollToTop()"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+                        <li><a href="#" onclick="showToast('دعم فني', 'رقم الدعم: 966591388202')"><i class="fas fa-headset"></i> الدعم الفني</a></li>
+                        <li><a href="#" onclick="showToast('الضمان', 'ضمان استرجاع 7 أيام على جميع الخدمات')"><i class="fas fa-shield-alt"></i> سياسة الضمان</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>© 2023 متجر NIKAI. جميع الحقوق محفوظة.</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">تسوق بأمان | دعم فني 24/7 | ضمان استرجاع 7 أيام</p>
+                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">تسوق بأمان | دعم فني 24/7 | ضمان استرجاع 7 أيام</p>
             </div>
         </div>
     </footer>
@@ -1027,9 +1332,9 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
-        <div>
-            <div id="toastTitle">تم بنجاح!</div>
-            <div id="toastMessage" style="font-size: 0.9rem; color: var(--text-secondary);">تم النسخ إلى الحافظة</div>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">تم بنجاح!</div>
+            <div class="toast-message" id="toastMessage">تم النسخ إلى الحافظة</div>
         </div>
     </div>
 
@@ -1038,7 +1343,7 @@
         let currentLang = 'ar';
         let currentTheme = 'dark';
         let activeProduct = 'netflix';
-        let activePlanIndex = 0;
+        let activePlanIndex = 2; // الافتراضي آخر خطة (الأعلى قيمة)
         let orderInProgress = false;
 
         // بيانات الترجمة
@@ -1049,19 +1354,20 @@
                 plansTitle: "اختر خطتك المفضلة",
                 paymentTitle: "الدفع الآمن",
                 emailTitle: "تفعيل حساب كانفا برو",
-                emailPlaceholder: "أدخل بريدك الإلكتروني للتفعيل",
-                emailNote: "سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني خلال 24 ساعة",
+                emailPlaceholder: "أدخل بريدك الإلكتروني هنا للتفعيل",
+                emailNote: "سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني وتستلم بيانات الدخول عليه خلال 24 ساعة. نضمن خصوصية بريدك الإلكتروني ولا نشاركه مع أي طرف ثالث.",
                 accountName: "المستفيد: سليمان فلاته",
                 copyText: "نسخ رقم الحساب",
-                copiedText: "تم النسخ!",
-                orderText: "🚀 تأكيد الطلب عبر واتساب",
+                copiedText: "تم النسخ بنجاح!",
+                orderText: "🚀 تأكيد الطلب السريع عبر واتساب",
                 langText: "English",
                 themeText: "وضع النهار",
                 toastSuccess: "تم بنجاح!",
-                toastCopied: "تم النسخ إلى الحافظة",
-                toastEmailRequired: "الرجاء إدخال البريد الإلكتروني أولاً",
+                toastCopied: "تم نسخ رقم الحساب إلى الحافظة",
+                toastEmailRequired: "الرجاء إدخال البريد الإلكتروني أولاً! 📧",
                 toastInvalidEmail: "بريد إلكتروني غير صالح",
-                toastRedirecting: "جاري التوجيه إلى واتساب..."
+                toastRedirecting: "جاري توجيهك إلى واتساب...",
+                toastOrderConfirm: "تأكيد الطلب"
             },
             en: {
                 features: "Features",
@@ -1069,19 +1375,20 @@
                 plansTitle: "Choose Your Plan",
                 paymentTitle: "Secure Payment",
                 emailTitle: "Canva Pro Account Activation",
-                emailPlaceholder: "Enter your email for activation",
-                emailNote: "Canva Pro account will be activated on this email within 24 hours",
+                emailPlaceholder: "Enter your email address here for activation",
+                emailNote: "Canva Pro account will be activated on this email and you'll receive login details within 24 hours. We guarantee your email privacy and won't share it with any third party.",
                 accountName: "Beneficiary: Suliman Fallatah",
                 copyText: "Copy Account Number",
-                copiedText: "Copied!",
-                orderText: "🚀 Confirm Order via WhatsApp",
+                copiedText: "Copied successfully!",
+                orderText: "🚀 Quick Order via WhatsApp",
                 langText: "العربية",
                 themeText: "Light Mode",
                 toastSuccess: "Success!",
-                toastCopied: "Copied to clipboard",
-                toastEmailRequired: "Please enter your email first",
+                toastCopied: "Account number copied to clipboard",
+                toastEmailRequired: "Please enter your email first! 📧",
                 toastInvalidEmail: "Invalid email address",
-                toastRedirecting: "Redirecting to WhatsApp..."
+                toastRedirecting: "Redirecting to WhatsApp...",
+                toastOrderConfirm: "Order Confirmation"
             }
         };
 
@@ -1093,34 +1400,34 @@
                 color: "#E50914",
                 features: {
                     ar: [
-                        "جودة 4K خرافية مع دعم HDR",
-                        "مشاهدة على 4 أجهزة في نفس الوقت",
-                        "ملف خاص برمز سري للمشاهدة الخاصة",
-                        "ضمان كامل طوال مدة الاشتراك",
-                        "دعم فني متواصل 24/7",
-                        "تشغيل على جميع الأجهزة الذكية"
+                        "🎬 جودة 4K خرافية مع دعم HDR",
+                        "📺 مشاهدة على 4 أجهزة في نفس الوقت",
+                        "🔒 ملف خاص برمز سري للمشاهدة الخاصة",
+                        "🛡️ ضمان كامل طوال مدة الاشتراك",
+                        "⚡ دعم فني متواصل 24/7",
+                        "🌍 تشغيل على جميع الأجهزة الذكية"
                     ],
                     en: [
-                        "4K Ultra HD Quality with HDR support",
-                        "Watch on 4 devices simultaneously",
-                        "Private profile with PIN protection",
-                        "Full warranty throughout subscription",
-                        "24/7 technical support",
-                        "Works on all smart devices"
+                        "🎬 4K Ultra HD Quality with HDR support",
+                        "📺 Watch on 4 devices simultaneously",
+                        "🔒 Private profile with PIN protection",
+                        "🛡️ Full warranty throughout subscription",
+                        "⚡ 24/7 technical support",
+                        "🌍 Works on all smart devices"
                     ]
                 },
                 terms: {
                     ar: [
-                        "للاستخدام الشخصي والعائلي فقط",
-                        "يمنع مشاركة الحساب خارج العائلة",
-                        "يرجى عدم تغيير كلمة المرور",
-                        "الحساب محمي بضمان استرجاع الأموال"
+                        "📌 للاستخدام الشخصي والعائلي فقط",
+                        "⚠️ يمنع مشاركة الحساب خارج العائلة",
+                        "🔑 يرجى عدم تغيير كلمة المرور",
+                        "💰 الحساب محمي بضمان استرجاع الأموال"
                     ],
                     en: [
-                        "For personal and family use only",
-                        "No account sharing outside family",
-                        "Please don't change the password",
-                        "Account protected with money-back guarantee"
+                        "📌 For personal and family use only",
+                        "⚠️ No account sharing outside family",
+                        "🔑 Please don't change the password",
+                        "💰 Account protected with money-back guarantee"
                     ]
                 },
                 plans: [
@@ -1136,34 +1443,34 @@
                 color: "#0063e5",
                 features: {
                     ar: [
-                        "عالم ديزني ومارفل بالكامل",
-                        "دعم كامل للغة العربية والترجمة",
-                        "إمكانية التحميل للمشاهدة دون اتصال",
-                        "7 ملفات شخصية مختلفة للعائلة",
-                        "مشاهدة على 4 أجهزة في نفس الوقت",
-                        "محتوى حصري وأصلي فقط"
+                        "🌠 عالم ديزني ومارفل بالكامل",
+                        "🇸🇦 دعم كامل للغة العربية والترجمة",
+                        "📥 إمكانية التحميل للمشاهدة دون اتصال",
+                        "👪 7 ملفات شخصية مختلفة للعائلة",
+                        "📱 مشاهدة على 4 أجهزة في نفس الوقت",
+                        "🎉 محتوى حصري وأصلي فقط"
                     ],
                     en: [
-                        "Complete Disney & Marvel universe",
-                        "Full Arabic language and subtitles support",
-                        "Download content for offline viewing",
-                        "7 different profiles for family",
-                        "Watch on 4 devices simultaneously",
-                        "Exclusive and original content only"
+                        "🌠 Complete Disney & Marvel universe",
+                        "🇸🇦 Full Arabic language and subtitles support",
+                        "📥 Download content for offline viewing",
+                        "👪 7 different profiles for family",
+                        "📱 Watch on 4 devices simultaneously",
+                        "🎉 Exclusive and original content only"
                     ]
                 },
                 terms: {
                     ar: [
-                        "جهاز واحد للاستخدام الشخصي",
-                        "يتطلب كود تأكيد عبر واتساب",
-                        "يمنع استخدام الحساب خارج المملكة",
-                        "تجديد يدوي مع إشعار مسبق"
+                        "📌 جهاز واحد للاستخدام الشخصي",
+                        "⚠️ يتطلب كود تأكيد عبر واتساب",
+                        "📍 يمنع استخدام الحساب خارج المملكة",
+                        "🔔 تجديد يدوي مع إشعار مسبق"
                     ],
                     en: [
-                        "One device for personal use",
-                        "Requires confirmation code via WhatsApp",
-                        "No usage outside Saudi Arabia",
-                        "Manual renewal with prior notification"
+                        "📌 One device for personal use",
+                        "⚠️ Requires confirmation code via WhatsApp",
+                        "📍 No usage outside Saudi Arabia",
+                        "🔔 Manual renewal with prior notification"
                     ]
                 },
                 plans: [
@@ -1178,34 +1485,34 @@
                 color: "#00c4cc",
                 features: {
                     ar: [
-                        "تفعيل مباشر على إيميلك الشخصي",
-                        "أدوات Pro كاملة بدون أي قيود",
-                        "مكتبة صور ومقاطع وفيديوهات مميزة",
-                        "تحديثات مجانية مدى الحياة",
-                        "إمكانية العمل التعاوني مع الفريق",
-                        "تصدير بجودة عالية بدون علامة مائية"
+                        "🖌️ تفعيل مباشر على إيميلك الشخصي",
+                        "🎨 أدوات Pro كاملة بدون أي قيود",
+                        "📊 مكتبة صور ومقاطع وفيديوهات مميزة",
+                        "🔄 تحديثات مجانية مدى الحياة",
+                        "👥 إمكانية العمل التعاوني مع الفريق",
+                        "🚀 تصدير بجودة عالية بدون علامة مائية"
                     ],
                     en: [
-                        "Direct activation on your personal email",
-                        "Full Pro tools without any limitations",
-                        "Premium image, video and template library",
-                        "Free lifetime updates",
-                        "Team collaboration features included",
-                        "High quality export without watermark"
+                        "🖌️ Direct activation on your personal email",
+                        "🎨 Full Pro tools without any limitations",
+                        "📊 Premium image, video and template library",
+                        "🔄 Free lifetime updates",
+                        "👥 Team collaboration features included",
+                        "🚀 High quality export without watermark"
                     ]
                 },
                 terms: {
                     ar: [
-                        "التفعيل يتم خلال 12 ساعة كحد أقصى",
-                        "يمنع تغيير الإيميل بعد التفاعيل",
-                        "ضمان استرجاع لمدة 7 أيام",
-                        "للاستخدام الشخصي أو التجاري"
+                        "📍 التفعيل يتم خلال 12 ساعة كحد أقصى",
+                        "📌 يمنع تغيير الإيميل بعد التفاعيل",
+                        "✅ ضمان استرجاع لمدة 7 أيام",
+                        "🔒 للاستخدام الشخصي أو التجاري"
                     ],
                     en: [
-                        "Activation within maximum 12 hours",
-                        "Email change not allowed after activation",
-                        "7-day refund guarantee",
-                        "For personal or commercial use"
+                        "📍 Activation within maximum 12 hours",
+                        "📌 Email change not allowed after activation",
+                        "✅ 7-day refund guarantee",
+                        "🔒 For personal or commercial use"
                     ]
                 },
                 plans: [
@@ -1219,34 +1526,34 @@
                 color: "#ff6b00",
                 features: {
                     ar: [
-                        "بدون إعلانات نهائياً",
-                        "جودة بث عالية تصل إلى 4K",
-                        "مكتبة أفلام ومسلسلات ضخمة",
-                        "تطبيق على جميع المنصات",
-                        "سرعة تحميل عالية للغاية",
-                        "محتوى عربي وأجنبي حصري"
+                        "📺 بدون إعلانات نهائياً",
+                        "✅ جودة بث عالية تصل إلى 4K",
+                        "🎥 مكتبة أفلام ومسلسلات ضخمة",
+                        "📱 تطبيق على جميع المنصات",
+                        "⚡ سرعة تحميل عالية للغاية",
+                        "🌟 محتوى عربي وأجنبي حصري"
                     ],
                     en: [
-                        "No ads forever",
-                        "High streaming quality up to 4K",
-                        "Huge library of movies and series",
-                        "App available on all platforms",
-                        "Very high download speed",
-                        "Exclusive Arabic and foreign content"
+                        "📺 No ads forever",
+                        "✅ High streaming quality up to 4K",
+                        "🎥 Huge library of movies and series",
+                        "📱 App available on all platforms",
+                        "⚡ Very high download speed",
+                        "🌟 Exclusive Arabic and foreign content"
                     ]
                 },
                 terms: {
                     ar: [
-                        "جهاز واحد فقط لكل اشتراك",
-                        "يمنع مشاركة الحساب مع آخرين",
-                        "يفضل استخدام داخل المملكة",
-                        "تجديد تلقائي مع إشعار قبل 3 أيام"
+                        "📌 جهاز واحد فقط لكل اشتراك",
+                        "⚠️ يمنع مشاركة الحساب مع آخرين",
+                        "📍 يفضل استخدام داخل المملكة",
+                        "🔔 تجديد تلقائي مع إشعار قبل 3 أيام"
                     ],
                     en: [
-                        "One device per subscription",
-                        "No account sharing with others",
-                        "Preferably use within Saudi Arabia",
-                        "Auto-renewal with 3-day prior notification"
+                        "📌 One device per subscription",
+                        "⚠️ No account sharing with others",
+                        "📍 Preferably use within Saudi Arabia",
+                        "🔔 Auto-renewal with 3-day prior notification"
                     ]
                 },
                 plans: [
@@ -1261,7 +1568,6 @@
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
-            setupEventListeners();
         });
 
         // تهيئة الصفحة
@@ -1269,21 +1575,17 @@
             renderProductsGrid();
             loadProduct('netflix');
             updateTexts();
-        }
-
-        // إعداد مستمعي الأحداث
-        function setupEventListeners() {
-            // التحقق من الإيميل في الوقت الحقيقي
-            document.getElementById('canvaEmail').addEventListener('input', function(e) {
-                const email = e.target.value;
-                const isValid = validateEmail(email);
-                
-                if (email) {
-                    e.target.style.borderColor = isValid ? '#36D399' : '#FF6584';
-                } else {
-                    e.target.style.borderColor = '';
-                }
+            
+            // إضافة تأثيرات الدخول
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
             });
+            
+            // إظهار رسالة ترحيب بعد تحميل الصفحة
+            setTimeout(() => {
+                showToast('مرحباً بك!', 'مرحباً بك في متجر NIKAI للخدمات الرقمية المتميزة 🎉');
+            }, 1000);
         }
 
         // عرض شبكة المنتجات
@@ -1294,15 +1596,16 @@
             Object.keys(products).forEach((key, index) => {
                 const product = products[key];
                 const isActive = key === activeProduct;
+                const lastPlan = product.plans[product.plans.length - 1];
                 
                 html += `
                     <div class="product-card ${isActive ? 'active' : ''}" onclick="loadProduct('${key}')">
-                        ${product.plans[0].save > 0 ? `<div class="product-badge">وفر ${product.plans[0].save}%</div>` : ''}
-                        <div class="product-icon" style="background: ${product.color}20; color: ${product.color};">
-                            <i class="${product.icon}"></i>
+                        ${lastPlan.save > 0 ? `<div class="product-badge">وفر ${lastPlan.save}%</div>` : ''}
+                        <div class="product-icon-container" style="border: 3px solid ${product.color}30;">
+                            <i class="${product.icon}" style="color: ${product.color};"></i>
                         </div>
                         <h3 class="product-name">${product.name[currentLang]}</h3>
-                        <div class="product-price">${product.plans[product.plans.length - 1].price} <span>ريال</span></div>
+                        <div class="product-price-tag">${lastPlan.price}<span>${currentLang === 'ar' ? 'ريال' : 'SAR'}</span></div>
                         <ul class="product-features">
                             ${product.features[currentLang].slice(0, 3).map(feature => `
                                 <li><i class="fas fa-check"></i>${feature}</li>
@@ -1319,6 +1622,7 @@
         function loadProduct(productId) {
             activeProduct = productId;
             const product = products[productId];
+            activePlanIndex = product.plans.length - 1; // تعيين آخر خطة كافتراضية
             
             // تحديث البطاقات النشطة
             document.querySelectorAll('.product-card').forEach(card => {
@@ -1327,8 +1631,9 @@
             
             document.querySelectorAll('.product-card')[Object.keys(products).indexOf(productId)]?.classList.add('active');
             
-            // تحديث عنوان المنتج
+            // تحديث عنوان المنتج والسعر
             document.getElementById('currentProductTitle').textContent = product.name[currentLang];
+            updateCurrentPrice(product.plans[activePlanIndex].price);
             
             // تحديث المزايا
             const featuresList = document.getElementById('featuresList');
@@ -1346,16 +1651,21 @@
             renderPlans(product.plans);
             
             // التحكم في عرض قسم الإيميل
-            const emailContainer = document.getElementById('canvaEmailContainer');
+            const emailSection = document.getElementById('canvaEmailSection');
+            const emailInput = document.getElementById('canvaEmail');
+            
             if (product.requiresEmail) {
-                emailContainer.classList.add('show');
-                document.getElementById('canvaEmail').value = '';
+                emailSection.classList.add('show');
+                emailInput.required = true;
+                emailInput.value = '';
+                emailInput.classList.remove('valid', 'invalid');
             } else {
-                emailContainer.classList.remove('show');
+                emailSection.classList.remove('show');
+                emailInput.required = false;
             }
             
-            // تحديث أرقام العملاء السعداء بناءً على المنتج
-            updateHappyCustomers(productId);
+            // التمرير إلى قسم التفاصيل
+            document.getElementById('productDetails').scrollIntoView({ behavior: 'smooth' });
         }
 
         // عرض الخطط
@@ -1369,7 +1679,7 @@
                 
                 html += `
                     <div class="plan-card ${isSelected ? 'selected' : ''}" onclick="selectPlan(${index})">
-                        ${plan.save > 0 ? `<div class="plan-save">Save ${plan.save}%</div>` : ''}
+                        ${plan.save > 0 ? `<div class="plan-save">وفر ${plan.save}%</div>` : ''}
                         <div class="plan-period">${plan.period[currentLang]}</div>
                         <div class="plan-price">${plan.price} <span style="font-size: 1rem;">${currency}</span></div>
                     </div>
@@ -1377,9 +1687,6 @@
             });
             
             plansGrid.innerHTML = html;
-            
-            // تحديث السعر الحالي
-            updateCurrentPrice(plans[activePlanIndex].price);
         }
 
         // اختيار خطة
@@ -1402,18 +1709,6 @@
             document.getElementById('currentProductPrice').innerHTML = `${price} <span>${currency}</span>`;
         }
 
-        // تحديث أرقام العملاء السعداء
-        function updateHappyCustomers(productId) {
-            const counts = {
-                netflix: 2847,
-                disney: 1562,
-                canva: 3219,
-                fasel: 1893
-            };
-            
-            document.getElementById('happyCustomers').textContent = `${counts[productId]}+`;
-        }
-
         // تبديل اللغة
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -1426,7 +1721,8 @@
             renderProductsGrid();
             loadProduct(activeProduct);
             
-            showToast(currentLang === 'ar' ? 'تم التبديل إلى العربية' : 'Switched to English');
+            showToast(currentLang === 'ar' ? 'تم التبديل إلى العربية' : 'Switched to English', 
+                     currentLang === 'ar' ? 'الموقع الآن باللغة العربية' : 'Website is now in English');
         }
 
         // تبديل الثيم
@@ -1440,11 +1736,11 @@
             if (currentTheme === 'light') {
                 themeIcon.className = 'fas fa-moon';
                 themeText.textContent = currentLang === 'ar' ? 'وضع الليل' : 'Dark Mode';
-                showToast(currentLang === 'ar' ? 'تم تفعيل وضع النهار' : 'Light mode activated');
+                showToast('وضع النهار', 'تم تفعيل وضع النهار ☀️');
             } else {
                 themeIcon.className = 'fas fa-sun';
                 themeText.textContent = currentLang === 'ar' ? 'وضع النهار' : 'Light Mode';
-                showToast(currentLang === 'ar' ? 'تم تفعيل وضع الليل' : 'Dark mode activated');
+                showToast('وضع الليل', 'تم تفعيل وضع الليل 🌙');
             }
         }
 
@@ -1491,7 +1787,7 @@
                     copyBtn.innerHTML = `<i class="fas fa-copy"></i>${lang[currentLang].copyText}`;
                 }, 2000);
             }).catch(err => {
-                showToast('Error', currentLang === 'ar' ? 'حدث خطأ في النسخ' : 'Copy failed', 'error');
+                showToast('خطأ', currentLang === 'ar' ? 'حدث خطأ في النسخ' : 'Copy failed', 'error');
             });
         }
 
@@ -1505,16 +1801,26 @@
             // التحقق من الإيميل لكانفا
             if (product.requiresEmail) {
                 if (!email) {
-                    showToast('Error', lang[currentLang].toastEmailRequired, 'error');
-                    document.getElementById('canvaEmail').focus();
-                    document.getElementById('canvaEmail').style.borderColor = '#FF6584';
+                    showToast('تنبيه', lang[currentLang].toastEmailRequired, 'error');
+                    const emailField = document.getElementById('canvaEmail');
+                    emailField.classList.add('invalid');
+                    emailField.focus();
+                    
+                    setTimeout(() => {
+                        emailField.classList.remove('invalid');
+                    }, 1000);
                     return;
                 }
                 
                 if (!validateEmail(email)) {
-                    showToast('Error', lang[currentLang].toastInvalidEmail, 'error');
-                    document.getElementById('canvaEmail').focus();
-                    document.getElementById('canvaEmail').style.borderColor = '#FF6584';
+                    showToast('تنبيه', lang[currentLang].toastInvalidEmail, 'error');
+                    const emailField = document.getElementById('canvaEmail');
+                    emailField.classList.add('invalid');
+                    emailField.focus();
+                    
+                    setTimeout(() => {
+                        emailField.classList.remove('invalid');
+                    }, 1000);
                     return;
                 }
             }
@@ -1528,11 +1834,11 @@
             orderBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>${currentLang === 'ar' ? 'جاري المعالجة...' : 'Processing...'}`;
             
             // إظهار رسالة الانتقال
-            showToast(lang[currentLang].toastSuccess, lang[currentLang].toastRedirecting);
+            showToast(lang[currentLang].toastOrderConfirm, lang[currentLang].toastRedirecting);
             
             // إنشاء رسالة الطلب
             let message = currentLang === 'ar' 
-                ? `مرحباً سليمان 👋 أطلب اشتراك ${product.name.ar} - باقة ${plan.period.ar} بسعر ${plan.price} ريال`
+                ? `مرحباً سليمان 👋 أطلب اشتراك ${product.name.ar} - باقة ${plan.period.ar} بسعر ${plan.price} ريال` 
                 : `Hello 👋 I want to order ${product.name.en} - Plan ${plan.period.en} for ${plan.price} SAR`;
             
             if (product.requiresEmail && email) {
@@ -1576,8 +1882,30 @@
             
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000);
+            }, 4000);
         }
+
+        // التمرير إلى الأعلى
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // التحقق من الإيميل في الوقت الحقيقي
+        document.getElementById('canvaEmail').addEventListener('input', function(e) {
+            const email = e.target.value;
+            
+            if (email) {
+                if (validateEmail(email)) {
+                    this.classList.add('valid');
+                    this.classList.remove('invalid');
+                } else {
+                    this.classList.remove('valid');
+                    this.classList.add('invalid');
+                }
+            } else {
+                this.classList.remove('valid', 'invalid');
+            }
+        });
     </script>
 </body>
 </html>
