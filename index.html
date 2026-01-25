@@ -26,6 +26,7 @@
             --shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
             --radius: 24px;
             --radius-sm: 16px;
+            --radius-xs: 8px;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             --gradient: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
             --gradient-hover: linear-gradient(135deg, #FF6584 0%, #6C63FF 100%);
@@ -376,7 +377,7 @@
             color: var(--text-secondary);
         }
 
-        /* قسم الإيميل - كما هو */
+        /* قسم الإيميل */
         .email-section {
             background: rgba(0, 196, 204, 0.05);
             border: 1px solid rgba(0, 196, 204, 0.3);
@@ -408,186 +409,192 @@
             text-align: right;
         }
 
-        /* ====== تصميم مبسط جداً لقسم الدفع ====== */
-        .payment-section {
-            background: var(--primary-light);
-            border-radius: var(--radius);
-            padding: 30px;
-            margin: 30px 0;
-            position: relative;
+        /* ====== قائمة تحويل بنكي صغيرة جداً ====== */
+        .bank-transfer-section {
+            background: var(--accent-light);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin: 25px 0;
             display: none;
-            border: 1px solid var(--border);
         }
 
-        .payment-section.show {
+        .bank-transfer-section.show {
             display: block;
         }
 
-        .payment-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .payment-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .payment-header p {
-            color: var(--text-secondary);
-        }
-
-        /* تصميم بسيط للحساب */
-        .simple-account-info {
-            background: var(--card);
-            border-radius: var(--radius-sm);
-            padding: 25px;
-            border: 1px solid var(--border);
-        }
-
-        .account-item {
+        .transfer-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
         }
 
-        .light-mode .account-item {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        .transfer-header h4 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .account-item:last-child {
+        .transfer-minimize {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .transfer-minimize:hover {
+            color: var(--accent);
+        }
+
+        /* بطاقة الحساب المصغرة */
+        .mini-account-card {
+            background: var(--card);
+            border-radius: var(--radius-xs);
+            padding: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .mini-account-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode .mini-account-row {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .mini-account-row:last-child {
             border-bottom: none;
         }
 
-        .account-label {
+        .mini-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: var(--text-secondary);
-            font-weight: 600;
+            gap: 6px;
         }
 
-        .account-label i {
-            color: var(--primary);
-        }
-
-        .account-value {
+        .mini-value {
             font-weight: 700;
             color: var(--text);
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             text-align: left;
             direction: ltr;
         }
 
-        /* رقم الحساب المميز بشكل بسيط */
-        .account-number-box {
-            background: rgba(54, 211, 153, 0.1);
-            border: 2px solid var(--accent);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            margin: 20px 0;
+        /* رقم الحساب الصغير */
+        .mini-account-number {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-xs);
+            padding: 12px 15px;
+            margin: 10px 0;
             text-align: center;
         }
 
-        .account-number {
+        .light-mode .mini-account-number {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .mini-account-number code {
             font-family: 'Courier New', monospace;
-            font-size: 1.6rem;
-            font-weight: 900;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: var(--accent);
             letter-spacing: 1px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            margin: 10px auto;
-            max-width: 100%;
-            overflow-wrap: break-word;
             direction: ltr;
+            word-break: break-all;
         }
 
-        .light-mode .account-number {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        /* أزرار بسيطة */
-        .payment-actions {
+        /* أزرار صغيرة */
+        .mini-action-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .simple-copy-btn {
+        .mini-copy-btn {
             flex: 1;
-            padding: 16px;
+            padding: 10px 12px;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-xs);
             font-family: 'Cairo';
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
         }
 
-        .simple-copy-btn:hover {
+        .mini-copy-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
         }
 
-        .simple-copy-btn.copied {
+        .mini-copy-btn.copied {
             background: var(--accent);
         }
 
-        .simple-whatsapp-btn {
+        .mini-whatsapp-btn {
             flex: 1;
-            padding: 16px;
+            padding: 10px 12px;
             background: #25D366;
             color: white;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-xs);
             font-family: 'Cairo';
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
         }
 
-        .simple-whatsapp-btn:hover {
+        .mini-whatsapp-btn:hover {
             background: #128C7E;
             transform: translateY(-2px);
         }
 
-        /* ملاحظة بسيطة */
-        .simple-payment-note {
-            margin-top: 20px;
-            padding: 15px;
-            background: var(--accent-light);
-            border-radius: var(--radius-sm);
+        /* ملاحظة صغيرة */
+        .mini-note {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(54, 211, 153, 0.05);
+            border-radius: var(--radius-xs);
             color: var(--text);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-align: center;
-            border: 1px solid var(--accent);
+            border: 1px solid rgba(54, 211, 153, 0.2);
         }
 
-        .simple-payment-note i {
+        .mini-note i {
             color: var(--accent);
-            margin-left: 8px;
+            margin-left: 5px;
         }
 
-        /* تحسينات أخرى للموقع */
-        .features-list {
+        /* قسم المزايا المحسّن */
+        .enhanced-features {
             background: var(--card);
             border-radius: var(--radius-sm);
             padding: 25px;
@@ -595,53 +602,120 @@
             border: 1px solid var(--border);
         }
 
-        .features-list h4 {
+        .features-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .features-header h4 {
             color: var(--primary);
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: var(--radius-xs);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .features-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            background: var(--bg-light);
+            border-radius: var(--radius-xs);
+            padding: 15px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 10px;
             font-size: 1.2rem;
         }
 
-        .features-list ul {
-            list-style: none;
-            padding-right: 20px;
+        .feature-item h5 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            color: var(--text);
         }
 
-        .features-list li {
-            margin-bottom: 10px;
-            padding-right: 25px;
-            position: relative;
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            line-height: 1.5;
         }
 
-        .features-list li::before {
-            content: '✓';
-            position: absolute;
-            right: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* زر الطلب */
+        /* زر الطلب المحسّن */
         .order-section {
-            margin: 40px 0 20px;
+            margin: 35px 0 20px;
         }
 
         .order-btn {
             width: 100%;
-            padding: 22px;
+            padding: 20px;
             background: var(--gradient);
             color: white;
             border: none;
             border-radius: var(--radius);
             font-family: 'Cairo';
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .order-btn:hover::before {
+            left: 100%;
         }
 
         .order-btn:hover {
@@ -664,7 +738,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* التذييل */
+        /* التذييل المحسّن */
         .footer {
             background: var(--bg-light);
             border-top: 1px solid var(--border);
@@ -710,10 +784,37 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: var(--transition);
         }
 
         .footer-contact div:hover {
             color: var(--primary);
+        }
+
+        .footer-links h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-right: 5px;
         }
 
         .footer-bottom {
@@ -724,7 +825,7 @@
             font-size: 0.9rem;
         }
 
-        /* إشعارات */
+        /* إشعارات محسنة */
         .toast {
             position: fixed;
             bottom: 25px;
@@ -732,15 +833,15 @@
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 18px 24px;
+            padding: 15px 20px;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             transform: translateX(150%);
             transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 10000;
-            max-width: 350px;
+            max-width: 320px;
         }
 
         .toast.show {
@@ -748,7 +849,7 @@
         }
 
         .toast i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--accent);
         }
 
@@ -761,15 +862,15 @@
             position: fixed;
             bottom: 25px;
             left: 25px;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: var(--transition);
             opacity: 0;
@@ -781,6 +882,11 @@
         .scroll-to-top.show {
             opacity: 1;
             visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
         }
 
         /* تحسينات التجاوب */
@@ -802,30 +908,28 @@
                 padding: 25px 20px;
             }
             
+            .details-container {
+                padding: 30px;
+            }
+            
             .order-btn {
-                padding: 20px;
-                font-size: 1.2rem;
+                padding: 18px;
+                font-size: 1.1rem;
             }
             
-            .payment-actions {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mini-action-buttons {
                 flex-direction: column;
             }
             
-            .account-number {
-                font-size: 1.4rem;
-                padding: 12px;
-            }
-            
-            .account-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .account-value {
-                text-align: right;
-                width: 100%;
-                direction: rtl;
+            .toast {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+                max-width: calc(100% - 30px);
             }
         }
 
@@ -850,31 +954,25 @@
                 font-size: 2.2rem;
             }
             
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
             .control-btn {
                 padding: 8px 15px;
                 font-size: 0.85rem;
             }
             
-            .details-container {
-                padding: 30px 25px;
-            }
-            
-            .account-number {
-                font-size: 1.2rem;
-            }
-            
-            .toast {
-                bottom: 15px;
-                right: 15px;
-                left: 15px;
-                max-width: calc(100% - 30px);
+            .mini-account-number code {
+                font-size: 1rem;
             }
             
             .scroll-to-top {
                 bottom: 15px;
                 left: 15px;
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
                 font-size: 1rem;
             }
         }
@@ -941,59 +1039,71 @@
                 </p>
             </div>
             
-            <!-- قسم المزايا -->
-            <div class="features-list">
-                <h4 id="featuresTitle">مزايا الخدمة</h4>
-                <ul id="featuresList">
+            <!-- قسم المزايا المحسّن -->
+            <div class="enhanced-features" id="enhancedFeatures">
+                <div class="features-header">
+                    <h4 id="featuresTitle">
+                        <i class="fas fa-star"></i>
+                        مزايا الخدمة
+                    </h4>
+                    <button class="features-toggle" id="featuresToggle">
+                        <i class="fas fa-eye"></i>
+                        <span>عرض التفاصيل</span>
+                    </button>
+                </div>
+                <div class="features-grid" id="featuresGrid">
                     <!-- سيتم تعبئتها بالجافاسكريبت -->
-                </ul>
+                </div>
             </div>
             
-            <!-- قسم الدفع المبسط -->
-            <div class="payment-section" id="paymentSection">
-                <div class="payment-header">
-                    <h3 id="paymentTitle">الدفع الآمن</h3>
-                    <p id="paymentSubtitle">تحويل بنكي سهل وآمن</p>
+            <!-- قائمة التحويل البنكي المصغرة -->
+            <div class="bank-transfer-section" id="bankTransferSection">
+                <div class="transfer-header">
+                    <h4>
+                        <i class="fas fa-university"></i>
+                        <span id="transferTitle">تحويل بنكي</span>
+                    </h4>
+                    <button class="transfer-minimize" id="transferMinimize">
+                        <i class="fas fa-minus"></i>
+                        <span id="minimizeText">تصغير</span>
+                    </button>
                 </div>
                 
-                <div class="simple-account-info">
-                    <div class="account-item">
-                        <div class="account-label">
+                <div class="mini-account-card">
+                    <div class="mini-account-row">
+                        <div class="mini-label">
                             <i class="fas fa-user"></i>
-                            <span>اسم المستفيد</span>
+                            <span>المستفيد</span>
                         </div>
-                        <div class="account-value">سليمان ابراهيم عبدالله فلاته</div>
+                        <div class="mini-value">سليمان ابراهيم عبدالله فلاته</div>
                     </div>
                     
-                    <div class="account-item">
-                        <div class="account-label">
+                    <div class="mini-account-row">
+                        <div class="mini-label">
                             <i class="fas fa-bank"></i>
-                            <span>اسم البنك</span>
+                            <span>البنك</span>
                         </div>
-                        <div class="account-value">بنك البلاد</div>
+                        <div class="mini-value">بنك البلاد</div>
                     </div>
                     
-                    <div class="account-number-box">
-                        <div class="account-number" id="accountNumberDisplay">SA0380020007</div>
-                        <small style="color: var(--text-secondary); display: block; margin-top: 5px;">
-                            رقم الحساب البنكي
-                        </small>
+                    <div class="mini-account-number">
+                        <code id="accountNumberCode">SA0380020007</code>
                     </div>
                     
-                    <div class="payment-actions">
-                        <button class="simple-copy-btn" onclick="copyAccount()" id="copyBtn">
+                    <div class="mini-action-buttons">
+                        <button class="mini-copy-btn" onclick="copyAccount()" id="copyBtn">
                             <i class="fas fa-copy"></i>
                             <span id="copyText">نسخ الرقم</span>
                         </button>
-                        <button class="simple-whatsapp-btn" onclick="openWhatsApp()">
+                        <button class="mini-whatsapp-btn" onclick="sendPaymentReceipt()">
                             <i class="fab fa-whatsapp"></i>
                             <span id="whatsappText">إرسال الإيصال</span>
                         </button>
                     </div>
                     
-                    <div class="simple-payment-note">
+                    <div class="mini-note">
                         <i class="fas fa-shield-alt"></i>
-                        <span id="paymentNote">دفع آمن 100% مع ضمان استرجاع 7 أيام</span>
+                        <span id="paymentNote">دفع آمن ومضمون</span>
                     </div>
                 </div>
             </div>
@@ -1008,7 +1118,7 @@
         </div>
     </section>
 
-    <!-- التذييل -->
+    <!-- التذييل المحسّن -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
@@ -1024,6 +1134,16 @@
                     <div><i class="fab fa-whatsapp"></i> <span>0591388202</span></div>
                     <div><i class="fas fa-envelope"></i> <span>iioe@outlook.sa</span></div>
                     <div><i class="fas fa-shield-alt"></i> <span id="warrantyText">ضمان استرجاع 7 أيام</span></div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 id="quickLinksTitle">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#" onclick="selectProduct('netflix'); return false;">نتفلكس بريميوم</a></li>
+                        <li><a href="#" onclick="selectProduct('disney'); return false;">ديزني بلس</a></li>
+                        <li><a href="#" onclick="selectProduct('canva'); return false;">كانفا برو</a></li>
+                        <li><a href="#" onclick="selectProduct('fasel'); return false;">فاصل بلس</a></li>
+                    </ul>
                 </div>
             </div>
             
@@ -1054,6 +1174,8 @@
         let currentTheme = 'dark';
         let currentProduct = 'netflix';
         let orderInProgress = false;
+        let isFeaturesExpanded = true;
+        let isTransferMinimized = false;
 
         const translations = {
             ar: {
@@ -1061,21 +1183,25 @@
                 heroSubtitle: "اكتشف عالمًا من المحتوى الرقمي المتميز مع اشتراكاتنا الحصرية. نتفلكس، ديزني بلس، كانفا برو، فاصل بلس وأكثر. كل ما تحتاجه في مكان واحد.",
                 productsTitle: "اختر خدمتك المفضلة",
                 featuresTitle: "مزايا الخدمة",
+                featuresToggle: "عرض التفاصيل",
+                featuresHide: "إخفاء التفاصيل",
                 emailTitle: "تفعيل حساب كانفا برو",
                 emailPlaceholder: "أدخل بريدك الإلكتروني هنا للتفعيل",
                 emailNote: "سيتم تفعيل حساب كانفا برو على هذا البريد الإلكتروني وتستلم بيانات الدخول عليه خلال 24 ساعة.",
-                paymentTitle: "الدفع الآمن",
-                paymentSubtitle: "تحويل بنكي سهل وآمن",
+                transferTitle: "تحويل بنكي",
+                minimizeText: "تصغير",
+                expandText: "توسيع",
                 copyText: "نسخ الرقم",
                 whatsappText: "إرسال الإيصال",
                 orderText: "🚀 تأكيد الطلب عبر واتساب",
                 langText: "English",
                 themeText: "وضع النهار",
                 contactTitle: "معلومات الاتصال",
+                quickLinksTitle: "روابط سريعة",
                 warrantyText: "ضمان استرجاع 7 أيام",
                 footerDescription: "متجر متخصص في الخدمات الرقمية والاشتراكات منذ 2020. نقدم أفضل الخدمات بأفضل الأسعار مع ضمان الجودة والدعم الفني المستمر.",
                 footerTagline: "تسوق بأمان | دعم فني 24/7",
-                paymentNote: "دفع آمن 100% مع ضمان استرجاع 7 أيام",
+                paymentNote: "دفع آمن ومضمون",
                 toastSuccess: "تم بنجاح!",
                 toastCopied: "تم نسخ رقم الحساب إلى الحافظة",
                 toastEmailRequired: "الرجاء إدخال البريد الإلكتروني أولاً!",
@@ -1088,21 +1214,25 @@
                 heroSubtitle: "Discover a world of premium digital content with our exclusive subscriptions. Netflix, Disney+, Canva Pro, Fasel Plus and more. Everything you need in one place.",
                 productsTitle: "Choose Your Favorite Service",
                 featuresTitle: "Service Features",
+                featuresToggle: "Show Details",
+                featuresHide: "Hide Details",
                 emailTitle: "Canva Pro Account Activation",
                 emailPlaceholder: "Enter your email address here for activation",
                 emailNote: "Canva Pro account will be activated on this email and you'll receive login details within 24 hours.",
-                paymentTitle: "Secure Payment",
-                paymentSubtitle: "Easy & Secure Bank Transfer",
+                transferTitle: "Bank Transfer",
+                minimizeText: "Minimize",
+                expandText: "Expand",
                 copyText: "Copy Number",
                 whatsappText: "Send Receipt",
                 orderText: "🚀 Confirm Order via WhatsApp",
                 langText: "العربية",
                 themeText: "Light Mode",
                 contactTitle: "Contact Information",
+                quickLinksTitle: "Quick Links",
                 warrantyText: "7-day Refund Guarantee",
                 footerDescription: "A store specialized in digital services and subscriptions since 2020. We provide the best services at the best prices with quality guarantee and continuous technical support.",
                 footerTagline: "Shop Safely | 24/7 Support",
-                paymentNote: "100% secure payment with 7-day money back guarantee",
+                paymentNote: "Secure & Guaranteed Payment",
                 toastSuccess: "Success!",
                 toastCopied: "Account number copied to clipboard",
                 toastEmailRequired: "Please enter your email first!",
@@ -1118,88 +1248,112 @@
                 icon: "fas fa-film",
                 price: 200,
                 requiresEmail: false,
-                features: {
-                    ar: [
-                        "جودة 4K UHD ممتازة",
-                        "4 شاشات في نفس الوقت",
-                        "مشاهدة بدون إعلانات",
-                        "دعم فني 24/7",
-                        "ضمان استمرارية الخدمة"
-                    ],
-                    en: [
-                        "Excellent 4K UHD Quality",
-                        "4 Screens Simultaneously",
-                        "Ad-Free Viewing",
-                        "24/7 Technical Support",
-                        "Service Continuity Guarantee"
-                    ]
-                }
+                features: [
+                    { 
+                        icon: "fas fa-tv",
+                        title: { ar: "جودة 4K UHD", en: "4K UHD Quality" },
+                        description: { ar: "جودة عرض فائقة الدقة 4K مع دعم HDR", en: "Ultra HD 4K streaming with HDR support" }
+                    },
+                    { 
+                        icon: "fas fa-users",
+                        title: { ar: "4 شاشات في وقت واحد", en: "4 Screens Simultaneously" },
+                        description: { ar: "مشاهدة على 4 أجهزة مختلفة في نفس الوقت", en: "Watch on 4 different devices at the same time" }
+                    },
+                    { 
+                        icon: "fas fa-ban",
+                        title: { ar: "بدون إعلانات", en: "Ad-Free" },
+                        description: { ar: "مشاهدة بدون مقاطعة من الإعلانات", en: "Watch without interruption from ads" }
+                    },
+                    { 
+                        icon: "fas fa-headset",
+                        title: { ar: "دعم فني 24/7", en: "24/7 Support" },
+                        description: { ar: "دعم فني متواصل على مدار الساعة", en: "Continuous technical support around the clock" }
+                    }
+                ]
             },
             disney: {
                 name: { ar: "ديزني بلس الرسمي", en: "Disney+ Official" },
                 icon: "fas fa-crown",
                 price: 200,
                 requiresEmail: false,
-                features: {
-                    ar: [
-                        "مكتبة ديزني ومارفل الكاملة",
-                        "جودة 4K مع HDR",
-                        "تحميل للمشاهدة بدون نت",
-                        "7 ملفات شخصية للعائلة",
-                        "دعم اللغة العربية"
-                    ],
-                    en: [
-                        "Complete Disney & Marvel Library",
-                        "4K Quality with HDR",
-                        "Download for Offline Viewing",
-                        "7 Family Profiles",
-                        "Arabic Language Support"
-                    ]
-                }
+                features: [
+                    { 
+                        icon: "fas fa-infinity",
+                        title: { ar: "مكتبة ديزني ومارفل", en: "Disney & Marvel Library" },
+                        description: { ar: "الوصول الكامل لمكتبة ديزني ومارفل", en: "Full access to Disney & Marvel library" }
+                    },
+                    { 
+                        icon: "fas fa-download",
+                        title: { ar: "تحميل بدون نت", en: "Offline Download" },
+                        description: { ar: "إمكانية التحميل للمشاهدة بدون اتصال", en: "Download capability for offline viewing" }
+                    },
+                    { 
+                        icon: "fas fa-user-friends",
+                        title: { ar: "7 ملفات شخصية", en: "7 Profiles" },
+                        description: { ar: "7 ملفات شخصية مختلفة لأفراد العائلة", en: "7 different profiles for family members" }
+                    },
+                    { 
+                        icon: "fas fa-closed-captioning",
+                        title: { ar: "دعم اللغة العربية", en: "Arabic Language Support" },
+                        description: { ar: "دعم كامل للغة العربية والترجمة", en: "Full support for Arabic language and subtitles" }
+                    }
+                ]
             },
             canva: {
                 name: { ar: "كانفا برو مدى الحياة", en: "Canva Pro Lifetime" },
                 icon: "fas fa-palette",
                 price: 39,
                 requiresEmail: true,
-                features: {
-                    ar: [
-                        "تفعيل على إيميلك الخاص",
-                        "مميزات Pro كاملة",
-                        "مكتبة صور وفيديوهات مميزة",
-                        "تحديثات مجانية مدى الحياة",
-                        "دعم الفرق والتعاون"
-                    ],
-                    en: [
-                        "Activation on Your Email",
-                        "Full Pro Features",
-                        "Premium Image & Video Library",
-                        "Free Lifetime Updates",
-                        "Team Collaboration Support"
-                    ]
-                }
+                features: [
+                    { 
+                        icon: "fas fa-envelope",
+                        title: { ar: "تفعيل على إيميلك", en: "Activation on Your Email" },
+                        description: { ar: "تفعيل مباشر على بريدك الإلكتروني الشخصي", en: "Direct activation on your personal email" }
+                    },
+                    { 
+                        icon: "fas fa-gem",
+                        title: { ar: "مميزات Pro كاملة", en: "Full Pro Features" },
+                        description: { ar: "جميع مميزات كانفا برو بدون قيود", en: "All Canva Pro features without restrictions" }
+                    },
+                    { 
+                        icon: "fas fa-images",
+                        title: { ar: "مكتبة صور وفيديوهات", en: "Image & Video Library" },
+                        description: { ar: "مكتبة صور وفيديوهات مميزة وحصرية", en: "Premium and exclusive image & video library" }
+                    },
+                    { 
+                        icon: "fas fa-sync",
+                        title: { ar: "تحديثات مجانية", en: "Free Updates" },
+                        description: { ar: "تحديثات مجانية مدى الحياة", en: "Free lifetime updates" }
+                    }
+                ]
             },
             fasel: {
                 name: { ar: "فاصل بلس", en: "Fasel Plus" },
                 icon: "fas fa-play-circle",
                 price: 98,
                 requiresEmail: false,
-                features: {
-                    ar: [
-                        "بدون إعلانات تماماً",
-                        "جودة تصل إلى 4K",
-                        "مكتبة أفلام ومسلسلات ضخمة",
-                        "تطبيق على جميع المنصات",
-                        "محتوى عربي حصري"
-                    ],
-                    en: [
-                        "Completely Ad-Free",
-                        "Quality up to 4K",
-                        "Huge Movie & Series Library",
-                        "App on All Platforms",
-                        "Exclusive Arabic Content"
-                    ]
-                }
+                features: [
+                    { 
+                        icon: "fas fa-ad",
+                        title: { ar: "بدون إعلانات", en: "No Ads" },
+                        description: { ar: "مشاهدة خالية تماماً من الإعلانات", en: "Completely ad-free viewing experience" }
+                    },
+                    { 
+                        icon: "fas fa-film",
+                        title: { ar: "مكتبة ضخمة", en: "Huge Library" },
+                        description: { ar: "مكتبة أفلام ومسلسلات ضخمة ومتنوعة", en: "Huge and diverse movie & series library" }
+                    },
+                    { 
+                        icon: "fas fa-mobile-alt",
+                        title: { ar: "جميع المنصات", en: "All Platforms" },
+                        description: { ar: "تطبيق متاح على جميع المنصات والأجهزة", en: "App available on all platforms and devices" }
+                    },
+                    { 
+                        icon: "fas fa-star",
+                        title: { ar: "محتوى عربي حصري", en: "Exclusive Arabic Content" },
+                        description: { ar: "محتوى عربي حصري وأصلي", en: "Exclusive and original Arabic content" }
+                    }
+                ]
             }
         };
 
@@ -1226,6 +1380,12 @@
                     scrollToTopBtn.classList.remove('show');
                 }
             });
+            
+            // زر تبديل المزايا
+            document.getElementById('featuresToggle').addEventListener('click', toggleFeatures);
+            
+            // زر تصغير/توسيع قسم التحويل
+            document.getElementById('transferMinimize').addEventListener('click', toggleTransferSection);
         }
 
         // عرض شبكة المنتجات
@@ -1276,10 +1436,7 @@
             document.getElementById('currentProductPrice').innerHTML = `${product.price} <span>${currentLang === 'ar' ? 'ريال' : 'SAR'}</span>`;
             
             // تحديث المزايا
-            const featuresList = document.getElementById('featuresList');
-            featuresList.innerHTML = product.features[currentLang].map(feature => `
-                <li>${feature}</li>
-            `).join('');
+            updateFeaturesGrid(product);
             
             // التحكم في قسم الإيميل
             const emailSection = document.getElementById('emailSection');
@@ -1293,8 +1450,70 @@
                 emailSection.classList.remove('show');
             }
             
-            // إظهار قسم الدفع
-            document.getElementById('paymentSection').classList.add('show');
+            // إظهار قسم التحويل البنكي
+            document.getElementById('bankTransferSection').classList.add('show');
+        }
+
+        // تحديث شبكة المزايا
+        function updateFeaturesGrid(product) {
+            const featuresGrid = document.getElementById('featuresGrid');
+            let html = '';
+            
+            product.features.forEach(feature => {
+                html += `
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="${feature.icon}"></i>
+                        </div>
+                        <h5>${feature.title[currentLang]}</h5>
+                        <p>${feature.description[currentLang]}</p>
+                    </div>
+                `;
+            });
+            
+            featuresGrid.innerHTML = html;
+        }
+
+        // تبديل عرض المزايا
+        function toggleFeatures() {
+            const featuresGrid = document.getElementById('featuresGrid');
+            const toggleBtn = document.getElementById('featuresToggle');
+            const icon = toggleBtn.querySelector('i');
+            const text = toggleBtn.querySelector('span');
+            
+            isFeaturesExpanded = !isFeaturesExpanded;
+            
+            if (isFeaturesExpanded) {
+                featuresGrid.style.display = 'grid';
+                icon.className = 'fas fa-eye';
+                text.textContent = translations[currentLang].featuresToggle;
+            } else {
+                featuresGrid.style.display = 'none';
+                icon.className = 'fas fa-eye-slash';
+                text.textContent = translations[currentLang].featuresHide;
+            }
+        }
+
+        // تبديل قسم التحويل البنكي
+        function toggleTransferSection() {
+            const transferSection = document.getElementById('bankTransferSection');
+            const minimizeBtn = document.getElementById('transferMinimize');
+            const icon = minimizeBtn.querySelector('i');
+            const text = minimizeBtn.querySelector('span');
+            
+            isTransferMinimized = !isTransferMinimized;
+            
+            if (isTransferMinimized) {
+                transferSection.style.padding = '10px 15px';
+                transferSection.querySelector('.mini-account-card').style.display = 'none';
+                icon.className = 'fas fa-plus';
+                text.textContent = translations[currentLang].expandText;
+            } else {
+                transferSection.style.padding = '20px';
+                transferSection.querySelector('.mini-account-card').style.display = 'block';
+                icon.className = 'fas fa-minus';
+                text.textContent = translations[currentLang].minimizeText;
+            }
         }
 
         // تبديل اللغة
@@ -1342,17 +1561,19 @@
             document.getElementById('heroTitle').textContent = langData.heroTitle;
             document.getElementById('heroSubtitle').textContent = langData.heroSubtitle;
             document.getElementById('productsTitle').textContent = langData.productsTitle;
-            document.getElementById('featuresTitle').textContent = langData.featuresTitle;
+            document.getElementById('featuresTitle').innerHTML = `<i class="fas fa-star"></i> ${langData.featuresTitle}`;
+            document.getElementById('featuresToggle').innerHTML = `<i class="fas fa-eye"></i> <span>${isFeaturesExpanded ? langData.featuresToggle : langData.featuresHide}</span>`;
             document.getElementById('emailTitle').textContent = langData.emailTitle;
             document.getElementById('emailNote').textContent = langData.emailNote;
-            document.getElementById('paymentTitle').textContent = langData.paymentTitle;
-            document.getElementById('paymentSubtitle').textContent = langData.paymentSubtitle;
+            document.getElementById('transferTitle').textContent = langData.transferTitle;
+            document.getElementById('minimizeText').textContent = isTransferMinimized ? langData.expandText : langData.minimizeText;
             document.getElementById('copyText').textContent = langData.copyText;
             document.getElementById('whatsappText').textContent = langData.whatsappText;
             document.getElementById('orderText').textContent = langData.orderText;
             document.getElementById('langText').textContent = langData.langText;
             document.getElementById('themeText').textContent = langData.themeText;
             document.getElementById('contactTitle').textContent = langData.contactTitle;
+            document.getElementById('quickLinksTitle').textContent = langData.quickLinksTitle;
             document.getElementById('warrantyText').textContent = langData.warrantyText;
             document.getElementById('footerDescription').textContent = langData.footerDescription;
             document.getElementById('footerTagline').textContent = langData.footerTagline;
@@ -1360,6 +1581,9 @@
             
             // تحديث حقل الإيميل
             document.getElementById('canvaEmail').placeholder = langData.emailPlaceholder;
+            
+            // تحديث المزايا للمنتج الحالي
+            updateFeaturesGrid(products[currentProduct]);
         }
 
         // نسخ رقم الحساب
@@ -1378,17 +1602,17 @@
                     copyBtn.innerHTML = `<i class="fas fa-copy"></i>${translations[currentLang].copyText}`;
                 }, 2000);
             }).catch(err => {
-                showToast('خطأ', 'حدث خطأ في النسخ', 'error');
+                showToast('خطأ', currentLang === 'ar' ? 'حدث خطأ في النسخ' : 'Copy failed', 'error');
             });
         }
 
-        // فتح واتساب لإرسال إشعار الدفع
-        function openWhatsApp() {
+        // إرسال إيصال الدفع
+        function sendPaymentReceipt() {
             const product = products[currentProduct];
             const email = document.getElementById('canvaEmail').value;
             
             let message = currentLang === 'ar' 
-                ? `مرحباً، أرسل إشعار الدفع لطلب ${product.name.ar} بسعر ${product.price} ريال` 
+                ? `مرحباً، أرسل إيصال الدفع لطلب ${product.name.ar} بسعر ${product.price} ريال` 
                 : `Hello, I'm sending payment receipt for ${product.name.en} order for ${product.price} SAR`;
             
             if (product.requiresEmail && email) {
