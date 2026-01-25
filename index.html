@@ -36,6 +36,99 @@
             position: relative;
         }
         
+        /* القسم العلوي الجديد مع الشعار الفخم */
+        .premium-header {
+            padding: 15px 25px;
+            text-align: center;
+            background: linear-gradient(90deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.2), rgba(46, 204, 113, 0.1));
+            border-bottom: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .premium-text {
+            font-size: 14px;
+            color: #a3e4c5;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        /* شعار NIKAI الفخم في المنتصف العلوي */
+        .nikai-premium-logo {
+            font-size: 36px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 1px 0 #ccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 0 5px rgba(0,0,0,.1),
+                0 1px 3px rgba(0,0,0,.3),
+                0 3px 5px rgba(0,0,0,.2),
+                0 10px 10px rgba(0,0,0,.25),
+                0 0 20px rgba(46, 204, 113, 0.5);
+            position: relative;
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(to bottom, #2ecc71 0%, #27ae60 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 1px 0 #ccc,
+                    0 2px 0 #c9c9c9,
+                    0 3px 0 #bbb,
+                    0 4px 0 #b9b9b9,
+                    0 5px 0 #aaa,
+                    0 6px 1px rgba(0,0,0,.1),
+                    0 0 5px rgba(0,0,0,.1),
+                    0 1px 3px rgba(0,0,0,.3),
+                    0 3px 5px rgba(0,0,0,.2),
+                    0 10px 10px rgba(0,0,0,.25),
+                    0 0 20px rgba(46, 204, 113, 0.5);
+            }
+            to {
+                text-shadow: 
+                    0 1px 0 #ccc,
+                    0 2px 0 #c9c9c9,
+                    0 3px 0 #bbb,
+                    0 4px 0 #b9b9b9,
+                    0 5px 0 #aaa,
+                    0 6px 1px rgba(0,0,0,.1),
+                    0 0 10px rgba(0,0,0,.1),
+                    0 1px 5px rgba(0,0,0,.3),
+                    0 3px 7px rgba(0,0,0,.2),
+                    0 12px 12px rgba(0,0,0,.25),
+                    0 0 30px rgba(46, 204, 113, 0.8),
+                    0 0 40px rgba(46, 204, 113, 0.6);
+            }
+        }
+        
+        .nikai-premium-logo::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            z-index: 1;
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { background-position: -100px; }
+            100% { background-position: 200px; }
+        }
+        
         .card-header {
             padding: 25px;
             text-align: center;
@@ -43,7 +136,7 @@
             position: relative;
         }
         
-        /* شعار NIKAI الفخم */
+        /* شعار NIKAI الكبير في المنتصف */
         .nikai-logo {
             font-size: 48px;
             font-weight: 900;
@@ -282,6 +375,11 @@
                 font-size: 40px;
             }
             
+            .nikai-premium-logo {
+                font-size: 30px;
+                letter-spacing: 2px;
+            }
+            
             .price {
                 font-size: 42px;
             }
@@ -296,6 +394,12 @@
 <body>
     <div class="container">
         <div class="card">
+            <!-- القسم العلوي الجديد مع الشعار الفخم -->
+            <div class="premium-header">
+                <div class="premium-text">متميزون منذ عام 2020</div>
+                <div class="nikai-premium-logo">NIKAI</div>
+            </div>
+            
             <div class="card-header">
                 <div class="discount-badge">%40 وفر</div>
                 <div class="store-name">متجر NIKAI</div>
@@ -341,7 +445,7 @@
                     <i class="fas fa-mobile-alt" title="هواتف محمولة"></i>
                     <i class="fas fa-tablet-alt" title="أجهزة لوحية"></i>
                     <i class="fas fa-tv" title="تلفزيون"></i>
-                    <i class="fas fa-laptop" title="كمبيوتر"></i>
+                    <i class="fas fa-laptop" title="كمبيوتر</i>
                 </div>
                 
                 <div class="price-section">
@@ -387,14 +491,14 @@
             });
         });
         
-        // تأثير للشعار
-        const logo = document.querySelector('.nikai-logo');
-        logo.addEventListener('mouseenter', function() {
-            this.style.textShadow = '0 0 15px rgba(46, 204, 113, 0.9), 0 0 25px rgba(46, 204, 113, 0.7), 0 0 35px rgba(46, 204, 113, 0.5)';
+        // تأثير للشعار العلوي الفخم
+        const premiumLogo = document.querySelector('.nikai-premium-logo');
+        premiumLogo.addEventListener('mouseenter', function() {
+            this.style.animation = 'glow 0.5s ease-in-out infinite alternate';
         });
         
-        logo.addEventListener('mouseleave', function() {
-            this.style.textShadow = '0 0 10px rgba(46, 204, 113, 0.7), 0 0 20px rgba(46, 204, 113, 0.5), 0 0 30px rgba(46, 204, 113, 0.3)';
+        premiumLogo.addEventListener('mouseleave', function() {
+            this.style.animation = 'glow 2s ease-in-out infinite alternate';
         });
     </script>
 </body>
