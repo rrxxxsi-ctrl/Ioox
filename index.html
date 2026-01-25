@@ -3,82 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NIKAI | كانفا برو</title>
+<title>NIKAI | اشتراكات رقمية</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma}
-
-body{
-    background:#0b1f15;
-    color:#fff;
-    padding-top:70px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma, Arial;
 }
 
-/* الشريط العلوي */
+/* ===== الشريط العلوي (الشعار) ===== */
 .top-bar{
     position:fixed;
-    top:0;left:0;
+    top:0;
+    left:0;
     width:100%;
     height:60px;
-    background:#06140d;
+    background:linear-gradient(180deg,#0b2a1c,#06160f);
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     z-index:9999;
     box-shadow:0 4px 15px rgba(0,0,0,.7);
 }
 .top-logo{
-    font-size:28px;
+    font-size:30px;
     font-weight:900;
     letter-spacing:4px;
-    color:#2ecc71;
-    text-shadow:0 0 15px #2ecc71;
+    background:linear-gradient(90deg,#2ecc71,#f1c40f,#2ecc71);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 25px rgba(46,204,113,.8);
 }
 
-/* المحتوى */
+/* ===== جسم الصفحة ===== */
+body{
+    background:#081f14;
+    color:#fff;
+    padding-top:80px;
+}
+
+/* ===== الحاوية ===== */
 .container{
-    max-width:380px;
+    max-width:400px;
     margin:auto;
     padding:20px;
 }
+
+/* ===== الكرت ===== */
 .card{
-    background:#102c1f;
-    border-radius:15px;
-    padding:20px;
+    background:linear-gradient(180deg,#0f3b24,#081f14);
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.6);
+    overflow:hidden;
 }
-h1{
-    color:#2ecc71;
+
+/* ===== الهيدر ===== */
+.card-header{
     text-align:center;
+    padding:25px;
+    position:relative;
+}
+.discount{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#e74c3c;
+    padding:6px 16px;
+    border-radius:20px;
+    font-weight:bold;
+}
+.card-header h1{
+    color:#2ecc71;
     margin-bottom:10px;
 }
-p{text-align:center;margin-bottom:20px}
+.card-header p{
+    opacity:.9;
+}
 
-ul{list-style:none}
-li{
+/* ===== المحتوى ===== */
+.card-body{
+    padding:25px;
+}
+.features{
+    list-style:none;
+    margin-bottom:20px;
+}
+.features li{
     padding:10px 0;
-    border-bottom:1px solid rgba(255,255,255,.1)
+    border-bottom:1px solid rgba(255,255,255,.1);
 }
+.features li:last-child{border:none}
 
-.price{
+/* ===== السعر ===== */
+.price-box{
+    background:rgba(0,0,0,.3);
+    padding:20px;
+    border-radius:15px;
     text-align:center;
-    font-size:36px;
+    margin-bottom:20px;
+}
+.price{
+    font-size:40px;
+    font-weight:900;
     color:#f1c40f;
-    margin:20px 0;
+}
+.old-price{
+    text-decoration:line-through;
+    opacity:.7;
 }
 
-button{
+/* ===== الأزرار ===== */
+.btn{
     width:100%;
-    padding:15px;
+    padding:16px;
     border:none;
-    border-radius:10px;
-    background:#2ecc71;
-    color:#000;
+    border-radius:12px;
     font-size:18px;
     font-weight:bold;
     cursor:pointer;
 }
+.btn-order{
+    background:linear-gradient(45deg,#2ecc71,#27ae60);
+    margin-bottom:10px;
+}
+.btn-whatsapp{
+    background:#25D366;
+}
 
-/* نافذة الإيميل */
+/* ===== نافذة الإيميل (الحل الأساسي) ===== */
 .modal{
     display:none;
     position:fixed;
@@ -86,15 +140,15 @@ button{
     background:rgba(0,0,0,.85);
     z-index:10000;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 }
 .modal-box{
     background:#0f3b24;
-    padding:20px;
-    border-radius:12px;
+    padding:25px;
+    border-radius:15px;
     width:90%;
-    max-width:320px;
+    max-width:330px;
     text-align:center;
 }
 .modal-box h3{
@@ -103,67 +157,108 @@ button{
 }
 .modal-box input{
     width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #2ecc71;
+    padding:14px;
+    border-radius:10px;
+    border:2px solid #2ecc71;
     margin-bottom:15px;
+    font-size:16px;
 }
 .modal-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
     background:#27ae60;
     color:#fff;
+    font-size:18px;
+    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<!-- الشعار -->
+<!-- ===== الشعار ===== -->
 <div class="top-bar">
     <div class="top-logo">NIKAI</div>
 </div>
 
+<!-- ===== الموقع ===== -->
 <div class="container">
     <div class="card">
-        <h1>كانفا برو مدى الحياة</h1>
-        <p>تفعيل رسمي على إيميلك</p>
 
-        <ul>
-            <li>✔ أدوات Pro كاملة</li>
-            <li>✔ بدون علامة مائية</li>
-            <li>✔ تحديثات مدى الحياة</li>
-        </ul>
+        <div class="card-header">
+            <div class="discount">وفر 60%</div>
+            <h1>كانفا برو مدى الحياة</h1>
+            <p>تفعيل رسمي على إيميلك الشخصي</p>
+        </div>
 
-        <div class="price">39 ريال</div>
+        <div class="card-body">
+            <ul class="features">
+                <li>✔ أدوات Pro كاملة</li>
+                <li>✔ بدون علامة مائية</li>
+                <li>✔ مكتبة صور وفيديوهات</li>
+                <li>✔ تحديثات مدى الحياة</li>
+            </ul>
 
-        <button id="orderBtn">اطلب الآن</button>
+            <div class="price-box">
+                <div class="price">39 ريال</div>
+                <div class="old-price">بدلاً من 100 ريال</div>
+            </div>
+
+            <button class="btn btn-order" id="orderBtn">اطلب الآن</button>
+            <button class="btn btn-whatsapp" id="whatsappBtn">مراسلة واتساب</button>
+        </div>
+
     </div>
 </div>
 
-<!-- نافذة الإيميل -->
+<!-- ===== نافذة إدخال الإيميل (إجباري) ===== -->
 <div class="modal" id="emailModal">
     <div class="modal-box">
         <h3>أدخل بريدك الإلكتروني</h3>
         <input type="email" id="emailInput" placeholder="example@email.com">
-        <button id="confirmBtn">تأكيد</button>
+        <button id="confirmEmail">متابعة</button>
     </div>
 </div>
 
 <script>
-const orderBtn = document.getElementById("orderBtn");
 const modal = document.getElementById("emailModal");
-const confirmBtn = document.getElementById("confirmBtn");
+const orderBtn = document.getElementById("orderBtn");
+const whatsappBtn = document.getElementById("whatsappBtn");
+const confirmEmail = document.getElementById("confirmEmail");
+let actionType = "";
 
+/* فتح النافذة */
 orderBtn.onclick = () => {
+    actionType = "order";
+    modal.style.display = "flex";
+};
+whatsappBtn.onclick = () => {
+    actionType = "whatsapp";
     modal.style.display = "flex";
 };
 
-confirmBtn.onclick = () => {
+/* تأكيد الإيميل */
+confirmEmail.onclick = () => {
     const email = document.getElementById("emailInput").value.trim();
+
     if(!email || !email.includes("@")){
-        alert("أدخل بريد إلكتروني صحيح");
+        alert("الرجاء إدخال بريد إلكتروني صحيح");
         return;
     }
-    alert("تم استلام الإيميل:\n" + email);
+
+    if(actionType === "order"){
+        alert("تم تسجيل الإيميل:\n" + email + "\n\nيرجى إتمام التحويل");
+    }
+
+    if(actionType === "whatsapp"){
+        const msg = encodeURIComponent(
+            "طلب كانفا برو\nالإيميل: " + email
+        );
+        window.location.href = "https://wa.me/966500000000?text=" + msg;
+    }
+
     modal.style.display = "none";
 };
 </script>
