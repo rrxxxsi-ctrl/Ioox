@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIKAI | فخامة الاختيار الرقمي</title>
+    <title>NIKAI | متجر الاشتراكات الرقمية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -17,7 +17,8 @@
         }
 
         /* الثيمات اللونية الديناميكية */
-        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); } /* لون أدوبي */
+        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.25); } /* لون لينكد إن */
+        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
         body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
         body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.2); }
@@ -57,21 +58,19 @@
         .badge-main { display: inline-block; background: var(--accent-color); color: #fff; padding: 4px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 15px; }
 
         /* الباقات */
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; margin: 20px 0; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 20px 0; }
         .plan-btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 15px;
             border-radius: 15px; cursor: pointer; transition: 0.3s;
         }
         .plan-btn.selected { background: var(--accent-color); color: #fff; font-weight: 700; border-color: var(--accent-color); }
         .plan-btn div { font-size: 10px; opacity: 0.8; margin-bottom: 4px; }
-        .plan-btn strong { font-size: 16px; }
 
-        /* الأقسام الإرشادية والتنبيهات */
+        /* الأقسام الإرشادية */
         .info-panel { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
         .info-panel strong { color: var(--accent-color); font-size: 15px; display: block; margin-bottom: 12px; }
         .info-panel ul { padding-right: 18px; color: #ccc; line-height: 1.7; }
-        
-        .warning-box { background: rgba(255, 0, 0, 0.1); border: 1px solid rgba(255,0,0,0.2); padding: 15px; border-radius: 15px; color: #ff8080; margin: 15px 0; text-align: right; font-size: 12px; }
+        .gold-text { color: #d4af37; font-weight: 700; }
 
         /* وزنية البنك المصلحة */
         .bank-section {
@@ -105,6 +104,10 @@
         </header>
 
         <div class="grid">
+            <div class="card" onclick="openService('linkedin')">
+                <i class="fab fa-linkedin"></i>
+                <h3>لينكد إن</h3>
+            </div>
             <div class="card" onclick="openService('adobe')">
                 <i class="fas fa-palette"></i>
                 <h3>أدوبي</h3>
@@ -133,10 +136,6 @@
                 <i class="fas fa-tv"></i>
                 <h3>كرانشي</h3>
             </div>
-            <div class="card" onclick="openService('disney')">
-                <i class="fas fa-crown"></i>
-                <h3>ديزني</h3>
-            </div>
             <div class="card" onclick="openService('canva')">
                 <i class="fas fa-pen-nib"></i>
                 <h3>كانفا</h3>
@@ -149,19 +148,24 @@
                 <div id="shared-badge" class="badge-main">أصلي ومضمون</div>
             </div>
 
-            <div class="warning-box" id="adobe-warning" style="display:none;">
-                ⚠️ <strong>تنبيه مهم:</strong> أدوبي لا توفر اشتراكات مدى الحياة. أي نسخة يتم بيعها على أنها "مدى الحياة" تكون مقرصنة وتعرض جهازك للإختراق!
-            </div>
-
             <div class="plans-grid" id="s-plans"></div>
 
-            <div class="info-panel" id="s-info-panel">
-                <strong><i class="fas fa-check-double"></i> مميزات الاشتراك:</strong>
+            <div class="info-panel" id="linkedin-compare" style="display:none; background: rgba(0, 119, 181, 0.05);">
+                <strong><i class="fas fa-exchange-alt"></i> الفرق بين الباقات:</strong>
+                <ul style="font-size: 12px; margin-bottom: 10px;">
+                    <li><span class="gold-text">باقة بزنس (الأفضل):</span> زيادة ظهور 4 أضعاف، 15 رسالة InMail شهرياً، بيانات موسعة.</li>
+                    <li><span>باقة كرير (Career):</span> ظهور أقل 2.5 ضعف، و5 رسائل InMail شهرياً.</li>
+                </ul>
+                <p style="font-size: 11px; opacity: 0.7;">* نوفر لك باقة البزنس بسعر الكرير لفترة محدودة!</p>
+            </div>
+
+            <div class="info-panel">
+                <strong><i class="fas fa-star"></i> مميزات الاشتراك:</strong>
                 <ul id="s-info"></ul>
             </div>
 
             <div id="email-field" style="display:none; text-align: right; margin: 20px 0;">
-                <label style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني للتفعيل:</label>
+                <label style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني (لاستلام رابط التفعيل):</label>
                 <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff;" placeholder="example@mail.com">
             </div>
 
@@ -183,47 +187,51 @@
 
     <script>
         const services = {
+            linkedin: {
+                name: "لينكد إن بريميوم (LinkedIn Business)",
+                badge: "تفعيل رسمي برابط مباشر",
+                plans: [
+                    {l: "شهر واحد (بزنس)", p: "80 ريال"},
+                    {l: "3 أشهر (بزنس)", p: "300 ريال"},
+                    {l: "6 أشهر (بزنس)", p: "400 ريال"},
+                    {l: "سنة كاملة (بزنس)", p: "600 ريال"}
+                ],
+                info: [
+                    "تفعيل آمن 100% برابط رسمي من شركة LinkedIn",
+                    "رسائل InMail للتواصل المباشر مع مسؤولي التوظيف",
+                    "وصول لـ 16 ألف كورس في LinkedIn Learning",
+                    "رؤية من شاهد ملفك الشخصي بالكامل",
+                    "علامة ذهبية مميزة بجانب اسمك تزيد من ثقة الشركات",
+                    "خصوصية كاملة وبدون مشاركة معلومات حسابك"
+                ],
+                email: true
+            },
             adobe: {
                 name: "أدوبي كرييتف كلاود الأصلي",
                 badge: "تفعيل رسمي 100%",
-                plans: [
-                    {l: "حساب مشترك (شهر واحد)", p: "68 ريال", t: "shared"},
-                    {l: "حساب شخصي (شهر واحد)", p: "99 ريال", t: "personal"},
-                    {l: "حساب مشترك (شهرين)", p: "98 ريال", t: "shared"},
-                    {l: "حساب شخصي (شهرين)", p: "150 ريال", t: "personal"},
-                    {l: "حساب شخصي (6 أشهر)", p: "700 ريال", t: "personal"},
-                    {l: "حساب شخصي (سنة كاملة)", p: "999 ريال", t: "personal"}
-                ],
-                info: [
-                    "يشمل فوتوشوب، إلستريتور، بريمير وأكثر من 20 برنامج",
-                    "مفتاح تنشيط أصلي أو حساب رسمي مفعل",
-                    "يدعم التحديثات الرسمية من موقع أدوبي",
-                    "يعمل على نظامي ويندوز وماك",
-                    "إصدار كامل الميزات من الموقع الرسمي"
-                ],
-                email: false // يتم التحكم به عبر نوع الخطة
+                plans: [{l: "حساب شخصي (شهر)", p: "99 ريال", t: "personal"}, {l: "حساب شخصي (سنة)", p: "999 ريال", t: "personal"}],
+                info: ["يشمل فوتوشوب وإلستريتور وأكثر من 20 برنامج", "يدعم التحديثات الرسمية"],
+                email: true
             },
             office: {
                 name: "أوفيس 365 مدى الحياة",
                 badge: "ضمان تعويض سنة كاملة",
                 plans: [{l: "تفعيل 5 أجهزة", p: "45 ريال"}],
-                info: ["نسخة أصلية 100%", "يشمل 61 برنامج", "تفعيل فوري عبر واتساب"],
+                info: ["نسخة أصلية 100%", "يشمل 61 برنامج"],
                 email: false
             },
             youtube: {
-                name: "يوتيوب بريميوم",
-                badge: "تفعيل على بريدك الشخصي",
+                name: "يوتيوب بريميوم سنة",
+                badge: "تفعيل رسمي ومضمون",
                 plans: [{l:"دعوة عائلية", p:"200 ريال", t:"invite"}, {l:"فردي خاص", p:"350 ريال", t:"individual"}],
                 info: ["بدون إعلانات", "تشغيل في الخلفية"],
                 email: true
             },
-            netflix: { name: "نتفليكس بريميوم 4K", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["جودة 4K UHD", "ملف خاص"], email: false },
+            netflix: { name: "نتفليكس بريميوم 4K", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["جودة 4K UHD"], email: false },
             shahid: { name: "شاهد VIP الرياضية", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["بث المباريات جودة 4K"], email: false },
             chatgpt: { name: "ChatGPT Plus", plans: [{l:"شهر", p:"10 ريال"}, {l:"سنة", p:"100 ريال"}], info: ["نموذج GPT-5 وسرعة فائقة"], email: false },
             crunchy: { name: "كرانشي رول", plans: [{l:"سنة كاملة", p:"50 ريال"}], info: ["بدون إعلانات جودة 4K"], email: false },
-            canva: { name: "كانفا برو", plans: [{l:"مدى الحياة", p:"39 ريال"}], info: ["تفعيل رسمي"], email: true },
-            disney: { name: "ديزني بلس", plans: [{l:"شهر", p:"20 ريال"}, {l:"سنة", p:"200 ريال"}], info: ["محتوى أصلي"], email: false },
-            fasel: { name: "فاصل بلس", plans: [{l:"شهر", p:"13 ريال"}, {l:"سنة", p:"89 ريال"}], info: ["أضخم مكتبة أفلام"], email: false }
+            canva: { name: "كانفا برو", plans: [{l:"مدى الحياة", p:"39 ريال"}], info: ["تفعيل رسمي"], email: true }
         };
 
         let currentPrice = "";
@@ -238,6 +246,7 @@
             const s = services[id];
             document.getElementById('checkout').style.display = 'block';
             document.getElementById('s-title').innerText = s.name;
+            document.getElementById('shared-badge').innerText = s.badge;
             
             // الباقات
             document.getElementById('s-plans').innerHTML = s.plans.map(p => `
@@ -247,9 +256,9 @@
                 </div>
             `).join('');
 
-            // المميزات والتنبيهات
+            // المميزات والمقارنة
             document.getElementById('s-info').innerHTML = s.info.map(i => `<li>${i}</li>`).join('');
-            document.getElementById('adobe-warning').style.display = (id === 'adobe') ? 'block' : 'none';
+            document.getElementById('linkedin-compare').style.display = (id === 'linkedin') ? 'block' : 'none';
             
             // الحقول
             document.getElementById('email-field').style.display = s.email ? 'block' : 'none';
@@ -265,13 +274,6 @@
             currentPrice = price;
             currentLabel = label;
             currentType = type;
-
-            // إظهار حقل الإيميل للحساب الشخصي في أدوبي أو غيره
-            if(type === 'personal' || type === 'invite' || type === 'individual') {
-                document.getElementById('email-field').style.display = 'block';
-            } else {
-                document.getElementById('email-field').style.display = 'none';
-            }
         }
 
         function copyIBAN() {
@@ -286,11 +288,9 @@
             const s = services[activeId];
             const email = document.getElementById('u-email').value;
 
-            if((currentType === 'personal' || s.email) && !email) { 
-                alert("يرجى كتابة البريد الإلكتروني للتفعيل الشخصي"); return; 
-            }
+            if(s.email && !email) { alert("يرجى كتابة البريد الإلكتروني لاستلام التفعيل"); return; }
 
-            let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${s.name}\nالباقة: ${currentLabel}\nالسعر: ${currentPrice}`;
+            let msg = `مرحباً متجر نيكاي 👋\nأرغب في اشتراك: ${s.name}\nالباقة: ${currentLabel}\nالسعر: ${currentPrice}`;
             if(email) msg += `\nالبريد للتفعيل: ${email}`;
             msg += `\n\nتم التحويل البنكي، مرفق لك صورة الإيصال:`;
 
