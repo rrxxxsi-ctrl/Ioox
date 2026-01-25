@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIKAI | فخامة الاختيار</title>
+    <title>NIKAI | المتجر الرقمي الأفخم</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -30,83 +30,94 @@
             z-index: -1; transition: var(--transition);
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; text-align: center; }
+        .container { max-width: 850px; margin: 0 auto; padding: 0 20px; text-align: center; }
 
-        header { padding: 50px 0; }
-        .logo { font-size: 45px; font-weight: 900; letter-spacing: 8px; color: var(--accent-color); transition: var(--transition); text-shadow: 0 0 20px var(--glow-color); }
+        header { padding: 40px 0; }
+        .logo { font-size: 42px; font-weight: 900; letter-spacing: 6px; color: var(--accent-color); transition: var(--transition); }
 
-        /* واجهة المنتجات - بدون أسعار */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 50px; }
+        /* الشبكة الرئيسية - بدون أسعار */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 40px; }
         .card {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px;
-            padding: 40px 20px; cursor: pointer; transition: var(--transition);
+            padding: 35px 15px; cursor: pointer; transition: var(--transition);
         }
         .card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.06); border-color: var(--accent-color); }
-        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.1); box-shadow: 0 10px 40px var(--glow-color); }
-        .card i { font-size: 35px; margin-bottom: 15px; color: var(--accent-color); }
-        .card h3 { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.1); box-shadow: 0 10px 30px var(--glow-color); }
+        .card i { font-size: 32px; margin-bottom: 12px; color: var(--accent-color); }
+        .card h3 { font-size: 15px; font-weight: 700; }
 
-        /* منطقة التفاصيل */
+        /* لوحة الدفع */
         #checkout {
-            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 35px;
-            padding: 40px; margin-bottom: 60px; display: none; animation: fadeIn 0.5s ease;
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px;
+            padding: 35px; margin-bottom: 50px; display: none; animation: fadeIn 0.5s ease;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .service-head h2 { font-size: 35px; font-weight: 900; color: var(--accent-color); margin-bottom: 5px; }
+        .service-head h2 { font-size: 30px; font-weight: 900; color: var(--accent-color); }
         
-        /* نظام الباقات */
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 25px 0; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 25px 0; }
         .plan-btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 15px;
-            border-radius: 15px; cursor: pointer; color: #fff; transition: 0.3s;
+            border-radius: 15px; cursor: pointer; transition: 0.3s;
         }
-        .plan-btn:hover { border-color: var(--accent-color); }
         .plan-btn.selected { background: var(--accent-color); color: #fff; border-color: var(--accent-color); font-weight: 700; }
-        .plan-btn div { font-size: 12px; opacity: 0.8; }
-        .plan-btn strong { font-size: 18px; display: block; margin-top: 5px; }
+        .plan-btn div { font-size: 11px; opacity: 0.8; }
+        .plan-btn strong { font-size: 17px; display: block; margin-top: 4px; }
 
-        .features { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0; }
-        .feat-tag { font-size: 13px; background: rgba(255,255,255,0.05); padding: 6px 15px; border-radius: 50px; border: 1px solid var(--glass-border); }
-
-        /* وزنية البنك - تعديل التمركز */
+        /* حل مشكلة الحساب البنكي (الإطار المنتظم) */
         .bank-section {
             background: #000; border: 1px solid var(--glass-border); border-radius: 25px;
-            padding: 30px; max-width: 450px; margin: 30px auto 0; /* التوسيط المثالي */
-            display: flex; flex-direction: column; align-items: center; /* توحيد المركز */
+            padding: 25px; max-width: 480px; margin: 30px auto 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .bank-info { width: 100%; margin-bottom: 15px; }
-        .bank-row { display: flex; justify-content: space-between; width: 100%; margin-bottom: 10px; font-size: 14px; opacity: 0.9; }
+        .bank-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .bank-row span { color: #888; font-size: 14px; }
+        .bank-row strong { font-size: 15px; }
         
+        /* صندوق الآيبان المصلح */
         .iban-container {
-            width: 100%; background: rgba(255,255,255,0.03); border: 1px dashed var(--accent-color);
-            padding: 15px; border-radius: 12px; margin: 10px 0; cursor: pointer;
-            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; 
+            background: rgba(255,255,255,0.02); 
+            border: 1px dashed var(--accent-color);
+            padding: 12px 10px; 
+            border-radius: 12px; 
+            margin: 15px 0; 
+            cursor: pointer;
+            transition: 0.3s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px;
+            overflow: hidden; /* يمنع خروج النص */
         }
         .iban-container:hover { background: rgba(255,255,255,0.08); }
-        .iban-num { font-family: monospace; font-size: 16px; color: var(--accent-color); letter-spacing: 1px; }
+        .iban-num { 
+            font-family: 'Courier New', monospace; 
+            font-size: clamp(12px, 3.5vw, 16px); /* يتصاغر تلقائياً ليناسب المربع */
+            color: var(--accent-color); 
+            letter-spacing: 0.5px;
+            white-space: nowrap; /* يمنع نزول النص لسطر جديد */
+        }
 
         .order-button {
             width: 100%; background: var(--accent-color); color: #fff; border: none;
             padding: 18px; border-radius: 12px; font-weight: 700; font-size: 18px;
-            cursor: pointer; margin-top: 20px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+            cursor: pointer; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .order-button:hover { transform: scale(1.02); filter: brightness(1.1); }
 
-        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--accent-color); color: #fff; padding: 12px 25px; border-radius: 10px; display: none; z-index: 1000; }
-
-        @media (max-width: 500px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #fff; padding: 10px 25px; border-radius: 50px; display: none; z-index: 2000; font-size: 14px; font-weight: 600; }
     </style>
 </head>
 <body class="theme-default">
 
     <div class="ambient-bg"></div>
-    <div class="toast" id="toast">تم نسخ الحساب البنكي ✅</div>
+    <div class="toast" id="toast">تم نسخ الحساب بنجاح ✅</div>
 
     <div class="container">
         <header>
             <div class="logo">NIKAI</div>
-            <p style="opacity: 0.5;">فخامة المحتوى الرقمي بين يديك</p>
+            <p style="opacity: 0.5; margin-top: 5px;">اشتراكات رقمية بضمان كامل</p>
         </header>
 
         <div class="grid">
@@ -131,14 +142,13 @@
         <section id="checkout">
             <div class="service-head">
                 <h2 id="s-title">الخدمة</h2>
-                <div class="features" id="s-feats"></div>
             </div>
 
-            <p style="margin-top: 20px; font-weight: 600;">اختر مدة الاشتراك:</p>
+            <p style="margin-top: 25px; font-size: 14px; opacity: 0.8;">اختر مدة الاشتراك المناسبة:</p>
             <div class="plans-grid" id="s-plans"></div>
 
             <div id="email-field" style="display:none; margin-top: 20px;">
-                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:10px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff; text-align:center;" placeholder="ضع إيميلك الشخصي للتفعيل">
+                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff; text-align:center;" placeholder="أدخل إيميلك الشخصي للتفعيل">
             </div>
 
             <div class="bank-section">
@@ -149,8 +159,9 @@
                 
                 <div class="iban-container" onclick="copyIBAN()">
                     <span class="iban-num">SA0315000900133520020007</span>
-                    <i class="fas fa-copy" style="font-size: 12px; opacity: 0.6;"></i>
+                    <i class="fas fa-copy" style="font-size: 12px; opacity: 0.5;"></i>
                 </div>
+                <p style="font-size: 10px; opacity: 0.4; margin-bottom: 15px;">انقر على الرقم أعلاه للنسخ التلقائي</p>
 
                 <button class="order-button" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i> تأكيد الطلب عبر واتساب
@@ -162,8 +173,7 @@
     <script>
         const services = {
             netflix: {
-                name: "نتفليكس بريميوم",
-                feats: ["ملف خاص بك", "شاشة واحدة", "جودة 4K", "ضمان ذهبي"],
+                name: "نتفليكس بريميوم (ملف خاص)",
                 plans: [
                     { label: "شهر واحد", price: "20 ريال" },
                     { label: "3 أشهر", price: "75 ريال" },
@@ -173,8 +183,7 @@
                 needEmail: false
             },
             disney: {
-                name: "ديزني بلس",
-                feats: ["ملف خاص", "محتوى أصلي", "ترجمة كاملة", "بدون إعلانات"],
+                name: "ديزني بلس الرسمي",
                 plans: [
                     { label: "شهر واحد", price: "20 ريال" },
                     { label: "6 أشهر", price: "120 ريال" },
@@ -183,8 +192,7 @@
                 needEmail: false
             },
             fasel: {
-                name: "فاصل بلس",
-                feats: ["ملف خاص", "أعلى جودة", "تطبيق ذكي", "تحديث يومي"],
+                name: "فاصل بلس (ملف خاص)",
                 plans: [
                     { label: "شهر واحد", price: "13 ريال" },
                     { label: "3 أشهر", price: "29 ريال" },
@@ -194,8 +202,7 @@
                 needEmail: false
             },
             canva: {
-                name: "كانفا برو",
-                feats: ["تفعيل إيميلك الشخصي", "قوالب بلا حدود", "مدى الحياة", "دعم فني"],
+                name: "كانفا برو (حسابك الشخصي)",
                 plans: [{ label: "مدى الحياة", price: "39 ريال" }],
                 needEmail: true
             }
@@ -213,10 +220,6 @@
             document.getElementById('checkout').style.display = 'block';
             document.getElementById('s-title').innerText = s.name;
             
-            // المزايا
-            document.getElementById('s-feats').innerHTML = s.feats.map(f => `<span class="feat-tag">${f}</span>`).join('');
-
-            // الباقات
             document.getElementById('s-plans').innerHTML = s.plans.map((p, i) => `
                 <div class="plan-btn" onclick="selectPlan(this, '${p.price}', '${p.label}')">
                     <div>${p.label}</div>
@@ -225,8 +228,6 @@
             `).join('');
 
             document.getElementById('email-field').style.display = s.needEmail ? 'block' : 'none';
-            
-            // اختيار أول باقة تلقائياً
             const firstPlan = document.querySelector('.plan-btn');
             if(firstPlan) firstPlan.click();
 
@@ -244,7 +245,7 @@
             navigator.clipboard.writeText("SA0315000900133520020007");
             const t = document.getElementById('toast');
             t.style.display = 'block';
-            setTimeout(() => t.style.display = 'none', 2500);
+            setTimeout(() => t.style.display = 'none', 2000);
         }
 
         function placeOrder() {
@@ -252,11 +253,11 @@
             const s = services[activeId];
             const email = document.getElementById('u-email').value;
 
-            if(s.needEmail && !email) { alert("لطفاً أدخل الإيميل لإتمام الطلب"); return; }
+            if(s.needEmail && !email) { alert("يرجى كتابة الإيميل لإتمام التفعيل"); return; }
 
-            let msg = `مرحباً نيكاي 👋\nأطلب اشتراك: ${s.name}\nالباقة: ${selectedPlanLabel}\nالسعر: ${selectedPlanPrice}`;
+            let msg = `مرحباً متجر نيكاي 👋\nأرغب في طلب: ${s.name}\nالباقة: ${selectedPlanLabel}\nالسعر: ${selectedPlanPrice}`;
             if(email) msg += `\nالإيميل: ${email}`;
-            msg += `\n\nقمت بالتحويل البنكي، إليك الإيصال:`;
+            msg += `\n\nتم التحويل، مرفق لك إيصال الدفع:`;
 
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
