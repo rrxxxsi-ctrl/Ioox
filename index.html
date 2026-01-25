@@ -9,29 +9,36 @@
     <style>
         :root {
             --bg-base: #05050a;
+            --text-main: #ffffff;
             --accent-color: #ffffff;
             --glow-color: rgba(255, 255, 255, 0.05);
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --bank-bg: #000000;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* الوضع النهاري (Light Mode) */
+        body.light-mode {
+            --bg-base: #f4f7f6;
+            --text-main: #1a1a1a;
+            --glass: rgba(0, 0, 0, 0.03);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --bank-bg: #ffffff;
+        }
+
         /* الثيمات اللونية الديناميكية */
-        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.25); } 
-        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.25); } 
+        body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.2); } 
+        body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.2); } 
         body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.2); }
-        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.25); }
+        body.theme-linkedin { --accent-color: #0077b5; --glow-color: rgba(0, 119, 181, 0.2); }
         body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.2); }
         body.theme-office { --accent-color: #eb3c00; --glow-color: rgba(235, 60, 0, 0.2); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.2); }
         body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.2); }
-        body.theme-shahid { --accent-color: #00d982; --glow-color: rgba(0, 217, 130, 0.2); }
-        body.theme-chatgpt { --accent-color: #ffffff; --glow-color: rgba(255, 255, 255, 0.15); }
-        body.theme-fasel { --accent-color: #ffc107; --glow-color: rgba(255, 193, 7, 0.2); }
-        body.theme-crunchy { --accent-color: #ff6400; --glow-color: rgba(255, 100, 0, 0.2); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: #fff; overflow-x: hidden; transition: var(--transition); }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: var(--text-main); overflow-x: hidden; transition: var(--transition); }
 
         .ambient-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -39,61 +46,63 @@
             z-index: -1; transition: var(--transition);
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; text-align: center; }
-        header { padding: 40px 0; }
-        .logo { font-size: 42px; font-weight: 900; letter-spacing: 6px; color: var(--accent-color); transition: var(--transition); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; text-align: center; }
 
-        /* شبكة المنتجات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 40px; }
+        /* Header & Controls */
+        header { padding: 30px 0 20px; }
+        .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .control-btn { 
+            background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-main);
+            padding: 8px 15px; border-radius: 50px; cursor: pointer; font-size: 12px; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .control-btn:hover { border-color: var(--accent-color); }
+
+        .logo { font-size: 38px; font-weight: 900; letter-spacing: 5px; color: var(--accent-color); transition: var(--transition); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 10px; margin-bottom: 40px; }
         .card {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px;
-            padding: 15px 5px; cursor: pointer; transition: var(--transition);
+            padding: 20px 5px; cursor: pointer; transition: var(--transition);
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
-        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.1); box-shadow: 0 10px 25px var(--glow-color); }
-        .card i { font-size: 22px; margin-bottom: 6px; color: var(--accent-color); }
-        .card h3 { font-size: 8px; font-weight: 700; }
+        .card.active { border-color: var(--accent-color); background: var(--glass); box-shadow: 0 10px 25px var(--glow-color); }
+        .card i { font-size: 24px; margin-bottom: 8px; color: var(--accent-color); }
+        .card h3 { font-size: 10px; font-weight: 700; }
 
-        /* لوحة التفاصيل */
         #checkout {
             background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px;
             padding: 30px; margin-bottom: 50px; display: none; animation: fadeIn 0.5s ease;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .badge-main { display: inline-block; background: var(--accent-color); color: #000; padding: 4px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; margin-bottom: 15px; }
-
-        /* الباقات */
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 20px 0; }
         .plan-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 12px;
-            border-radius: 15px; cursor: pointer; transition: 0.3s;
+            background: rgba(128,128,128,0.05); border: 1px solid var(--glass-border); padding: 15px;
+            border-radius: 15px; cursor: pointer; color: var(--text-main); transition: 0.3s;
         }
         .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 700; border-color: var(--accent-color); }
-        .plan-btn div { font-size: 10px; opacity: 0.8; margin-bottom: 4px; }
-        .plan-btn strong { font-size: 16px; display: block; }
 
-        .info-panel { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
-        .info-panel strong { color: var(--accent-color); font-size: 15px; display: block; margin-bottom: 12px; }
-        .info-panel ul { padding-right: 18px; color: #ccc; line-height: 1.7; }
+        .info-panel { background: var(--glass); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-align: right; margin: 20px 0; font-size: 13px; }
+        html[dir="ltr"] .info-panel { text-align: left; }
+        .info-panel ul { padding: 0 20px; }
 
-        /* وزنية الحساب البنكي المصلحة */
+        /* وزنية البنك المصلحة */
         .bank-section {
-            background: #000; border: 1px solid var(--glass-border); border-radius: 25px;
-            padding: 25px; max-width: 480px; margin: 30px auto 0;
-            display: flex; flex-direction: column; align-items: center;
+            background: var(--bank-bg); border: 1px solid var(--glass-border); border-radius: 25px;
+            padding: 25px; max-width: 480px; margin: 30px auto 0; color: var(--text-main);
         }
-        .bank-row { display: flex; justify-content: space-between; width: 100%; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        .bank-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; }
         
         .iban-container {
-            width: 100%; background: rgba(255,255,255,0.02); border: 1px dashed #ff0000; 
+            width: 100%; background: rgba(128,128,128,0.05); border: 1px dashed #ff0000; 
             padding: 15px 5px; border-radius: 12px; margin: 15px 0; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            overflow: hidden; 
+            display: flex; align-items: center; justify-content: center; gap: 8px; overflow: hidden; 
         }
         .iban-text { font-family: 'Courier New', monospace; font-size: clamp(10px, 3.8vw, 15px); color: #ff0000; white-space: nowrap; font-weight: bold; }
 
-        .btn-order { width: 100%; background: #ff0000; color: #fff; border: none; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-order { width: 100%; background: #ff0000; color: #fff; border: none; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 18px; cursor: pointer; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        footer { padding: 40px 0; opacity: 0.5; font-size: 12px; border-top: 1px solid var(--glass-border); }
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 10px 25px; border-radius: 50px; display: none; z-index: 2000; font-weight: 700; }
         
         @media (max-width: 500px) { .grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
@@ -102,162 +111,148 @@
 <body class="theme-default">
 
     <div class="ambient-bg"></div>
-    <div class="toast" id="toast">تم نسخ الحساب البنكي ✅</div>
+    <div class="toast" id="toast">تم النسخ ✅</div>
 
     <div class="container">
         <header>
+            <div class="controls">
+                <button class="control-btn" onclick="toggleLang()">
+                    <i class="fas fa-globe"></i> <span id="lang-btn-text">English</span>
+                </button>
+                <button class="control-btn" onclick="toggleTheme()">
+                    <i class="fas id="theme-icon" class="fas fa-moon"></i> <span id="theme-btn-text">الوضع النهاري</span>
+                </button>
+            </div>
             <div class="logo">NIKAI</div>
-            <p style="opacity: 0.5;">متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان</p>
+            <p id="main-subtitle" style="opacity: 0.6;">متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان</p>
         </header>
 
-        <div class="grid">
-            <div class="card" onclick="openService('autodesk')">
-                <i class="fas fa-drafting-compass"></i>
-                <h3>أوتوديسك</h3>
+        <div class="grid" id="products-grid">
             </div>
-            <div class="card" onclick="openService('windows')">
-                <i class="fab fa-windows"></i>
-                <h3>ويندوز</h3>
-            </div>
-            <div class="card" onclick="openService('osn')">
-                <i class="fas fa-plus-circle"></i>
-                <h3>OSN+</h3>
-            </div>
-            <div class="card" onclick="openService('linkedin')">
-                <i class="fab fa-linkedin"></i>
-                <h3>لينكد إن</h3>
-            </div>
-            <div class="card" onclick="openService('adobe')">
-                <i class="fas fa-palette"></i>
-                <h3>أدوبي</h3>
-            </div>
-            <div class="card" onclick="openService('office')">
-                <i class="fas fa-file-word"></i>
-                <h3>أوفيس</h3>
-            </div>
-            <div class="card" onclick="openService('youtube')">
-                <i class="fab fa-youtube"></i>
-                <h3>يوتيوب</h3>
-            </div>
-            <div class="card" onclick="openService('netflix')">
-                <i class="fas fa-film"></i>
-                <h3>نتفليكس</h3>
-            </div>
-            <div class="card" onclick="openService('shahid')">
-                <i class="fas fa-play-circle"></i>
-                <h3>شاهد</h3>
-            </div>
-            <div class="card" onclick="openService('chatgpt')">
-                <i class="fas fa-robot"></i>
-                <h3>GPT</h3>
-            </div>
-            <div class="card" onclick="openService('fasel')">
-                <i class="fas fa-bolt"></i>
-                <h3>فاصل</h3>
-            </div>
-            <div class="card" onclick="openService('crunchy')">
-                <i class="fas fa-tv"></i>
-                <h3>كرانشي</h3>
-            </div>
-        </div>
 
         <section id="checkout">
-            <div class="service-head">
-                <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">الخدمة</h2>
-                <div id="shared-badge" class="badge-main">تفعيل رسمي - حسابك الشخصي</div>
-            </div>
-
+            <h2 id="s-title" style="font-size: 26px; font-weight: 900; margin-bottom: 15px;"></h2>
             <div class="plans-grid" id="s-plans"></div>
-
+            
             <div class="info-panel">
-                <strong><i class="fas fa-check-double"></i> مميزات الاشتراك:</strong>
+                <strong id="info-header">مميزات الاشتراك:</strong>
                 <ul id="s-info"></ul>
             </div>
 
             <div id="email-field" style="display:none; text-align: right; margin: 20px 0;">
-                <label style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني للتفعيل:</label>
-                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff;" placeholder="example@mail.com">
+                <label id="email-label" style="font-size: 13px; opacity: 0.7; display: block; margin-bottom: 8px;">البريد الإلكتروني:</label>
+                <input type="email" id="u-email" style="width:100%; padding:15px; border-radius:12px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main);" placeholder="example@mail.com">
             </div>
 
             <div class="bank-section">
-                <div style="width:100%; margin-bottom:15px; font-size:14px;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>البنك:</span><strong>بنك البلاد</strong></div>
-                    <div style="display:flex; justify-content:space-between;"><span>المستفيد:</span><strong>سليمان فلاته</strong></div>
-                </div>
+                <div class="bank-row"><span id="bank-name-label">البنك:</span><strong>بنك البلاد</strong></div>
+                <div class="bank-row"><span id="bank-user-label">المستفيد:</span><strong>سليمان فلاته</strong></div>
                 <div class="iban-container" onclick="copyIBAN()">
                     <span class="iban-text">SA0315000900133520020007</span>
                     <i class="fas fa-copy" style="font-size: 11px; opacity: 0.5;"></i>
                 </div>
                 <button class="btn-order" onclick="placeOrder()">
-                    <i class="fab fa-whatsapp"></i> تأكيد وإرسال الإيصال
+                    <i class="fab fa-whatsapp"></i> <span id="order-btn-text">تأكيد الطلب عبر واتساب</span>
                 </button>
             </div>
         </section>
+
+        <footer id="footer-text">جميع الحقوق محفوظه للمتجر NIKAI</footer>
     </div>
 
     <script>
+        let currentLang = 'ar';
         const services = {
-            autodesk: { name: "أوتوديسك (Autodesk) الشامل", plans: [{l:"6 أشهر", p:"150 ريال"}, {l:"12 شهر", p:"250 ريال"}], info: ["نسخة أصلية 100%", "تحديثات رسمية"], email: true },
-            windows: { name: "ويندوز الأصلي", plans: [{l: "Windows 10 Pro", p: "24.99 ريال"}, {l: "Windows 11 Pro", p: "28.99 ريال"}], info: ["تنشيط مدى الحياة"], email: false },
-            osn: { name: "OSN+ بريميوم", badge: "ضمان ذهبي", plans: [{l: "12 شهر", p: "110 ريال"}], info: ["جودة 4K", "بدون إعلانات"], email: false },
-            linkedin: { name: "لينكد إن بريميوم", plans: [{l: "شهر", p: "80 ريال"}, {l: "سنة", p: "600 ريال"}], info: ["LinkedIn Learning", "رسائل InMail"], email: true },
-            adobe: { name: "أدوبي كرييتف كلاود", plans: [{l: "شهر", p: "99 ريال"}, {l: "سنة", p: "999 ريال"}], info: ["جميع برامج أدوبي"], email: true },
-            office: { name: "أوفيس 365", plans: [{l: "مدى الحياة", p: "45 ريال"}], info: ["تفعيل رسمي"], email: false },
-            youtube: { name: "يوتيوب بريميوم", plans: [{l: "سنة", p: "200 ريال"}], info: ["بدون إعلانات"], email: true },
-            netflix: { name: "نتفليكس بريميوم 4K", plans: [{l: "شهر", p: "20 ريال"}], info: ["ملف خاص"], email: false },
-            shahid: { name: "شاهد VIP الرياضية", plans: [{l: "شهر", p: "20 ريال"}], info: ["جودة 4K"], email: false },
-            chatgpt: { name: "ChatGPT Plus", plans: [{l: "شهر", p: "10 ريال"}], info: ["GPT-5"], email: false },
-            fasel: { name: "فاصل بلس", plans: [{l: "شهر", p: "13 ريال"}], info: ["بدون إعلانات"], email: false },
-            crunchy: { name: "كرانشي رول", plans: [{l: "سنة", p: "50 ريال"}], info: ["أنمي 4K"], email: false }
+            autodesk: { icon: 'fas fa-drafting-compass', name: {ar: "أوتوديسك", en: "Autodesk"}, plans: [{l:{ar:"6 أشهر", en:"6 Months"}, p:"150 SAR"}, {l:{ar:"12 شهر", en:"12 Months"}, p:"250 SAR"}], info: {ar:["نسخة أصلية 100%", "تحديثات رسمية"], en:["100% Genuine Version", "Official Updates"]}, email: true },
+            windows: { icon: 'fab fa-windows', name: {ar: "ويندوز", en: "Windows"}, plans: [{l:{ar:"Pro 10", en:"Pro 10"}, p:"24.99 SAR"}, {l:{ar:"Pro 11", en:"Pro 11"}, p:"28.99 SAR"}], info: {ar:["تنشيط مدى الحياة"], en:["Lifetime Activation"]}, email: false },
+            osn: { icon: 'fas fa-plus-circle', name: {ar: "OSN+", en: "OSN+"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"110 SAR"}], info: {ar:["جودة 4K", "بدون إعلانات"], en:["4K Quality", "Ad-free"]}, email: false },
+            youtube: { icon: 'fab fa-youtube', name: {ar: "يوتيوب", en: "YouTube"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"200 SAR"}], info: {ar:["بدون إعلانات"], en:["No Ads"]}, email: true },
+            netflix: { icon: 'fas fa-film', name: {ar: "نتفليكس", en: "Netflix"}, plans: [{l:{ar:"شهر", en:"Month"}, p:"20 SAR"}, {l:{ar:"سنة", en:"Year"}, p:"200 SAR"}], info: {ar:["ملف خاص 4K"], en:["Private Profile 4K"]}, email: false }
         };
 
-        let currentPrice = "";
-        let currentLabel = "";
+        const uiTexts = {
+            ar: { subtitle: "متجر متخصص اشتراكات الرقميه اطلب اشتراكك الان", info: "مميزات الاشتراك:", email: "البريد الإلكتروني:", bank: "البنك:", user: "المستفيد:", order: "تأكيد الطلب عبر واتساب", footer: "جميع الحقوق محفوظه للمتجر NIKAI", copied: "تم النسخ ✅", themeDay: "الوضع النهاري", themeNight: "الوضع الليلي" },
+            en: { subtitle: "Digital Subscriptions Specialist - Order Now", info: "Features:", email: "Email Address:", bank: "Bank:", user: "Beneficiary:", order: "Confirm via WhatsApp", footer: "All Rights Reserved - NIKAI Store", copied: "Copied ✅", themeDay: "Day Mode", themeNight: "Night Mode" }
+        };
+
+        function renderGrid() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = Object.keys(services).map(id => `
+                <div class="card" onclick="openService('${id}')" id="card-${id}">
+                    <i class="${services[id].icon}"></i>
+                    <h3>${services[id].name[currentLang]}</h3>
+                </div>
+            `).join('');
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('lang-btn-text').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+            
+            const t = uiTexts[currentLang];
+            document.getElementById('main-subtitle').innerText = t.subtitle;
+            document.getElementById('info-header').innerText = t.info;
+            document.getElementById('email-label').innerText = t.email;
+            document.getElementById('bank-name-label').innerText = t.bank;
+            document.getElementById('bank-user-label').innerText = t.user;
+            document.getElementById('order-btn-text').innerText = t.order;
+            document.getElementById('footer-text').innerText = t.footer;
+            document.getElementById('theme-btn-text').innerText = document.body.classList.contains('light-mode') ? t.themeNight : t.themeDay;
+
+            renderGrid();
+            document.getElementById('checkout').style.display = 'none';
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('theme-icon').className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+            document.getElementById('theme-btn-text').innerText = isLight ? uiTexts[currentLang].themeNight : uiTexts[currentLang].themeDay;
+        }
 
         function openService(id) {
-            document.body.className = 'theme-' + id;
+            document.body.className = (document.body.classList.contains('light-mode') ? 'light-mode ' : '') + 'theme-' + id;
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            document.getElementById('card-' + id).classList.add('active');
+
             const s = services[id];
             document.getElementById('checkout').style.display = 'block';
-            document.getElementById('s-title').innerText = s.name;
+            document.getElementById('s-title').innerText = s.name[currentLang];
             document.getElementById('s-plans').innerHTML = s.plans.map(p => `
-                <div class="plan-btn" onclick="selectPlan(this, '${p.p}', '${p.l}')">
-                    <div>${p.l}</div>
+                <div class="plan-btn" onclick="selectPlan(this, '${p.p}', '${p.l[currentLang]}')">
+                    <div>${p.l[currentLang]}</div>
                     <strong>${p.p}</strong>
                 </div>
             `).join('');
-            document.getElementById('s-info').innerHTML = s.info.map(i => `<li>${i}</li>`).join('');
+            document.getElementById('s-info').innerHTML = s.info[currentLang].map(i => `<li>${i}</li>`).join('');
             document.getElementById('email-field').style.display = s.email ? 'block' : 'none';
-            const first = document.querySelector('.plan-btn');
-            if(first) first.click();
+            document.querySelector('.plan-btn').click();
             window.scrollTo({ top: document.getElementById('checkout').offsetTop - 20, behavior: 'smooth' });
         }
 
-        function selectPlan(el, price, label) {
+        let selP = "", selL = "";
+        function selectPlan(el, p, l) {
             document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('selected'));
-            el.classList.add('selected');
-            currentPrice = price;
-            currentLabel = label;
+            el.classList.add('selected'); selP = p; selL = l;
         }
 
         function copyIBAN() {
             navigator.clipboard.writeText("SA0315000900133520020007");
             const t = document.getElementById('toast');
-            t.style.display = 'block';
+            t.innerText = uiTexts[currentLang].copied; t.style.display = 'block';
             setTimeout(() => t.style.display = 'none', 2000);
         }
 
         function placeOrder() {
-            const activeId = document.body.className.replace('theme-', '');
-            const s = services[activeId];
             const email = document.getElementById('u-email').value;
-            if(s.email && !email) { alert("يرجى كتابة الإيميل"); return; }
-            let msg = `مرحباً متجر نيكاي 👋\nأطلب: ${s.name}\nالباقة: ${currentLabel}\nالسعر: ${currentPrice}`;
-            if(email) msg += `\nالبريد: ${email}`;
-            msg += `\n\nتم التحويل البنكي لـ (سليمان فلاته)، مرفق الإيصال:`;
+            let msg = `Hello NIKAI 👋\nOrder: ${document.getElementById('s-title').innerText}\nPlan: ${selL}\nPrice: ${selP}`;
+            if(email) msg += `\nEmail: ${email}`;
             window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
+
+        renderGrid();
     </script>
 </body>
 </html>
