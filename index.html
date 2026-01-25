@@ -36,12 +36,13 @@
             position: relative;
         }
         
-        /* القسم العلوي الجديد مع الشعار الفخم */
+        /* القسم العلوي مع الشعار المطلوب */
         .premium-header {
             padding: 15px 25px;
             text-align: center;
             background: linear-gradient(90deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.2), rgba(46, 204, 113, 0.1));
             border-bottom: 1px solid rgba(46, 204, 113, 0.3);
+            position: relative;
         }
         
         .premium-text {
@@ -51,7 +52,7 @@
             letter-spacing: 1px;
         }
         
-        /* شعار NIKAI الفخم في المنتصف العلوي */
+        /* شعار NIKAI الفخم في المكان المحدد */
         .nikai-premium-logo {
             font-size: 36px;
             font-weight: 900;
@@ -112,88 +113,11 @@
             }
         }
         
-        .nikai-premium-logo::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            z-index: 1;
-            animation: shine 3s infinite;
-        }
-        
-        @keyframes shine {
-            0% { background-position: -100px; }
-            100% { background-position: 200px; }
-        }
-        
         .card-header {
             padding: 25px;
             text-align: center;
             background-color: rgba(0, 0, 0, 0.2);
             position: relative;
-        }
-        
-        /* شعار NIKAI الكبير في المنتصف */
-        .nikai-logo {
-            font-size: 48px;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(46, 204, 113, 0.7),
-                         0 0 20px rgba(46, 204, 113, 0.5),
-                         0 0 30px rgba(46, 204, 113, 0.3);
-            position: relative;
-            display: inline-block;
-            padding: 0 15px;
-        }
-        
-        .nikai-logo::before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, #2ecc71, #27ae60, #219653);
-            z-index: -1;
-            border-radius: 10px;
-            filter: blur(8px);
-            opacity: 0.6;
-        }
-        
-        .nikai-logo::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            z-index: -1;
-            border-radius: 5px;
-        }
-        
-        .store-name {
-            font-size: 18px;
-            color: #a3e4c5;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-        
-        .card-title {
-            font-size: 24px;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-        
-        .card-subtitle {
-            font-size: 16px;
-            opacity: 0.9;
-            margin-bottom: 10px;
         }
         
         .discount-badge {
@@ -203,8 +127,7 @@
             padding: 8px 20px;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 18px;
-            margin-top: 10px;
+            font-size: 22px;
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
             position: absolute;
             top: 20px;
@@ -218,8 +141,107 @@
             100% { transform: scale(1); }
         }
         
+        .store-name {
+            font-size: 18px;
+            color: #a3e4c5;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        /* قسم اختيار المنتج */
+        .product-selector {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            gap: 10px;
+        }
+        
+        .product-tab {
+            padding: 12px 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+            border: 2px solid transparent;
+        }
+        
+        .product-tab.active {
+            background-color: rgba(46, 204, 113, 0.3);
+            border-color: #2ecc71;
+            transform: translateY(-3px);
+        }
+        
+        .product-tab i {
+            margin-left: 5px;
+        }
+        
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .product-subtitle {
+            font-size: 18px;
+            color: #2ecc71;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
         .card-body {
             padding: 25px;
+        }
+        
+        /* قسم إدخال الإيميل - يظهر فقط لـ Canva */
+        .email-section {
+            margin-bottom: 25px;
+            display: none; /* مخفي افتراضيًا */
+        }
+        
+        .email-section.active {
+            display: block;
+        }
+        
+        .email-label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #a3e4c5;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(46, 204, 113, 0.3);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #2ecc71;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+        }
+        
+        .email-note {
+            font-size: 14px;
+            color: #a3e4c5;
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        /* قسم المحتوى الديناميكي للمنتجات */
+        .product-content {
+            display: none;
+        }
+        
+        .product-content.active {
+            display: block;
         }
         
         .section-title {
@@ -229,6 +251,8 @@
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         
         .section-title i {
@@ -242,7 +266,7 @@
         }
         
         .features-list li {
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
@@ -254,27 +278,6 @@
             font-size: 18px;
         }
         
-        .service-icons {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-        
-        .service-icon {
-            text-align: center;
-            font-size: 12px;
-        }
-        
-        .service-icon i {
-            font-size: 24px;
-            margin-bottom: 5px;
-            display: block;
-            color: #a3e4c5;
-        }
-        
         .price-section {
             text-align: center;
             padding: 20px;
@@ -282,6 +285,17 @@
             border-radius: 15px;
             margin-top: 20px;
             border: 2px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .lifetime-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
         }
         
         .price {
@@ -292,9 +306,69 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         
-        .duration {
+        .original-price {
             font-size: 18px;
-            margin-bottom: 15px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .original-price s {
+            color: #a3e4c5;
+        }
+        
+        .best-price {
+            display: inline-block;
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #ffd700;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+            border: 1px solid #ffd700;
+        }
+        
+        /* قسم معلومات الدفع */
+        .payment-info {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-right: 3px solid #2ecc71;
+        }
+        
+        .payment-title {
+            font-size: 16px;
+            color: #2ecc71;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-title i {
+            margin-left: 8px;
+        }
+        
+        .bank-details {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .account-number {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 15px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .quick-confirm {
+            color: #ffd700;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
         }
         
         .device-icons {
@@ -311,11 +385,6 @@
             border-radius: 10px;
             color: #a3e4c5;
             transition: all 0.3s;
-        }
-        
-        .device-icons i:hover {
-            background-color: rgba(46, 204, 113, 0.3);
-            transform: translateY(-5px);
         }
         
         .cta-button {
@@ -371,10 +440,6 @@
                 padding: 20px;
             }
             
-            .nikai-logo {
-                font-size: 40px;
-            }
-            
             .nikai-premium-logo {
                 font-size: 30px;
                 letter-spacing: 2px;
@@ -385,8 +450,13 @@
             }
             
             .discount-badge {
-                font-size: 16px;
+                font-size: 18px;
                 padding: 6px 15px;
+            }
+            
+            .product-tab {
+                padding: 10px 15px;
+                font-size: 14px;
             }
         }
     </style>
@@ -394,74 +464,119 @@
 <body>
     <div class="container">
         <div class="card">
-            <!-- القسم العلوي الجديد مع الشعار الفخم -->
+            <!-- القسم العلوي مع الشعار الفخم -->
             <div class="premium-header">
                 <div class="premium-text">متميزون منذ عام 2020</div>
                 <div class="nikai-premium-logo">NIKAI</div>
             </div>
             
             <div class="card-header">
-                <div class="discount-badge">%40 وفر</div>
-                <div class="store-name">متجر NIKAI</div>
-                <div class="nikai-logo">NIKAI</div>
-                <h1 class="card-title">اشتراكات رقمية متميزة</h1>
-                <p class="card-subtitle">Netflix بريميوم بجودة 4K فائقة</p>
+                <div class="discount-badge" id="discountBadge">%60 وفر</div>
+                <div class="store-name">متجر NIKAI - اشتراكات رقمية متميزة</div>
+                
+                <!-- قسم اختيار المنتج -->
+                <div class="product-selector">
+                    <div class="product-tab active" data-product="canva">
+                        <i class="fas fa-palette"></i> كانفا برو
+                    </div>
+                    <div class="product-tab" data-product="netflix">
+                        <i class="fas fa-play-circle"></i> نتفلكس بريميوم
+                    </div>
+                </div>
+                
+                <h1 class="card-title" id="productTitle">كانفا برو مدى الحياة</h1>
+                <p class="product-subtitle" id="productSubtitle">أدوات تصميم احترافية مدى الحياة</p>
             </div>
             
             <div class="card-body">
-                <div class="service-icons">
-                    <div class="service-icon">
-                        <i class="fas fa-sun"></i>
-                        <span>وضع النهار</span>
-                    </div>
-                    <div class="service-icon">
-                        <i class="fas fa-crown"></i>
-                        <span>كائنا برو</span>
-                    </div>
-                    <div class="service-icon">
-                        <i class="fas fa-film"></i>
-                        <span>ديزني +</span>
-                    </div>
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
-                        <span>English</span>
-                    </div>
-                    <div class="service-icon">
-                        <i class="fas fa-play-circle"></i>
-                        <span>Netflix</span>
-                    </div>
+                <!-- قسم إدخال الإيميل - يظهر فقط لـ Canva -->
+                <div class="email-section active" id="emailSection">
+                    <label class="email-label" for="userEmail">
+                        <i class="fas fa-envelope"></i> أدخل بريدك الإلكتروني للتسليم:
+                    </label>
+                    <input type="email" id="userEmail" class="email-input" placeholder="example@email.com" required>
+                    <p class="email-note">
+                        <i class="fas fa-info-circle"></i> سيرسل التفعيل مباشرة إلى إيميلك الشخصي
+                    </p>
                 </div>
                 
-                <h2 class="section-title"><i class="fas fa-gem"></i> مزايا الاشتراك</h2>
-                <ul class="features-list">
-                    <li><i class="fas fa-check-circle"></i> جودة 4K خيالية مع دعم HDR</li>
-                    <li><i class="fas fa-check-circle"></i> مشاهدة على 4 أجهزة في نفس الوقت</li>
-                    <li><i class="fas fa-check-circle"></i> ملف خاص بمسار سري للمشاهدة الخاصة</li>
-                    <li><i class="fas fa-check-circle"></i> ضمان كامل طوال مدة الاشتراك</li>
-                    <li><i class="fas fa-check-circle"></i> دعم اللغة العربية والمحتوى العالمي</li>
-                </ul>
-                
-                <div class="device-icons">
-                    <i class="fas fa-mobile-alt" title="هواتف محمولة"></i>
-                    <i class="fas fa-tablet-alt" title="أجهزة لوحية"></i>
-                    <i class="fas fa-tv" title="تلفزيون"></i>
-                    <i class="fas fa-laptop" title="كمبيوتر</i>
-                </div>
-                
-                <div class="price-section">
-                    <p class="duration">اشتراك Netflix بريميوم لمدة سنة</p>
-                    <div class="price">200 ريال</div>
-                    <p>بدلاً من <s>330 ريال</s> <span style="color:#e74c3c; font-weight:bold">(توفير 40%)</span></p>
+                <!-- محتوى Canva Pro -->
+                <div class="product-content active" id="canvaContent">
+                    <div class="section-title">
+                        <i class="fas fa-gem"></i> مزايا كانفا برو
+                    </div>
                     
-                    <div class="delivery-info">
-                        <i class="fas fa-bolt"></i>
-                        <span>تسليم فوري وضمان لمدة 30 يوم</span>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> تفعيل مباشر على إيميلك الشخصي</li>
+                        <li><i class="fas fa-check-circle"></i> أدوات Pro كاملة بدون أي قيود</li>
+                        <li><i class="fas fa-check-circle"></i> مكتبة صور ومقاطع وفيديوهات مميزة</li>
+                        <li><i class="fas fa-check-circle"></i> تحديثات مجانية مدى الحياة</li>
+                        <li><i class="fas fa-check-circle"></i> إمكانية العمل التعاوني مع الفريق</li>
+                        <li><i class="fas fa-check-circle"></i> تصدير بجودة عالية بدون علامة مائية</li>
+                    </ul>
+                    
+                    <div class="price-section">
+                        <div class="lifetime-badge">مدى الحياة</div>
+                        <div class="price">39 ريال</div>
+                        <p class="original-price">بدلاً من <s>100 ريال</s></p>
+                        <div class="best-price">أفضل سعر في السوق</div>
+                        
+                        <div class="delivery-info">
+                            <i class="fas fa-bolt"></i>
+                            <span>تسليم فوري خلال دقائق</span>
+                        </div>
                     </div>
                 </div>
                 
-                <a href="#" class="cta-button">
-                    <i class="fas fa-shopping-cart"></i> اشترِ الآن من متجر NIKAI
-                </a>
+                <!-- محتوى Netflix -->
+                <div class="product-content" id="netflixContent">
+                    <div class="section-title">
+                        <i class="fas fa-film"></i> مزايا نتفلكس بريميوم
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> سنة كاملة من المشاهدة غير المحدودة</li>
+                        <li><i class="fas fa-check-circle"></i> جودة 4K فائقة الوضوح مع دعم HDR</li>
+                        <li><i class="fas fa-check-circle"></i> دعم اللغة العربية وكل المحتوى</li>
+                        <li><i class="fas fa-check-circle"></i> يعمل على جميع الأجهزة</li>
+                        <li><i class="fas fa-check-circle"></i> حساب خاص وآمن بخصوصية تامة</li>
+                        <li><i class="fas fa-check-circle"></i> مشاهدة على 4 أجهزة في نفس الوقت</li>
+                    </ul>
+                    
+                    <div class="device-icons">
+                        <i class="fas fa-mobile-alt" title="هواتف محمولة"></i>
+                        <i class="fas fa-tablet-alt" title="أجهزة لوحية"></i>
+                        <i class="fas fa-tv" title="تلفزيون"></i>
+                        <i class="fas fa-laptop" title="كمبيوتر"></i>
+                    </div>
+                    
+                    <div class="price-section">
+                        <div class="price">200 ريال</div>
+                        <p class="original-price">بدلاً من <s>720 ريال سنوياً</s></p>
+                        
+                        <div class="delivery-info">
+                            <i class="fas fa-bolt"></i>
+                            <span>تسليم فوري وضمان لمدة 30 يوم</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم معلومات الدفع -->
+                <div class="payment-info">
+                    <div class="payment-title">
+                        <i class="fas fa-credit-card"></i> معلومات الدفع
+                    </div>
+                    <div class="bank-details">
+                        <p><strong>اسم المستفيد:</strong> سليمان فاسه</p>
+                        <p><strong>رقم الحساب:</strong></p>
+                        <div class="account-number">SA0315000900133520020007</div>
+                        <p class="quick-confirm">بعد التحويل، أرسل إيصال الدفع لتأكيد طلبك السريع</p>
+                    </div>
+                </div>
+                
+                <button class="cta-button" id="orderButton">
+                    <i class="fas fa-shopping-cart"></i> اطلب الآن - <span id="orderText">كانفا برو</span>
+                </button>
                 
                 <p class="footer-note">
                     اشتراكات رقمية أصلية مع ضمان استرجاع كامل في حالة وجود أي مشكلة.
@@ -471,27 +586,111 @@
     </div>
 
     <script>
-        // تأثير بسيط عند النقر على زر الشراء
-        document.querySelector('.cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('شكراً لاختيارك متجر NIKAI! ستتم إعادة توجيهك إلى صفحة الدفع.');
-            // في التطبيق الحقيقي، هنا يتم التوجيه إلى صفحة الدفع
-        });
+        // عناصر التبويبات
+        const productTabs = document.querySelectorAll('.product-tab');
+        const productContents = document.querySelectorAll('.product-content');
+        const emailSection = document.getElementById('emailSection');
+        const productTitle = document.getElementById('productTitle');
+        const productSubtitle = document.getElementById('productSubtitle');
+        const discountBadge = document.getElementById('discountBadge');
+        const orderButton = document.getElementById('orderButton');
+        const orderText = document.getElementById('orderText');
         
-        // تأثيرات تفاعلية للأيقونات
-        const icons = document.querySelectorAll('.device-icons i');
-        icons.forEach(icon => {
-            icon.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.2)';
-                this.style.transition = 'transform 0.3s';
-            });
+        // بيانات المنتجات
+        const products = {
+            canva: {
+                title: "كانفا برو مدى الحياة",
+                subtitle: "أدوات تصميم احترافية مدى الحياة",
+                discount: "%60 وفر",
+                orderText: "كانفا برو",
+                showEmail: true
+            },
+            netflix: {
+                title: "نتفلكس بريميوم",
+                subtitle: "Netflix بجودة 4K لمدة سنة كاملة",
+                discount: "%40 وفر",
+                orderText: "نتفلكس بريميوم",
+                showEmail: false
+            }
+        };
+        
+        // وظيفة تبديل المنتج
+        function switchProduct(productId) {
+            // إزالة النشاط من جميع التبويبات والمحتوى
+            productTabs.forEach(tab => tab.classList.remove('active'));
+            productContents.forEach(content => content.classList.remove('active'));
             
-            icon.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
+            // إضافة النشاط للتبويب والمحتوى المحدد
+            document.querySelector(`[data-product="${productId}"]`).classList.add('active');
+            document.getElementById(`${productId}Content`).classList.add('active');
+            
+            // تحديث بيانات المنتج
+            const product = products[productId];
+            productTitle.textContent = product.title;
+            productSubtitle.textContent = product.subtitle;
+            discountBadge.textContent = product.discount;
+            orderText.textContent = product.orderText;
+            
+            // عرض أو إخفاء قسم الإيميل
+            if (product.showEmail) {
+                emailSection.classList.add('active');
+            } else {
+                emailSection.classList.remove('active');
+            }
+        }
+        
+        // إضافة حدث النقر لكل تبويب
+        productTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const productId = tab.getAttribute('data-product');
+                switchProduct(productId);
             });
         });
         
-        // تأثير للشعار العلوي الفخم
+        // إضافة حدث لزر الطلب
+        orderButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // الحصول على المنتج الحالي النشط
+            const activeTab = document.querySelector('.product-tab.active');
+            const activeProduct = activeTab.getAttribute('data-product');
+            
+            // التحقق من صحة الإيميل لمنتج Canva
+            if (activeProduct === 'canva') {
+                const emailInput = document.getElementById('userEmail');
+                const email = emailInput.value.trim();
+                
+                if (!email) {
+                    alert('الرجاء إدخال بريدك الإلكتروني لتلقي تفعيل Canva Pro');
+                    emailInput.focus();
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    alert('الرجاء إدخال بريد إلكتروني صحيح');
+                    emailInput.focus();
+                    return;
+                }
+                
+                alert(`شكراً لطلبك! سيتم إرسال تفعيل Canva Pro إلى ${email} بعد تأكيد الدفع.`);
+            } else {
+                alert('شكراً لطلبك Netflix! بعد تأكيد الدفع، ستتلقى بيانات الحساب.');
+            }
+            
+            // هنا يمكن إضافة إرسال البيانات إلى الخادم
+            console.log('تم طلب المنتج:', activeProduct);
+        });
+        
+        // دالة التحقق من صحة الإيميل
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // تهيئة المنتج الافتراضي (Canva)
+        switchProduct('canva');
+        
+        // تأثيرات تفاعلية للشعار
         const premiumLogo = document.querySelector('.nikai-premium-logo');
         premiumLogo.addEventListener('mouseenter', function() {
             this.style.animation = 'glow 0.5s ease-in-out infinite alternate';
