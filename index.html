@@ -12,8 +12,8 @@
             --text-main: #ffffff;
             --accent-color: #ffffff;
             --glow-color: rgba(255, 255, 255, 0.05);
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --card-shadow: 0 15px 35px rgba(0,0,0,0.6);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -23,7 +23,7 @@
             --bg-base: #f1f4f9;
             --text-main: #1e272e;
             --accent-color: #2d3436;
-            --glass: rgba(255, 255, 255, 0.92);
+            --glass: rgba(255, 255, 255, 0.95);
             --glass-border: rgba(0, 0, 0, 0.08);
             --card-shadow: 12px 12px 25px #d1d9e6, -12px -12px 25px #ffffff;
         }
@@ -33,20 +33,18 @@
         body.theme-canva { --accent-color: #00c4cc; --glow-color: rgba(0, 196, 204, 0.3); }
         body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); } 
         body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.3); } 
-        body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.3); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.3); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; transition: background 0.8s ease, color 0.5s ease; }
 
-        /* الخلفية التفاعلية */
         .ambient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), var(--glow-color) 0%, transparent 65%); z-index: -1; pointer-events: none; transition: 0.7s cubic-bezier(0.2, 1, 0.3, 1); }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; width: 100%; flex: 1; }
 
-        /* شريط التحكم الزجاجي */
+        /* شريط التحكم الزجاجي العلوي */
         .top-nav { position: fixed; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
         .nav-pill { display: flex; gap: 8px; background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 6px; border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: var(--card-shadow); pointer-events: auto; }
-        .icon-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 17px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .icon-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 17px; transition: 0.4s; }
         .icon-btn:hover { background: var(--accent-color); color: #fff; transform: scale(1.15) rotate(5deg); }
 
         /* القائمة الجانبية */
@@ -58,33 +56,39 @@
 
         header { padding: 100px 0 30px; text-align: center; }
         .logo { font-size: 55px; font-weight: 900; letter-spacing: 12px; color: var(--text-main); text-shadow: 0 0 25px var(--glow-color); }
-        .sub-logo { opacity: 0.8; font-size: 17px; margin-bottom: 40px; letter-spacing: 1.5px; }
+        .sub-logo { opacity: 0.8; font-size: 17px; margin-bottom: 40px; }
 
-        /* الشبكة المتوازنة (3 أعمدة ثابتة للموبايل) */
+        /* الشبكة المتوازنة (3 أعمدة) */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 50px; animation: fadeInUp 0.8s ease; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 10px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; box-shadow: var(--card-shadow); }
+        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 10px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-12px) scale(1.05); border-color: var(--accent-color); }
         .card.active { border-color: var(--accent-color); background: rgba(128,128,128,0.12); transform: scale(1.05); }
         .card i { font-size: 35px; margin-bottom: 15px; color: var(--accent-color); transition: 0.4s; }
         .card h3 { font-size: 11px; font-weight: 800; text-align: center; color: var(--text-main); letter-spacing: 0.5px; }
 
-        /* لوحة الدفع السينمائية */
-        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: var(--card-shadow); }
+        /* لوحة الدفع */
+        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(40px); box-shadow: var(--card-shadow); }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
         .plan-btn { background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 22px; border-radius: 22px; cursor: pointer; transition: 0.3s; color: var(--text-main); text-align: center; }
         .plan-btn.selected { background: var(--accent-color); color: #fff; font-weight: 900; border-color: var(--accent-color); box-shadow: 0 15px 30px var(--glow-color); }
-        body.light-mode .plan-btn.selected { color: #fff; background: #2d3436; border-color: #2d3436; }
 
-        /* وزنية البنك الذهبية المحصنة */
+        /* وزنية البنك الذهبية المحصنة وزر النسخ */
         .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 45px 35px; max-width: 500px; margin: 40px auto 0; text-align: center; color: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
         body.light-mode .bank-box { background: #ffffff; color: #1a1a1b; border: 1px solid #ff000022; box-shadow: 10px 10px 30px #d1d9e6; }
         .bank-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(128,128,128,0.1); font-size: 15px; }
-        .iban-container { width: 100%; background: rgba(255,0,0,0.03); border: 2.5px dashed #ff0000; padding: 20px; border-radius: 20px; margin: 30px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; overflow: hidden; }
+        
+        .iban-container { 
+            width: 100%; background: rgba(255,0,0,0.03); border: 2.5px dashed #ff0000; 
+            padding: 20px; border-radius: 20px; margin: 30px 0; cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; gap: 15px; 
+            transition: 0.3s; overflow: hidden; position: relative;
+        }
         .iban-container:hover { background: rgba(255,0,0,0.06); transform: scale(1.02); }
         .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 3.8vw, 17px); color: #ff0000; font-weight: 900; letter-spacing: 0.5px; }
+        .copy-badge { background: #ff0000; color: #fff; padding: 5px 12px; border-radius: 50px; font-size: 10px; font-weight: 800; }
 
         .btn-order { width: 100%; background: #ff0000; color: #fff !important; border: none; padding: 24px; border-radius: 22px; font-weight: 900; font-size: 20px; cursor: pointer; box-shadow: 0 15px 45px rgba(255,0,0,0.3); transition: 0.4s; animation: pulseOrder 2s infinite; }
         @keyframes pulseOrder { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
@@ -145,8 +149,8 @@
                 <div class="bank-row"><span id="l-bank">البنك:</span><strong>بنك البلاد</strong></div>
                 <div class="bank-row"><span id="l-user">المستفيد:</span><strong>سليمان فلاته</strong></div>
                 <div class="iban-container" onclick="copyIBAN()">
-                    <span class="iban-text">SA0315000900133520020007</span>
-                    <i class="fas fa-copy" style="font-size: 16px; opacity: 0.5;"></i>
+                    <span class="iban-text" id="ibanText">SA0315000900133520020007</span>
+                    <span class="copy-badge"><i class="fas fa-copy"></i> نسخ</span>
                 </div>
                 <button class="btn-order" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i> <span id="l-confirm">تأكيد الطلب عبر واتساب</span>
@@ -233,7 +237,8 @@
         }
 
         function copyIBAN() {
-            navigator.clipboard.writeText("SA0315000900133520020007");
+            const iban = document.getElementById('ibanText').innerText;
+            navigator.clipboard.writeText(iban);
             const t = document.getElementById('toast'); t.innerText = ui[lang].copy; t.style.display = 'block';
             setTimeout(() => t.style.display = 'none', 2000);
         }
