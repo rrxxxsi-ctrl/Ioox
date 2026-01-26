@@ -12,13 +12,13 @@
             --text-main: #ffffff;
             --accent-color: #ffffff;
             --glow-color: rgba(255, 255, 255, 0.05);
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --card-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* تحسين جذري للوضع النهاري */
+        /* إصلاح الوضع النهاري الكريستالي */
         body.light-mode {
             --bg-base: #f1f4f9;
             --text-main: #1e272e;
@@ -28,7 +28,7 @@
             --card-shadow: 12px 12px 25px #d1d9e6, -12px -12px 25px #ffffff;
         }
 
-        /* الهويات اللونية للمنتجات */
+        /* الهويات اللونية الديناميكية */
         body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.3); } 
         body.theme-canva { --accent-color: #00c4cc; --glow-color: rgba(0, 196, 204, 0.3); }
         body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); } 
@@ -71,14 +71,12 @@
         .card h3 { font-size: 11px; font-weight: 800; text-align: center; color: var(--text-main); letter-spacing: 0.5px; }
 
         /* لوحة الدفع */
-        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: var(--card-shadow); }
-        @keyframes slideUpFade { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(40px); box-shadow: var(--card-shadow); }
 
         .plan-btn { background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 22px; border-radius: 22px; cursor: pointer; transition: 0.3s; color: var(--text-main); text-align: center; }
         .plan-btn.selected { background: var(--accent-color); color: #fff; font-weight: 900; border-color: var(--accent-color); box-shadow: 0 15px 30px var(--glow-color); }
-        body.light-mode .plan-btn.selected { color: #fff; background: #2d3436; border-color: #2d3436; }
 
-        /* وزنية البنك الذهبية المحصنة */
+        /* وزنية البنك الذهبية */
         .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 45px 35px; max-width: 500px; margin: 40px auto 0; text-align: center; color: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
         body.light-mode .bank-box { background: #ffffff; color: #1a1a1b; border: 1px solid #ff000022; box-shadow: 10px 10px 30px #d1d9e6; }
         .bank-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(128,128,128,0.1); font-size: 15px; }
@@ -90,7 +88,7 @@
         @keyframes pulseOrder { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
         footer { padding: 70px 0; text-align: center; font-size: 15px; opacity: 0.6; margin-top: auto; border-top: 1px solid var(--glass-border); font-weight: 700; }
-        .toast { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #fff; padding: 16px 45px; border-radius: 60px; display: none; z-index: 3000; font-weight: 900; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .toast { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #fff; padding: 16px 45px; border-radius: 60px; display: none; z-index: 3000; font-weight: 900; }
 
         @media (max-width: 600px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .card { padding: 30px 10px; } .card h3 { font-size: 9px; } .logo { font-size: 40px; letter-spacing: 8px; } }
     </style>
@@ -165,7 +163,6 @@
         });
 
         let lang = 'ar';
-        // استعادة كافة البيانات المحذوفة بدقة
         const products = {
             canva: { icon: 'fas fa-pen-nib', name: {ar:"كانفا برو", en:"Canva Pro"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"39 ريال"}] },
             osn: { icon: 'fas fa-plus-circle', name: {ar:"+OSN", en:"+OSN"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"15.99 ريال"}, {l:{ar:"3 أشهر", en:"3 Months"}, p:"33.99 ريال"}, {l:{ar:"6 أشهر", en:"6 Months"}, p:"60.99 ريال"}, {l:{ar:"سنة مشترك", en:"Year Shared"}, p:"110 ريال"}, {l:{ar:"سنة خاص", en:"Year Private"}, p:"239.99 ريال"}] },
