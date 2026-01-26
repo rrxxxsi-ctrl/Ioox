@@ -14,77 +14,80 @@
             --glow-color: rgba(255, 255, 255, 0.05);
             --glass: rgba(255, 255, 255, 0.02);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --card-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* تحسين جذري للوضع النهاري */
         body.light-mode {
-            --bg-base: #f4f6f9;
-            --text-main: #111111;
-            --glass: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(0, 0, 0, 0.05);
+            --bg-base: #f1f4f9;
+            --text-main: #1e272e;
+            --accent-color: #2d3436;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --card-shadow: 10px 10px 25px #d1d9e6, -10px -10px 25px #ffffff;
         }
 
         /* الهويات اللونية للمنتجات */
-        body.theme-canva { --accent-color: #00c4cc; --glow-color: rgba(0, 196, 204, 0.3); } /* لون كانفا برو */
         body.theme-osn { --accent-color: #ff007f; --glow-color: rgba(255, 0, 127, 0.3); } 
+        body.theme-canva { --accent-color: #00c4cc; --glow-color: rgba(0, 196, 204, 0.3); }
         body.theme-autodesk { --accent-color: #00d2ff; --glow-color: rgba(0, 210, 255, 0.3); } 
         body.theme-windows { --accent-color: #00a884; --glow-color: rgba(0, 168, 132, 0.3); } 
         body.theme-adobe { --accent-color: #ff0054; --glow-color: rgba(255, 0, 84, 0.3); }
         body.theme-youtube { --accent-color: #ff0000; --glow-color: rgba(255, 0, 0, 0.3); }
-        body.theme-netflix { --accent-color: #e50914; --glow-color: rgba(229, 9, 20, 0.3); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; transition: background 0.8s ease; }
 
-        .ambient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), var(--glow-color) 0%, transparent 60%); z-index: -1; pointer-events: none; transition: 0.6s ease; }
+        .ambient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), var(--glow-color) 0%, transparent 65%); z-index: -1; pointer-events: none; transition: 0.6s ease; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; width: 100%; flex: 1; }
 
-        /* التحكم العلوي */
+        /* شريط التحكم العلوي */
         .top-nav { position: fixed; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-        .nav-pill { display: flex; gap: 8px; background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 6px; border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
-        .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: 0.4s; }
-        .icon-btn:hover { background: var(--accent-color); color: #000; transform: scale(1.1); }
+        .nav-pill { display: flex; gap: 8px; background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 6px; border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: var(--card-shadow); }
+        .icon-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 17px; transition: 0.4s; }
+        .icon-btn:hover { background: var(--accent-color); color: #fff; transform: scale(1.1); }
 
-        /* القائمة الجانبية */
-        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s; }
-        .menu-drawer { position: fixed; top: 0; right: -100%; width: 85%; max-width: 420px; height: 100%; background: var(--bg-base); z-index: 2001; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); padding: 60px 30px; overflow-y: auto; text-align: right; }
+        /* القائمة الجانبية (Sidebar) */
+        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s; }
+        .menu-drawer { position: fixed; top: 0; right: -100%; width: 85%; max-width: 420px; height: 100%; background: var(--bg-base); z-index: 2001; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); padding: 60px 30px; text-align: right; }
         .menu-overlay.active { visibility: visible; opacity: 1; }
         .menu-drawer.active { right: 0; }
-        .menu-item h4 { color: var(--accent-color); margin-bottom: 12px; font-weight: 900; border-right: 4px solid var(--accent-color); padding-right: 15px; }
+        .menu-item h4 { color: var(--accent-color); margin-bottom: 15px; font-weight: 900; border-right: 4px solid var(--accent-color); padding-right: 15px; }
 
         header { padding: 100px 0 30px; text-align: center; }
-        .logo { font-size: 52px; font-weight: 900; letter-spacing: 12px; color: #fff; text-shadow: 0 0 20px var(--glow-color); }
-        .sub-logo { opacity: 0.8; font-size: 16px; margin-bottom: 40px; }
+        .logo { font-size: 55px; font-weight: 900; letter-spacing: 12px; color: var(--text-main); text-shadow: 0 0 20px var(--glow-color); }
+        .sub-logo { opacity: 0.8; font-size: 17px; margin-bottom: 40px; }
 
-        /* شبكة المنتجات (3 أعمدة) */
+        /* الشبكة المرنة 3 أعمدة */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 50px; }
-        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 10px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; }
-        .card:hover { transform: translateY(-12px); border-color: var(--accent-color); box-shadow: 0 25px 50px var(--glow-color); }
-        .card.active { border-color: var(--accent-color); background: rgba(255,255,255,0.06); transform: scale(1.05); }
-        .card i { font-size: 32px; margin-bottom: 15px; color: var(--accent-color); }
-        .card h3 { font-size: 11px; font-weight: 700; text-align: center; }
+        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px 10px; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; box-shadow: var(--card-shadow); }
+        .card:hover { transform: translateY(-12px) scale(1.05); border-color: var(--accent-color); }
+        .card.active { border-color: var(--accent-color); background: rgba(128,128,128,0.1); }
+        .card i { font-size: 32px; margin-bottom: 15px; color: var(--accent-color); transition: 0.5s; }
+        .card h3 { font-size: 11px; font-weight: 800; text-align: center; color: var(--text-main); }
 
-        /* لوحة التفاصيل */
-        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUp 0.7s ease; backdrop-filter: blur(30px); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        /* لوحة الدفع */
+        #checkout { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 45px; padding: 45px 25px; margin-bottom: 60px; display: none; animation: slideUp 0.7s ease; backdrop-filter: blur(40px); box-shadow: var(--card-shadow); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        .plan-btn { background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 18px; border-radius: 22px; cursor: pointer; transition: 0.3s; color: var(--text-main); text-align: center; }
-        .plan-btn.selected { background: var(--accent-color); color: #000; font-weight: 900; border-color: var(--accent-color); }
-        .plan-btn div { font-size: 11px; opacity: 0.7; margin-bottom: 5px; }
+        .plan-btn { background: rgba(128,128,128,0.08); border: 1px solid var(--glass-border); padding: 22px; border-radius: 22px; cursor: pointer; transition: 0.3s; color: var(--text-main); text-align: center; }
+        .plan-btn.selected { background: var(--accent-color); color: #fff; font-weight: 900; border-color: var(--accent-color); box-shadow: 0 15px 30px var(--glow-color); }
 
-        /* البنك */
-        .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 40px; max-width: 480px; margin: 40px auto 0; text-align: center; color: #fff; }
-        .bank-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
-        .iban-container { width: 100%; background: rgba(255,255,255,0.02); border: 2px dashed #ff0000; padding: 18px; border-radius: 18px; margin: 25px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; overflow: hidden; }
-        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(11px, 3.8vw, 16px); color: #ff0000; font-weight: 900; }
+        /* وزنية البنك الذهبية */
+        .bank-box { background: #000; border: 1px solid var(--glass-border); border-radius: 35px; padding: 45px 35px; max-width: 500px; margin: 40px auto 0; text-align: center; color: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+        body.light-mode .bank-box { background: #ffffff; color: #1a1a1b; border: 1px solid #ff000022; }
+        .bank-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(128,128,128,0.1); font-size: 15px; }
+        .iban-container { width: 100%; background: rgba(255,0,0,0.03); border: 2.5px dashed #ff0000; padding: 20px; border-radius: 20px; margin: 30px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; overflow: hidden; }
+        .iban-text { font-family: 'Courier New', monospace; font-size: clamp(12px, 3.8vw, 17px); color: #ff0000; font-weight: 900; letter-spacing: 0.5px; }
 
-        .btn-order { width: 100%; background: #ff0000; color: #fff !important; border: none; padding: 22px; border-radius: 20px; font-weight: 900; font-size: 19px; cursor: pointer; box-shadow: 0 15px 40px rgba(255,0,0,0.3); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .btn-order { width: 100%; background: #ff0000; color: #fff !important; border: none; padding: 24px; border-radius: 22px; font-weight: 900; font-size: 20px; cursor: pointer; box-shadow: 0 15px 45px rgba(255,0,0,0.3); transition: 0.4s; animation: pulseOrder 2s infinite; }
+        @keyframes pulseOrder { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
-        footer { padding: 60px 0; text-align: center; font-size: 14px; opacity: 0.6; margin-top: auto; border-top: 1px solid var(--glass-border); font-weight: 600; }
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #000; padding: 15px 40px; border-radius: 50px; display: none; z-index: 3000; font-weight: 900; }
+        footer { padding: 70px 0; text-align: center; font-size: 15px; opacity: 0.6; margin-top: auto; border-top: 1px solid var(--glass-border); font-weight: 700; }
+        .toast { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #fff; padding: 16px 45px; border-radius: 60px; display: none; z-index: 3000; font-weight: 900; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
 
-        @media (max-width: 600px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .card h3 { font-size: 9px; } .logo { font-size: 40px; } }
+        @media (max-width: 600px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .card { padding: 30px 10px; } .card h3 { font-size: 9px; } .logo { font-size: 40px; letter-spacing: 8px; } }
     </style>
 </head>
 <body>
@@ -101,14 +104,14 @@
 
     <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
     <div class="menu-drawer" id="drawer">
-        <button class="icon-btn" onclick="toggleMenu()" style="margin-bottom: 40px;"><i class="fas fa-times"></i></button>
+        <button class="icon-btn" onclick="toggleMenu()" style="margin-bottom: 45px;"><i class="fas fa-times"></i></button>
         <div class="menu-item">
             <h4>لماذا تختار إشتراكاتي ؟</h4>
-            <p style="font-size:13px; line-height:2.2; opacity:0.8;">🚀 تفعيل سريييع أسرع مما تتوقع.<br>📞 دعم فني 24/7 جاهزين لمساعدتك.<br>💳 دفع آمن ومتعدد.<br>✨ منتجات اصلية 100% وبسعر خرافي.</p>
+            <p style="font-size:14px; line-height:2.4; opacity:0.8;">🚀 تفعيل سريييع أسرع مما تتوقع.<br>📞 دعم فني 24/7 جاهزين لمساعدتك.<br>💳 دفع آمن ومتعدد.<br>✨ منتجات اصلية 100% وبسعر خرافي.</p>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" style="margin-top: 40px;">
             <h4>تواصل معنا</h4>
-            <p style="font-size:14px; font-weight:900;">📧 iioe@outlook.sa<br>📱 0591388202</p>
+            <p style="font-size:16px; font-weight:900;">📧 iioe@outlook.sa<br>📱 0591388202</p>
         </div>
     </div>
 
@@ -121,15 +124,15 @@
         <div class="grid" id="mainGrid"></div>
 
         <section id="checkout">
-            <h2 id="s-title" style="text-align: center; margin-bottom: 25px;"></h2>
-            <div id="s-plans" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin:25px 0;"></div>
+            <h2 id="s-title" style="text-align: center; margin-bottom: 30px; font-weight: 900;"></h2>
+            <div id="s-plans" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:15px; margin:30px 0;"></div>
             
-            <div id="dynamic-inputs" style="text-align:right; margin:35px 0; display:none;">
-                <label id="l-email" style="font-size:14px; opacity:0.8; display:block; margin-bottom:12px;"></label>
-                <input type="email" id="u-email" style="width:100%; padding:20px; border-radius:20px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="mail@example.com">
-                <div id="pass-area" style="display:none; margin-top:20px;">
-                    <label id="l-pass" style="font-size:14px; opacity:0.8; display:block; margin-bottom:12px;"></label>
-                    <input type="text" id="u-pass" style="width:100%; padding:20px; border-radius:20px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none;" placeholder="Password">
+            <div id="dynamic-inputs" style="text-align:right; margin:40px 0; display:none;">
+                <label id="l-email" style="font-size:15px; opacity:0.8; display:block; margin-bottom:15px; font-weight: 800;">البريد الإلكتروني للتفعيل:</label>
+                <input type="email" id="u-email" style="width:100%; padding:22px; border-radius:22px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none; font-size: 16px;" placeholder="mail@example.com">
+                <div id="pass-area" style="display:none; margin-top: 25px;">
+                    <label id="l-pass" style="font-size:15px; opacity:0.8; display:block; margin-bottom:15px; font-weight: 800;">كلمة المرور:</label>
+                    <input type="text" id="u-pass" style="width:100%; padding:22px; border-radius:22px; border:1px solid var(--glass-border); background:rgba(128,128,128,0.05); color:var(--text-main); font-family:'Cairo'; outline:none; font-size: 16px;" placeholder="Password">
                 </div>
             </div>
 
@@ -138,7 +141,7 @@
                 <div class="bank-row"><span id="l-user">المستفيد:</span><strong>سليمان فلاته</strong></div>
                 <div class="iban-container" onclick="copyIBAN()">
                     <span class="iban-text">SA0315000900133520020007</span>
-                    <i class="fas fa-copy" style="font-size: 14px; opacity: 0.5;"></i>
+                    <i class="fas fa-copy" style="font-size: 16px; opacity: 0.5;"></i>
                 </div>
                 <button class="btn-order" onclick="placeOrder()">
                     <i class="fab fa-whatsapp"></i> <span id="l-confirm">تأكيد الطلب عبر واتساب</span>
@@ -160,13 +163,13 @@
             canva: { icon: 'fas fa-pen-nib', name: {ar:"كانفا برو", en:"Canva Pro"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"39 ريال"}] },
             osn: { icon: 'fas fa-plus-circle', name: {ar:"+OSN", en:"+OSN"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"15.99 ريال"}, {l:{ar:"3 أشهر", en:"3 Months"}, p:"33.99 ريال"}, {l:{ar:"6 أشهر", en:"6 Months"}, p:"60.99 ريال"}, {l:{ar:"سنة مشترك", en:"Year Shared"}, p:"110 ريال"}, {l:{ar:"سنة خاص", en:"Year Private"}, p:"239.99 ريال"}] },
             autodesk: { icon: 'fas fa-drafting-compass', name: {ar:"أوتوديسك", en:"Autodesk"}, plans: [{l:{ar:"6 أشهر", en:"6 Months"}, p:"150 ريال"}, {l:{ar:"12 شهر", en:"12 Months"}, p:"250 ريال"}], email: true },
-            windows: { icon: 'fab fa-windows', name: {ar:"ويندوز", en:"Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}, {l:{ar:"11 Pro", en:"11 Pro"}, p:"28.99 ريال"}, {l:{ar:"11 Home", en:"11 Home"}, p:"28.99 ريال"}, {l:{ar:"10 Home", en:"10 Home"}, p:"33.99 ريال"}] },
+            windows: { icon: 'fab fa-windows', name: {ar:"ويندوز", en:"Windows"}, plans: [{l:{ar:"10 Pro", en:"10 Pro"}, p:"24.99 ريال"}, {l:{ar:"11 Pro", en:"11 Pro"}, p:"28.99 ريال"}, {l:{ar:"10 Home", en:"10 Home"}, p:"33.99 ريال"}] },
             netflix: { icon: 'fas fa-film', name: {ar:"نتفليكس", en:"Netflix"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"20 ريال"}, {l:{ar:"سنة", en:"Year"}, p:"200 ريال"}] },
             shahid: { icon: 'fas fa-play-circle', name: {ar:"شاهد VIP", en:"Shahid VIP"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"200 ريال"}] },
-            youtube: { icon: 'fab fa-youtube', name: {ar:"يوتيوب بريميوم", en:"YouTube"}, plans: [{l:{ar:"دعوة سنة", en:"Invite"}, p:"200 ريال"}, {l:{ar:"فردي سنة", en:"Indiv"}, p:"350 ريال", t:"ind"}], email: true },
+            youtube: { icon: 'fab fa-youtube', name: {ar:"يوتيوب بريميوم", en:"YouTube"}, plans: [{l:{ar:"دعوة سنة", en:"Invite 1yr"}, p:"200 ريال"}, {l:{ar:"فردي سنة", en:"Indiv 1yr"}, p:"350 ريال", t:"ind"}], email: true },
             adobe: { icon: 'fas fa-palette', name: {ar:"أدوبي CC", en:"Adobe CC"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"999 ريال"}], email: true },
             office: { icon: 'fas fa-file-word', name: {ar:"أوفيس 365", en:"Office 365"}, plans: [{l:{ar:"مدى الحياة", en:"Lifetime"}, p:"45 ريال"}] },
-            linkedin: { icon: 'fab fa-linkedin', name: {ar:"لينكد إن", en:"LinkedIn"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"600 ريال"}], email: true },
+            linkedin: { icon: 'fab fa-linkedin', name: {ar:"لينكد إن", en:"LinkedIn"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"600 ريال"}] },
             fasel: { icon: 'fas fa-bolt', name: {ar:"فاصل بلس", en:"Fasel Plus"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"89 ريال"}] },
             crunchy: { icon: 'fas fa-tv', name: {ar:"كرانشي رول", en:"Crunchyroll"}, plans: [{l:{ar:"سنة", en:"Year"}, p:"50 ريال"}] },
             chatgpt: { icon: 'fas fa-robot', name: {ar:"ChatGPT Plus", en:"ChatGPT Plus"}, plans: [{l:{ar:"شهر", en:"1 Month"}, p:"10 ريال"}] }
@@ -187,7 +190,10 @@
         }
 
         function toggleMenu() { document.getElementById('overlay').classList.toggle('active'); document.getElementById('drawer').classList.toggle('active'); }
-        function toggleTheme() { document.body.classList.toggle('light-mode'); document.getElementById('theme-icon').className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon'; }
+        function toggleTheme() { 
+            document.body.classList.toggle('light-mode'); 
+            document.getElementById('theme-icon').className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon'; 
+        }
         function toggleLang() { lang = lang === 'ar' ? 'en' : 'ar'; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.getElementById('sub-title').innerText = ui[lang].sub; renderGrid(); document.getElementById('checkout').style.display='none'; }
 
         let selP = "", selL = "", selT = "";
@@ -229,7 +235,10 @@
 
         function placeOrder() {
             const e = document.getElementById('u-email').value;
-            window.open(`https://wa.me/966591388202?text=Order: ${document.getElementById('s-title').innerText} - Plan: ${selL} - Price: ${selP} - Email: ${e}`, '_blank');
+            const p = document.getElementById('u-pass').value;
+            let msg = `Order: ${document.getElementById('s-title').innerText} - Plan: ${selL} - Price: ${selP} - Email: ${e}`;
+            if(selT === 'ind') msg += ` - Pass: ${p}`;
+            window.open(`https://wa.me/966591388202?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         renderGrid();
